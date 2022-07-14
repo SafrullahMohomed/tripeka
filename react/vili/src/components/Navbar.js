@@ -7,14 +7,13 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const handleClick = () => setNav(!nav)
-
     const handleClose =()=> setNav(!nav)
 
   return (
     <div className='w-screen h-[80px] z-10 fixed drop-shadow-lg'>
       <div className='px-2 flex justify-between items-center w-full h-full'>
         <div className='flex items-center'>
-          <h1 className='text-3xl font-bold mr-4 sm:text-4xl'>TRAVEL.</h1>
+          <h1 className='text-3xl font-bold mr-4 sm:text-4xl'>TRAVEL</h1>
           <ul className='hidden md:flex text-black cursor-pointer'>
             <li><Link to="Home" smooth={true} duration={500}>Home</Link></li>
             <li><Link to="DashBoard" smooth={true} offset={-200} duration={500}>DashBoard</Link></li>
