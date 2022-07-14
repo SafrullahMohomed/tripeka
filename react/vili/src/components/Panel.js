@@ -4,7 +4,7 @@ const Panel = () => {
    return ( 
       <div class="absolute right-0 w-72 h-full bg-gray-100 p-4">
          <div class="flex w-full h-16 mb-7">
-            <div class="w-1/4 h-full p-1 rounded-full">
+            <div class="w-1/4 h-full p-1 rounded-full bg-white">
                <img src={img} class="w-full h-full rounded-full" alt="" />
             </div>
             <div class="w-2/4 h-full p-1 pl-3 font-semibold">Abdul Qadir<br /><div class="text-slate-400 font-light">Traveler</div></div>
