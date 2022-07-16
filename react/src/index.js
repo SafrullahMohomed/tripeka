@@ -9,6 +9,7 @@ import Testomonials from './components/Testomonials';
 import Popular from './components/Popular';
 import ContactUs from './components/ContactUs';
 import Login from './components/Login';
+import Register from './components/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
       <Route path='/places' element={<Popular/>}/>
       <Route path='/contactus' element={<ContactUs/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
     </Routes>
   </Router>
   
