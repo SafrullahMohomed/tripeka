@@ -2,8 +2,21 @@ import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
 import group from '../assets/group.png'
+import React, { useState } from "react";
+import "../styles/Modal.css";
 
 const Dashboard = () => {
+   const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if(modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
    return ( 
       <div class="absolute right-72 left-60 h-full bg-gray-200 px-8 py-4">
          <div class="flex w-full h-16 mb-7 rounded-lg bg-gray-100">
@@ -103,12 +116,21 @@ const Dashboard = () => {
                      <img src={group} class="pt-4" alt="" />
                   </div>
                   <div class="w-full h-1/4 pt-4 bg-gray-200"><center>
-                     <button class="flex m-0 px-2 py-1 bg-emerald-300 border-transparent">
+                     <button onClick={toggleModal} class="flex m-0 px-2 py-1 bg-emerald-300 border-transparent">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                         </svg>
                         <div class="pl-1">Create Group</div>
                      </button></center>
+                     {modal && (
+                        <div className="modal">
+                           <div onClick={toggleModal} className="overlay"></div>
+                           <div className="modal-content">
+                              <p>Hi</p>
+                              <button className="close-modal" onClick={toggleModal}>Close</button>
+                           </div>
+                        </div> 
+                     )}
                   </div>
                </div>
             </div>
