@@ -11,6 +11,11 @@ import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import Register from './components/Register';
 
+import Sidebar from './components/Sidebar';
+import Panel from './components/Panel';
+import Dashboard from './components/Dashboard';
+import Blogs from './pages/Blogs';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
@@ -22,6 +27,9 @@ root.render(
       <Route path='/contactus' element={<ContactUs/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
+      
+      <Route path='/dashboard' element={<><Sidebar /><Dashboard /><Panel /></>}/>
+      <Route path='/blogs' element={<Blogs />}/>
     </Routes>
   </Router>
   
