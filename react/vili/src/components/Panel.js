@@ -2,8 +2,12 @@ import img from '../assets/customer2.jpg'
 import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
+import React, { useState } from 'react';
 
 const Panel = () => {
+   const [showResults, setShowResults] = useState(false)
+   const droplist = () => setShowResults(true)
+
    return ( 
       <div class="absolute right-0 w-72 h-full bg-gray-100 p-4">
          <div class="flex w-full h-16 mb-7">
@@ -13,23 +17,25 @@ const Panel = () => {
             <div class="w-2/4 h-full p-1 pl-3 font-semibold">Abdul Qadir<br /><div class="text-slate-400 font-light">Traveler</div></div>
             <div class="w-1/4 h-full">
             
-               <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="py-2 border-transparent text-black focus:outline-none font-medium rounded-lg text-sm px-4 text-center inline-flex items-center" type="button"><svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-               <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
-                  <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                     <li>
-                     <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                     </li>
-                     <li>
-                     <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                     </li>
-                     <li>
-                     <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                     </li>
-                     <li>
-                     <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                     </li>
-                  </ul>
-               </div>
+               <button onClick={droplist} id="dropdownDefault" data-dropdown-toggle="dropdown" class="py-2 border-transparent text-black focus:outline-none font-medium rounded-lg text-sm px-4 text-center inline-flex items-center" type="button"><svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+               { showResults ?
+                  <div id="dropdown" class="absolute right-4 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                        <li class="p-0.5">
+                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                        </li>
+                        <li class="p-0.5">
+                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                        </li>
+                        <li class="p-0.5">
+                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">help</a>
+                        </li>
+                        <li class="p-0.5">
+                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                        </li>
+                     </ul>
+                  </div>
+               : null }
                
             </div>
          </div>
