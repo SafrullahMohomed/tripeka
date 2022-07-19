@@ -10,6 +10,7 @@ import Popular from './components/Popular';
 import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import Register from './components/Register';
+import Budget from './ms/components/Budget/Budget';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
       <Route path='/contactus' element={<ContactUs/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
+      <Route path='/ms' element={<Budget/>} />
     </Routes>
   </Router>
   
