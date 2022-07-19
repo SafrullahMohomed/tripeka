@@ -2,11 +2,13 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Blog from './components/Blog';
+import Services from './components/Services';
 import Testomonials from './components/Testomonials';
 import Popular from './components/Popular';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
+import Steps from './components/Steps';
+import Blog from './components/Blog';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       
       <Navbar></Navbar>
       <Hero></Hero>
+      <Steps></Steps>
+      <Services></Services>
       <Blog></Blog>
       <Testomonials></Testomonials>
       <Popular></Popular>

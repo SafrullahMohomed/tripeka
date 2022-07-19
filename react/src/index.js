@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Blog from './components/Blog';
+import Services from './components/Services';
 import Testomonials from './components/Testomonials';
 import Popular from './components/Popular';
 import ContactUs from './components/ContactUs';
@@ -21,7 +21,7 @@ root.render(
   <Router>
     <Routes>
       <Route path='/' element={<App/>}/>
-      <Route path='/services' element={<Blog/>}/>
+      <Route path='/services' element={<Services/>}/>
       <Route path='/testomonials' element={<Testomonials/>}/>
       <Route path='/places' element={<Popular/>}/>
       <Route path='/contactus' element={<ContactUs/>}/>
