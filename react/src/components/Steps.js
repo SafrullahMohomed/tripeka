@@ -8,7 +8,8 @@ const Steps = () => {
             <div class="container px-5 py-24 mx-auto flex flex-wrap">
                 <div class="flex flex-wrap w-full">
                     <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
-                        <br></br>
+                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Register with our system</h1><br/>
+                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">In 3 Easy Steps .....</h1>
                         <br></br>
                         <br></br>
                         <div class="flex relative pb-12">
