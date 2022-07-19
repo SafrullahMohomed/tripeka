@@ -57,13 +57,13 @@ const Dashboard = () => {
          </div>
 
          <div class="flex justify-evenly w-full h-48 mb-7 p-2 bg-gray-100">
-            <div class="h-full w-56 rounded-lg bg-gray-300">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
                <img src={img1} class="w-full h-full rounded" alt="" />
             </div>
-            <div class="h-full w-56 rounded-lg bg-gray-300">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
                <img src={img2} class="w-full h-full rounded" alt="" />
             </div>
-            <div class="h-full w-56 rounded-lg bg-gray-300">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
                <img src={img3} class="w-full h-full rounded" alt="" />
             </div>
          </div>
@@ -126,8 +126,9 @@ const Dashboard = () => {
                         <div className="modal">
                            <div onClick={toggleModal} className="overlay"></div>
                            <div className="modal-content">
+                              <p>Share Link</p><br />
                               <p>Hi</p>
-                              <button className="close-modal" onClick={toggleModal}>Close</button>
+                              <button className="close-modal" onClick={toggleModal}>Done</button>
                            </div>
                         </div> 
                      )}
