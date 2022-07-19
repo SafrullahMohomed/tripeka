@@ -1,120 +1,196 @@
-import React from 'react'
-import Navbar from './Navbar'
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import blog1 from '../assets/blog1.jpg'
+import blog2 from '../assets/blog2.jpg'
+import blog3 from '../assets/blog3.jpg'
+import blog4 from '../assets/blog4.jpg'
+import blog5 from '../assets/blog5.jpg'
+import blog6 from '../assets/blog6.jpg'
 
-const Blog = () => {
-  return (
-    
-    <div name='Services'>
-        <Navbar/>
-        <section className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
-                <div className="flex flex-col text-center w-full mb-20">
-                    <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">WE PROVIDE VALUABLE SERVICES FOR OUR CUSTOMERS</h2>
-                    <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Our Services</h1>
-                </div>
-                <div className="flex flex-wrap -m-4">
-                    <div className="p-4 md:w-1/3  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 1</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 1</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 1</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 2</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 3</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
-                        <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                            <div className="flex items-center mb-3">
-                                <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                        <circle cx="6" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                                    </svg>
-                                </div>
-                                <h2 className="text-gray-900 text-lg title-font font-medium">Services 4</h2>
-                            </div>
-                            <div className="flex-grow">
-                                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+export default class Blog extends Component {
+    render() {
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
+      return (
+        <div>
+            <div className="flex flex-col text-center w-full mb-5">
+                <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">WE LIKE DISPLAY ALL THE LATEST BLOGS WRIITEN BY OUR VALUABLE CUSTOMERS</h2>
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Our Top Blogs</h1>
             </div>
-        </section>
-    </div>
-  )
-}
+          <Slider {...settings}>
+            <div >
+                <section class="text-gray-600 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                        <div class="flex flex-wrap -m-4">
+                            <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog1} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-indigo-500">Written by : Shanika
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Pinnawela Zoo</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">I visited this elephant orphange first time. I had a great exeprience on it. Tripeka made my day</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
 
-export default Blog
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog2} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-indigo-500">Written By : Ashfaq Ashar
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Hakgala Garden</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Woow ! . This place was amazing. I got a good advice from trip guider from Trip eka . Thank you</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog3} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest  text-indigo-500">Written By : Munas Haathim
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Singharaja Forest</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">This forest was awesome and scary. Tripeka provides me all the facilities to have a great trip with my friends</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div >
+                <section class="text-gray-600 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                        <div class="flex flex-wrap -m-4">
+                        <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog4} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-indigo-500">Written By : Dinuja
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Viharamaha Devi park</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">I really don't know there is such a wonderful park in colombo city. Thanks Tripeka for showing good places</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog5} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest  text-indigo-500">Written By : Villcassim
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">The Title</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Photo booth fam kinfolk cold-pressed
+                                            sriracha
+                                            leggings
+                                            jianbing microdosing tousled waistcoat.</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 md:w-1/3">
+                                <div class="border-2 border-gray-200 rounded-lg">
+                                    <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog6} alt="blog"/>
+                                    <div class="p-6">
+                                        <span
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-red-800 bg-red-200 rounded">Category
+                                        </span>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">The Title</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Photo booth fam kinfolk cold-pressed
+                                            sriracha
+                                            leggings
+                                            jianbing microdosing tousled waistcoat.</p>
+                                        <div class="flex items-center ">
+                                            <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
+                                                More
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mt-1" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+          </Slider>
+        </div>
+      );
+    }
+  }
+

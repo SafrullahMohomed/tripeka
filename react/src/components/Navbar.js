@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div className='w-screen h-[80px] z-10 fixed drop-shadow-lg'>
-      <div className='px-2 flex justify-between items-center w-full h-full'>
+      <div className='px-2 flex justify-between items-center w-full h-full bg-white opacity-90'>
         <div className='flex items-center'>
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900" href={url}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-black mt-1.3 mr-2 rounded-full" viewBox="0 0 24 24">
