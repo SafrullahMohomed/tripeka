@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import pop6 from '../assets/loginImage.png'
 import { useForm } from "react-hook-form";
 

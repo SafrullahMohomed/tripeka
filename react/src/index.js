@@ -8,8 +8,8 @@ import Services from './components/Services';
 import Testomonials from './components/Testomonials';
 import Popular from './components/Popular';
 import ContactUs from './components/ContactUs';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 import Sidebar from './components/Sidebar';
 import Panel from './components/Panel';
