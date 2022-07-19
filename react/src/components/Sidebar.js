@@ -5,7 +5,7 @@ const Sidebar = () => {
    return ( 
          <div class="w-60 absolute top-0 bottom-0 bg-gray-100" aria-label="Sidebar">
             <div class="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
-               <div class="flex items-center pl-6 mb-12">
+               <div class="flex items-center pl-6 mt-2 mb-10">
                   <img src={logo} class="mr-3 h-6 sm:h-8 rounded-full" alt="" />
                   <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white pl-2">TripEka</span>
                </div>
