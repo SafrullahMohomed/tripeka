@@ -48,7 +48,7 @@ const Panel = () => {
             </div>
          </div>
 
-         <div class="w-full h-48 mb-10 rounded-lg drop-shadow-lg overflow-hidden">
+         <div class="w-full h-48 mb-10 rounded-lg border border-emerald-300 drop-shadow-lg overflow-hidden">
    
                <div className='calendar-container'>
                   <Calendar onChange={setDate} value={date} selectRange={true}/>
@@ -92,9 +92,9 @@ const Panel = () => {
                                  </div>   
                                  <div className="ml-1">Galle</div>
                                  <div class="-space-x-4 ml-2">
-                                    <img class="relative z-30 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
-                                    <img class="relative z-20 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
-                                    <img class="relative z-10 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
+                                    <img class="relative z-3 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
+                                    <img class="relative z-2 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
+                                    <img class="relative z-1 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
                                  </div> 
                               </div>
                            </div>            
@@ -116,9 +116,9 @@ const Panel = () => {
                                  </div>   
                                  <div className="ml-1">Galle</div>
                                  <div class="-space-x-4 ml-2">
-                                    <img class="relative z-30 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
-                                    <img class="relative z-20 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
-                                    <img class="relative z-10 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
+                                    <img class="relative z-3 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
+                                    <img class="relative z-2 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
+                                    <img class="relative z-1 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
                                  </div> 
                               </div>
                            </div>
@@ -141,9 +141,9 @@ const Panel = () => {
                                  </div>   
                                  <div className="ml-1">Galle</div>
                                  <div class="-space-x-4 ml-2">
-                                    <img class="relative z-30 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
-                                    <img class="relative z-20 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
-                                    <img class="relative z-10 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
+                                    <img class="relative z-3 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u1} alt=""/>
+                                    <img class="relative z-2 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u2} alt=""/>
+                                    <img class="relative z-1 inline object-cover w-6 h-6 border-2 border-white rounded-full" src={u3} alt=""/>
                                  </div> 
                               </div>
                            </div>

@@ -43,7 +43,7 @@ const Dashboard = () => {
                      <input
                         type="text"
                         placeholder="Search"
-                        className="w-full h-11 py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
+                        className="w-full h-11 py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-gray-50 focus:bg-white focus:border-emerald-300"
                      />
                   </div>
                </form>
@@ -58,14 +58,14 @@ const Dashboard = () => {
             </div>
          </div>
 
-         <div class="flex justify-evenly w-full h-48 mb-7 p-2 bg-gray-100">
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
+         <div class="flex justify-evenly w-full h-48 mb-7 p-2 bg-gray-200">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
                <img src={img1} class="w-full h-full rounded" alt="" />
             </div>
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
                <img src={img2} class="w-full h-full rounded" alt="" />
             </div>
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-100">
+            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
                <img src={img3} class="w-full h-full rounded" alt="" />
             </div>
          </div>
@@ -155,20 +155,34 @@ const Dashboard = () => {
                         <div className="modal">
                            <div onClick={toggleModal} className="overlay"></div>
                            <div className="modal-content">
-                              <div className='mb-4 font-semibold text-lg'>Add friends to 'trip-title'</div>
+                              <div className='mb-4 text-xl'>Add friends to 'trip-title'</div>
                               <form>
                                  <div class="inputBox">
                                     <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="" />
                                     <label>Email</label>
                                  </div>
-                                 <div class="mb-2">People with access</div>
+                                 <div class="mb-2 text-slate-500">People with access</div>
                                  <div class="h-24 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                                     <div class="added">
                                        <div class='added-names'>
                                           <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
                                           <div className='ml-3'>Abdul Qadir</div>
                                        </div>
-                                       <div className='mr-5'>Owner</div>
+                                       <div className='mr-5 text-slate-500'>Owner</div>
+                                    </div>
+                                    <div class="added">
+                                       <div class='added-names'>
+                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
+                                          <div className='ml-3'>Abdul Qadir</div>
+                                       </div>
+                                       <div className='mr-5 text-slate-500'></div>
+                                    </div>
+                                    <div class="added">
+                                       <div class='added-names'>
+                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
+                                          <div className='ml-3'>Abdul Qadir</div>
+                                       </div>
+                                       <div className='mr-5 text-slate-500'></div>
                                     </div>
                                  </div>
                                  <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
