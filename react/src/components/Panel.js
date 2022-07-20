@@ -3,6 +3,8 @@ import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
 import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import '../styles/calendar.css'
 
 const Panel = () => {
    //dropdown
@@ -10,7 +12,7 @@ const Panel = () => {
    const droplist = () => setShowResults(true)
    
    //calendar
-   //const [date, setDate] = useState(new Date())
+   const [date, setDate] = useState(new Date())
 
    return ( 
       <div class="absolute right-0 w-72 h-full bg-gray-100 p-4">
@@ -44,7 +46,25 @@ const Panel = () => {
             </div>
          </div>
 
-         <div class="w-full h-48 mb-10 rounded-lg bg-gray-300 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+         <div class="w-full h-48 mb-10 rounded-lg bg-gray-100 overflow-hidden">
+   
+               <div className='calendar-container'>
+                  <Calendar onChange={setDate} value={date} selectRange={true}/>
+               </div>
+               {date.length > 0 ? (
+                  <p className='text-center'>
+                     <span className='bold'>Start:</span>{' '}
+                     {date[0].toDateString()}
+                     &nbsp;|&nbsp;
+                     <span className='bold'>End:</span> {date[1].toDateString()}
+                  </p>
+                  ) : (
+                  <p className='text-center'>
+                     <span className='bold'>Default selected date:</span>{' '}
+                     {date.toDateString()}
+                  </p>
+                  )
+               }
             
          </div>
          
