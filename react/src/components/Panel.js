@@ -46,11 +46,12 @@ const Panel = () => {
             </div>
          </div>
 
-         <div class="w-full h-48 mb-10 rounded-lg bg-gray-100 overflow-hidden">
+         <div class="w-full h-48 mb-10 rounded-lg drop-shadow-lg overflow-hidden">
    
                <div className='calendar-container'>
                   <Calendar onChange={setDate} value={date} selectRange={true}/>
                </div>
+               
                {date.length > 0 ? (
                   <p className='text-center'>
                      <span className='bold'>Start:</span>{' '}
