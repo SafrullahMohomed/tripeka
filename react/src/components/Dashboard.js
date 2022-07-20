@@ -21,7 +21,7 @@ const Dashboard = () => {
    return ( 
       <div class="absolute right-72 left-60 h-full bg-gray-200 px-8 py-4">
          <div class="flex w-full h-16 mb-7 rounded-lg bg-gray-100">
-            <div class="w-3/12 h-full p-3 text-lg bg-gray-200">Hi, Abdul!</div>
+            <div class="w-3/12 h-full p-3 text-lg font-medium bg-gray-200">Hi, Abdul!</div>
             <div class="w-3/12 h-full p-3 bg-gray-200"></div>
             <div class="w-5/12 h-full p-1 bg-gray-200">
                <form className="max-w-sm px-4 drop-shadow-lg">
@@ -78,33 +78,60 @@ const Dashboard = () => {
                      Popular Destinations
                   </div>
                   <ul>
+
                      <li class="px-5 py-3">
                         <a href="#" class="flex h-16 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white bg-white dark:hover:bg-gray-700">
                            <span class="w-16 h-full bg-gray-400">
                               <img src={img1} class="w-full h-full rounded-lg" alt="" />
                            </span>
                            <div className="ml-4">
-                              Galle Fort<br />Galle
+                              <div className="">Galle fort</div>
+                              <div className="flex text-slate-400">
+                                 <div className="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                       <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                    </svg>
+                                 </div>
+                                 <div className="ml-1">Galle</div>
+                              </div>
                            </div>
                         </a>
                      </li>
-                     <li class="px-5 py-3">
-                        <a href="#" class="flex h-16 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white bg-white dark:hover:bg-gray-700">
-                           <span class="w-16 h-full bg-gray-400">
-                              <img src={img3} class="w-full h-full rounded-lg" alt="" />
-                           </span>
-                           <div className="ml-4">
-                              Galle Fort<br />Galle
-                           </div>
-                        </a>
-                     </li>
+      
                      <li class="px-5 py-3">
                         <a href="#" class="flex h-16 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white bg-white dark:hover:bg-gray-700">
                            <span class="w-16 h-full bg-gray-400">
                               <img src={img2} class="w-full h-full rounded-lg" alt="" />
                            </span>
                            <div className="ml-4">
-                              Galle Fort<br />Galle
+                              <div className="">Galle fort</div>
+                              <div className="flex text-slate-400">
+                                 <div className="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                       <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                    </svg>
+                                 </div>
+                                 <div className="ml-1">Galle</div>
+                              </div>
+                           </div>
+                        </a>
+                     </li>
+
+                     <li class="px-5 py-3">
+                        <a href="#" class="flex h-16 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white bg-white dark:hover:bg-gray-700">
+                           <span class="w-16 h-full bg-gray-400">
+                              <img src={img3} class="w-full h-full rounded-lg" alt="" />
+                           </span>
+                           <div className="ml-4">
+                              <div className="">Galle fort</div>
+                              <div className="flex text-slate-400">
+                                 <div className="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                       <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                    </svg>
+                                 </div>
+                                 <div className="ml-1">Galle</div>
+                              </div>
                            </div>
                         </a>
                      </li>
