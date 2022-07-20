@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import pop6 from '../assets/register.jpg'
@@ -7,10 +7,13 @@ import { useForm } from "react-hook-form";
 const Register = () => {
     const {
         register,
+        watch,
         formState: { errors },
         handleSubmit,
-      } = useForm();
-      const onSubmit = (data) => console.log(data);
+    } = useForm();
+    const onSubmit = (data) => console.log(data);
+    const password = useRef({});
+    password.current = watch("password", "");
       
   return (
     <div>
@@ -95,12 +98,18 @@ const Register = () => {
                                 <div class="mb-6">
                                     <input
                                     type="password"
-                                    name='password'
+                                    name='confirmpassword'
                                     class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                    id="exampleFormControlInput2"
+                                    id="exampleFormControlInput3"
+                                    {...register("confirmpassword", {
+                                        validate: value => value === password.current || "The passwords do not match"
+                                      })}
                                     placeholder="Confirm Password"
-                                    
                                     />
+                                    
+                                    {errors.confirmpassword && <p className = 'text-red-600'>{errors.confirmpassword.message}</p>}
+                                    
+                                    
                                     
                                 </div>
 
