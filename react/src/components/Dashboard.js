@@ -139,7 +139,7 @@ const Dashboard = () => {
                                        <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
                                        <div className='ml-3'>Abdul Qadir</div>
                                     </div>
-                                    <div>Owner</div>
+                                    <div className='mr-1'>Owner</div>
                                  </div>
                                  <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
                               </form>
