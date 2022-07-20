@@ -5,8 +5,12 @@ import img3 from '../assets/jaffna.jpg'
 import React, { useState } from 'react';
 
 const Panel = () => {
+   //dropdown
    const [showResults, setShowResults] = useState(false)
    const droplist = () => setShowResults(true)
+   
+   //calendar
+   //const [date, setDate] = useState(new Date())
 
    return ( 
       <div class="absolute right-0 w-72 h-full bg-gray-100 p-4">
@@ -40,7 +44,9 @@ const Panel = () => {
             </div>
          </div>
 
-         <div class="w-full h-48 mb-10 rounded-lg bg-gray-300"><center><br />Calender</center></div>
+         <div class="w-full h-48 mb-10 rounded-lg bg-gray-300 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+            
+         </div>
          
          <div class="w-full h-64 mb-7 rounded-lg bg-white">
          <div className="flex flex-col w-full h-full overflow-auto rounded-lg bg-white scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
