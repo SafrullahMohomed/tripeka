@@ -1,3 +1,4 @@
+import img from '../assets/customer2.jpg'
 import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
@@ -126,9 +127,22 @@ const Dashboard = () => {
                         <div className="modal">
                            <div onClick={toggleModal} className="overlay"></div>
                            <div className="modal-content">
-                              <p>Share Link</p><br />
-                              <p>Hi</p>
-                              <button className="close-modal" onClick={toggleModal}>Done</button>
+                              <div className='mb-4 font-semibold text-lg'>Add friends to 'trip-title'</div>
+                              <form>
+                                 <div class="inputBox">
+                                    <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="" />
+                                    <label>Email</label>
+                                 </div>
+                                 <div>People with access</div>
+                                 <div class="added">
+                                    <div class='added-names'>
+                                       <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
+                                       <div className='ml-3'>Abdul Qadir</div>
+                                    </div>
+                                    <div>Owner</div>
+                                 </div>
+                                 <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
+                              </form>
                            </div>
                         </div> 
                      )}
