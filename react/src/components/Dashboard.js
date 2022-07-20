@@ -49,10 +49,11 @@ const Dashboard = () => {
                </form>
             </div>
             <div class="w-1/12 h-full p-1 bg-gray-200">
-               <center><div class="w-11 h-11 p-2 rounded-full bg-gray-300">  
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 bg-white rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                  </svg>
+               <center><div class="w-11 h-11 p-2 rounded-full bg-gray-100"> 
+                  <span class="relative inline-block">
+                     <svg class="w-7 h-7 text-gray-700 fill-current rounded-full" viewBox="0 0 20 20"><path d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                     <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
+                  </span> 
                </div></center>
             </div>
          </div>
@@ -133,13 +134,15 @@ const Dashboard = () => {
                                     <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="" />
                                     <label>Email</label>
                                  </div>
-                                 <div>People with access</div>
-                                 <div class="added">
-                                    <div class='added-names'>
-                                       <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
-                                       <div className='ml-3'>Abdul Qadir</div>
+                                 <div class="mb-2">People with access</div>
+                                 <div class="h-24 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                                    <div class="added">
+                                       <div class='added-names'>
+                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
+                                          <div className='ml-3'>Abdul Qadir</div>
+                                       </div>
+                                       <div className='mr-5'>Owner</div>
                                     </div>
-                                    <div className='mr-1'>Owner</div>
                                  </div>
                                  <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
                               </form>
