@@ -9,6 +9,7 @@ import Testomonials from './components/Testomonials';
 import Popular from './components/Popular';
 import ContactUs from './components/ContactUs';
 import Login from './pages/Login';
+import Help from './pages/Help';
 import Register from './pages/Register';
 import Budget from './ms/components/Budget/Budget';
 import Sidebar from './components/Sidebar';
@@ -36,6 +37,7 @@ root.render(
       <Route path='/dashboard' element={<><Sidebar /><Dashboard /><Panel /></>}/>
       <Route path='/blogs' element={<><Sidebar /><Blogs /><Panel /></>}/>
       <Route path='/group1' element={<><Sidebar /><Groups /><Panel /></>}/>
+      <Route path='/help' element={<Help/>}/>
 
     </Routes>
   </Router>
