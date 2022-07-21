@@ -4,6 +4,9 @@ import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
 import group from '../assets/group.png'
 import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import "../styles/Modal.css";
 
 const Dashboard = () => {
@@ -18,9 +21,18 @@ const Dashboard = () => {
   } else {
     document.body.classList.remove('active-modal')
   }
+
+  const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3
+   };
+
    return ( 
       <div class="absolute right-72 left-60 h-full bg-gray-200 px-8 py-4">
-         <div class="flex w-full h-16 mb-7 rounded-lg bg-gray-100">
+         <div class="flex w-full h-16 mb-5 rounded-lg bg-gray-100">
             <div class="w-3/12 h-full p-3 text-lg font-medium bg-gray-200">Hi, Abdul!</div>
             <div class="w-3/12 h-full p-3 bg-gray-200"></div>
             <div class="w-5/12 h-full p-1 bg-gray-200">
@@ -58,16 +70,29 @@ const Dashboard = () => {
             </div>
          </div>
 
-         <div class="flex justify-evenly w-full h-48 mb-7 p-2 bg-gray-200">
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
-               <img src={img1} class="w-full h-full rounded" alt="" />
-            </div>
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
-               <img src={img2} class="w-full h-full rounded" alt="" />
-            </div>
-            <div class="h-full w-56 p-1.5 hover:p-0 rounded-lg bg-gray-200">
-               <img src={img3} class="w-full h-full rounded" alt="" />
-            </div>
+         <div class="w-full h-48 mb-12 p-2 bg-gray-200">
+            
+               <Slider {...settings}>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img1} alt="blog"/>
+                    </div>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img2} alt="blog"/>
+                    </div>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img3} alt="blog"/>
+                    </div>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img2} alt="blog"/>
+                    </div>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img3} alt="blog"/>
+                    </div>
+                    <div>
+                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img1} alt="blog"/>
+                    </div>
+                </Slider>
+
          </div>
 
          <div class="flex w-full h-72 mb-7 rounded-lg bg-white">

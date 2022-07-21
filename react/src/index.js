@@ -15,6 +15,7 @@ import Sidebar from './components/Sidebar';
 import Panel from './components/Panel';
 import Dashboard from './components/Dashboard';
 import Blogs from './pages/Blogs';
+import Groups from './pages/Groups';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -33,7 +34,8 @@ root.render(
 
       
       <Route path='/dashboard' element={<><Sidebar /><Dashboard /><Panel /></>}/>
-      <Route path='/blogs' element={<Blogs />}/>
+      <Route path='/blogs' element={<><Sidebar /><Blogs /><Panel /></>}/>
+      <Route path='/group1' element={<><Sidebar /><Groups /><Panel /></>}/>
 
     </Routes>
   </Router>
