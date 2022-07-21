@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const url="";
@@ -12,12 +13,27 @@ const Footer = () => {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         
-                        <span className="ml-3 text-xl">Travel</span>
+                        <span className="ml-3 text-xl">TripEka</span>
                     </a>
-                    <p className="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+                    <p className="mt-2 text-sm text-gray-500">Trip based service where we gained confidence and trust from many valuable customers in Sri lanka</p>
                 </div>
                     <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-                        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+                        <div className="lg:w-1/3 md:w-1/4 w-full px-4">
+                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                            <nav className="list-none mb-10">
+                                <li>
+                                    <Link to ='/help'><a className="text-gray-600 hover:text-gray-800">Help</a></Link>
+                                </li>
+                                <li>
+                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
+                                </li>
+                                <li>
+                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
+                                </li>
+                                
+                            </nav>
+                        </div>
+                        <div className="lg:w-1/3 md:w-1/4 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
                                 <li>
@@ -29,12 +45,10 @@ const Footer = () => {
                                 <li>
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800"  href={url}>Fourth Link</a>
-                                </li>
+                                
                             </nav>
                         </div>
-                        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+                        <div className="lg:w-1/3 md:w-1/4 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
                                 <li>
@@ -46,45 +60,10 @@ const Footer = () => {
                                 <li>
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
-                                </li>
+                                
                             </nav>
                         </div>
-                        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-                            <nav className="list-none mb-10">
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
-                                </li>
-                            </nav>
-                        </div>
-                        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-                            <nav className="list-none mb-10">
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
-                                </li>
-                                <li>
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
-                                </li>
-                            </nav>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className="bg-gray-100">

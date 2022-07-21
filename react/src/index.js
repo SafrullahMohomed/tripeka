@@ -15,6 +15,7 @@ import Sidebar from './components/Sidebar';
 import Panel from './components/Panel';
 import Dashboard from './components/Dashboard';
 import Blogs from './pages/Blogs';
+import Help from './pages/Help';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -28,6 +29,7 @@ root.render(
       <Route path='/contactus' element={<ContactUs/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
+      <Route path='/help' element={<Help/>}/>
 
       <Route path='/ms' element={<Budget/>} />
 

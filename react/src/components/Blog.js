@@ -138,11 +138,8 @@ export default class Blog extends Component {
                                         <span
                                             class="inline-block p-2 mb-2 text-xs font-medium tracking-widest  text-indigo-500">Written By : Villcassim
                                         </span>
-                                        <h1 class="mb-2 text-lg font-medium text-gray-900">The Title</h1>
-                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Photo booth fam kinfolk cold-pressed
-                                            sriracha
-                                            leggings
-                                            jianbing microdosing tousled waistcoat.</p>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Mahaweli River</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Its a great place i ever visited in my life. It awesome. Thank you Tripeka for suggesting me this wonderful place</p>
                                         <div class="flex items-center ">
                                             <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
                                                 More
@@ -162,13 +159,10 @@ export default class Blog extends Component {
                                     <img class="object-cover object-center w-full lg:h-48 md:h-36" src={blog6} alt="blog"/>
                                     <div class="p-6">
                                         <span
-                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-red-800 bg-red-200 rounded">Category
+                                            class="inline-block p-2 mb-2 text-xs font-medium tracking-widest text-indigo-500">Written By : Mohammed S
                                         </span>
-                                        <h1 class="mb-2 text-lg font-medium text-gray-900">The Title</h1>
-                                        <p class="mb-2 text-sm tracking-wide text-gray-700">Photo booth fam kinfolk cold-pressed
-                                            sriracha
-                                            leggings
-                                            jianbing microdosing tousled waistcoat.</p>
+                                        <h1 class="mb-2 text-lg font-medium text-gray-900">Arugam Bay</h1>
+                                        <p class="mb-2 text-sm tracking-wide text-gray-700">I normally visit this place during my leisure period with my friends or family members</p>
                                         <div class="flex items-center ">
                                             <a class="inline-flex items-center text-indigo-500 cursor-pointer md:mb-2 lg:mb-0" href="#">Read
                                                 More
