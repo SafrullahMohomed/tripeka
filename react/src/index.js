@@ -11,9 +11,10 @@ import ContactUs from './components/ContactUs';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Budget from './ms/components/Budget/Budget';
+
 import Sidebar from './components/Sidebar';
 import Panel from './components/Panel';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Blogs from './pages/Blogs';
 import Chat from './pages/Chat';
 
