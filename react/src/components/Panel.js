@@ -79,7 +79,7 @@ const Panel = () => {
                   </div>
                   <ul>
                      <li class="p-2 pl-4">
-                        <Link to="/group1"  class="border border-slate-400 flex h-16 w-11/12 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700">
+                        <Link to="/chat"  class="border border-slate-400 flex h-16 w-11/12 items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700">
                            <span class="w-16 h-full bg-gray-400">
                               <img src={img1} class="w-full h-full rounded-lg" alt="" />
                            </span>
