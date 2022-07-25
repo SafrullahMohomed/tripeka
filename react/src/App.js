@@ -9,8 +9,14 @@ import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
 import Steps from './components/Steps';
 import Blog from './components/Blog';
+import { useState } from 'react';
+import { getSignedRole } from './services/AuthAPIService';
 
 function App() {
+
+  
+
+
   return (
     <div>
       
