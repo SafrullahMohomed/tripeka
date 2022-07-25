@@ -7,7 +7,7 @@ const Sidebar = () => {
             <div class="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
                <div class="flex items-center pl-6 mt-2 mb-10">
                   <img src={logo} class="mr-3 h-6 sm:h-8 rounded-full" alt="" />
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white pl-2">TripEka</span>
+                  <span class="italic self-center text-2xl font-semibold whitespace-nowrap text-slate-500 dark:text-white pl-2">TRIPEKA</span>
                </div>
                <ul>
                   <li class="p-3">

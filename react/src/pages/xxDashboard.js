@@ -31,7 +31,7 @@ const Dashboard = () => {
    };
 
    return ( 
-      <div class="absolute right-72 left-60 h-full bg-gray-200 px-8 py-4">
+      <div class="absolute right-0 left-60 h-full bg-gray-200 px-8 py-4">
          <div class="flex w-full h-16 mb-2 rounded-lg bg-gray-200">
             <div class="w-3/12 h-full p-3 text-lg font-medium ml-1 text-slate-700 bg-gray-200">Hi, Abdul!</div>
             <div class="w-3/12 h-full p-3 bg-gray-200"></div>
@@ -219,20 +219,7 @@ const Dashboard = () => {
                                        </div>
                                        <div className='mr-5 text-slate-500'>Owner</div>
                                     </div>
-                                    <div class="added">
-                                       <div class='added-names'>
-                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
-                                          <div className='ml-3'>Abdul Qadir</div>
-                                       </div>
-                                       <div className='mr-5 text-slate-500'></div>
-                                    </div>
-                                    <div class="added">
-                                       <div class='added-names'>
-                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
-                                          <div className='ml-3'>Abdul Qadir</div>
-                                       </div>
-                                       <div className='mr-5 text-slate-500'></div>
-                                    </div>
+                                    
                                  </div>
                                  <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
                               </form>
