@@ -12,15 +12,15 @@ import blog6 from '../assets/blog6.jpg'
 const Carousel = () => {
     return ( 
         <section class="text-gray-600 body-font">
-  <div class="container px-5 py-10 mx-auto">
-    <div class="flex flex-wrap w-full mb-8">
-      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+  <div class="container px-5 py-8 mx-auto">
+    <div class="flex flex-wrap w-full mb-3">
+      <div class="lg:w-1/2 w-full mb-3 lg:mb-0">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Top suggestions</h1>
       </div>
     </div>
     <div class="flex flex-wrap -m-4">
       <div class="xl:w-1/4 md:w-1/2 p-4">
-        <div class="bg-gray-100 p-6 rounded-lg">
+        <div class="bg-gray-100 p-3 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src={blog6} alt="content"/>
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chichen Itza</h2>
@@ -28,7 +28,7 @@ const Carousel = () => {
         </div>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
-        <div class="bg-gray-100 p-6 rounded-lg">
+        <div class="bg-gray-100 p-3 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src={blog3} alt="content"/>
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Colosseum Roma</h2>
@@ -36,7 +36,7 @@ const Carousel = () => {
         </div>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
-        <div class="bg-gray-100 p-6 rounded-lg">
+        <div class="bg-gray-100 p-3 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src={blog5} alt="content"/>
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Great Pyramid of Giza</h2>
@@ -44,7 +44,7 @@ const Carousel = () => {
         </div>
       </div>
       <div class="xl:w-1/4 md:w-1/2 p-4">
-        <div class="bg-gray-100 p-6 rounded-lg">
+        <div class="bg-gray-100 p-3 rounded-lg">
           <img class="h-40 rounded w-full object-cover object-center mb-6" src={blog4} alt="content"/>
           <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>

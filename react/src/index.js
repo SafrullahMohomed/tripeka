@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import Budget from './ms/components/Budget/Budget';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Search from './components/Search';
 import Suggestions from './components/Suggestions';
 import Carousel from './components/Carousel';
@@ -35,9 +36,9 @@ root.render(
 
       <Route path='/ms' element={<Budget/>} />
       
-      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Carousel /><Groups /></>}/>
+      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Carousel /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
-      <Route path='/chat' element={<><Header /><Chat /></>}/>
+      <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
 
     </Routes>
   </Router>
