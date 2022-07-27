@@ -10,8 +10,8 @@ const Header = () => {
   const droplist = () => setShowResults(!showResults)
 
   return ( 
-    <header class="text-gray-600 body-font mb-4">
-      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <header class="text-gray-600 body-font mb-8 bg-emerald-100">
+      <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
         <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <img src={logo} alt="" class="w-10 h-10 object-cover object-center rounded-full mr-4 border border-emerald-400"/>
           <span class="ml-2 text-2xl italic">TRIPEKA</span>
@@ -26,17 +26,17 @@ const Header = () => {
           <Link to="/blogs" class="mr-7 hover:text-gray-900">Blogs</Link>
         </nav>
 
-        <button onClick={droplist} class="hidden lg:inline-flex items-center bg-white border-0 p-0 focus:outline-none rounded text-base mt-4 md:mt-0">
-          <div class="w-12 rounded-full">
-            <img src={user} class="w-full h-full rounded-full" alt="" />
+        <button onClick={droplist} class="hidden lg:inline-flex items-center bg-emerald-100 border-0 p-0 focus:outline-none rounded text-base mt-4 md:mt-0">
+          <div class="w-14 rounded-full">
+            <img src={user} class="w-full h-full rounded-full p-1 bg-white" alt="" />
           </div>
-          <div className="mr-2 ml-3 text-gray-800">Abdul Qadir <br /><div className="text-gray-300">Traveller</div>
+          <div className="mr-2 ml-3 text-gray-600">Abdul Qadir <br /><div className="text-gray-400">Traveller</div>
           </div>
           <svg fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
           { showResults ?
-                  <div class="absolute right-14 top-20 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                  <div class="absolute right-14 top-16 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
                      <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                         <li class="p-0.5">
                            <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
