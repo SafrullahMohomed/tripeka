@@ -10,6 +10,8 @@ const TempDashBoard = () => {
         window.location.href = "http://localhost:3000/";
       } else if (role === "ADMIN") {
         setroleString(role);
+      }else if (role === "TRIP_GUIDER") {
+        setroleString(role);
       } else if (role === "LODGE_PROVIDER") {
         setroleString(role);
       } else if (role === "VEHICLE_OWNER") {
