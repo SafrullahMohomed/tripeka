@@ -17,12 +17,10 @@ import Footer from './components/Footer';
 import Search from './components/Search';
 import Suggestions from './components/Suggestions';
 import Carousel from './components/Carousel';
-import Groupsx from './components/Groups';
+import Groups from './components/Groups';
 import Blogs from './pages/Blogs';
-import Chat from './pages/Chat';
 
 import ChatRoom from "./components/ChatRoom";
-import Groups from "./pages/Groups";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 
@@ -42,13 +40,12 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Carousel /><Groupsx /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Carousel /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
-      <Route path='/groups' element={<><Header /><Groupsx /><Footer /></>}/>
+      <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
 
       { /*<Route path="/dashboard" element={<TempDashBoard />} />*/}
       
-      <Route path="/group1" element={<Groups />}/>
       <Route path="/help" element={<Help />} />
 
     </Routes>

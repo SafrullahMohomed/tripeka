@@ -30,8 +30,7 @@ const Header = () => {
           <div class="w-14 rounded-full">
             <img src={user} class="w-full h-full rounded-full p-1 bg-white" alt="" />
           </div>
-          <div className="mr-2 ml-3 text-gray-600">Abdul Qadir <br /><div className="text-gray-400">Traveller</div>
-          </div>
+          <div className="mr-2 ml-3 text-gray-600 font-normal">Abdul Qadir <br /><div className="text-gray-400">Traveller</div></div>
           <svg fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
