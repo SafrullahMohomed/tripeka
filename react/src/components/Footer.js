@@ -4,11 +4,11 @@ const Footer = () => {
     const url="";
   return (
     <div>
-        <footer className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+        <footer className="text-gray-600 body-font bg-emerald-100">
+            <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
                     <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900" href={url}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-emerald-400 rounded-full" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         
@@ -20,16 +20,16 @@ const Footer = () => {
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800"  href={url}>Fourth Link</a>
                                 </li>
                             </nav>
@@ -37,16 +37,16 @@ const Footer = () => {
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
                                 </li>
                             </nav>
@@ -54,16 +54,16 @@ const Footer = () => {
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
                                 </li>
                             </nav>
@@ -71,16 +71,16 @@ const Footer = () => {
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
-                                <li>
+                                <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Fourth Link</a>
                                 </li>
                             </nav>

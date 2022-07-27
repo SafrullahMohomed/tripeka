@@ -1,12 +1,13 @@
 import { Outlet, Link } from "react-router-dom";
 import React, { useState } from 'react';
 import logo from '../assets/logo.png'
+import user from '../assets/customer2.jpg'
 
 const Header = () => {
 
   //dropdown
   const [showResults, setShowResults] = useState(false)
-  const droplist = () => setShowResults(true)
+  const droplist = () => setShowResults(!showResults)
 
   return ( 
     <header class="text-gray-600 body-font mb-4">
@@ -25,12 +26,17 @@ const Header = () => {
           <Link to="/blogs" class="mr-7 hover:text-gray-900">Blogs</Link>
         </nav>
 
-        <button onClick={droplist} class="inline-flex items-center bg-gray-100 border-0 p-1 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <button onClick={droplist} class="hidden lg:inline-flex items-center bg-white border-0 p-0 focus:outline-none rounded text-base mt-4 md:mt-0">
+          <div class="w-12 rounded-full">
+            <img src={user} class="w-full h-full rounded-full" alt="" />
+          </div>
+          <div className="mr-2 ml-3 text-gray-800">Abdul Qadir <br /><div className="text-gray-300">Traveller</div>
+          </div>
+          <svg fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
           { showResults ?
-                  <div id="dropdown" class="absolute right-14 top-14 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                  <div class="absolute right-14 top-20 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
                      <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                         <li class="p-0.5">
                            <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
@@ -39,7 +45,7 @@ const Header = () => {
                            <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                         </li>
                         <li class="p-0.5">
-                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">help</a>
+                           <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Help</a>
                         </li>
                         <li class="p-0.5">
                            <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
