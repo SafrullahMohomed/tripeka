@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import pop6 from '../assets/support.png'
 import { useForm } from "react-hook-form";
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/solid'
 import  {FontAwesomeIcon}  from '@fortawesome/react-fontawesome'
 
 import {
@@ -43,143 +45,78 @@ const Help = () => {
                         <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Frequently Asked Questions</h1><br/>
                         
                         <div class="flex mb-4">
-                            <Accordion>
-                                <AccordionItem>
-                                    <div>
-                                        <AccordionItemHeading>
-                                            <AccordionItemButton class="
-                                                accordion-button
-                                                relative
-                                                flex
-                                                items-center
-                                                w-full
-                                                py-4
-                                                px-5
-                                                text-base text-gray-800 text-left
-                                                border-0
-                                                rounded-none
-                                                transition
-                                                focus:outline-none"
-                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                Question1?
-                                            </AccordionItemButton>
-                                        </AccordionItemHeading>
-                                    </div>
-                                    <AccordionItemPanel>
-                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
-                                            <div class="accordion-body py-4 px-5">
-                                                <p>
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionItemHeading>
-                                        <AccordionItemButton class="
-                                            accordion-button
-                                            relative
-                                            flex
-                                            items-center
-                                            w-full
-                                            py-4
-                                            px-5
-                                            text-base text-gray-800 text-left
-                                            bg-white
-                                            border-0
-                                            rounded-none
-                                            transition
-                                            focus:outline-none"
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                           Question2
-                                        </AccordionItemButton>
-                                    </AccordionItemHeading>
-                                    <AccordionItemPanel>
-                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
-                                            <div class="accordion-body py-4 px-5">
-                                                <p>
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionItemHeading>
-                                        <AccordionItemButton class="
-                                            accordion-button
-                                            relative
-                                            flex
-                                            items-center
-                                            w-full
-                                            py-4
-                                            px-5
-                                            text-base text-gray-800 text-left
-                                            bg-white
-                                            border-0
-                                            rounded-none
-                                            transition
-                                            focus:outline-none"
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Question 3
-                                        </AccordionItemButton>
-                                    </AccordionItemHeading>
-                                    <AccordionItemPanel>
-                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
-                                            <div class="accordion-body py-4 px-5">
-                                                <p>
-                                                    Exercitation in fugiat est ut ad ea cupidatat ut in
-                                                    cupidatat occaecat ut occaecat consequat est minim minim
-                                                    esse tempor laborum consequat esse adipisicing eu
-                                                    reprehenderit enim.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionItemHeading>
-                                        <AccordionItemButton class="
-                                            accordion-button
-                                            relative
-                                            flex
-                                            items-center
-                                            w-full
-                                            py-4
-                                            px-5
-                                            text-base text-gray-800 text-left
-                                            bg-white
-                                            border-0
-                                            rounded-none
-                                            transition
-                                            focus:outline-none"
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Question4?
-                                        </AccordionItemButton>
-                                    </AccordionItemHeading>
-                                    <AccordionItemPanel>
-                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
-                                            <div class="accordion-body py-4 px-5">
-                                                <p>
-                                                    Exercitation in fugiat est ut ad ea cupidatat ut in
-                                                    cupidatat occaecat ut occaecat consequat est minim minim
-                                                    esse tempor laborum consequat esse adipisicing eu
-                                                    reprehenderit enim.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                            </Accordion>
+                            
+                                <div className="w-full max-w-md rounded-2xl bg-white p-2">
+                                    <Disclosure>
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                    <span>Can I able to make payment online ?</span>
+                                                    <ChevronUpIcon
+                                                    className={`${
+                                                        open ? 'rotate-180 transform' : ''
+                                                    } h-5 w-5 text-purple-500`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                                    Yes, ofCourse. we provide a faciity for our valuable customers with this facility. You can make with amex, visa or mastercard
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                    <Disclosure as="div" className="mt-2">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                    <span>Can I make a group for the trip ?</span>
+                                                    <ChevronUpIcon
+                                                    className={`${
+                                                        open ? 'rotate-180 transform' : ''
+                                                    } h-5 w-5 text-purple-500`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                                    Yes, Once you login to the system, you can see option to create group. you can create a group by putting title, images , adding members etc. also you all can chat each other easily.
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                    <Disclosure as="div" className="mt-2">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                    <span>Do you offer technical support ?</span>
+                                                    <ChevronUpIcon
+                                                    className={`${
+                                                        open ? 'rotate-180 transform' : ''
+                                                    } h-5 w-5 text-purple-500`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                                    No.
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                    <Disclosure as="div" className="mt-2">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                    <span>Can I able write my experience about my trip?</span>
+                                                    <ChevronUpIcon
+                                                    className={`${
+                                                        open ? 'rotate-180 transform' : ''
+                                                    } h-5 w-5 text-purple-500`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                                    In footer, you can see option called "write a blog". you are allowed to write blogs with images you have taken. Additionally, you can view others blogs and search too.
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                </div>
+                            
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div class="bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
