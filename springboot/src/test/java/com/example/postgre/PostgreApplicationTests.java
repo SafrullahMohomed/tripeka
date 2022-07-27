@@ -1,10 +1,10 @@
-package com.tripeka.tripeka;
+package com.example.postgre;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TripekaApplicationTests {
+class PostgreApplicationTests {
 
 	@Test
 	void contextLoads() {
