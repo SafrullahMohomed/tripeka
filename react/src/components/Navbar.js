@@ -142,21 +142,25 @@ const Navbar = () => {
 
         <div className="flex flex-col my-4">
         {isSignedIn && (
-            <button
-              className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
-              onClick={() => {
-                logout();
-              }}
-            >
-              Log out
-            </button>
+            
+              <button
+                className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Log out
+              </button>
+            
           )}
           {!isSignedIn && (
+            <Link to="/login" onClick={handleClose}>
             <button className="bg-transparent text-indigo-600 px-8 py-3 mb-4">
               Sign In
             </button>
+            </Link>
           )}
-          {!isSignedIn && <button className="px-8 py-3">Sign Up</button>}
+          {!isSignedIn && <Link to="/register" onClick={handleClose}><button className="px-8 py-3">Sign Up</button></Link>}
         </div>
       </ul>
     </div>
