@@ -18,6 +18,7 @@ import Blogs from "./pages/Blogs";
 import ChatRoom from "./components/ChatRoom";
 import Groups from "./pages/Groups";
 import TempDashBoard from "./components/TempDashBoard";
+import Help from "./pages/Help";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
