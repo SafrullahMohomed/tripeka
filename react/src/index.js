@@ -11,14 +11,19 @@ import ContactUs from "./components/ContactUs";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Budget from "./ms/components/Budget/Budget";
-import Sidebar from "./components/Sidebar";
-import Panel from "./components/Panel";
-import Dashboard from "./components/Dashboard";
-import Blogs from "./pages/Blogs";
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Search from './components/Search';
+import Suggestions from './components/Suggestions';
+import Carousel from './components/Carousel';
+import Groups from './components/Groups';
+import Blogs from './pages/Blogs';
+
 import ChatRoom from "./components/ChatRoom";
-import Groups from "./pages/Groups";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -35,41 +40,14 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      {/* <Route path='/dashboard' element={<><Sidebar /><Dashboard /><Panel /></>}/> */}
-      <Route path="/dashboard" element={<TempDashBoard />} />
-      <Route
-        path="/blogs"
-        element={
-          <>
-            <Sidebar />
-            <Blogs />
-            <Panel />
-          </>
-        }
-      />
-      <Route
-        path="/group1"
-        element={
-          <>
-            <Sidebar />
-            <Groups />
-            <Panel />
-          </>
-        }
-      />
+      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Carousel /><Groups /><Footer /></>}/>
+      <Route path='/blogs' element={<><Header /><Blogs /></>}/>
+      <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
+
+      { /*<Route path="/dashboard" element={<TempDashBoard />} />*/}
+      
       <Route path="/help" element={<Help />} />
 
-      <Route
-        path="/dashboard"
-        element={
-          <>
-            <Sidebar />
-            <Dashboard />
-            <Panel />
-          </>
-        }
-      />
-      <Route path="/blogs" element={<Blogs />} />
     </Routes>
   </Router>
 );

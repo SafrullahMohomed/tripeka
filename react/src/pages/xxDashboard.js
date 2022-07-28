@@ -31,9 +31,9 @@ const Dashboard = () => {
    };
 
    return ( 
-      <div class="absolute right-72 left-60 h-full bg-gray-200 px-8 py-4">
-         <div class="flex w-full h-16 mb-5 rounded-lg bg-gray-100">
-            <div class="w-3/12 h-full p-3 text-lg font-medium bg-gray-200">Hi, Abdul!</div>
+      <div class="absolute right-0 left-60 h-full bg-gray-200 px-8 py-4">
+         <div class="flex w-full h-16 mb-2 rounded-lg bg-gray-200">
+            <div class="w-3/12 h-full p-3 text-lg font-medium ml-1 text-slate-700 bg-gray-200">Hi, Abdul!</div>
             <div class="w-3/12 h-full p-3 bg-gray-200"></div>
             <div class="w-5/12 h-full p-1 bg-gray-200">
                <form className="max-w-sm px-4 drop-shadow-lg">
@@ -69,27 +69,51 @@ const Dashboard = () => {
                </div></center>
             </div>
          </div>
-
-         <div class="w-full h-48 mb-12 p-2 bg-gray-200">
-            
+      
+         <div class="w-full h-48 mb-14 p-1 bg-gray-200">
+               <div class="font-semibold text-xl ml-3 mb-1 text-slate-500">Top Suggestions</div>
                <Slider {...settings}>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img1} alt="blog"/>
+                     <div class="relative">
+                        <img src={img1} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
+                     </div>
+                    <div class="relative">
+                        <img src={img2} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
                     </div>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img2} alt="blog"/>
+                    <div class="relative">
+                        <img src={img3} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
                     </div>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img3} alt="blog"/>
+                    <div class="relative">
+                        <img src={img2} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
                     </div>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img2} alt="blog"/>
+                    <div class="relative">
+                        <img src={img3} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
                     </div>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img3} alt="blog"/>
-                    </div>
-                    <div>
-                        <img class="object-cover object-center w-full lg:h-48 md:h-36 p-2 hover:p-1 hover:opacity-80" src={img1} alt="blog"/>
+                    <div class="relative">
+                        <img src={img1} class="rounded-xl object-cover object-center w-full h-44 p-2 hover:p-1 hover:opacity-80" alt=""/>
+                        <div class="absolute left-5 bottom-3 text-white">
+                           <h4 class="font-semibold text-2xl">Hikkaduwa</h4>
+                           <p>Description</p>
+                        </div>
                     </div>
                 </Slider>
 
@@ -195,20 +219,7 @@ const Dashboard = () => {
                                        </div>
                                        <div className='mr-5 text-slate-500'>Owner</div>
                                     </div>
-                                    <div class="added">
-                                       <div class='added-names'>
-                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
-                                          <div className='ml-3'>Abdul Qadir</div>
-                                       </div>
-                                       <div className='mr-5 text-slate-500'></div>
-                                    </div>
-                                    <div class="added">
-                                       <div class='added-names'>
-                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
-                                          <div className='ml-3'>Abdul Qadir</div>
-                                       </div>
-                                       <div className='mr-5 text-slate-500'></div>
-                                    </div>
+                                    
                                  </div>
                                  <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
                               </form>
