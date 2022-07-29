@@ -19,6 +19,7 @@ import Suggestions from './components/Suggestions';
 import Carousel from './components/Carousel';
 import Groups from './components/Groups';
 import Blogs from './pages/Blogs';
+import WriteBlog from "./pages/WriteBlog";
 
 import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
@@ -36,6 +37,7 @@ root.render(
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/blogwrite" element={<WriteBlog />} />
 
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />

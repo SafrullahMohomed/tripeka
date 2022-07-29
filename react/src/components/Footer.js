@@ -25,10 +25,10 @@ const Footer = () => {
                                     <Link to ='/help' className="text-gray-600 hover:text-gray-800">Help</Link>
                                 </li>
                                 <li className="p-0">
-                                    <Link to ='/help1' className="text-gray-600 hover:text-gray-800">Help</Link>
+                                    <Link to ='/complaint' className="text-gray-600 hover:text-gray-800">Complaint</Link>
                                 </li>
                                 <li className="p-0">
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
+                                    <Link to ='/blogwrite' className="text-gray-600 hover:text-gray-800">Write a blog</Link>
                                 </li>
                                 <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800"  href={url}>Fourth Link</a>
