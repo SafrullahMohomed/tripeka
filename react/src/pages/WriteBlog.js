@@ -11,7 +11,7 @@ const WriteBlog = () => {
       </div>
     
       <div class="blog">
-        <textarea type="text" class="title" placeholder="Blog title..."></textarea>
+        <textarea type="text" class="title" placeholder="The Blog title..."></textarea>
         <textarea type="text" class="article" placeholder="Start writing here..."></textarea>
       </div>
 
