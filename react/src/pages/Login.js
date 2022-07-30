@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import pop6 from "../assets/loginImage.png";
 import { useForm } from "react-hook-form";
 import { getSignedRole, login } from "../services/AuthAPIService";
+import { Link } from 'react-router-dom';
 
 function onSubmit(data) {
   console.log(data);
@@ -165,9 +166,8 @@ const Login = () => {
                         Remember me
                       </label>
                     </div>
-                    <a href="#!" class="text-gray-800">
-                      Forgot password?
-                    </a>
+                    
+                    <Link to ='/forgotpassword' className="text-gray-600 hover:text-gray-800">Forgot password?</Link>
                   </div>
                   <div class="text-center lg:text-left">
                     <button
