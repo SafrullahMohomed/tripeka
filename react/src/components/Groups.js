@@ -1,13 +1,56 @@
+import React, { useState } from "react";
 import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
+import img from '../assets/customer2.jpg'
+import "../styles/Modal.css";
 
 const Groups = () => {
+    const [modal, setModal] = useState(false);
+
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
+    if(modal) {
+        document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+    }
     return ( 
         <section class="text-gray-600 body-font mb-10">
             <div class="container px-5 py-5 mx-auto">
-                <div class="w-full mb-10">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">My Groups</h1>
+                <div class="w-full mb-8">
+                    <div class="text-xl font-normal title-font mb-4 text-gray-900">My Groups</div>
+                    <button onClick={toggleModal} class="m-0 px-2 py-1 bg-emerald-300 border-transparent text-sm font-normal">
+                        <div class="pl-1">Create Group</div>
+                    </button> 
+                    {modal && (
+                        <div className="modal">
+                           <div onClick={toggleModal} className="overlay"></div>
+                           <div className="modal-content">
+                              <div className='mb-4 text-xl'>Add friends to 'trip-title'</div>
+                              <form>
+                                 <div class="inputBox">
+                                    <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="" />
+                                    <label>Email</label>
+                                 </div>
+                                 <div class="mb-2 text-slate-500">People with access</div>
+                                 <div class="h-24 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                                    <div class="added">
+                                       <div class='added-names'>
+                                          <div><img src={img} class="h-10 w-10 rounded-full" alt="" /></div>
+                                          <div className='ml-3'>Abdul Qadir</div>
+                                       </div>
+                                       <div className='mr-5 text-slate-500'>Owner</div>
+                                    </div>
+                                    
+                                 </div>
+                                 <button className="close-modal bg-emerald-300 border-transparent" onClick={toggleModal}>Done</button>
+                              </form>
+                           </div>
+                        </div> 
+                    )}
                 </div>
                 <div class="flex flex-wrap -m-2">
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
