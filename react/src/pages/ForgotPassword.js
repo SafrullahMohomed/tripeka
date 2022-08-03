@@ -5,11 +5,9 @@ import { useForm } from "react-hook-form";
 import pop6 from "../assets/forgot.PNG";
 
 const ForgotPassword = () => {
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm();
+    const { handleSubmit, register, formState: { errors } } = useForm();
+    const onSubmit = values => console.log(values);
+
   return (
     <div>
         <Navbar/>
@@ -24,27 +22,23 @@ const ForgotPassword = () => {
               <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
                 <h1 className='text-4xl mb-8 font-bold flex items-stretch'>Forgot Password</h1>
                 
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div class="mb-6">
                         <label className='ml-55 font-bold'>Please enter your email</label>
                         <input
-                        type="password"
-                        name="password"
-                        class="form-control block w-full mt-6 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="exampleFormControlInput3"
-                        {...register("password", {
-                            required: true,
-                            minLength: 5,
-                            maxLength: 20,
-                        })}
-                        placeholder="Password"
+                            name='user'
+                            type="email"
+                            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            {...register("email", {
+                            required: "Required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "invalid email address"
+                            }
+                            })}
                         />
-                        <error className="text-red-600">
-                        {errors.password?.type === "minLength" &&
-                            "Entered password is less than 5 characters"}
-                        {errors.password?.type === "maxLength" &&
-                            "Entered password is more than 20 characters"}
-                        </error>
+                        <div  className="text-red-600">{errors.email && errors.email.message}</div>
+                        
                     </div>
 
                   
