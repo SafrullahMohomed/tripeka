@@ -25,6 +25,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
+import ResetPassword from "./pages/ResetPassword";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -38,6 +39,7 @@ root.render(
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/blogwrite" element={<WriteBlog />} />
       
