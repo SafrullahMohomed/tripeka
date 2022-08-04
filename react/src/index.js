@@ -21,6 +21,7 @@ import Groups from './components/Groups';
 import Blogs from './pages/Blogs';
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
+import Complaint from "./pages/Complaint";
 
 import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
@@ -42,6 +43,7 @@ root.render(
       <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/blogwrite" element={<WriteBlog />} />
+      <Route path="/complaint" element={<Complaint />} />
       
 
       <Route path="/ms" element={<Budget />} />

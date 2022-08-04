@@ -1,0 +1,154 @@
+import React, { useState } from 'react'
+import Navbar from '../components/Navbar'
+import { useForm } from "react-hook-form";
+import Footer from '../components/Footer'
+import pop6 from '../assets/complaint1.png'
+import { FaStar } from "react-icons/fa";
+
+const colors = {
+    orange: "#FFBA5A",
+    grey: "#a9a9a9"
+    
+};
+
+
+const Complaint = () => {
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+      } = useForm();
+    const onSubmit = (data) => console.log(data);
+    const [currentValue, setCurrentValue] = useState(0);
+    const [hoverValue, setHoverValue] = useState(undefined);
+    const stars = Array(5).fill(0)
+  
+    const handleClick = value => {
+      setCurrentValue(value)
+    }
+  
+    const handleMouseOver = newHoverValue => {
+      setHoverValue(newHoverValue)
+    };
+  
+    const handleMouseLeave = () => {
+      setHoverValue(undefined)
+    }
+
+   
+  return (
+    <div class='complaintContainer'>
+        <Navbar/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <section class="text-gray-600 body-font overflow-hidden">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                    <img alt="ecommerce" class="lg:w-1/2 w-2/3 lg:h-auto h-64 object-cover object-center" src={pop6}/>
+                    <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
+                        
+                        
+                        <div class="flex mb-4">
+                            
+                                <div className="w-full max-w-md  bg-white">
+                                    <p>Rate level of complains</p>
+                                    <div class='mt-3 ml-2'>
+                                        <div style={styles.stars}>
+                                            {stars.map((_, index) => {
+                                            return (
+                                                <FaStar
+                                                key={index}
+                                                size={24}
+                                                onClick={() => handleClick(index + 1)}
+                                                onMouseOver={() => handleMouseOver(index + 1)}
+                                                onMouseLeave={handleMouseLeave}
+                                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                                style={{
+                                                    marginRight: 10,
+                                                    cursor: "pointer"
+                                                }}
+                                                />
+                                            )
+                                            })}
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                </div>
+                            
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div class="bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+                                <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Further Help</h2>
+                                <p class="leading-relaxed mb-5 text-gray-600">We are always welcome to help our valuable customer. Please ask us any help without any hesitation</p>
+                                <div class="relative mb-4">
+                                    <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+                                    <input type="text" id="name" name="name"  {...register("name", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                    <error className = 'text-red-600'>
+                                        {errors.name?.type === "required" && "Name is required"}
+                                    </error>
+                                </div>
+                                
+                                <div class="relative mb-4">
+                                    <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                                    <input type="email" id="email" name="email" {...register("email", {required: true,pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,})} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                    <error className = 'text-red-600'>
+                                        {errors.email?.type === "required" && "Email is required"}
+                                        {errors.email?.type === "pattern" &&
+                                        "Entered email is in wrong format"}
+                                    </error>
+                                </div>
+                                <div class="relative mb-4">
+                                    <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                                    <textarea id="message" name="message"  {...register("message", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                    <error className = 'text-red-600'>
+                                        {errors.message?.type === "required" && "Message is required"}
+                                    </error>
+                                </div>
+                                <div className='w-3/4'>
+                                    <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+                                    <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg ml-10">Clear</button>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        <Footer/>
+
+    </div>
+  )
+}
+
+const styles = {
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    stars: {
+      display: "flex",
+      flexDirection: "row",
+    },
+    textarea: {
+      border: "1px solid #a9a9a9",
+      borderRadius: 5,
+      padding: 10,
+      margin: "20px 0",
+      minHeight: 100,
+      width: 300
+    },
+    button: {
+      border: "1px solid #a9a9a9",
+      borderRadius: 5,
+      width: 300,
+      padding: 10,
+    }
+  
+  };
+export default Complaint
