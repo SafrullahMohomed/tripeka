@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import Footer from '../components/Footer'
 import pop6 from '../assets/complaint1.png'
 import { FaStar } from "react-icons/fa";
+import ImageUploader from "react-images-uploading";
+import Dropzone from "react-dropzone";
 
 const colors = {
     orange: "#FFBA5A",
@@ -107,6 +109,12 @@ const Complaint = () => {
                                         {errors.message?.type === "required" && "Message is required"}
                                     </error>
                                 </div>
+                                <div class="relative mb-4">
+                                  <input type="file" accept="image/*" id="image-upload" hidden/>
+                                  <label for="complaintimage" class="leading-7 text-sm text-gray-600 font-bold mr-20 mb-2">If you have any image proof of your complaint. Upload it</label>
+                                  <label for="image-upload" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 mt-3 overflow-hidden  font-medium group  text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg cursor-pointer">Upload Image</label>
+                                </div>
+
                                 <div className='w-3/4'>
                                     <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
                                     <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg ml-10">Clear</button>
