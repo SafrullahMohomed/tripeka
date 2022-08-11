@@ -25,7 +25,7 @@ function Weather(){
                 value={location}
                 onChange={event => setLocation(event.target.value)}
                 onKeyPress={searchLocation}
-                placeholder='Enter Location'
+                placeholder='   Enter Location'
                 type="text" />
             </div>
             <div className="weathercontainer1">
