@@ -39,7 +39,7 @@ const Footer = () => {
                             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
                             <nav className="list-none mb-10">
                                 <li className="p-0">
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>First Link</a>
+                                    <Link to ='/climate' className="text-gray-600 hover:text-gray-800">Climate</Link>
                                 </li>
                                 <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
