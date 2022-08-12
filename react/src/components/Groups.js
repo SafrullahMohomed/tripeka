@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
 import img from '../assets/customer2.jpg'
 import "../styles/Modal.css";
-import TextField from '@mui/material/TextField';
 
 const Groups = () => {
     const [modal, setModal] = useState(false);
@@ -61,13 +61,13 @@ const Groups = () => {
                 </div>
                 <div class="flex flex-wrap -m-2">
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                        <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-emerald-100 hover:border-transparent">
-                        <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={img1}/>
-                        <div class="flex-grow">
-                            <h2 class="text-gray-900 title-font font-medium">Holden Caulfield</h2>
-                            <p class="text-gray-500">UI Designer</p>
-                        </div>
-                        </div>
+                        <Link to="/groupChat" class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-emerald-100 hover:border-transparent">
+                            <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={img1}/>
+                            <div class="flex-grow">
+                                <h2 class="text-gray-900 title-font font-medium">Holden Caulfield</h2>
+                                <p class="text-gray-500">UI Designer</p>
+                            </div>
+                        </Link>
                     </div>
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-emerald-100 hover:border-transparent">
