@@ -58,19 +58,19 @@ const TemperatureAndDetails = ({
             <p className='font-light'>|</p>
             <UilSunset/>
             <p className='font-light'>
-                Rise : <span className='font-medium ml-1'>{formatToLocalTime(sunset, timezone, "hh:mm a")}</span>
+                Set : <span className='font-medium ml-1'>{formatToLocalTime(sunset, timezone, "hh:mm a")}</span>
             </p>
             <p className='font-light'>|</p>
 
             <UilSun/>
             <p className='font-light'>
-                Rise : <span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
+                High : <span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
             </p>
             <p className='font-light'>|</p>
 
             <UilSun/>
             <p className='font-light'>
-                Rise : <span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
+                Low : <span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
             </p>
         </div>
     </div>
