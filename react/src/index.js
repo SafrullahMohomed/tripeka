@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Budget from "./ms/components/Budget/Budget";
 import Weather from "./pages/Weather";
-
+import Climate from "./pages/Climate";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -47,7 +47,7 @@ root.render(
       <Route path="/blogwrite" element={<WriteBlog />} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
-      
+      <Route path="/climate" element={<Climate />} />
       
 
       <Route path="/ms" element={<Budget />} />
