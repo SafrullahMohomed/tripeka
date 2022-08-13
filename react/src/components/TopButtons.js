@@ -28,7 +28,7 @@ const TopButtons = ({ setQuery }) => {
           {cities.map((city) => (
             <button
               key={city.id}
-              className="text-black text-lg font-medium bg-inherit"
+              className="text-white text-lg font-medium bg-inherit"
               onClick={() => setQuery({ q: city.title })}
             >
               {city.title}

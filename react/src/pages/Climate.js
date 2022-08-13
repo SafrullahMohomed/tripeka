@@ -7,6 +7,7 @@ import Forecast from '../components/Forecast';
 import getFormattedWeatherData from '../ClimateServices/WeatherServices';
 import { useEffect, useState } from "react";
 import pop6 from '../assets/sunset.jpg'
+import "../styles/climate.css";
 
 function Climate(){
 
@@ -25,7 +26,7 @@ function Climate(){
     }, [query, units]);
   
     return(
-      <div>
+      <div className='climateBody'>
         <div className='mx-auto max-w-screen-md mt-0 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400'>
             <TopButtons setQuery={setQuery}/>
             <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
