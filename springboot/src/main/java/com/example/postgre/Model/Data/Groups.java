@@ -1,4 +1,4 @@
-package com.example.postgre.Model;
+package com.example.postgre.Model.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer group_id;
 
     @Column(name = "name")
     private String name;
@@ -24,12 +24,12 @@ public class Groups {
 
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getGroup_id() {
+        return group_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGroup_id(Integer group_id) {
+        this.group_id = group_id;
     }
 
     public String getName() {
