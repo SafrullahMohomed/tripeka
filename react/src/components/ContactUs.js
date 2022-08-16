@@ -1,8 +1,24 @@
 import React from 'react'
 import Navbar from './Navbar';
 import { useForm } from "react-hook-form";
+import { contact } from '../services/ContactService';
 
-
+function onSubmit(data) {
+    console.log(data);
+    contact(
+      data["username"],
+      data["email"],
+      data["message"]
+    ).then((resp) => {
+      if (resp["success"]) {
+        alert("Success : " + resp["msg"]);
+        window.location.href = "http://localhost:3000/";
+      } else {
+        alert(resp["msg"]);
+        window.location.href = "http://localhost:3000/";
+      }
+    });
+  }
 
 const ContactUs = () => {
   let url="";
@@ -11,12 +27,12 @@ const ContactUs = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
   
   return (
     <div name='ContactUs'>
         <Navbar/>
-        <form className='form' onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <section class="text-gray-600 body-font relative">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="flex flex-col text-center w-full mb-12">
@@ -55,7 +71,7 @@ const ContactUs = () => {
                                 </div>
                             </div>
                             <div class="p-2 w-full">
-                                <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type='submit'>Submit</button>
+                                <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="submit">Submit</button>
                             </div>
                             <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                                 <a class="text-indigo-500" href={url}>3rdyearproject@email.com</a>
