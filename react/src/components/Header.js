@@ -106,13 +106,13 @@ const Header = () => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
             <MenuItem>
-              <Avatar /> Notification message
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
             <MenuItem>
-              <Avatar /> Notification message
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
             <MenuItem>
-              <Avatar /> Notification message
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
         </Menu>
 
