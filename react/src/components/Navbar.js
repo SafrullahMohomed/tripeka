@@ -23,8 +23,8 @@ const Navbar = () => {
     });
 
   return (
-    <div className="w-screen h-[80px] z-10 fixed drop-shadow-lg">
-      <div className="px-2 flex justify-between items-center w-full h-full bg-white opacity-90">
+    <div className="w-screen h-[80px] z-10 fixed">
+      <div className="px-2 flex justify-between items-center w-full h-full bg-white">
         <div className="flex items-center">
           <a
             class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
@@ -89,7 +89,7 @@ const Navbar = () => {
             </button>
           )}
           {!isSignedIn && (
-            <button className="px-8 py-3">
+            <button className="px-8 py-3 bg-emerald-400">
               <Link to="/register">Sign Up</Link>
             </button>
           )}
