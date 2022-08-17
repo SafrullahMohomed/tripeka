@@ -21,6 +21,8 @@ import Suggestions from './components/Suggestions';
 import Cards from './components/Cards';
 import Groups from './components/Groups';
 import Blogs from './pages/Blogs';
+import Drawer from './components/Drawer';
+
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
@@ -56,6 +58,7 @@ root.render(
       <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
+      <Route path='/admin' element={<><Drawer /></>}/>
 
       { /*<Route path="/dashboard" element={<TempDashBoard />} />*/}
       
