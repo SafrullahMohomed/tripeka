@@ -44,28 +44,28 @@ const Inputs = ({ setQuery, units, setUnits })  => {
             />
             <UilSearch
                 size={25}
-                className="text-black cursor-pointer transition ease-out hover:scale-125"
+                className="text-white cursor-pointer transition ease-out hover:scale-125"
                 onClick={handleSearchClick}
                 
             />
             <UilLocationPoint
             size={25}
-            className="text-black cursor-pointer transition ease-out hover:scale-125"
+            className="text-white cursor-pointer transition ease-out hover:scale-125"
             onClick={handleLocationClick}
             />
         </div>
         <div className="flex flex-row w-1/4 items-center justify-center">
             <button
             name="metric"
-            className="text-xl text-black bg-inherit font-light transition ease-out hover:scale-125"
+            className="text-xl text-white bg-inherit font-light transition ease-out hover:scale-125"
             onClick={handleUnitsChange}
             >
             °C
             </button>
-            <p className="text-xl text-black mx-1">|</p>
+            <p className="text-xl text-white mx-1">|</p>
             <button
             name="imperial"
-            className="text-xl text-black font-light transition ease-out hover:scale-125 bg-inherit"
+            className="text-xl text-white font-light transition ease-out hover:scale-125 bg-inherit"
             onClick={handleUnitsChange}
             
             >
