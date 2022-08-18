@@ -9,7 +9,7 @@ export async function contact(name, email, message) {
         message : message,
       };
   
-      var response = await axios.post(ServerBaseUrl + "/auth/contactus", body);
+      var response = await axios.post(ServerBaseUrl + "/main/contactus", body);
       if (response.status === 200) {
         return {
           success: response.data["isSuccess"],

@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/main")
 public class ContactUsController {
 
     @Autowired
