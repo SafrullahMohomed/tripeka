@@ -64,7 +64,7 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={openN ? 'true' : undefined}
             >
-              <Badge badgeContent={4} overlap="circular" color="primary">
+              <Badge badgeContent={4} overlap="circular" color="error">
                 <CircleNotificationsRoundedIcon sx={{ width: 38, height: 38 }} />
               </Badge>
             </IconButton>

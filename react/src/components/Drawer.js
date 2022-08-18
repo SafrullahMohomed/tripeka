@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,6 +28,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdminDash from './AdminDash';
+import user from '../assets/customer2.jpg'
+
 
 const drawerWidth = 240;
 
@@ -99,14 +110,33 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  //dropdown
+  const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+  const openP = Boolean(anchorElProfile);
+  const handleClickP = (event) => {
+    setAnchorElProfile(event.currentTarget);
+  };
+  const handleCloseP = () => {
+    setAnchorElProfile(null);
+  };
+
+  const [anchorElNotification, setAnchorElNotification] = React.useState(null);
+  const openN = Boolean(anchorElNotification);
+  const handleClickN = (event) => {
+    setAnchorElNotification(event.currentTarget);
+  };
+  const handleCloseN = () => {
+    setAnchorElNotification(null);
+  };
+
   return (
-    <Box sx={{ display: 'flex'}}>
+    <Box>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{
         boxShadow: 0,
         bgcolor: 'primary.main'
       }}>
-        <Toolbar>
+        <Toolbar sx={{justifyContent: 'space-between'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -119,9 +149,146 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
+          
+          <Box sx={{display: 'flex'}}> 
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+              <Tooltip title="Notifications">
+                <IconButton
+                    onClick={handleClickN}
+                    size="small"
+                    sx={{ ml: 1 }}
+                    aria-controls={openN ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openN ? 'true' : undefined}
+                >
+                  <Badge badgeContent={4} overlap="circular" color="error">
+                    <CircleNotificationsRoundedIcon sx={{ width: 38, height: 38 }} />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Menu
+                anchorEl={anchorElNotification}
+                id="account-menu"
+                open={openN}
+                onClose={handleCloseN}
+                onClick={handleCloseN}
+                PaperProps={{
+                elevation: 0,
+                sx: {
+                    overflow: 'visible',
+                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                    mt: 1.5,
+                    '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                    },
+                    '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                    },
+                },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+                <MenuItem>
+                  <Avatar>N</Avatar> Notification message
+                </MenuItem>
+                <MenuItem>
+                  <Avatar>N</Avatar> Notification message
+                </MenuItem>
+                <MenuItem>
+                  <Avatar>N</Avatar> Notification message
+                </MenuItem>
+            </Menu>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+              <Tooltip title="Profile">
+                <IconButton
+                    onClick={handleClickP}
+                    size="small"
+                    sx={{ ml: 1 }}
+                    aria-controls={openP ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openP ? 'true' : undefined}
+                >
+                    <Avatar src={user} sx={{ width: 40, height: 40 }}></Avatar>
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Menu
+                anchorEl={anchorElProfile}
+                id="account-menu"
+                open={openP}
+                onClose={handleCloseP}
+                onClick={handleCloseP}
+                PaperProps={{
+                elevation: 0,
+                sx: {
+                    overflow: 'visible',
+                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                    mt: 1.5,
+                    '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                    },
+                    '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                    },
+                },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <MenuItem>
+                <Avatar /> Profile
+              </MenuItem>
+              <MenuItem>
+                <Avatar /> My account
+              </MenuItem>
+              <Divider />
+              <MenuItem>
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Add another account
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                Settings
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} PaperProps={{
