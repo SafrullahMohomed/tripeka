@@ -21,7 +21,7 @@ import com.example.postgre.repository.GroupRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class GroupController {
 
     @Autowired
