@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { getGroups } from "../services/GroupsService";
+import { Link } from "react-router-dom";
 import img1 from '../assets/arugam.jpg'
 import img2 from '../assets/dalada.jpg'
 import img3 from '../assets/jaffna.jpg'
@@ -7,6 +10,26 @@ import img from '../assets/customer2.jpg'
 import "../styles/Modal.css";
 
 const Groups = () => {
+    
+    // Display Groups
+    const [groups, setGroups] = useState([]);
+
+    const init = () => {
+        getGroups()
+        .then(response => {
+          console.log('Printing employees data', response.data);
+          setGroups(response.data);
+        })
+        .catch(error => {
+          console.log('Something went wrong', error);
+        }) 
+    }
+    
+    useEffect(() => {
+      init();
+    }, []);
+
+    // Create-group Modal
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
@@ -17,9 +40,20 @@ const Groups = () => {
     } else {
         document.body.classList.remove('active-modal')
     }
+
     return ( 
         
         <section class="text-gray-600 body-font mb-10">
+
+            <div>  
+                { groups.map(group => (
+                <div> key={group.id}
+                    <div>{group.name}</div>
+        
+                </div>
+                )) }
+            </div>
+
             <div class="container px-5 py-5 mx-auto">
                 <div class="w-full mb-8">
                     <div class="text-xl font-normal title-font mb-4 text-gray-900"></div>
@@ -30,18 +64,29 @@ const Groups = () => {
                         <div className="modal">
                            <div onClick={toggleModal} className="overlay"></div>
                            <div className="modal-content">
-                              <div className='mb-4 text-xl'>Create new Group</div>
-                              <form>
-                                 <div class="">
-                                    
-                                    <input class="w-full mb-4 border-b-2 border-emerald-400 bg-emerald-100 focus:outline-none text-lg"
-                                        type="text" name="title" required onkeyup="this.setAttribute('value', this.value);" value="" placeholder="Group Name"/>
-                                 </div>
-                                 <div class="mb-4 text-slate-500">Add friends</div>
-                                 <div class="inputBox">
-                                    <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="" />
-                                    <label>Email</label>
-                                 </div>
+                                <div className='mb-4 text-xl'>Create new Group</div>
+                                <form>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& > :not(style)': { mb: 2, width: '100%' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                <TextField id="filled-basic" label="Name" variant="filled"/>
+                                </Box>
+                                <div class="mb-4 text-slate-500">Add friends</div>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& > :not(style)': { mb: 2, width: '100%' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                <TextField id="outlined-basic" label="Email" variant="outlined"/>
+                                </Box>
                                  <div class="mb-2 text-slate-500">People with access</div>
                                  <div class="h-24 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                                     <div class="modal-added">
