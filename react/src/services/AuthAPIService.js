@@ -30,6 +30,9 @@ export async function register(email, username, role, password) {
   }
 }
 
+
+
+
 export async function login(email, password) {
   try {
     var md5 = require("md5");

@@ -29,13 +29,7 @@ body.active-modal {
     min-width: 512px;
     z-index: 10;
 }
-
-.close-modal {
-    float: right;
-    padding: 5px 18px;
-    margin-top: 10px;
-}
-  
+ 
   .modal-content .inputBox {
     position: relative;
   }
@@ -80,7 +74,7 @@ body.active-modal {
     border: 2px solid rgb(110 231 183);
   }
 
-  .added{
+  .modal-added{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,7 +82,7 @@ body.active-modal {
     padding: 5px 0px;
   }
 
-  .added-names{
+  .modal-added-names{
     display: flex;
     align-items: center;
   }

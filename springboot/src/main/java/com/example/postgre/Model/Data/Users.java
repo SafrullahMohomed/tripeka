@@ -4,14 +4,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import javax.persistence.IdClass;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@IdClass(UsersPK.class)
 public class Users {
 
 	@Id
 	@Column(name = "email")
 	private String email;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer user_id;
+
 	@Column(name = "username")
 	private String username;
 	@Column(name = "hashedpswd")
