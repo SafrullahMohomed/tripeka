@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Navbar from './Navbar'
+import Aos from 'aos'
+import "aos/dist/aos.css"
 
 const Services = () => {
+    useEffect(() => {
+        Aos.init({duration:2000});
+    },[]);
   return (
     
     <div name='Services'>
         <Navbar/>
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font" data-aos="slide-right">
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-20">
                     <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">WE PROVIDE VALUABLE SERVICES FOR OUR CUSTOMERS</h2>

@@ -12,13 +12,14 @@ import blog6 from '../assets/blog6.jpg'
 
 export default class Blog extends Component {
     render() {
-      const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
+        const settings = {
+          dots: true,
+          infinite: true,
+          speed: 400,
+          autoplay: true,
+          slidesToShow: 1,
+          slidesToScroll: 1
+        };
       return (
         <div>
             <div className="flex flex-col text-center w-full mb-5">
@@ -99,6 +100,7 @@ export default class Blog extends Component {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </section>
@@ -187,6 +189,7 @@ export default class Blog extends Component {
                     </div>
                 </section>
             </div>
+            
             
           </Slider>
         </div>

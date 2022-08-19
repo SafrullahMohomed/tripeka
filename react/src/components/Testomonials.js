@@ -1,14 +1,20 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import c1 from '../assets/customer1.jpg';
 import c2 from '../assets/customer2.jpg';
 import c3 from '../assets/customer3.jpg';
 import Navbar from './Navbar';
+import Aos from 'aos'
+import "aos/dist/aos.css"
 
 const Testomonials = () => {
+    useEffect(() => {
+        Aos.init({duration:2000});
+    },[]);
+
   return (
     <div name='Testomonials'>
         <Navbar></Navbar>
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font" data-aos="slide-left">
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-wrap -m-4">
                     <div className="flex flex-col text-center w-full mb-20">
