@@ -1,7 +1,7 @@
 package com.example.postgre.Controller;
 
-import com.example.postgre.Model.JwtRequest;
-import com.example.postgre.Model.JwtResponse;
+import com.example.postgre.Model.Jwt.JwtRequest;
+import com.example.postgre.Model.Jwt.JwtResponse;
 import com.example.postgre.service.UserService;
 import com.example.postgre.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;

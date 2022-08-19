@@ -1,4 +1,4 @@
-package com.example.postgre.Model;
+package com.example.postgre.Model.Jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
