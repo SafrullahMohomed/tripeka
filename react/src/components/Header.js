@@ -13,8 +13,22 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import GroupIcon from '@mui/icons-material/Group';
+import CreateIcon from '@mui/icons-material/Create';
+import CallIcon from '@mui/icons-material/Call';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import logo from '../assets/logo.png'
 import user from '../assets/customer2.jpg'
+
+const actions = [
+  { icon: <GroupIcon />, name: 'Create Group' },
+  { icon: <CreateIcon />, name: 'Review' },
+  { icon: <CallIcon />, name: 'Contact' },
+  { icon: <HelpCenterIcon />, name: 'Contact' },
+];
 
 const Header = () => {
 
@@ -36,6 +50,11 @@ const Header = () => {
   const handleCloseN = () => {
     setAnchorElNotification(null);
   };
+
+  // speed dial
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return ( 
     <header class="text-gray-600 body-font mb-8 bg-emerald-100">
@@ -193,6 +212,26 @@ const Header = () => {
                 </MenuItem>
             </Menu>
         </React.Fragment>
+
+        <Box sx={{ height: 300, transform: 'translateZ(0px)', flexGrow: 1, 
+           position: 'fixed', bottom: 20, right: 30, zIndex: 10  }}>
+          <SpeedDial
+            ariaLabel="SpeedDial"
+            icon={<SpeedDialIcon />}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            open={open}
+          >
+            {actions.map((action) => (
+              <SpeedDialAction
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={handleClose}
+              />
+            ))}
+          </SpeedDial>
+        </Box>
 
         {/*<button onClick={droplist} class="hidden lg:inline-flex items-center bg-emerald-100 border-0 p-0 font-normal focus:outline-none rounded text-base mt-4 md:mt-0">
           <div class="w-14 rounded-full">

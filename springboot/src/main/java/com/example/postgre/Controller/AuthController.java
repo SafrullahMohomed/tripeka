@@ -117,7 +117,7 @@ public class AuthController {
 			Tokens aftersave = tokenRepository.save(tokentosave);
 
 			// RETURN
-			LoginResponse resp = new LoginResponse(aftersave.getEmail(), user.getUserrole(),aftersave.getToken(), true,
+			LoginResponse resp = new LoginResponse(aftersave.getEmail(), user.getUserrole(), aftersave.getToken(), true,
 					"Login Success");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 
@@ -143,24 +143,25 @@ public class AuthController {
 			return ResponseEntity.status(HttpStatus.OK).body(false);
 		}
 	}
-	
+
 	@GetMapping(value = "/introspect")
 	public ResponseEntity<IntrospectResponse> introspect(@NotNull @RequestParam(name = "token") String token) {
 		try {
-			Tokens tokenInDB=null;
+			Tokens tokenInDB = null;
 			List<Tokens> tokens = tokenRepository.findAll();
 			for (Tokens tokensInDB : tokens) {
 				if (tokensInDB.getToken().equals(token)) {
-					tokenInDB=tokensInDB;
+					tokenInDB = tokensInDB;
 					break;
 				}
 			}
-			
-			if (tokenInDB==null) {
-				return ResponseEntity.status(HttpStatus.OK).body(new IntrospectResponse(null, null, null, false, "No Such Token"));	
+
+			if (tokenInDB == null) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new IntrospectResponse(null, null, null, false, "No Such Token"));
 			}
-			
-			String email=tokenInDB.getEmail();
+
+			String email = tokenInDB.getEmail();
 			List<Users> registeredUsers = userRepository.findAll();
 			Users user = null;
 			for (Users users : registeredUsers) {
@@ -168,17 +169,19 @@ public class AuthController {
 					user = users;
 					break;
 				}
-			}		
-				
-			if (user==null) {
-				return ResponseEntity.status(HttpStatus.OK).body(new IntrospectResponse(null, null, null, false, "No Such User"));	
 			}
-			
-			return ResponseEntity.status(HttpStatus.OK).body(new IntrospectResponse(user.getEmail(), user.getUserrole(), tokenInDB.getToken(), true, "Token Valid"));
-			
-			
+
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new IntrospectResponse(null, null, null, false, "No Such User"));
+			}
+
+			return ResponseEntity.status(HttpStatus.OK).body(new IntrospectResponse(user.getEmail(), user.getUserrole(),
+					tokenInDB.getToken(), true, "Token Valid"));
+
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.OK).body(new IntrospectResponse(null, null, null, false, e.toString()));
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new IntrospectResponse(null, null, null, false, e.toString()));
 		}
 	}
 

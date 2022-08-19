@@ -55,7 +55,7 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
