@@ -1,5 +1,3 @@
-import React from 'react'
-
 const AdminDash = () => {
     return ( 
         <section class="text-gray-600 body-font mt-20">
