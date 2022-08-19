@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import pop1 from '../assets/dalada.jpg';
 import pop2 from '../assets/jaffna.jpg';
 import pop3 from '../assets/arugam.jpg';
@@ -6,12 +6,17 @@ import pop4 from '../assets/nuwera.jpg';
 import pop5 from '../assets/trinco.jpg';
 import pop6 from '../assets/colombo.jpg';
 import Navbar from './Navbar';
+import Aos from 'aos'
+import "aos/dist/aos.css"
 
 const Popular = () => {
+    useEffect(() => {
+        Aos.init({duration:2000});
+    },[]);
   return (
     <div name='Places'>
         <Navbar/>
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font" data-aos="slide-right" data-aos-delay="100">
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-20">
                     <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Most Popular Places in Island</h1>
@@ -78,6 +83,7 @@ const Popular = () => {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
