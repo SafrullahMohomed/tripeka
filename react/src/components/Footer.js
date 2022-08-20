@@ -42,7 +42,7 @@ const Footer = () => {
                                     <Link to ='/climate' className="text-gray-600 hover:text-gray-800">Climate</Link>
                                 </li>
                                 <li className="p-0">
-                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Second Link</a>
+                                    <Link to ='/events' className="text-gray-600 hover:text-gray-800">Calendar</Link>
                                 </li>
                                 <li className="p-0">
                                     <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
