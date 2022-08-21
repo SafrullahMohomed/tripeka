@@ -40,9 +40,9 @@ const customTheme = createTheme({
       light: '#d1fae5',
     },
     secondary: {
-      dark: '#fecdd3',
+      dark: '#9f1239',
       main: '#fda4af',
-      light: '#9f1239',
+      light: '#fecdd3',
     }
   },
 });
@@ -64,9 +64,9 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(${theme.spacing(7)} + 15px)`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(8)} + 15px)`,
   },
 });
 
@@ -315,11 +315,11 @@ export default function MiniDrawer() {
           }
         }}>
           <DrawerHeader sx={{bgcolor: 'primary.light'}}>
+            <Typography></Typography>
             <IconButton onClick={handleDrawerClose}> 
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>
-          <Divider />
           <List>
             {['Home', 'Starred', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text, index) => (
               <ListItem key={text} sx={{ display: 'block' }}>
@@ -328,6 +328,11 @@ export default function MiniDrawer() {
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2,
+                    borderRadius: 2,
+                    bgcolor: 'primary.light',
+                    "&:hover": {
+                      bgcolor: 'primary.dark',
+                    },
                   }}
                 >
                   <ListItemIcon
