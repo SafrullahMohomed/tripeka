@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 import "../styles/chat.css";
 
 var stompClient = null;
@@ -261,6 +264,15 @@ const MyChatRoom = () => {
           </div>
         </div>
       </div>
+      <Box 
+        sx={{ '& > :not(style)': { m: 1 }, position: 'fixed', bottom: 20, right: 30 }}
+        onClick={() => window.location.href = '/budget'}
+      >
+        <Fab variant="extended" size="medium" color="primary" aria-label="add">
+          <CreditCardIcon sx={{ mr: 1 }} />
+          Budget
+        </Fab>
+      </Box>
     </div>
   );
 };
