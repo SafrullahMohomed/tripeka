@@ -155,7 +155,7 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <Link to="/login" onClick={handleClose}>
-            <button className="bg-transparent text-indigo-600 px-8 py-3 mb-4">
+            <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
               Sign In
             </button>
             </Link>
