@@ -23,6 +23,7 @@ import Cards from './components/Cards';
 import Groups from './components/Groups';
 import Blogs from './pages/Blogs';
 import Drawer from './components/Drawer';
+import SpeedDialButton from './components/SpeedDialButton';
 
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -57,7 +58,7 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>

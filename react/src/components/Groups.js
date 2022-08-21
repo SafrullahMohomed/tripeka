@@ -57,7 +57,7 @@ const Groups = () => {
             <div class="container px-5 py-5 mx-auto">
                 <div class="w-full mb-8">
                     <div class="text-xl font-normal title-font mb-4 text-gray-900"></div>
-                    <button onClick={toggleModal} class="m-0 px-2 py-1 bg-emerald-300 focus:outline-none border-transparent text-sm font-normal">
+                    <button onClick={toggleModal} class="m-0 px-3 py-1 bg-emerald-300 focus:outline-none border-transparent text-lg font-normal">
                         <div class="pl-1">Create Group</div>
                     </button> 
                     {modal && (
