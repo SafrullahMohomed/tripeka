@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded';
 import Badge from '@mui/material/Badge';
@@ -28,10 +29,23 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { red } from "@mui/material/colors";
 import AdminDash from './AdminDash';
-import user from '../assets/customer2.jpg'
+import user from '../assets/customer2.jpg';
 
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      dark:  '#34d399',
+      main: '#6ee7b7',
+      light: '#d1fae5',
+    },
+    secondary: {
+      dark: '#fecdd3',
+      main: '#fda4af',
+      light: '#9f1239',
+    }
+  },
+});
 
 const drawerWidth = 240;
 
@@ -132,12 +146,12 @@ export default function MiniDrawer() {
   };
 
   return (
-    
+    <ThemeProvider theme={customTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="fixed" open={open} sx={{
           boxShadow: 0,
-          bgcolor: "primary.main"
+          bgcolor: "primary.light"
         }}>
           <Toolbar>
             <IconButton
@@ -297,10 +311,10 @@ export default function MiniDrawer() {
         <Drawer variant="permanent" open={open} PaperProps={{
           sx: {
             border: 0,
-            bgcolor: 'secondary.main'
+            bgcolor: 'primary.main'
           }
         }}>
-          <DrawerHeader sx={{bgcolor: 'error.main'}}>
+          <DrawerHeader sx={{bgcolor: 'primary.light'}}>
             <IconButton onClick={handleDrawerClose}> 
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
@@ -333,5 +347,6 @@ export default function MiniDrawer() {
         </Drawer>
         <AdminDash />
       </Box>
+      </ThemeProvider>
   );
 }
