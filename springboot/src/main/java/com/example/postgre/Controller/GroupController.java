@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.postgre.Model.Data.Groups;
 import com.example.postgre.repository.GroupRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1")
 public class GroupController {
