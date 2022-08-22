@@ -1,20 +1,20 @@
 import React, {useEffect} from 'react'
 import pop6 from '../assets/steps.jpg'
-import Aos from 'aos'
-import "aos/dist/aos.css"
+// import Aos from 'aos'
+// import "aos/dist/aos.css"
 
 const Steps = () => {
-    useEffect(() => {
-        Aos.init({duration:2000});
-    },[]);
+    // useEffect(() => {
+    //     Aos.init({duration:2000});
+    // },[]);
   return (
-    <div data-aos="slide-left">
+    <div>
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto flex flex-wrap">
                 <div class="flex flex-wrap w-full">
                     <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
-                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Register with our system</h1><br/>
-                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">In 3 Easy Steps .....</h1>
+                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Register</h1><br/>
+                        <h1 className="font-sans text-3xl text-gray-800 font-bold ...">need to put a sattapadi text .....</h1>
                         <br></br>
                         <br></br>
                         <div class="flex relative pb-12">
@@ -28,7 +28,7 @@ const Steps = () => {
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 1</h2>
-                                <p class="leading-relaxed">Please click SignUp Button</p>
+                                <p class="leading-relaxed">Create a <span className="text-red-500">TRIP GROUPS</span> among registered users......</p>
                             </div>
                         </div>
                         <div class="flex relative pb-12">
@@ -42,7 +42,7 @@ const Steps = () => {
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 2</h2>
-                                <p class="leading-relaxed">Fill your details along with the type you need to register</p>
+                                <p class="leading-relaxed"><span className="text-red-500">CHAT</span> with your group members</p>
                             </div>
                         </div>
                         <div class="flex relative pb-12">
@@ -57,7 +57,23 @@ const Steps = () => {
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 3</h2>
-                                <p class="leading-relaxed">Finally press Register Button</p>
+                                <p class="leading-relaxed">Share your <span className="text-red-500">LIVE LOCATION</span> among your group members</p>
+                            </div>
+                        </div>
+
+                        <div class="flex relative pb-12">
+                            <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
+                                <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+                            </div>
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500 inline-flex items-center justify-center text-white relative z-10">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                                <circle cx="12" cy="5" r="3"></circle>
+                                <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-grow pl-4">
+                                <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 4</h2>
+                                <p class="leading-relaxed">Explore the <span className="text-red-500">BUDGET</span> of your trip</p>
                             </div>
                         </div>
                         

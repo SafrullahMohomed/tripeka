@@ -2,8 +2,8 @@ import React,{useEffect} from 'react'
 import Navbar from './Navbar';
 import { useForm } from "react-hook-form";
 import { contact } from '../services/ContactService';
-import Aos from 'aos'
-import "aos/dist/aos.css"
+// import Aos from 'aos'
+// import "aos/dist/aos.css"
 
 function onSubmit(data) {
     console.log(data);
@@ -30,15 +30,15 @@ const ContactUs = () => {
     handleSubmit,
   } = useForm();
 
-  useEffect(() => {
-    Aos.init({duration:2000});
-},[]);
+//   useEffect(() => {
+//     Aos.init({duration:2000});
+// },[]);
 
   
   return (
     <div name='ContactUs'>
         <Navbar/>
-        <form onSubmit={handleSubmit(onSubmit)} data-aos="slide-left" data-aos-delay="100">
+        <form onSubmit={handleSubmit(onSubmit)} >
             <section class="text-gray-600 body-font relative">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="flex flex-col text-center w-full mb-12">
