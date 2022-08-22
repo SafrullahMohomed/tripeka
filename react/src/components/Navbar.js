@@ -53,7 +53,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/dashboard">DashBoard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
@@ -65,11 +65,9 @@ const Navbar = () => {
               <Link to="/places">Places</Link>
             </li>
             <li>
-              <Link to="/contactus">ContactUs</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
-            <li>
-              <Link to="/ms">ms</Link>
-            </li>
+
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
@@ -85,12 +83,12 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <button className="border-none bg-transparent text-black mr-4">
-              <Link to="/login">Sign In</Link>
+              <Link to="/login">Sign in</Link>
             </button>
           )}
           {!isSignedIn && (
             <button className="px-8 py-3 bg-emerald-400">
-              <Link to="/register">Sign Up</Link>
+              <Link to="/register">Sign up</Link>
             </button>
           )}
         </div>
