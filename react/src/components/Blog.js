@@ -13,7 +13,7 @@ import blog6 from '../assets/blog6.jpg'
 export default class Blog extends Component {
     render() {
         const settings = {
-          dots: true,
+          dots: false,
           infinite: true,
           speed: 400,
           autoplay: true,
