@@ -26,12 +26,12 @@ public class UserService implements UserDetailsService {
 
         Users user = userRepository.findByEmail(userName);
 
-//        return new User("admin","password", Arrays.stream("ROLE_SOMEBODY".split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList()));
+        System.out.println("IN loadByUsername METHOD");
+
 
         return new User(user.getEmail(),user.getHashedpswd(), Arrays.stream(user.getUserrole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList()));
+
     }
 }

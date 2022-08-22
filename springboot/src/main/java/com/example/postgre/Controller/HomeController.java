@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HomeController {
@@ -35,9 +33,13 @@ public class HomeController {
         return "Welcome to Daily Code Buffer!!";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/authenticate")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
+        System.out.println("In /authenticate");
+        System.out.println(jwtRequest.getUsername());
+        System.out.println(jwtRequest.getPassword());
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -55,11 +57,17 @@ public class HomeController {
         final String token =
                 jwtUtility.generateToken(userDetails);
 
-        return  new JwtResponse(token);
+        String role = String.valueOf(userDetails.getAuthorities());
+        System.out.println("SHAKALAKA BOOM BOOM" + role );
+        role = role.substring(1, role.length() - 1);
+
+        return  new JwtResponse(token, role);
     }
 
     @GetMapping("/somebody")
     public String somebody() {
-        return "Hello, SOMEBODY";
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        return "Hello, " + username;
     }
 }

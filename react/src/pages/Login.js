@@ -3,17 +3,20 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pop6 from "../assets/loginImage.png";
 import { useForm } from "react-hook-form";
-import { getSignedRole, login } from "../services/AuthAPIService";
-import { Link } from 'react-router-dom';
+// import { getSignedRole, login } from "../services/AuthAPIService";
+import authService from "../jwtAuthServices/auth.service";
+import { Link } from "react-router-dom";
 
 function onSubmit(data) {
   console.log(data);
-  login(data["user"], data["password"]).then((resp) => {
-    if (resp["success"]) {
-      alert("Success : " + resp["msg"]);
-      window.location.href = "http://localhost:3000/";
+  var md5 = require("md5");
+  const hashedpswd = md5(data["password"]);
+  authService.login(data["user"], hashedpswd).then((response) => {
+    console.log(response.role);
+    if (response.role === "ROLE_TRAVELLER") {
+      window.location.href = "/traveller";
     } else {
-      alert("Log In Failed : " + resp["msg"]);
+      window.location.href = "/someone";
     }
   });
 }
@@ -25,15 +28,15 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  getSignedRole()
-    .then((role) => {
-      if (role != null) {
-        window.location.href = "http://localhost:3000/";
-      }
-    })
-    .catch(() => {
-      window.location.href = "http://localhost:3000/";
-    });
+  // getSignedRole()
+  //   .then((role) => {
+  //     if (role != null) {
+  //       window.location.href = "http://localhost:3000/";
+  //     }
+  //   })
+  //   .catch(() => {
+  //     window.location.href = "http://localhost:3000/";
+  //   });
 
   return (
     <div>
@@ -166,8 +169,13 @@ const Login = () => {
                         Remember me
                       </label>
                     </div>
-                    
-                    <Link to ='/forgotpassword' className="text-gray-600 hover:text-gray-800">Forgot password?</Link>
+
+                    <Link
+                      to="/forgotpassword"
+                      className="text-gray-600 hover:text-gray-800"
+                    >
+                      Forgot password?
+                    </Link>
                   </div>
                   <div class="text-center lg:text-left">
                     <button

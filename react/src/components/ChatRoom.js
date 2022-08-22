@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
 import "../styles/chat.css";
+import jwt_decode from "jwt-decode";
 
 var stompClient = null;
 var subscription = null;
 
 const MyChatRoom = () => {
-  const username = "Haathim";
+  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+
+  console.log(decoded);
+  const username = decoded.sub;
   const [textBoxMessage, settextBoxMessage] = useState();
   const [groupList, setgroupList] = useState([]);
   const [currentGroup, setcurrentGroup] = useState(null);
