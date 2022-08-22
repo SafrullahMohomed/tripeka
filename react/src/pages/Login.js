@@ -5,6 +5,8 @@ import pop6 from "../assets/loginImage.png";
 import { useForm } from "react-hook-form";
 import { getSignedRole, login } from "../services/AuthAPIService";
 import { Link } from 'react-router-dom';
+import Aos from 'aos'
+import "aos/dist/aos.css"
 
 function onSubmit(data) {
   console.log(data);
@@ -42,10 +44,10 @@ const Login = () => {
         <section className="h-screen">
           <div className="px-6 h-full text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-30 mt-39 md:mb-0">
+              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-30 mt-39 md:mb-0"  data-aos="fade-right">
                 <img src={pop6} className="w-full" alt="Sample image" />
               </div>
-              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0" data-aos="fade-left">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-row items-center justify-center lg:justify-start">
                     <p className="text-3xl mb-0 ml-auto mr-auto font-bold">Sign In </p>
