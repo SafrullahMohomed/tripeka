@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import  {FontAwesomeIcon}  from '@fortawesome/react-fontawesome'
+import Aos from 'aos'
+import "aos/dist/aos.css"
 
 import {
     Accordion,
@@ -35,16 +37,15 @@ const Help = () => {
         <Navbar/>
         <br/>
         <br/>
-        <br/>
-        <br/>
+        
         <section class="text-gray-600 body-font overflow-hidden">
             <div class="container px-3 py-24 mx-auto">
                 <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                    <img alt="ecommerce" class="lg:w-1/2 w-2/3 lg:h-auto h-64 object-fill object-center" src={pop6}/>
+                    <img alt="ecommerce" class="lg:w-1/2 w-2/3 lg:h-auto h-64 object-cover object-center" data-aos="fade-right" src={pop6}/>
                     <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
                         <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Frequently Asked Questions</h1><br/>
                         
-                        <div class="flex mb-4">
+                        <div class="flex mb-4" data-aos="fade-left">
                             
                                 <div className="w-full max-w-md rounded-2xl bg-white p-2">
                                     <Disclosure>
@@ -118,13 +119,13 @@ const Help = () => {
                                 </div>
                             
                         </div>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)} data-aos="fade-left">
                             <div class="bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
                                 <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Further Help</h2>
                                 <p class="leading-relaxed mb-5 text-gray-600">We are always welcome to help our valuable customer. Please ask us any help without any hesitation</p>
                                 <div class="relative mb-4">
                                     <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-                                    <input type="text" id="name" name="name"  {...register("name", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                    <input type="text" id="name" name="name"  {...register("name", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                                     <error className = 'text-red-600'>
                                         {errors.name?.type === "required" && "Name is required"}
                                     </error>
@@ -132,7 +133,7 @@ const Help = () => {
                                 
                                 <div class="relative mb-4">
                                     <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                                    <input type="email" id="email" name="email" {...register("email", {required: true,pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,})} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                    <input type="email" id="email" name="email" {...register("email", {required: true,pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,})} class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                                     <error className = 'text-red-600'>
                                         {errors.email?.type === "required" && "Email is required"}
                                         {errors.email?.type === "pattern" &&
@@ -141,7 +142,7 @@ const Help = () => {
                                 </div>
                                 <div class="relative mb-4">
                                     <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-                                    <textarea id="message" name="message"  {...register("message", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                    <textarea id="message" name="message"  {...register("message", { required: true })} class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                     <error className = 'text-red-600'>
                                         {errors.message?.type === "required" && "Message is required"}
                                     </error>
