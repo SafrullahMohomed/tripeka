@@ -3,58 +3,111 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pop6 from "../assets/loginImage.png";
 import { useForm } from "react-hook-form";
-import { getSignedRole, login } from "../services/AuthAPIService";
-import { Link } from 'react-router-dom';
-import Aos from 'aos'
-import "aos/dist/aos.css"
+// import { getSignedRole, login } from "../services/AuthAPIService";
+import authService from "../jwtAuthServices/auth.service";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function onSubmit(data) {
-  console.log(data);
-  login(data["user"], data["password"]).then((resp) => {
-    if (resp["success"]) {
-      alert("Success : " + resp["msg"]);
-      window.location.href = "http://localhost:3000/";
-    } else {
-      alert("Log In Failed : " + resp["msg"]);
-    }
-  });
-}
+// function onSubmit(data) {
+//   console.log(data);
+//   var md5 = require("md5");
+//   const hashedpswd = md5(data["password"]);
+//   authService
+//     .login(data["user"], hashedpswd)
+//     .then((response) => {
+//       console.log(response.role);
+//       if (response.role === "ROLE_TRAVELLER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_ADMIN") {
+//         window.location.href = "/admin";
+//       } else if (response.role === "ROLE_TRIP_GUIDER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_LODGE_PROVIDER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_VEHICLE_OWNER") {
+//         window.location.href = "/dashboard";
+//       } else {
+//         // console.log("INVALID USERNAME AND PASSWORD");
+//       }
+//     })
+//     .catch((error) => {
+//       console.log("Error is:");
+//       console.log(error);
+//       setloginError("Invalid Username & Password");
+//     });
+// }
 
 const Login = () => {
+  const [loginError, setloginError] = useState("");
+  function onSubmit(data) {
+    console.log(data);
+    var md5 = require("md5");
+    const hashedpswd = md5(data["password"]);
+    authService
+      .login(data["user"], hashedpswd)
+      .then((response) => {
+        console.log(response.role);
+        if (response.role === "ROLE_TRAVELLER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_ADMIN") {
+          window.location.href = "/admin";
+        } else if (response.role === "ROLE_TRIP_GUIDER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_LODGE_PROVIDER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_VEHICLE_OWNER") {
+          window.location.href = "/dashboard";
+        } else {
+          // console.log("INVALID USERNAME AND PASSWORD");
+        }
+      })
+      .catch((error) => {
+        console.log("Error is:");
+        console.log(error);
+        setloginError("Invalid Username & Password");
+      });
+  }
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  getSignedRole()
-    .then((role) => {
-      if (role != null) {
-        window.location.href = "http://localhost:3000/";
-      }
-    })
-    .catch(() => {
-      window.location.href = "http://localhost:3000/";
-    });
+  // getSignedRole()
+  //   .then((role) => {
+  //     if (role != null) {
+  //       window.location.href = "http://localhost:3000/";
+  //     }
+  //   })
+  //   .catch(() => {
+  //     window.location.href = "http://localhost:3000/";
+  //   });
 
   return (
     <div>
-      <Navbar />  
+      <Navbar />
       <div>
         <section className="h-screen">
           <div className="px-6 h-full text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-30 mt-39 md:mb-0"  data-aos="fade-right">
+              <div
+                className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-30 mt-39 md:mb-0"
+                data-aos="fade-right"
+              >
                 <img src={pop6} className="w-full" alt="Sample image" />
               </div>
-              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0" data-aos="fade-left">
+              <div
+                className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0"
+                data-aos="fade-left"
+              >
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-row items-center justify-center lg:justify-start">
-                    <p className="text-3xl mb-0 ml-auto mr-auto font-bold">Sign In </p>
+                    <p className="text-3xl mb-0 ml-auto mr-auto font-bold">
+                      Sign In{" "}
+                    </p>
                   </div>
-                  <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                    
-                  </div>
+                  <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"></div>
+                  <error className="text-red-600">{loginError}</error>
 
                   <div class="mb-6">
                     <input
@@ -112,8 +165,13 @@ const Login = () => {
                         Remember me
                       </label>
                     </div>
-                    
-                    <Link to ='/forgotpassword' className="text-gray-600 hover:text-gray-800">Forgot password?</Link>
+
+                    <Link
+                      to="/forgotpassword"
+                      className="text-gray-600 hover:text-gray-800"
+                    >
+                      Forgot password?
+                    </Link>
                   </div>
                   <div class="text-center lg:text-left">
                     <button
@@ -124,9 +182,14 @@ const Login = () => {
                     </button>
                     <p class="text-sm font-semibold mt-2 pt-1 mb-2">
                       Don't have an account?
-                      <br/>
-                      <Link to ='/register' class="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out" style={{'marginTop':'4px'}}>Register</Link>
-                      
+                      <br />
+                      <Link
+                        to="/register"
+                        class="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out"
+                        style={{ marginTop: "4px" }}
+                      >
+                        Register
+                      </Link>
                     </p>
                   </div>
                 </form>
