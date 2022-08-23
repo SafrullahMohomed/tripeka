@@ -40,10 +40,17 @@ const customTheme = createTheme({
       light: "#d1fae5",
     },
     secondary: {
+<<<<<<< HEAD
       dark: "#fecdd3",
       main: "#fda4af",
       light: "#9f1239",
     },
+=======
+      dark: '#9f1239',
+      main: '#fda4af',
+      light: '#fecdd3',
+    }
+>>>>>>> vili
   },
 });
 
@@ -63,10 +70,17 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+<<<<<<< HEAD
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
+=======
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 15px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 15px)`,
+>>>>>>> vili
   },
 });
 
@@ -326,6 +340,7 @@ export default function MiniDrawer() {
             </Box>
           </Toolbar>
         </AppBar>
+<<<<<<< HEAD
         <Drawer
           variant="permanent"
           open={open}
@@ -343,14 +358,43 @@ export default function MiniDrawer() {
               ) : (
                 <ChevronLeftIcon />
               )}
+=======
+        <Drawer variant="permanent" open={open} PaperProps={{
+          sx: {
+            border: 0,
+            bgcolor: 'primary.main'
+          }
+        }}>
+          <DrawerHeader sx={{bgcolor: 'primary.light'}}>
+            <Typography></Typography>
+            <IconButton onClick={handleDrawerClose}> 
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+>>>>>>> vili
             </IconButton>
           </DrawerHeader>
-          <Divider />
           <List>
+<<<<<<< HEAD
             {["Home", "Starred", "Send email", "Drafts", "Hotels", "Draft"].map(
               (text, index) => (
                 <ListItem key={text} sx={{ display: "block" }}>
                   <ListItemButton
+=======
+            {['Home', 'Starred', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text, index) => (
+              <ListItem key={text} sx={{ display: 'block' }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2,
+                    borderRadius: 2,
+                    bgcolor: 'primary.light',
+                    "&:hover": {
+                      bgcolor: 'primary.dark',
+                    },
+                  }}
+                >
+                  <ListItemIcon
+>>>>>>> vili
                     sx={{
                       minHeight: 48,
                       justifyContent: open ? "initial" : "center",

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import React, { useState } from "react";
 import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
 import Badge from "@mui/material/Badge";
@@ -49,6 +50,26 @@ const actions = [
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
+=======
+import React, { useState } from 'react';
+import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded';
+import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
+import logo from '../assets/logo.png'
+import user from '../assets/customer2.jpg'
+
+>>>>>>> vili
 const Header = () => {
   //dropdown
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
@@ -69,6 +90,7 @@ const Header = () => {
     setAnchorElNotification(null);
   };
 
+<<<<<<< HEAD
   // speed dial
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -95,6 +117,9 @@ const Header = () => {
   };
 
   return (
+=======
+  return ( 
+>>>>>>> vili
     <header class="text-gray-600 body-font mb-8 bg-emerald-100">
       <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
         <div class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -271,6 +296,7 @@ const Header = () => {
                 authService.logout();
               }}
             >
+<<<<<<< HEAD
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
@@ -361,6 +387,36 @@ const Header = () => {
           </DialogActions>
         </Dialog>
 
+=======
+                <MenuItem>
+                  <Avatar /> Profile
+                </MenuItem>
+                <MenuItem>
+                  <Avatar /> My account
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                  <ListItemIcon>
+                    <PersonAdd fontSize="small" />
+                  </ListItemIcon>
+                  Add another account
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <Settings fontSize="small" />
+                  </ListItemIcon>
+                  Settings
+                </MenuItem>
+                <MenuItem onClick={()=>{window.location.href = '/'}}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+            </Menu>
+        </React.Fragment>
+        
+>>>>>>> vili
         {/*<button onClick={droplist} class="hidden lg:inline-flex items-center bg-emerald-100 border-0 p-0 font-normal focus:outline-none rounded text-base mt-4 md:mt-0">
           <div class="w-14 rounded-full">
             <img src={user} class="w-full h-full rounded-full p-1 bg-white" alt="" />

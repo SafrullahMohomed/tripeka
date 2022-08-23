@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import pop6 from "../assets/loginImage.png";
+import pop6 from "../assets/unlock.png";
 import { useForm } from "react-hook-form";
 // import { getSignedRole, login } from "../services/AuthAPIService";
 import authService from "../jwtAuthServices/auth.service";
@@ -87,6 +87,7 @@ const Login = () => {
   return (
     <div>
       <Navbar />
+<<<<<<< HEAD
       <div>
         <section className="h-screen">
           <div className="px-6 h-full text-gray-800">
@@ -96,12 +97,20 @@ const Login = () => {
                 data-aos="fade-right"
               >
                 <img src={pop6} className="w-full" alt="Sample image" />
+=======
+        <section className="h-screen mb-10">
+          <div className="px-12 h-full text-gray-800">
+            <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
+              <div className="flex justify-center grow-0 shrink-1 p-3 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
+                <img src={pop6} className="w-4/6" alt="Sample image" />
+>>>>>>> vili
               </div>
               <div
                 className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0"
                 data-aos="fade-left"
               >
                 <form onSubmit={handleSubmit(onSubmit)}>
+<<<<<<< HEAD
                   <div className="flex flex-row items-center justify-center lg:justify-start">
                     <p className="text-3xl mb-0 ml-auto mr-auto font-bold">
                       Sign In{" "}
@@ -110,6 +119,8 @@ const Login = () => {
                   <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"></div>
                   <error className="text-red-600">{loginError}</error>
 
+=======
+>>>>>>> vili
                   <div class="mb-6">
                     <input
                       type="text"
@@ -183,12 +194,16 @@ const Login = () => {
                     </button>
                     <p class="text-sm font-semibold mt-2 pt-1 mb-2">
                       Don't have an account?
+<<<<<<< HEAD
                       <br />
                       <Link
                         to="/register"
                         class="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out"
                         style={{ marginTop: "4px" }}
                       >
+=======
+                      <a href="#" class="text-red-600 hover:text-red-700 focus:text-blue-700 transition duration-200 ease-in-out pl-1">
+>>>>>>> vili
                         Register
                       </Link>
                     </p>
@@ -198,8 +213,6 @@ const Login = () => {
             </div>
           </div>
         </section>
-      </div>
-
       <Footer />
     </div>
   );
