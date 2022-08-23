@@ -33,14 +33,20 @@ const ExpandMore = styled((props) => {
 }));
 
 const Cards = () => {
-  const [expanded, setExpanded] = useState(false);
 
+  const [expanded1, setExpanded1] = useState(false);
+  const handleExpandClick1 = () => {
+    setExpanded1(!expanded1);
+  };
+
+  const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+
   return (
-    <section class="text-gray-600 body-font mb-10">
+    <section class="text-gray-600 body-font">
       <div class="container px-5 py-8 mx-auto">
 
         <div class="flex flex-wrap w-full mb-3">
@@ -69,9 +75,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -88,15 +94,15 @@ const Cards = () => {
                   <ShareIcon />
                 </IconButton>
                 <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
+                  expand={expanded1}
+                  onClick={handleExpandClick1}
+                  aria-expanded={expanded1}
                   aria-label="show more"
                 >
                   <ExpandMoreIcon />
                 </ExpandMore>
               </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <Collapse in={expanded1} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>Method:</Typography>
                   <Typography paragraph>
@@ -145,9 +151,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -221,9 +227,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -297,9 +303,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
