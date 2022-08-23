@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import pop6 from "../assets/reset.jpg";
 
 
+
 const ResetPassword = () => {
     const { handleSubmit, register,watch, formState: { errors } } = useForm();
     const onSubmit = values => console.log(values);
@@ -19,10 +20,10 @@ const ResetPassword = () => {
         <section className="h-screen">
           <div className="px-6 h-full text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
+              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0" >
                 <img src={pop6} className="w-full" alt="Sample image" />
               </div>
-              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0" >
                 <h1 className='text-4xl mb-8 font-bold flex items-stretch'>Reset Your Password</h1>
                 
                 <form onSubmit={handleSubmit(onSubmit)}>
