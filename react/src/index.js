@@ -25,6 +25,7 @@ import Trip from './components/Trip';
 import Blogs from './pages/Blogs';
 import Drawer from './components/Drawer';
 import SpeedDialButton from './components/SpeedDialButton';
+import CreateGroupFloat from './components/CreateGroupFloat';
 
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -59,7 +60,7 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><CreateGroupFloat /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip' element={<><Header /><Trip /><SpeedDialButton /></>}/>
