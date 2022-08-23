@@ -40,7 +40,7 @@ const Cards = () => {
   };
 
   return (
-    <section class="text-gray-600 body-font">
+    <section class="text-gray-600 body-font mb-10">
       <div class="container px-5 py-8 mx-auto">
 
         <div class="flex flex-wrap w-full mb-3">

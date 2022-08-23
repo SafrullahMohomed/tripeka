@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import Budget from "./ms/components/Budget/Budget";
 import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
+import EventCalendar from "./pages/EventCalendar";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -49,6 +50,7 @@ root.render(
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
       <Route path="/climate" element={<Climate />} />
+      <Route path="/events" element={<EventCalendar />} />
 
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
@@ -61,12 +63,10 @@ root.render(
             <Search />
             <Suggestions />
             <Cards />
-            <Groups />
             <Footer />
           </>
         }
       />
-
       <Route
         path="/blogs"
         element={

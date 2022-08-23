@@ -53,7 +53,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/dashboard">DashBoard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
@@ -65,10 +65,7 @@ const Navbar = () => {
               <Link to="/places">Places</Link>
             </li>
             <li>
-              <Link to="/contactus">ContactUs</Link>
-            </li>
-            <li>
-              <Link to="/ms">ms</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
           </ul>
         </div>
@@ -85,12 +82,12 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <button className="border-none bg-transparent text-black mr-4">
-              <Link to="/login">Sign In</Link>
+              <Link to="/login">Sign in</Link>
             </button>
           )}
           {!isSignedIn && (
             <button className="px-8 py-3 bg-emerald-400">
-              <Link to="/register">Sign Up</Link>
+              <Link to="/register">Sign up</Link>
             </button>
           )}
         </div>
@@ -153,7 +150,7 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <Link to="/login" onClick={handleClose}>
-              <button className="bg-transparent text-indigo-600 px-8 py-3 mb-4">
+              <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
                 Sign In
               </button>
             </Link>
