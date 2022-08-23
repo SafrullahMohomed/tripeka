@@ -30,9 +30,6 @@ export async function register(email, username, role, password) {
   }
 }
 
-
-
-
 export async function login(email, password) {
   try {
     var md5 = require("md5");
@@ -85,33 +82,36 @@ export async function logout() {
 }
 
 export async function getSignedRole() {
-  try {
-    console.log("HERE");
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    const email = localStorage.getItem("email");
+  // try {
+  //   console.log("HERE");
+  //   const token = localStorage.getItem("token");
+  //   const role = localStorage.getItem("role");
+  //   const email = localStorage.getItem("email");
 
-    var response = await axios.get(
-      ServerBaseUrl + "/auth/introspect?token=" + token
-    );
-    console.log(response.data);
-    if (response.status === 200) {
-      if (
-        response.data["success"] &&
-        response.data["email"] === email &&
-        response.data["role"] === role &&
-        response.data["token"] === token
-      ) {
-        console.log("Role : "+role)
-        return role;
-      } else {
-        console.log("No Role")
-        return null;
-      }
-    } else {
-      throw "Unhandled Exception";
-    }
-  } catch (e) {
-    return null;
-  }
+  //   var response = await axios.get(
+  //     ServerBaseUrl + "/auth/introspect?token=" + token
+  //   );
+  //   console.log(response.data);
+  //   if (response.status === 200) {
+  //     if (
+  //       response.data["success"] &&
+  //       response.data["email"] === email &&
+  //       response.data["role"] === role &&
+  //       response.data["token"] === token
+  //     ) {
+  //       console.log("Role : " + role);
+  //       return role;
+  //     } else {
+  //       console.log("No Role");
+  //       return null;
+  //     }
+  //     return JSON.parse(localStorage.getItem("user")).role;
+  //   } else {
+  //     throw "Unhandled Exception";
+  //   }
+  // } catch (e) {
+  //   return null;
+  // }
+
+  return JSON.parse(localStorage.getItem("user")).role;
 }

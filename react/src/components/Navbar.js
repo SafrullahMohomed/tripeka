@@ -12,15 +12,15 @@ const Navbar = () => {
 
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  getSignedRole()
-    .then((role) => {
-      if (role != null) {
-        setIsSignedIn(true);
-      }
-    })
-    .catch(() => {
-      setIsSignedIn(false);
-    });
+  // getSignedRole()
+  //   .then((role) => {
+  //     if (role != null) {
+  //       setIsSignedIn(true);
+  //     }
+  //   })
+  //   .catch(() => {
+  //     setIsSignedIn(false);
+  //   });
 
   return (
     <div className="w-screen h-[80px] z-10 fixed">
@@ -67,7 +67,6 @@ const Navbar = () => {
             <li>
               <Link to="/contactus">Contact us</Link>
             </li>
-
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
@@ -139,26 +138,28 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-        {isSignedIn && (
-            
-              <button
-                className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                Log out
-              </button>
-            
+          {isSignedIn && (
+            <button
+              className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
+              onClick={() => {
+                logout();
+              }}
+            >
+              Log out
+            </button>
           )}
           {!isSignedIn && (
             <Link to="/login" onClick={handleClose}>
-            <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
-              Sign In
-            </button>
+              <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
+                Sign In
+              </button>
             </Link>
           )}
-          {!isSignedIn && <Link to="/register" onClick={handleClose}><button className="px-8 py-3">Sign Up</button></Link>}
+          {!isSignedIn && (
+            <Link to="/register" onClick={handleClose}>
+              <button className="px-8 py-3">Sign Up</button>
+            </Link>
+          )}
         </div>
       </ul>
     </div>
