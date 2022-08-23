@@ -5,6 +5,6 @@ import com.example.postgre.Model.Data.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long>{
 	
-	
+	Users findByEmail(String email);
 
 }

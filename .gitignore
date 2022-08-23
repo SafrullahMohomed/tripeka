@@ -205,5 +205,8 @@ typings/
 # Serverless directories
 .serverless
 
+# JWT secret file
+springboot/src/main/resources/application.yml
+
 
 # End of https://www.gitignore.io/api/git,java,node,maven,intellij
