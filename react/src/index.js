@@ -21,6 +21,7 @@ import Search from './components/Search';
 import Suggestions from './components/Suggestions';
 import Cards from './components/Cards';
 import Groups from './components/Groups';
+import Trip from './components/Trip';
 import Blogs from './pages/Blogs';
 import Drawer from './components/Drawer';
 import SpeedDialButton from './components/SpeedDialButton';
@@ -58,9 +59,10 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
+      <Route path='/trip' element={<><Header /><Trip /><SpeedDialButton /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
 
       { /*<Route path="/dashboard" element={<TempDashBoard />} />*/}

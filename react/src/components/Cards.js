@@ -75,9 +75,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -151,9 +151,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -227,9 +227,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -303,9 +303,9 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
                 image={blog}
                 alt="Paella dish"
+                sx={{height: 180}}
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">

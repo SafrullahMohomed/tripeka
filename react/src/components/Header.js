@@ -13,10 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import GroupIcon from '@mui/icons-material/Group';
-import CreateIcon from '@mui/icons-material/Create';
-import CallIcon from '@mui/icons-material/Call';
-import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+
 import logo from '../assets/logo.png'
 import user from '../assets/customer2.jpg'
 
@@ -189,7 +186,7 @@ const Header = () => {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={()=>{window.location.href = '/'}}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>
