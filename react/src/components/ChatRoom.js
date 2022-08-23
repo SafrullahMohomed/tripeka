@@ -791,7 +791,11 @@ const MyChatRoom = () => {
         {/* Messages */}
         {messages.map((message) => (
           <div
-            className="flex flex-row p-3 m-3 items-center justify-start"
+            className={
+              message.senderName !== username
+                ? "flex flex-row p-3 m-3 items-center justify-start"
+                : "flex flex-row-reverse p-3 m-3 items-center justify-start"
+            }
             key={message.id}
           >
             <div>
@@ -801,9 +805,17 @@ const MyChatRoom = () => {
                 alt=""
               />
             </div>
-            <div className="flex ">
-              <p className="text-sm italic ml-3 max-w-md">{message.content}</p>
-              <p>{message.senderName}</p>
+            <div>
+              <div className="flex ">
+                <p className="text-sm italic ml-3 max-w-md">
+                  {message.content}
+                </p>
+              </div>
+              <div className="flex">
+                <p className="text-sm italic ml-3 max-w-md font-bold">
+                  {message.senderName}
+                </p>
+              </div>
             </div>
           </div>
         ))}

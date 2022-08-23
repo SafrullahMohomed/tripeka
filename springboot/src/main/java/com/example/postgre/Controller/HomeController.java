@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
+
 public class HomeController {
 
     @Autowired
@@ -33,7 +35,6 @@ public class HomeController {
         return "Welcome to Daily Code Buffer!!";
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/authenticate")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 

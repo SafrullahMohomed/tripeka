@@ -209,7 +209,11 @@ const Header = () => {
               </ListItemIcon>
               Settings
             </MenuItem>
-            <MenuItem onClick={authService.logout}>
+            <MenuItem
+              onClick={() => {
+                authService.logout();
+              }}
+            >
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
