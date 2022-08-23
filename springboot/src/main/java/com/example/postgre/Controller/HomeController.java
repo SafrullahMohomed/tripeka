@@ -48,7 +48,8 @@ public class HomeController {
                     )
             );
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+//            throw new Exception("INVALID_CREDENTIALS", e);
+            
         }
 
         final UserDetails userDetails

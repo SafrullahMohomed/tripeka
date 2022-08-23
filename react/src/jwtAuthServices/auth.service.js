@@ -12,7 +12,7 @@ class AuthService {
       })
       .then((response) => {
         console.log("111111111111111");
-        if (response.data.jwtToken) {
+        if (JSON.stringify(response.data).jwtToken !== null) {
           console.log("THIS IS THE RESPINSE DATA");
           console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -26,14 +26,6 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
   }
-
-  // register(username, email, password) {
-  //   return axios.post(API_URL + "signup", {
-  //     username,
-  //     email,
-  //     password,
-  //   });
-  // }
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));

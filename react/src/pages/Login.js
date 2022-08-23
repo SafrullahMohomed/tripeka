@@ -6,22 +6,67 @@ import { useForm } from "react-hook-form";
 // import { getSignedRole, login } from "../services/AuthAPIService";
 import authService from "../jwtAuthServices/auth.service";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function onSubmit(data) {
-  console.log(data);
-  var md5 = require("md5");
-  const hashedpswd = md5(data["password"]);
-  authService.login(data["user"], hashedpswd).then((response) => {
-    console.log(response.role);
-    if (response.role === "ROLE_TRAVELLER") {
-      window.location.href = "/traveller";
-    } else {
-      window.location.href = "/someone";
-    }
-  });
-}
+// function onSubmit(data) {
+//   console.log(data);
+//   var md5 = require("md5");
+//   const hashedpswd = md5(data["password"]);
+//   authService
+//     .login(data["user"], hashedpswd)
+//     .then((response) => {
+//       console.log(response.role);
+//       if (response.role === "ROLE_TRAVELLER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_ADMIN") {
+//         window.location.href = "/admin";
+//       } else if (response.role === "ROLE_TRIP_GUIDER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_LODGE_PROVIDER") {
+//         window.location.href = "/dashboard";
+//       } else if (response.role === "ROLE_VEHICLE_OWNER") {
+//         window.location.href = "/dashboard";
+//       } else {
+//         // console.log("INVALID USERNAME AND PASSWORD");
+//       }
+//     })
+//     .catch((error) => {
+//       console.log("Error is:");
+//       console.log(error);
+//       setloginError("Invalid Username & Password");
+//     });
+// }
 
 const Login = () => {
+  const [loginError, setloginError] = useState("");
+  function onSubmit(data) {
+    console.log(data);
+    var md5 = require("md5");
+    const hashedpswd = md5(data["password"]);
+    authService
+      .login(data["user"], hashedpswd)
+      .then((response) => {
+        console.log(response.role);
+        if (response.role === "ROLE_TRAVELLER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_ADMIN") {
+          window.location.href = "/admin";
+        } else if (response.role === "ROLE_TRIP_GUIDER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_LODGE_PROVIDER") {
+          window.location.href = "/dashboard";
+        } else if (response.role === "ROLE_VEHICLE_OWNER") {
+          window.location.href = "/dashboard";
+        } else {
+          // console.log("INVALID USERNAME AND PASSWORD");
+        }
+      })
+      .catch((error) => {
+        console.log("Error is:");
+        console.log(error);
+        setloginError("Invalid Username & Password");
+      });
+  }
   const {
     register,
     formState: { errors },
@@ -112,6 +157,7 @@ const Login = () => {
                   <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                     <p class="text-center font-semibold mx-4 mb-0">Or</p>
                   </div>
+                  <error className="text-red-600">{loginError}</error>
 
                   <div class="mb-6">
                     <input
