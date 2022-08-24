@@ -71,7 +71,7 @@ const Groups = () => {
             
             <div class="container px-5 py-5 mx-auto">
                 <div class="w-full mb-8 pl-2">
-                    Trips
+                    Your Trip Groups
                 </div> 
                 <div class="flex flex-wrap -m-2">
                     <div class="p-4 lg:w-1/5 md:w-1/2 w-full">
@@ -184,32 +184,18 @@ const Groups = () => {
                     variant="filled"
                 />
                 <DialogContentText id="dialog-description" sx={{marginTop: 2}}>
-                    Add friends
+                    Trip Destination
                 </DialogContentText>
                 <TextField
                     autoFocus
                     margin="dense"
-                    id="email"
-                    label="Email"
-                    type="email"
+                    id="location"
+                    label="Location"
+                    type="text"
                     fullWidth
                     variant="standard"
                 />
-                <DialogContentText id="dialog-description" sx={{marginY: 2}}>
-                    People with access
-                </DialogContentText>
-                <List sx={{ p: 0 }}>
-                    {emails.map((email) => (
-                    <ListItem sx={{ pl: 0 }} key={email}>
-                    <ListItemAvatar>
-                        <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                        <PersonIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={email} />
-                    </ListItem>
-                    ))}
-                </List>
+                
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleCloseM}>Cancel</Button>
