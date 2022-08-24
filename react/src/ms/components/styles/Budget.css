@@ -2,4 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* for hover boxes */
+
+@layer utilities{
+    
+}
+
+/* for list */
+
+@layer utilities{
+
+    /* for searchbar and profile */
+    .first-row-row1{
+        display:flex;
+        margin-bottom:30px;
+        margin:30px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .first-row-row1{
+            display:flex;
+            flex-direction:column-reverse;
+        }
+        .first-row-row1-col2{
+            margin:auto;
+            /* display:flex; */
+            /* justify-content:space-between; */
+
+        }
+        .pro-img{
+            height: 40px;
+            width:40px;
+            
+        }
+      }
+
+      /* search bar ends here */
+
+      /* cards starts here */
+      .first-row-row2{
+        /* margin:20px auto; */
+      }
+
+
+    /* for list items */
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin: 5px auto;
+        padding: 10px;
+        border-radius: 5px;
+        
+    }
+
+    .first-column{
+        display:flex;
+        flex-direction: column;
+
+
+        /* flex: 1; */
+        /* flex-basis: 100%; */
+        /* max-width: 100%; */
+        /* width: 100%; */
+    }
+    .second-column{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* for list containers */
+    .list-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        width: 100%;
+        margin: 5px auto;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+    }
+    
+
+
+
+    /* for list and form */
+    @media only screen and (max-width: 734px) {
+        .third-row{
+            display:flex;
+            flex-direction:column;
+        }
+        .third-row-col1{
+            /* margin:auto; */
+            width:100%;
+        }
+        .third-row-col2{
+            /* margin:auto; */
+            width:100%;
+        }
+        
+      }
+
+    
+}
 
