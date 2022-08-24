@@ -33,9 +33,9 @@ const Navbar = () => {
     <div className="w-screen h-[80px] z-10 fixed">
       <div className="px-2 flex justify-between items-center w-full h-full bg-white">
         <div className="flex items-center">
-          <a
+          <Link to="/"
             class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-            href={url}
+           
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,12 +53,9 @@ const Navbar = () => {
                 d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-          </a>
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1>
+          </Link>
+          <Link to="/"><h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1></Link>
           <ul className="hidden md:flex text-black cursor-pointer">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
@@ -73,6 +70,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/contactus">Contact us</Link>
+            </li>
+            <li>
+              <Link to="/help">Help</Link>
             </li>
           </ul>
         </div>
