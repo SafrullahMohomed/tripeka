@@ -23,7 +23,7 @@ import Cards from "./components/Cards";
 import Groups from "./components/Groups";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
-import Test from './components/Test';
+
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
@@ -51,8 +51,11 @@ root.render(
       <Route path="/weather" element={<Weather />} />
       <Route path="/climate" element={<Climate />} />
       <Route path="/events" element={<EventCalendar />} />
-      <Route path='/Hotels' element={<Test/>}/>
-      <Route path="/ms" element={<Budget />} />
+      <Route path="/help" element={<Help />} />
+            <Route path='/Hotels' element={<Test/>}/>
+            <Route path="/ms" element={<Budget />} />
+
+      <Route path="/budget" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
       <Route
@@ -95,7 +98,11 @@ root.render(
         }
       />
 
-      {/*<Route path="/dashboard" element={<TempDashBoard />} />*/}
+      <Route path='/dashboard' element={<><Header /><CreateGroupFloat /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
+      <Route path='/blogs' element={<><Header /><Blogs /></>}/>
+      <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
+      <Route path='/trip' element={<><Header /><Trip /><SpeedDialButton /></>}/>
+      <Route path='/admin' element={<><Drawer /></>}/>
 
       <Route path="/help" element={<Help />} />
     </Routes>

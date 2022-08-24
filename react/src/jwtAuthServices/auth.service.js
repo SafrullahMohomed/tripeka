@@ -34,6 +34,14 @@ class AuthService {
   getRole() {
     return JSON.parse(localStorage.getItem("user"));
   }
+
+  isSignedIn() {
+    if (JSON.parse(localStorage.getItem("user")) !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export default new AuthService();

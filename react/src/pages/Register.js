@@ -42,15 +42,15 @@ const Register = () => {
       }
     })
     .catch(() => {
-      window.location.href = "http://localhost:3000/";
+      // window.location.href = "http://localhost:3000/";
     });
 
   return (
     <div>
       <Navbar></Navbar>
       <div>
-        <section className="h-screen">
-          <div className="px-6 h-full text-gray-800">
+        <section className="h-screen mb-8">
+          <div className="pt-20 px-10 h-full text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
               <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0" data-aos="fade-right">
                 <img src={pop6} className="w-full" alt="Sample image" />
