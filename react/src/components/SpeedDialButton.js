@@ -17,6 +17,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ReportIcon from '@mui/icons-material/Report';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
@@ -24,9 +26,9 @@ import { TextField } from "@mui/material";
 import { blue } from '@mui/material/colors';
 
 const actions = [
-    { icon: <GroupIcon />, name: 'Create Group'},
+    { icon: <CalendarMonthIcon />, name: 'Calendar'},
     { icon: <CreateIcon />, name: 'Review'},
-    { icon: <CallIcon />, name: 'Contact'},
+    { icon: <ReportIcon />, name: 'Complaint'},
     { icon: <HelpCenterIcon />, name: 'Help'},
   ];
   
@@ -45,14 +47,14 @@ const SpeedDialButton = () => {
   const handleCloseM = () => setOpenM(false);
 
   const addHandler = (name) => {
-    if (name === "Create Group") {
-      handleOpenM()
+    if (name === "Calendar") {
+      window.location.href = '/events'
     }
     if (name === "Review") {
       window.location.href = '/blogs'
     }
-    if (name === "Contact") {
-      window.location.href = '/contactus'
+    if (name === "Complaint") {
+      window.location.href = '/complaint'
     }
     if (name === "Help") {
       window.location.href = '/help'

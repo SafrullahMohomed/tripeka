@@ -18,6 +18,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import blog from '../assets/blog6.jpg'
+import blog1 from '../assets/coverpage1.jpg'
+import blog2 from '../assets/dalada.jpg'
+import blog3 from '../assets/blog3.jpg'
+import blog4 from '../assets/blog4.jpg'
+import blog5 from '../assets/blog5.jpg'
 
 
 const ExpandMore = styled((props) => {
@@ -151,7 +156,7 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                image={blog}
+                image={blog1}
                 alt="Paella dish"
                 sx={{height: 180}}
               />
@@ -227,7 +232,7 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                image={blog}
+                image={blog2}
                 alt="Paella dish"
                 sx={{height: 180}}
               />
@@ -303,7 +308,7 @@ const Cards = () => {
               />
               <CardMedia
                 component="img"
-                image={blog}
+                image={blog3}
                 alt="Paella dish"
                 sx={{height: 180}}
               />
