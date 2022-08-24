@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import pop6 from '../assets/suppimage.png'
+import pop6 from '../assets/help.png'
 import { useForm } from "react-hook-form";
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
@@ -35,13 +35,13 @@ const Help = () => {
   return (
     <div>
         <Navbar/>
-        <br/>
-        <br/>
         
         <section class="text-gray-600 body-font overflow-hidden">
             <div class="container px-3 py-24 mx-auto">
-                <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                    <img alt="ecommerce" class="lg:w-1/2 w-2/3 lg:h-auto h-64 object-cover object-center" data-aos="fade-right" src={pop6}/>
+                <div class="mx-auto flex flex-wrap">
+                    <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
+                        <img alt="ecommerce" class=" lg:h-auto h-64 object-cover object-center" data-aos="fade-right" src={pop6}/>
+                    </div>
                     <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
                         <h1 className="font-sans text-3xl text-gray-800 font-bold ...">Frequently Asked Questions</h1><br/>
                         
