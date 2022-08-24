@@ -17,6 +17,8 @@ import Logout from '@mui/icons-material/Logout';
 import logo from '../assets/logo.png'
 import user from '../assets/customer2.jpg'
 
+import authService from "../jwtAuthServices/auth.service";
+
 const Header = () => {
 
   //dropdown
@@ -186,7 +188,11 @@ const Header = () => {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <MenuItem onClick={()=>{window.location.href = '/'}}>
+                <MenuItem onClick={()=>{
+                  authService.logout();
+                  window.location.href = '/';
+                  
+                  }}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>
