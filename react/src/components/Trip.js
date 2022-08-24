@@ -39,7 +39,7 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    'Add Friends',
+    'Add People',
     'Edit Trip',
     'Delete Trip',
     'Add description',
@@ -187,7 +187,7 @@ const Trip = () => {
                     variant="standard"
                 />
                 <DialogContentText id="dialog-description" sx={{marginY: 2}}>
-                        People with access
+                        Group members
                     </DialogContentText>
                     <List sx={{ p: 0 }}>
                         {emails.map((email) => (

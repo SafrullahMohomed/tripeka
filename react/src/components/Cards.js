@@ -75,8 +75,8 @@ const Cards = () => {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title="Infamous Maggona"
+                subheader="September 14, 2022"
               />
               <CardMedia
                 component="img"
@@ -143,7 +143,7 @@ const Cards = () => {
               <CardHeader
                 avatar={
                   <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-                    R
+                    A
                   </Avatar>
                 }
                 action={
@@ -151,8 +151,8 @@ const Cards = () => {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title="A Night at Colombo"
+                subheader="March 24, 2022"
               />
               <CardMedia
                 component="img"
@@ -218,8 +218,8 @@ const Cards = () => {
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 avatar={
-                  <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
-                    R
+                  <Avatar sx={{ bgcolor: yellow[500] }} aria-label="recipe">
+                    K
                   </Avatar>
                 }
                 action={
@@ -227,7 +227,7 @@ const Cards = () => {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
+                title="A visit to a palace"
                 subheader="September 14, 2016"
               />
               <CardMedia
@@ -294,8 +294,8 @@ const Cards = () => {
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 avatar={
-                  <Avatar sx={{ bgcolor: yellow[500] }} aria-label="recipe">
-                    R
+                  <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
+                    F
                   </Avatar>
                 }
                 action={
@@ -303,7 +303,7 @@ const Cards = () => {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
+                title="Camp at a Rainforest"
                 subheader="September 14, 2016"
               />
               <CardMedia
