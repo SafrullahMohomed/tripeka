@@ -23,7 +23,7 @@ import Cards from "./components/Cards";
 import Groups from "./components/Groups";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
-
+import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
@@ -32,6 +32,11 @@ import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
+
+
+import CreateGroupFloat from './components/CreateGroupFloat';
+import Trip from './components/Trip';
+import SpeedDialButton from './components/SpeedDialButton';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

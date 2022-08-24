@@ -52,10 +52,7 @@ const Searchcard = () => {
   return (
   
  <div className="card grid-cols-1">
- <div className="mainContainer max-width h-28 bg-"><h1 className="mainhead justify-center pt-12  pl-16 text-3xl font-bold text-white ">Home</h1></div>
   <div className="Home bg-no-repeat w-full grid grid-cols-2 z-index: 0  z-index:1">
-    
-    
 
       <div className="listcontainer  grid-cols-5 ml-8  items-center mt-20px w-full max-w-xl " >
         <div className="listwrapper   gap-20  max-w-[512px] mb-4 bg- z-index: 10 mt-16 ml-8">
