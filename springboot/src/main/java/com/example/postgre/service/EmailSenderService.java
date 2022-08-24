@@ -37,9 +37,9 @@ public class EmailSenderService {
 
 
         //Your gmail address
-        String myAccountEmail = "put your mail";
+        String myAccountEmail = "2019cs008@stu.ucsc.cmb.ac.lk";
         //Your gmail password
-        String password = "put your password";
+        String password = "980531740V";
 
         //Create a session with account credentials
         Session session = Session.getInstance(properties, new Authenticator() {
