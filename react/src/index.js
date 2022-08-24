@@ -56,7 +56,7 @@ root.render(
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
       
-      <Route path="/ms" element={<Budget />} />
+      <Route path="/budget" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
       {/*<Route path="/dashboard" element={<TempDashBoard />} />*/}
