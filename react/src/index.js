@@ -52,7 +52,7 @@ root.render(
       <Route path="/blogwrite" element={<WriteBlog />} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
-      <Route path="/climate" element={<Climate />} />
+      <Route path="/climate" element={<><Header /><Climate /></>} />
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
       
@@ -61,10 +61,10 @@ root.render(
 
       {/*<Route path="/dashboard" element={<TempDashBoard />} />*/}
 
-      <Route path='/dashboard' element={<><Header /><CreateGroupFloat /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
-      <Route path='/trip' element={<><Header /><Trip /><SpeedDialButton /></>}/>
+      <Route path='/trip' element={<><Header /><Trip /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
 
     </Routes>
