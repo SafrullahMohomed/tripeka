@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { getSignedRole, logout } from "../services/AuthAPIService";
+import authService from "../jwtAuthServices/auth.service";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -10,7 +11,7 @@ const Navbar = () => {
   const url = "";
   const handleClose = () => setNav(!nav);
 
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(authService.isSignedIn());
 
   // getSignedRole()
   //   .then((role) => {
@@ -21,6 +22,12 @@ const Navbar = () => {
   //   .catch(() => {
   //     setIsSignedIn(false);
   //   });
+
+  // if (getSignedRole()) {
+  //   setIsSignedIn(true);
+  // } else {
+  //   setIsSignedIn(false);
+  // }
 
   return (
     <div className="w-screen h-[80px] z-10 fixed">
@@ -143,6 +150,7 @@ const Navbar = () => {
               className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
               onClick={() => {
                 logout();
+                setIsSignedIn(false);
               }}
             >
               Log out

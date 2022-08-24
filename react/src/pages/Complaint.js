@@ -57,30 +57,6 @@ const Complaint = () => {
                             
                                 <div className="w-full max-w-md  bg-white">
                                     <h1 class="font-medium leading-tight text-4xl mt-0 mb-3 text-[#34D399]">File your Complaint</h1>
-                                    <p class='font-semibold'>Rate level of complains</p>
-                                    <div class='mt-3 ml-2'>
-                                        <div style={styles.stars}>
-                                            {stars.map((_, index) => {
-                                            return (
-                                                <FaStar
-                                                key={index}
-                                                size={24}
-                                                onClick={() => handleClick(index + 1)}
-                                                onMouseOver={() => handleMouseOver(index + 1)}
-                                                onMouseLeave={handleMouseLeave}
-                                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                                                style={{
-                                                    marginRight: 10,
-                                                    cursor: "pointer"
-                                                }}
-                                                />
-                                            )
-                                            })}
-                                        </div>
-                                    </div>
-                                    <p class='mt-2'>No of stars informs the severity of your complaint. therefore provide correct number of stars</p>
-                                   
-                                    
                                 </div>
                             
                         </div>
