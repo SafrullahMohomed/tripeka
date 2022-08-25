@@ -189,7 +189,7 @@ const Register = () => {
                     <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                       Already have a account?
                       
-                      <Link to ='/register' className="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out ml-2">Register</Link>
+                      <Link to ='/login' className="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out ml-2">Login</Link>
                     </p>
                   </div>
                 </form>
