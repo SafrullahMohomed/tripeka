@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useForm } from "react-hook-form";
 import Footer from '../components/Footer'
-import pop6 from '../assets/absorbed.png'
+import pop6 from '../assets/complaint.png'
 import { FaStar } from "react-icons/fa";
 import ImageUploader from "react-images-uploading";
 import Dropzone from "react-dropzone";
@@ -43,13 +43,13 @@ const Complaint = () => {
   return (
     <div class='complaintContainer'>
         <Navbar/>
-        <br/>
-        <br/>
        
         <section class="text-gray-600 body-font overflow-hidden">
             <div class="container px-5 py-24 mx-auto">
-                <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                    <img alt="ecommerce" class="lg:w-1/2 w-2/3 lg:h-auto h-64 object-cover object-justify" data-aos="fade-right" src={pop6}/>
+                <div class="mx-auto flex flex-wrap">
+                  <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
+                    <img alt="ecommerce" class="lg:h-auto h-64 object-cover object-justify" data-aos="fade-right" src={pop6}/>
+                  </div>
                     <div class="lg:w-1/2 w-full lg:pl-5 lg:py-2 mt-6 lg:mt-0">
                         
                         
@@ -57,30 +57,6 @@ const Complaint = () => {
                             
                                 <div className="w-full max-w-md  bg-white">
                                     <h1 class="font-medium leading-tight text-4xl mt-0 mb-3 text-[#34D399]">File your Complaint</h1>
-                                    <p class='font-semibold'>Rate level of complains</p>
-                                    <div class='mt-3 ml-2'>
-                                        <div style={styles.stars}>
-                                            {stars.map((_, index) => {
-                                            return (
-                                                <FaStar
-                                                key={index}
-                                                size={24}
-                                                onClick={() => handleClick(index + 1)}
-                                                onMouseOver={() => handleMouseOver(index + 1)}
-                                                onMouseLeave={handleMouseLeave}
-                                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                                                style={{
-                                                    marginRight: 10,
-                                                    cursor: "pointer"
-                                                }}
-                                                />
-                                            )
-                                            })}
-                                        </div>
-                                    </div>
-                                    <p class='mt-2'>No of stars informs the severity of your complaint. therefore provide correct number of stars</p>
-                                   
-                                    
                                 </div>
                             
                         </div>

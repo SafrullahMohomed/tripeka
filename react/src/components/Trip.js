@@ -14,6 +14,22 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import PersonIcon from '@mui/icons-material/Person';
+import { blue } from '@mui/material/colors';
+import TextField from '@mui/material/TextField';
 
 import Footer from "../components/Footer";
 import dalanda from '../assets/dalada.jpg'
@@ -23,16 +39,22 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    'Add Friends',
+    'Add People',
     'Edit Trip',
     'Delete Trip',
     'Add description',
-    'Group chat',
+    'Group members',
   ];
   
 const ITEM_HEIGHT = 48;
 
+const emails = ['kasun.withanage@gmail.com', 'ravindu.perera@gmail.com'];
+
 const Trip = () => {
+
+    const [openM, setOpenM] = useState(false);
+    const handleOpenM = () => setOpenM(true);
+    const handleCloseM = () => setOpenM(false);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -81,15 +103,18 @@ const Trip = () => {
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel ullam omnis est. Itaque dolore molestias similique error vel eaque.
+                            The Royal Palace of Kandy, located to the north of the Temple of the Tooth in Kandy, was the royal residence of the Sri Lankan monarchy of the Kingdom of Kandy in Sri Lanka. The last king to reside in it was King Sri Vikrama Rajasinha.
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
                         <IconButton aria-label="group chat">
                             <ChatBubbleRoundedIcon onClick = {() => {window.location.href = '/groupChat'}}/>
                         </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
+                        <IconButton aria-label="budget">
+                            <PaidOutlinedIcon onClick = {() => {window.location.href = '/budget'}}/>
+                        </IconButton>
+                        <IconButton aria-label="climate">
+                            <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
                         </IconButton>
                     </CardActions>
                 </Card>
@@ -132,12 +157,56 @@ const Trip = () => {
                     
                 >
                   {options.map((option) => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleOpenM}>
                         {option}
                     </MenuItem>
                    ))}
                 </Menu>
+
             </div>
+
+            {/* Add Friends Modal*/}
+            <Dialog
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-description"
+                onClose={handleCloseM}
+                open={openM}
+            >
+                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
+                {"Add New Friends"}
+                </DialogTitle>
+                <DialogContent>
+                
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="email"
+                    label="Email"
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                />
+                <DialogContentText id="dialog-description" sx={{marginY: 2}}>
+                        Group members
+                    </DialogContentText>
+                    <List sx={{ p: 0 }}>
+                        {emails.map((email) => (
+                        <ListItem sx={{ pl: 0 }} key={email}>
+                        <ListItemAvatar>
+                            <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                            <PersonIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={email} />
+                        </ListItem>
+                        ))}
+                    </List>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleCloseM}>Cancel</Button>
+                <Button onClick={handleCloseM} autoFocus>Done</Button>
+                </DialogActions>
+            </Dialog>
 
             {/* map */}
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">

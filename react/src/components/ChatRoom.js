@@ -552,6 +552,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SendIcon from "@mui/icons-material/Send";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
@@ -742,6 +743,7 @@ const MyChatRoom = () => {
   return (
     <div className="flex flex-row m-16 max-h-screen">
       <div className="hidden lg:flex flex-col basis-1/3  max-h-screen border-r-2 ">
+        <ArrowBackIcon />
         {/* Search Bar */}
         <div className="mt-6 ml-3 mr-1">
           <label className="relative block">

@@ -17,8 +17,6 @@ import Logout from '@mui/icons-material/Logout';
 import logo from '../assets/logo.png'
 import user from '../assets/customer2.jpg'
 
-import authService from "../jwtAuthServices/auth.service";
-
 const Header = () => {
 
   //dropdown
@@ -43,16 +41,13 @@ const Header = () => {
   return ( 
     <header class="text-gray-600 body-font mb-8 bg-emerald-100">
       <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
-        <div class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <Link to="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <img src={logo} alt="" class="w-10 h-10 object-cover object-center rounded-full mr-4 border border-emerald-400"/>
-          <span class="ml-2 text-2xl italic">TRIPEKA</span>
-        </div>
+          <span class="ml-2 text-2xl italic">TRIP-EKA</span>
+        </Link>
         <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
           <Link to="/dashboard" class="mr-7 hover:text-gray-900">Dashboard</Link>
           <Link to="/hotels" class="mr-7 hover:text-gray-900">Hotels</Link>
-          <Link to="/restaurants" class="mr-7 hover:text-gray-900">Restaurants</Link>
-          <Link to="/rentals" class="mr-7 hover:text-gray-900">Rentals</Link>
-          <Link to="/budget" class="mr-7 hover:text-gray-900">Budget</Link>
           <Link to="/groups" class="mr-7 hover:text-gray-900">Trips</Link>
           <Link to="/blogs" class="mr-7 hover:text-gray-900">Blogs</Link>
         </nav>
@@ -188,11 +183,7 @@ const Header = () => {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <MenuItem onClick={()=>{
-                  authService.logout();
-                  window.location.href = '/';
-                  
-                  }}>
+                <MenuItem onClick={()=>{window.location.href = '/'}}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>

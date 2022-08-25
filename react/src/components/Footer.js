@@ -15,7 +15,8 @@ const Footer = () => {
                         
                         <span className="ml-3 text-xl">Travel</span>
                     </a>
-                    <p className="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+                    <p className="mt-2 text-sm text-gray-500">Is it a hassle to plan a trip? </p>
+                    <p className="mt-2 text-sm text-gray-500">We can help you to plan the whole trip ... </p>
                 </div>
                     <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
                         <div className="lg:w-1/3 md:w-1/2 w-full px-4">
@@ -28,10 +29,10 @@ const Footer = () => {
                                     <Link to ='/complaint' className="text-gray-600 hover:text-gray-800">Complaint</Link>
                                 </li>
                                 <li className="p-0">
-                                    <Link to ='/blogwrite' className="text-gray-600 hover:text-gray-800">Write a blog</Link>
+                                    <Link to ='/blog' className="text-gray-600 hover:text-gray-800">Write a blog</Link>
                                 </li>
                                 <li className="p-0">
-                                    <Link to ='/weather' className="text-gray-600 hover:text-gray-800">Weather</Link>
+                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
                             </nav>
                         </div>

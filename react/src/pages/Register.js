@@ -4,8 +4,11 @@ import Navbar from "../components/Navbar";
 import pop6 from "../assets/register.png";
 import { useForm } from "react-hook-form";
 import { getSignedRole, register } from "../services/AuthAPIService";
-// import Aos from 'aos'
-// import "aos/dist/aos.css"
+
+import Aos from 'aos'
+import "aos/dist/aos.css"
+import { Link } from 'react-router-dom';
+
 
 function onSubmit(data) {
   console.log(data);
@@ -187,12 +190,8 @@ const Register = () => {
                     </button>
                     <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                       Already have a account?
-                      <a
-                        href="#"
-                        class="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out ml-2"
-                      >
-                        Login
-                      </a>
+                      
+                      <Link to ='/login' className="text-emerald-600 hover:text-emerald-700 focus:text-emerald-700 transition duration-200 ease-in-out ml-2">Login</Link>
                     </p>
                   </div>
                 </form>
