@@ -34,7 +34,6 @@ const actions = [
   { id: "1", name: "../assets/arugam.jpg" },
   { id: "2", name: "../assets/dalanda.jpg" },
   { id: "3", name: "../assets/jaffna.jpg" },
-  { id: "4", name: "../assets/arugam.jpg" },
 ];
 
 const Groups = () => {
@@ -91,10 +90,9 @@ const Groups = () => {
                   <CardMedia
                     component="img"
                     image={img2}
-                    alt="green iguana"
+                    alt=""
                     sx={{ height: 100 }}
                   />
-
                   <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                       {group.name}
