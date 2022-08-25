@@ -4,9 +4,11 @@ import Navbar from "../components/Navbar";
 import pop6 from "../assets/register.png";
 import { useForm } from "react-hook-form";
 import { getSignedRole, register } from "../services/AuthAPIService";
+
 import Aos from 'aos'
 import "aos/dist/aos.css"
 import { Link } from 'react-router-dom';
+
 
 function onSubmit(data) {
   console.log(data);
@@ -53,10 +55,10 @@ const Register = () => {
         <section className="h-screen mb-8">
           <div className="pt-20 px-10 h-full text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0" data-aos="fade-right">
+              <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
                 <img src={pop6} className="w-full" alt="Sample image" />
               </div>
-              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0" data-aos="fade-left">
+              <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0" >
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-row items-center justify-center">
                     <h2 class="text-emerald-700 text-3xl font-semibold my-4">

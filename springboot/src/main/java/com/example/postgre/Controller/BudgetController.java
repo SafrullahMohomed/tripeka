@@ -2,14 +2,15 @@ package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
 import com.example.postgre.Service.BudgetService;
+import com.fasterxml.jackson.core.filter.FilteringGeneratorDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "/api/v1/budget")
 public class BudgetController {
 
@@ -20,10 +21,52 @@ public class BudgetController {
         this.budgetService = budgetService;
     }
 
-    @GetMapping
+//    get all budget in all groups
+    @GetMapping(path = "/users")
     public List<Budget> getBudgets(){
         return budgetService.getBudgets();
     }
 
+//    get all budget in a specific group by group_id
+    @GetMapping(path = "/user/{group_id}")
+    public List<Budget> getBudgetForAGroup(@PathVariable("group_id") Integer group_id){
+        return budgetService.getBudgetForAGroup(group_id);
+    }
+
+//    to get a specific users budget from the group_id and user_id
+    @GetMapping(path="/user/{group_id}/{user_id}")
+    public List<Budget> getBudgetForAUser(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id){
+        return budgetService.getBudgetForAUser(group_id, user_id);
+    }
+
+//    to add a new budget
+    @PostMapping(path="/addbudget/{group_id}/{user_id}")
+    public void addBudgetTo(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id, @RequestBody Budget budget){
+        budgetService.addBudgetTo(group_id, user_id, budget);
+    }
+
+//    to get total amount which the group is spended
+    @GetMapping(path = "/totalamount/{group_id}")
+    public Double getTotalAmount(@PathVariable("group_id") Integer group_id){
+        return budgetService.getTotalAmount(group_id);
+    }
+
+    //    to get average amount which the group is spended
+    @GetMapping(path = "/averageamount/{group_id}")
+    public Double getAverageAmount(@PathVariable("group_id") Integer group_id){
+        return budgetService.getAverageAmount(group_id);
+    }
+
+    @GetMapping(path="/individualamount/{group_id}/{user_id}")
+
+    public Double getIndividualTotalAmount(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id){
+        return budgetService.getIndividualTotalAmount(group_id, user_id);
+    }
+
+
+
+
+
 
 }
+
