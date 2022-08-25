@@ -31,7 +31,7 @@ const Footer = () => {
                                     <Link to ='/blog' className="text-gray-600 hover:text-gray-800">Write a blog</Link>
                                 </li>
                                 <li className="p-0">
-                                    <Link to ='/climate' className="text-gray-600 hover:text-gray-800">Weather</Link>
+                                    <a className="text-gray-600 hover:text-gray-800" href={url}>Third Link</a>
                                 </li>
                             </nav>
                         </div>
