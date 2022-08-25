@@ -34,10 +34,7 @@ const Testomonials = () => {
                     src={c1}
                   />
                   <p className="leading-relaxed">
-                    Edison bulb retro cloud bread echo park, helvetica stumptown
-                    taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin
-                    coffee ennui shaman taiyaki vape DIY tote bag drinking
-                    vinegar cronut adaptogen squid fanny pack vaporware.
+                    I am always spend my time in job and never had pleasant moment on trip. Tripeka changed my mind. It gave me wonderful exeprience . It provided me with high quality service with lower price . we had a good family trip with Tripeka
                   </p>
                   <span className="inline-block h-1 w-10 rounded bg-emerald-500 mt-6 mb-4"></span>
                   <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
@@ -54,10 +51,8 @@ const Testomonials = () => {
                     src={c2}
                   />
                   <p className="leading-relaxed">
-                    Edison bulb retro cloud bread echo park, helvetica stumptown
-                    taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin
-                    coffee ennui shaman taiyaki vape DIY tote bag drinking
-                    vinegar cronut adaptogen squid fanny pack vaporware.
+                    TripEka is awesome. 
+                    Great destination with plenty of diverse cultural and natural attractions. Good value for money and a fun holiday for us as a family with young children. Friendly and helpful locals.
                   </p>
                   <span className="inline-block h-1 w-10 rounded bg-emerald-500 mt-6 mb-4"></span>
                   <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
@@ -74,10 +69,7 @@ const Testomonials = () => {
                     src={c3}
                   />
                   <p className="leading-relaxed">
-                    Edison bulb retro cloud bread echo park, helvetica stumptown
-                    taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin
-                    coffee ennui shaman taiyaki vape DIY tote bag drinking
-                    vinegar cronut adaptogen squid fanny pack vaporware.
+                    It was really easy to use this website. All the necessary things needed for the trip are provided by this system. In simple word, i would like to say , it is awesome website. Thank you for making my valuable time pleasent
                   </p>
                   <span className="inline-block h-1 w-10 rounded bg-emerald-500 mt-6 mb-4"></span>
                   <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
