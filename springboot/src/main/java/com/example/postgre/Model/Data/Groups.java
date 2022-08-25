@@ -17,8 +17,8 @@ public class Groups {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "owner")
-    private String owner;
+    @Column(name = "location")
+    private String location;
 
     public Groups() {
 
@@ -40,12 +40,12 @@ public class Groups {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getLocation() {
+        return location;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }
