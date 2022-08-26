@@ -26,8 +26,7 @@ const UserList = () => {
         settings: {
           arrows: false,
           slidesToShow: 4,
-          slidesToScroll: 4
-
+          slidesToScroll: 4,
         },
       },
       {
@@ -35,7 +34,7 @@ const UserList = () => {
         settings: {
           arrows: false,
           slidesToShow: 3,
-          slidesToScroll: 3
+          slidesToScroll: 3,
         },
       },
 
@@ -44,7 +43,7 @@ const UserList = () => {
         settings: {
           arrows: false,
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 2,
         },
       },
       {
@@ -52,18 +51,17 @@ const UserList = () => {
         settings: {
           arrows: false,
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 2,
         },
       },
     ],
   };
   return (
     <div>
-      
       <Slider {...settings}>
         <div>
           <UserListUser
-            title="user 1"
+            title="Nimal"
             amount="3300"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
@@ -71,49 +69,49 @@ const UserList = () => {
 
         <div>
           <UserListUser
-            title="user 1"
+            title="Sunil"
             amount="1000"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 2"
+            title="Kamal"
             amount="-3200"
             bgcolor="rgba(215, 44, 44, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 3"
+            title="Piyum"
             amount="300"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 4"
+            title="Naween"
             amount="-1900"
             bgcolor="rgba(215, 44, 44, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 5"
+            title="Sithira"
             amount="-4500"
             bgcolor="rgba(215, 44, 44, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 6"
+            title="Kavindu"
             amount="-450"
             bgcolor="rgba(215, 44, 44, 0.29)"
           />
         </div>
         <div>
           <UserListUser
-            title="user 7"
+            title="Amal"
             amount="-4500"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />

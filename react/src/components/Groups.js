@@ -89,7 +89,7 @@ const Groups = () => {
                 >
                   <CardMedia
                     component="img"
-                    image={img2}
+                    image={group.name === "Dalanda Palace" ? img2 : img3}
                     alt=""
                     sx={{ height: 100 }}
                   />
@@ -98,7 +98,7 @@ const Groups = () => {
                       {group.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Created by : {group.owner}
+                      Created by : {group.location}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
