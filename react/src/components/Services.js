@@ -18,7 +18,7 @@ const Services = () => {
                     <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Our Services</h1>
                 </div>
                 <div className="flex flex-wrap -m-4">
-                    <div className="p-4 md:w-1/3  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">
@@ -31,7 +31,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">
@@ -45,7 +45,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">
@@ -59,7 +59,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">
@@ -71,7 +71,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">
@@ -84,7 +84,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 cursor-pointer duration-300 ...">
+                    <div className="p-4 md:w-1/3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 ...">
                         <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div className="flex items-center mb-3">
                                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-500 text-white flex-shrink-0">

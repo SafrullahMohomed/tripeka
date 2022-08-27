@@ -7,7 +7,7 @@ const FormPart = () => {
   return (
     <div className="flex flex-col m-auto">
       <div className="m-auto text-3xl mb-2 my-4">Add an expense</div>
-      <div className="form-part-box mr-10 ml-10 m-auto bg-slate-400 p-2">
+      <div className="form-part-box mr-10 ml-10 m-auto border border-gray-900 p-2 focus:border-blue-500">
         <form onSubmit={handleSubmit}>
           <div class="mb-6">
             <label

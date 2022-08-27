@@ -38,39 +38,39 @@ const ExpenseList = (props) => {
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
                 <div className="list-container">
                   <ListItem
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    title="Breakfast"
+                    description="I payed for the breakfast in colombo"
+                    amount="5400.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="10:34:23"
                   />
                   <ListItem
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    title="Bus charge"
+                    description="bus charge from kandy to nuwareliya"
+                    amount="2400.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="13:03:04"
                   />
                   <ListItem
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    title="Lunch"
+                    description="I bought lunch from Taj hotel nuwareliya"
+                    amount="7800.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="14:39:54"
                   />
                   <ListItem
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    title="Evening snacks"
+                    description="Bought some snacks from the park"
+                    amount="2300.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="18:00:03"
                   />
                   <ListItem
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    title="Dinner"
+                    description="Bought the dinner from badulla"
+                    amount="5600.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="20:23:43"
                   />
                 </div>
               </div>
@@ -81,19 +81,62 @@ const ExpenseList = (props) => {
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
                 <div className="list-container">
                   <ListItemsAll
+                    user="Mohamed"
                     title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    description="Train ticket from colombo to kandy"
+                    amount="3200.00"
                     date="2019-02-09"
                     time="10:09:03"
                   />
 
                   <ListItemsAll
-                    title="Train Ticket"
-                    description="some description will be added here to"
-                    amount="1200.00"
+                    user="Johnathan"
+                    title="Tuk rent"
+                    description="Tuk charge from colombo to maradana"
+                    amount="560.00"
                     date="2019-02-09"
-                    time="10:09:03"
+                    time="12:23:00"
+                  />
+
+                  <ListItemsAll
+                    user="Ahamed"
+                    title="Breakfast"
+                    description="I payed for the breakfast in colombo"
+                    amount="5400.00"
+                    date="2019-02-09"
+                    time="10:34:23"
+                  />
+                  <ListItemsAll
+                    user="Nisan"
+                    title="Bus charge"
+                    description="bus charge from kandy to nuwareliya"
+                    amount="2400.00"
+                    date="2019-02-09"
+                    time="13:03:04"
+                  />
+                  <ListItemsAll
+                    user="Kavishan"
+                    title="Lunch"
+                    description="I bought lunch from Taj hotel nuwareliya"
+                    amount="7800.00"
+                    date="2019-02-09"
+                    time="14:39:54"
+                  />
+                  <ListItemsAll
+                    user="Nimal"
+                    title="Evening snacks"
+                    description="Bought some snacks from the park"
+                    amount="2300.00"
+                    date="2019-02-09"
+                    time="18:00:03"
+                  />
+                  <ListItemsAll
+                    user="Kamal"
+                    title="Dinner"
+                    description="Bought the dinner from badulla"
+                    amount="5600.00"
+                    date="2019-02-09"
+                    time="20:23:43"
                   />
                 </div>
               </div>
@@ -101,7 +144,7 @@ const ExpenseList = (props) => {
           )}
         </div>
         <div className="formPart mx-60 md:mx-30 sm:mx-20">
-            <FormPart></FormPart>
+          <FormPart></FormPart>
         </div>
       </div>
     </div>

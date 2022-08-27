@@ -10,27 +10,19 @@ const Hero = () => {
   // }, []);
 
   return (
-    <div
-      name="home"
-      className="w-full h-screen bg-cover bg-center flex"
-    >
-      
-
+    <div name="home" className="w-full h-screen bg-cover bg-center flex">
       <div className="hero-first-col w-1/3 px-5">
-        <div
-          className="animated-pulse grid md:grid-cols-2 max-w-[1240px] m-auto absolute mt-20"
-          data-aos="fade-up"                                                                                                                                                                                                                            
-        >
+        <div className="animated-pulse grid md:grid-cols-2 max-w-[1240px] m-auto absolute mt-20" data-aos="fade-up">
           <div className="flex flex-col justify-center md:items-start w-full px-2 py-8">
             <h1 className="py-2 text-4xl md:text-5xl font-bold">
-              Find Perfect Places
+              Is it a hassle to plan a trip?
             </h1>
             <h1 className="py-5 text-2xl md:text-3xl font-bold text-blue-800">
-              anywhere you go.....
+              We can help you to plan the whole trip ...
             </h1>
             <p className="text-lg text-justify text w-2/3">
-              We have been in trip organizing between business for last 3 years
-              now. And you will enjoy your valuable trip with us
+              from finding the perfect destination
+              to building the budget that suits you. You have to focus on enjoying the trip and we will take care about the rest of it.
             </p>
             <button className="animate-bounce text-lg py-3  sm:w-[60%] my-20 sm:my-12 lg:my-16 bg-emerald-400">
               get started by creating groups

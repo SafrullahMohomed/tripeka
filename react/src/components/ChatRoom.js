@@ -552,6 +552,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SendIcon from "@mui/icons-material/Send";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
@@ -593,7 +594,7 @@ const MyChatRoom = () => {
 
   // these are just some dummy data for initial data for group messages
   const groupMessages = {
-    group1: [
+    "Jaffna Trip": [
       {
         senderName: "Ronald1",
         content: "Testing message 1.",
@@ -615,7 +616,7 @@ const MyChatRoom = () => {
         id: "4",
       },
     ],
-    group2: [
+    "Galle Trip": [
       {
         senderName: "Ronald2",
         content: "Testing message 1.",
@@ -637,7 +638,7 @@ const MyChatRoom = () => {
         id: "4",
       },
     ],
-    group3: [
+    "Dalanda Palace": [
       {
         senderName: "Ronald3",
         content: "Testing message 1.",
@@ -663,7 +664,7 @@ const MyChatRoom = () => {
 
   useEffect(() => {
     // fetch all the group names of the user from db
-    setgroupList(["group1", "group2", "group3"]);
+    setgroupList(["Jaffna Trip", "Galle Trip", "Dalanda Palace"]);
     connect();
   }, []);
 
@@ -740,8 +741,9 @@ const MyChatRoom = () => {
   };
 
   return (
-    <div className="flex flex-row m-16 max-h-screen">
-      <div className="hidden lg:flex flex-col basis-1/3  max-h-screen border-r-2 ">
+    <div className="absolute bottom-0 top-0 right-0 left-0 flex flex-row m-10 max-h-screen bg-gray-200">
+      <div className="hidden lg:flex flex-col basis-1/3  max-h-screen border-r-2 border-gray-500 bg-gray-200">
+        <ArrowBackIcon sx={{ margin: 1 }} />
         {/* Search Bar */}
         <div className="mt-6 ml-3 mr-1">
           <label className="relative block">
@@ -765,7 +767,7 @@ const MyChatRoom = () => {
         <div className="overflow-auto max-h-min  mt-3">
           {groupList.map((group) => (
             <div
-              className="grid grid-cols-6 p-3 m-3 border-b-2"
+              className="grid grid-cols-6 p-3 m-3 bg-gray-300 rounded-lg"
               onClick={() => {
                 onClickGroup(group);
               }}
@@ -821,7 +823,7 @@ const MyChatRoom = () => {
         ))}
 
         {/* Send Text Box */}
-        <div className="flex flex-row mt-5">
+        <div className="absolute right-0 w-4/6 bottom-0 flex flex-row my-5">
           <div className="basis-full">
             <label>
               <input
@@ -841,10 +843,7 @@ const MyChatRoom = () => {
               onClick={sendMessage}
             >
               <span>
-                <SendIcon
-                  className="!h-10 !w-10 fill-red-600 hover:fill-lime-500"
-                  viewBox="0 0 20 20"
-                />
+                <SendIcon className="!h-9 !w-9" viewBox="0 0 20 20" />
               </span>
             </button>
           </div>
