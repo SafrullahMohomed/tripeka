@@ -26,8 +26,8 @@ function Climate(){
     }, [query, units]);
   
     return(
-      <div className='climateBody'>
-        <div className='mx-auto max-w-screen-md mt-0 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400'>
+      <div className=''>
+        <div className='bg-gray-400 rounded-lg mx-auto max-w-screen-md mt-0 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400'>
             <TopButtons setQuery={setQuery}/>
             <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
             {weather && (

@@ -1,12 +1,14 @@
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import blog1 from '../assets/arugam.jpg'
+import blog1 from '../assets/coverpage1.jpg'
 import blog2 from '../assets/dalada.jpg'
 import blog3 from '../assets/blog3.jpg'
 import blog4 from '../assets/blog4.jpg'
 import blog5 from '../assets/blog5.jpg'
 import blog6 from '../assets/blog6.jpg'
+import blog7 from '../assets/lotus.jpg'
+
 
 const itemData = [
   {
@@ -57,22 +59,68 @@ const Suggestions = () => {
     <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap w-full mb-10 flex-col items-center text-center">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Top Suggestions</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Best Places to Visit</h1>
         <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">These are our best suggestions for you to travel around the country!</p>
       </div>
       <div class="flex flex-wrap justify-center -m-4">
         <Box sx={{ width: 1000 }}>
-        <ImageList variant="masonry" cols={4} gap={0}>
-          {itemData.map((item) => (
-            <ImageListItem key={item.img}>
+        <ImageList variant="masonry" cols={3} gap={0}>
+            <ImageListItem>
               <img
-                src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
+                src={`${blog2}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog2}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
                 loading="lazy"
               />
             </ImageListItem>
-          ))}
+            <ImageListItem>
+              <img
+                src={`${blog4}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog4}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
+            <ImageListItem>
+              <img
+                src={`${blog3}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog3}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
+            <ImageListItem>
+              <img
+                src={`${blog6}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog6}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
+            <ImageListItem>
+              <img
+                src={`${blog7}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog7}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
+            <ImageListItem>
+              <img
+                src={`${blog5}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog5}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
+            <ImageListItem>
+              <img
+                src={`${blog1}?w=248&fit=crop&auto=format`}
+                srcSet={`${blog1}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                
+                loading="lazy"
+              />
+            </ImageListItem>
         </ImageList>
         </Box>
       </div>

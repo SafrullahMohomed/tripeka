@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { getSignedRole, logout } from "../services/AuthAPIService";
+import authService from "../jwtAuthServices/auth.service";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -10,25 +11,31 @@ const Navbar = () => {
   const url = "";
   const handleClose = () => setNav(!nav);
 
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(authService.isSignedIn());
 
-  getSignedRole()
-    .then((role) => {
-      if (role != null) {
-        setIsSignedIn(true);
-      }
-    })
-    .catch(() => {
-      setIsSignedIn(false);
-    });
+  // getSignedRole()
+  //   .then((role) => {
+  //     if (role != null) {
+  //       setIsSignedIn(true);
+  //     }
+  //   })
+  //   .catch(() => {
+  //     setIsSignedIn(false);
+  //   });
+
+  // if (getSignedRole()) {
+  //   setIsSignedIn(true);
+  // } else {
+  //   setIsSignedIn(false);
+  // }
 
   return (
     <div className="w-screen h-[80px] z-10 fixed">
       <div className="px-2 flex justify-between items-center w-full h-full bg-white">
         <div className="flex items-center">
-          <a
+          <Link to="/"
             class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-            href={url}
+           
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,14 +53,11 @@ const Navbar = () => {
                 d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-          </a>
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1>
+          </Link>
+          <Link to="/"><h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1></Link>
           <ul className="hidden md:flex text-black cursor-pointer">
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">DashBoard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
@@ -65,10 +69,10 @@ const Navbar = () => {
               <Link to="/places">Places</Link>
             </li>
             <li>
-              <Link to="/contactus">ContactUs</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
             <li>
-              <Link to="/ms">ms</Link>
+              <Link to="/help">Help</Link>
             </li>
           </ul>
         </div>
@@ -85,12 +89,12 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <button className="border-none bg-transparent text-black mr-4">
-              <Link to="/login">Sign In</Link>
+              <Link to="/login">Sign in</Link>
             </button>
           )}
           {!isSignedIn && (
             <button className="px-8 py-3 bg-emerald-400">
-              <Link to="/register">Sign Up</Link>
+              <Link to="/register">Sign up</Link>
             </button>
           )}
         </div>
@@ -141,26 +145,29 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-        {isSignedIn && (
-            
-              <button
-                className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                Log out
-              </button>
-            
+          {isSignedIn && (
+            <button
+              className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
+              onClick={() => {
+                logout();
+                setIsSignedIn(false);
+              }}
+            >
+              Log out
+            </button>
           )}
           {!isSignedIn && (
             <Link to="/login" onClick={handleClose}>
-            <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
-              Sign In
-            </button>
+              <button className="bg-transparent text-emerald-600 px-8 py-3 mb-4">
+                Sign In
+              </button>
             </Link>
           )}
-          {!isSignedIn && <Link to="/register" onClick={handleClose}><button className="px-8 py-3">Sign Up</button></Link>}
+          {!isSignedIn && (
+            <Link to="/register" onClick={handleClose}>
+              <button className="px-8 py-3">Sign Up</button>
+            </Link>
+          )}
         </div>
       </ul>
     </div>
