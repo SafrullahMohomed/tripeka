@@ -23,6 +23,8 @@ import Cards from "./components/Cards";
 import Groups from "./components/Groups";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
+import Gallery from "./components/Gallery";
+
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -32,7 +34,6 @@ import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
-
 
 import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
@@ -57,15 +58,13 @@ root.render(
       <Route path="/climate" element={<><Header /><Climate /></>} />
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
-            <Route path='/Hotels' element={<Test/>}/>
-            <Route path="/ms" element={<Budget />} />
+      <Route path='/Hotels' element={<Test/>}/>
+      <Route path="/ms" element={<Budget />} />
 
       <Route path="/budget" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
 
-      <Route
-        path="/hotel"
-        element={
+      <Route path="/hotel" element={
           <>
             <Header />
             <Search />
@@ -75,41 +74,14 @@ root.render(
           </>
         }
       />
-      <Route
-        path="/blogs"
-        element={
-          <>
-            <Header />
-            <Blogs />
-          </>
-        }
-      />
-      <Route
-        path="/groups"
-        element={
-          <>
-            <Header />
-            <Groups />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/admin"
-        element={
-          <>
-            <Drawer />
-          </>
-        }
-      />
 
       <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip' element={<><Header /><Trip /></>}/>
+      <Route path='/gallery' element={<><Header /><Gallery /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
 
-      <Route path="/help" element={<Help />} />
     </Routes>
   </Router>
 );

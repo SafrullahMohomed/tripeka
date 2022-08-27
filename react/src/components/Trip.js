@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Card from '@mui/material/Card';
@@ -16,6 +17,8 @@ import MenuItem from '@mui/material/MenuItem';
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -52,6 +55,7 @@ const emails = ['kasun.withanage@gmail.com', 'ravindu.perera@gmail.com'];
 
 const Trip = () => {
 
+    // add friends modal
     const [openM, setOpenM] = useState(false);
     const handleOpenM = () => setOpenM(true);
     const handleCloseM = () => setOpenM(false);
@@ -65,6 +69,11 @@ const Trip = () => {
         setAnchorEl(null);
     };
 
+    // upload photos
+    const [openP, setOpenP] = useState(false);
+    const handleOpenP = () => setOpenP(true);
+    const handleCloseP = () => setOpenP(false);
+    
     return ( 
         <>
         <div className="flex flex-wrap px-10 mb-10">
@@ -115,6 +124,9 @@ const Trip = () => {
                         </IconButton>
                         <IconButton aria-label="climate">
                             <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
+                        </IconButton>
+                        <IconButton aria-label="gallery">
+                            <CameraAltIcon onClick={handleOpenP}/>
                         </IconButton>
                     </CardActions>
                 </Card>
@@ -206,6 +218,35 @@ const Trip = () => {
                 <Button onClick={handleCloseM}>Cancel</Button>
                 <Button onClick={handleCloseM} autoFocus>Done</Button>
                 </DialogActions>
+            </Dialog>
+
+            {/* Upload Modal*/}
+            <Dialog
+                aria-labelledby="upload-title"
+                aria-describedby="upload-description"
+                onClose={handleCloseP}
+                open={openP}
+            >
+                
+                <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
+                    {"Upload Images"}
+                </DialogTitle>
+                <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
+                    <Box component="span" sx={{ p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
+                        <IconButton color="primary" aria-label="upload picture" component="label">
+                            <input hidden accept="image/*" type="file" />
+                            <CameraAltOutlinedIcon />
+                        </IconButton>
+                        Upload Photos
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button type="reset" onClick={handleCloseP}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseP} autoFocus>
+                        Upload
+                    </Button>
+                </DialogActions>
+
             </Dialog>
 
             {/* map */}

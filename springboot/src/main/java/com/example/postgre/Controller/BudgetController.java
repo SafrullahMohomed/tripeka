@@ -1,7 +1,7 @@
 package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
-import com.example.postgre.Service.BudgetService;
+import com.example.postgre.service.BudgetService;
 import com.fasterxml.jackson.core.filter.FilteringGeneratorDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
