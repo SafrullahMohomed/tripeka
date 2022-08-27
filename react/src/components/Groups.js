@@ -59,6 +59,7 @@ const Groups = () => {
   const handleOpenM = () => setOpenM(true);
   const handleCloseM = () => setOpenM(false);
 
+  // creating croup cards
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
 
@@ -78,7 +79,7 @@ const Groups = () => {
 
       <div class="container px-5 py-5 mx-auto">
         <div class="w-full mb-8 pl-2">Your Trip Groups</div>
-        <div class="flex flex-wrap -m-2">
+          <div class="flex flex-wrap -m-2">
           {groups.map((group) => (
             <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
               <Card sx={{ maxWidth: 345 }}>
@@ -178,7 +179,7 @@ const Groups = () => {
         </div>
       </div>
 
-      {/* Grou Modal*/}
+      {/* Group Modal*/}
       <Dialog
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"

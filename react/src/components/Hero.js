@@ -10,17 +10,9 @@ const Hero = () => {
   // }, []);
 
   return (
-    <div
-      name="home"
-      className="w-full h-screen bg-cover bg-center flex"
-    >
-      
-
+    <div name="home" className="w-full h-screen bg-cover bg-center flex">
       <div className="hero-first-col w-1/3 px-5">
-        <div
-          className="animated-pulse grid md:grid-cols-2 max-w-[1240px] m-auto absolute mt-20"
-          data-aos="fade-up"                                                                                                                                                                                                                            
-        >
+        <div className="animated-pulse grid md:grid-cols-2 max-w-[1240px] m-auto absolute mt-20" data-aos="fade-up">
           <div className="flex flex-col justify-center md:items-start w-full px-2 py-8">
             <h1 className="py-2 text-4xl md:text-5xl font-bold">
               Is it a hassle to plan a trip?
