@@ -30,11 +30,6 @@ import img3 from "../assets/jaffna.jpg";
 import img from "../assets/customer2.jpg";
 import createGroup from "../services/GroupsService";
 
-const actions = [
-  { id: "1", name: "../assets/arugam.jpg" },
-  { id: "2", name: "../assets/dalanda.jpg" },
-  { id: "3", name: "../assets/jaffna.jpg" },
-];
 
 const Groups = () => {
   // Display Groups
