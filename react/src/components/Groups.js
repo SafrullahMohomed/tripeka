@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate  } from "react-router-dom";
+
 import Box from "@mui/material/Box";
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from "@mui/material/TextField";
@@ -29,7 +31,7 @@ const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-
+  
   const init = () => {
     getGroups()
       .then((response) => {
@@ -58,11 +60,17 @@ const Groups = () => {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
 
+  const navigate = useNavigate();
+
   const createGroupFrom = (e) => {
     e.preventDefault();
+    
     // const group = {name, location}; console.log(group);
     createGroup(name, location)
       .then((response) => console.log(response));
+
+    // after done submit, navigate to the group?
+    navigate('/trip');
   };
 
   return (

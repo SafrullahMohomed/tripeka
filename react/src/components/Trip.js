@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate  } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -9,8 +11,6 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,7 +19,6 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -44,7 +43,7 @@ import map from '../assets/map.png'
 const options = [
     {name: 'Add People', action: 'handleOpenFM'},
     {name: 'Edit Trip', action: ''},
-    {name: 'Delete Trip', action: ''},
+    {name: 'Delete Trip', action: 'handleDelete'},
     {name: 'Add description', action: ''},
     {name: 'Group members', action: ''},
   ];
@@ -71,9 +70,27 @@ const Trip = () => {
     };
     const handleCloseFM = () => setOpenFM(false);
 
+    // delete trip
+    const navigate = useNavigate();
+
+    const handleDelete = () => {
+        // fetch('http://localhost:8000/groups/' + group_id, {
+        //     method: 'DELETE'
+        // }).then(() => {
+        //     // after Delete...
+        //     navigate('/groups'); 
+        // })
+
+        // after Delete...
+        navigate('/groups'); 
+      }
+
     const addHandler = (name) => {
         if (name === "handleOpenFM") {
             handleOpenFM();
+        }
+        if (name === "handleDelete") {
+            handleDelete();
         }
         
       }
@@ -103,7 +120,7 @@ const Trip = () => {
                     <CardMedia
                         component="img"
                         image={dalanda}
-                        alt="Paella dish"
+                        alt=""
                         sx={{height: 180}}
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>

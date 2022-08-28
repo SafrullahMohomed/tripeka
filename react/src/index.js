@@ -24,6 +24,7 @@ import Groups from "./components/Groups";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
+import NotFound from "./components/NotFound";
 
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
@@ -75,6 +76,7 @@ root.render(
         }
       />
 
+      <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
