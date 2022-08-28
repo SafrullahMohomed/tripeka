@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate  } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -9,8 +11,6 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,7 +19,6 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -42,24 +41,18 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    'Add People',
-    'Edit Trip',
-    'Delete Trip',
-    'Add description',
-    'Group members',
+    {name: 'Add People', action: 'handleOpenFM'},
+    {name: 'Edit Trip', action: ''},
+    {name: 'Delete Trip', action: 'handleDelete'},
+    {name: 'Add description', action: ''},
+    {name: 'Group members', action: ''},
   ];
   
-const ITEM_HEIGHT = 48;
-
 const emails = ['kasun.withanage@gmail.com', 'ravindu.perera@gmail.com'];
 
 const Trip = () => {
 
-    // add friends modal
-    const [openM, setOpenM] = useState(false);
-    const handleOpenM = () => setOpenM(true);
-    const handleCloseM = () => setOpenM(false);
-
+    // dropdown
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -69,11 +62,39 @@ const Trip = () => {
         setAnchorEl(null);
     };
 
-    // upload photos
-    const [openP, setOpenP] = useState(false);
-    const handleOpenP = () => setOpenP(true);
-    const handleCloseP = () => setOpenP(false);
-    
+    // add friends modal
+    const [openFM, setOpenFM] = useState(false);
+    const handleOpenFM = () => {
+        setOpenFM(true); 
+        setAnchorEl(null);
+    };
+    const handleCloseFM = () => setOpenFM(false);
+
+    // delete trip
+    const navigate = useNavigate();
+
+    const handleDelete = () => {
+        // fetch('http://localhost:8000/groups/' + group_id, {
+        //     method: 'DELETE'
+        // }).then(() => {
+        //     // after Delete...
+        //     navigate('/groups'); 
+        // })
+
+        // after Delete...
+        navigate('/groups'); 
+      }
+
+    const addHandler = (name) => {
+        if (name === "handleOpenFM") {
+            handleOpenFM();
+        }
+        if (name === "handleDelete") {
+            handleDelete();
+        }
+        
+      }
+
     return ( 
         <>
         <div className="flex flex-wrap px-10 mb-10">
@@ -99,7 +120,7 @@ const Trip = () => {
                     <CardMedia
                         component="img"
                         image={dalanda}
-                        alt="Paella dish"
+                        alt=""
                         sx={{height: 180}}
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
@@ -126,7 +147,7 @@ const Trip = () => {
                             <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
                         </IconButton>
                         <IconButton aria-label="gallery">
-                            <CameraAltIcon onClick={handleOpenP}/>
+                            <CameraAltIcon onClick = {() => {window.location.href = '/gallery'}}/>
                         </IconButton>
                     </CardActions>
                 </Card>
@@ -169,8 +190,8 @@ const Trip = () => {
                     
                 >
                   {options.map((option) => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleOpenM}>
-                        {option}
+                    <MenuItem key={option.name} onClick={() => addHandler(option.action)}>
+                        {option.name}
                     </MenuItem>
                    ))}
                 </Menu>
@@ -181,8 +202,8 @@ const Trip = () => {
             <Dialog
                 aria-labelledby="dialog-title"
                 aria-describedby="dialog-description"
-                onClose={handleCloseM}
-                open={openM}
+                onClose={handleCloseFM}
+                open={openFM}
             >
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                 {"Add New Friends"}
@@ -215,39 +236,11 @@ const Trip = () => {
                     </List>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleCloseM}>Cancel</Button>
-                <Button onClick={handleCloseM} autoFocus>Done</Button>
+                <Button onClick={handleCloseFM}>Cancel</Button>
+                <Button onClick={handleCloseFM} autoFocus>Done</Button>
                 </DialogActions>
             </Dialog>
 
-            {/* Upload Modal*/}
-            <Dialog
-                aria-labelledby="upload-title"
-                aria-describedby="upload-description"
-                onClose={handleCloseP}
-                open={openP}
-            >
-                
-                <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
-                    {"Upload Images"}
-                </DialogTitle>
-                <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
-                    <Box component="span" sx={{ p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
-                        <IconButton color="primary" aria-label="upload picture" component="label">
-                            <input hidden accept="image/*" type="file" />
-                            <CameraAltOutlinedIcon />
-                        </IconButton>
-                        Upload Photos
-                    </Box>
-                </DialogContent>
-                <DialogActions>
-                    <Button type="reset" onClick={handleCloseP}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseP} autoFocus>
-                        Upload
-                    </Button>
-                </DialogActions>
-
-            </Dialog>
 
             {/* map */}
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">

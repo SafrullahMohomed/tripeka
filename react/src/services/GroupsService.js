@@ -14,20 +14,18 @@ export function getGroupsById(group_id) {
 
 export default function createGroup(name, location) {
   console.log(name + location);
-  // return axios.post(ServerBaseUrl + '/' + group_id);
-  // return axios.post(ServerBaseUrl + '/', {
-  //     name
-  //   }, {
-  //     headers: {
-  //         authHeader()
-  //     }
-  //   })
 
   return axios.post(
     ServerBaseUrl + "/groups",
     { name, location },
     { headers: authHeader() }
   );
+
+  // return axios.post(ServerBaseUrl + '/' + group_id);
+  // return axios.post(ServerBaseUrl + '/', 
+  // { name, location },
+  // { headers: authHeader() }
+  // );
 }
 
-// return axios.get(API_URL + "somebody", { headers: authHeader() });
+// return axios.get(ServerBaseUrl + "somebody", { headers: authHeader() });
