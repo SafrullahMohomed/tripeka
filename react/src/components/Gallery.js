@@ -16,39 +16,68 @@ const Gallery = () => {
     const handleCloseP = () => setOpenP(false);
 
     return ( 
-        <div>
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-1 mx-auto flex flex-wrap">
 
-            <Button variant="contained" onClick={handleOpenP}>Upload</Button>
+                <div class="flex flex-wrap md:-m-2 -m-1">
+                    <div class="flex flex-wrap w-1/2">
+                        <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/500x300"/>
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/501x301"/>
+                        </div>
+                        <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://dummyimage.com/600x360"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap w-1/2">
+                        <div class="md:p-2 p-1 w-full">
+                        <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://dummyimage.com/601x361"/>
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/502x302"/>
+                        </div>
+                        <div class="md:p-2 p-1 w-1/2">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://dummyimage.com/503x303"/>
+                        </div>
+                    </div>
+                </div>
 
-            {/* Upload Modal*/}
-            <Dialog
-                aria-labelledby="upload-title"
-                aria-describedby="upload-description"
-                onClose={handleCloseP}
-                open={openP}
-            >
-                
-                <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
-                    {"Upload Images"}
-                </DialogTitle>
-                <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
-                    <Box component="span" sx={{ p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
-                        <IconButton color="primary" aria-label="upload picture" component="label">
-                            <input hidden accept="image/*" type="file" />
-                            <CameraAltOutlinedIcon />
-                        </IconButton>
-                        Upload Photos
-                    </Box>
-                </DialogContent>
-                <DialogActions>
-                    <Button type="reset" onClick={handleCloseP}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseP} autoFocus>
-                        Upload
-                    </Button>
-                </DialogActions>
+                <div className="flex justify-center w-full my-8">
+                    <Button variant="contained" onClick={handleOpenP}>Upload</Button>
+                </div>
 
-            </Dialog>
-        </div>
+                {/* Upload Modal*/}
+                <Dialog
+                    aria-labelledby="upload-title"
+                    aria-describedby="upload-description"
+                    onClose={handleCloseP}
+                    open={openP}
+                >
+                    
+                    <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
+                        {"Upload Images"}
+                    </DialogTitle>
+                    <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
+                        <Box component="span" sx={{ p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
+                            <IconButton color="primary" aria-label="upload picture" component="label">
+                                <input hidden accept="image/*" type="file" />
+                                <CameraAltOutlinedIcon />
+                            </IconButton>
+                            Upload Photos
+                        </Box>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button type="reset" onClick={handleCloseP}>Cancel</Button>
+                        <Button type="submit" onClick={handleCloseP} autoFocus>
+                            Upload
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+            </div>
+        </section>
      );
 }
  

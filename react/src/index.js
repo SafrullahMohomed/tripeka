@@ -78,10 +78,10 @@ root.render(
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
-      <Route path='/blogs' element={<><Header /><Blogs /></>}/>
+      <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip' element={<><Header /><Trip /></>}/>
-      <Route path='/gallery' element={<><Header /><Gallery /></>}/>
+      <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
 
     </Routes>
