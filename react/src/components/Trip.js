@@ -4,6 +4,7 @@ import { useNavigate  } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
+import Tooltip from "@mui/material/Tooltip";
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -102,17 +103,16 @@ const Trip = () => {
                 <Card>
                     <CardHeader
                         action={
-                        <IconButton
-                            aria-label="more"
-                            id="long-button"
-                            aria-controls={open ? 'long-menu' : undefined}
-                            aria-expanded={open ? 'true' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleClick}
-                            >
-                            <MoreVertIcon />
-                        </IconButton>
-                        
+                            <IconButton
+                                aria-label="more"
+                                id="long-button"
+                                aria-controls={open ? 'long-menu' : undefined}
+                                aria-expanded={open ? 'true' : undefined}
+                                aria-haspopup="true"
+                                onClick={handleClick}
+                                >
+                                <MoreVertIcon />
+                            </IconButton>
                         }
                         title="Dalanda Palace"
                         subheader="by Kasun"
@@ -137,18 +137,26 @@ const Trip = () => {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                        <IconButton aria-label="group chat">
-                            <ChatBubbleRoundedIcon onClick = {() => {window.location.href = '/groupChat'}}/>
-                        </IconButton>
-                        <IconButton aria-label="budget">
-                            <PaidOutlinedIcon onClick = {() => {window.location.href = '/budget'}}/>
-                        </IconButton>
-                        <IconButton aria-label="climate">
-                            <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
-                        </IconButton>
-                        <IconButton aria-label="gallery">
-                            <CameraAltIcon onClick = {() => {window.location.href = '/gallery'}}/>
-                        </IconButton>
+                        <Tooltip title="Chat">
+                            <IconButton aria-label="group chat">
+                                <ChatBubbleRoundedIcon onClick = {() => {window.location.href = '/groupChat'}}/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Budget">
+                            <IconButton aria-label="budget">
+                                <PaidOutlinedIcon onClick = {() => {window.location.href = '/budget'}}/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Weather">
+                            <IconButton aria-label="climate">
+                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Gallery">
+                            <IconButton aria-label="gallery">
+                                <CameraAltIcon onClick = {() => {window.location.href = '/gallery'}}/>
+                            </IconButton>
+                        </Tooltip>
                     </CardActions>
                 </Card>
                 <Menu

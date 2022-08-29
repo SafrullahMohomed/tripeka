@@ -35,14 +35,14 @@ import user from '../assets/customer2.jpg';
 const customTheme = createTheme({
   palette: {
     primary: {
-      dark:  '#34d399',
-      main: '#6ee7b7',
-      light: '#d1fae5',
+      dark:  '#1A1423',
+      main: '#3D314A',
+      light: '#684756',
     },
     secondary: {
-      dark: '#9f1239',
-      main: '#fda4af',
-      light: '#fecdd3',
+      dark: '#7F5C59',
+      main: '#96705B',
+      light: '#AB8476s',
     }
   },
 });
@@ -151,7 +151,7 @@ export default function MiniDrawer() {
         <CssBaseline />
         <AppBar position="fixed" open={open} sx={{
           boxShadow: 0,
-          bgcolor: "primary.light"
+          bgcolor: "primary.dark"
         }}>
           <Toolbar>
             <IconButton
@@ -311,12 +311,18 @@ export default function MiniDrawer() {
         <Drawer variant="permanent" open={open} PaperProps={{
           sx: {
             border: 0,
-            bgcolor: 'primary.main'
+            bgcolor: 'primary.dark'
           }
         }}>
-          <DrawerHeader sx={{bgcolor: 'primary.light'}}>
-            <Typography></Typography>
-            <IconButton onClick={handleDrawerClose}> 
+          <DrawerHeader sx={{bgcolor: 'primary.dark'}}>
+            <Typography>
+              
+            </Typography>
+            <IconButton onClick={handleDrawerClose} 
+              sx={{
+                color: 'primary.light', 
+                "&:hover": { bgcolor: 'primary.main', color: 'primary.dark',},
+              }}> 
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>
@@ -329,9 +335,9 @@ export default function MiniDrawer() {
                     justifyContent: open ? 'initial' : 'center',
                     px: 2,
                     borderRadius: 2,
-                    bgcolor: 'primary.light',
+                    bgcolor: 'primary.main',
                     "&:hover": {
-                      bgcolor: 'primary.dark',
+                      bgcolor: 'primary.light',
                     },
                   }}
                 >
