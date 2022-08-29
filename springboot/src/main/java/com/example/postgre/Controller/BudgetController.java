@@ -2,12 +2,10 @@ package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
 import com.example.postgre.service.BudgetService;
-import com.fasterxml.jackson.core.filter.FilteringGeneratorDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -57,11 +55,22 @@ public class BudgetController {
         return budgetService.getAverageAmount(group_id);
     }
 
+
+//    individual amount total which each user spent
     @GetMapping(path="/individualamount/{group_id}/{user_id}")
 
     public Double getIndividualTotalAmount(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id){
         return budgetService.getIndividualTotalAmount(group_id, user_id);
     }
+
+    @GetMapping(path="/dueamount/{group_id}/{user_id}")
+
+    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id){
+        Double due_amount = budgetService.getIndividualTotalAmount(group_id, user_id) - budgetService.getAverageAmount(group_id);
+        return due_amount;
+    }
+
+
 
 
 
