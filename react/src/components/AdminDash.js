@@ -1,105 +1,115 @@
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
+import blog1 from '../assets/coverpage1.jpg'
+
 const AdminDash = () => {
     return (
       <section class="w-full text-gray-600 body-font mt-20">
-        <div class="container px-5 py-5 mx-auto">
+        
+        <div class="container px-5 py-1 mx-auto">
           <div class="flex flex-wrap -m-2">
 
             <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
-              <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <div class="w-16 h-16 flex justify-center items-center bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4">
-                  <PersonAddIcon />
-                </div>
-                <div class="flex-grow">
-                  <h2 class="text-gray-900 title-font font-medium">Total Users</h2>
-                  <p class="text-gray-500">538</p>
-                </div>
-              </div>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    Total Users
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    583
+                  </Typography>                  
+                </CardContent>
+              </Card>
             </div>
             <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
-              <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <div class="w-16 h-16 flex justify-center items-center bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4">
-                  <ShoppingCartIcon />
-                </div>
-                <div class="flex-grow">
-                  <h2 class="text-gray-900 title-font font-medium">Total Users</h2>
-                  <p class="text-gray-500">538</p>
-                </div>
-              </div>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    Total Users
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    583
+                  </Typography>                  
+                </CardContent>
+              </Card>
             </div>
             <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
-              <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <div class="w-16 h-16 flex justify-center items-center bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4">
-                  <ArrowCircleUpIcon />
-                </div>
-                <div class="flex-grow">
-                  <h2 class="text-gray-900 title-font font-medium">Total Users</h2>
-                  <p class="text-gray-500">538</p>  
-                </div>
-              </div>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    Total Users
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    583
+                  </Typography>                  
+                </CardContent>
+              </Card>
             </div>
             <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
-              <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <div class="w-16 h-16 flex justify-center items-center bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4">
-                  <TrendingDownIcon />
-                </div>
-                <div class="flex-grow">
-                  <h2 class="text-gray-900 title-font font-medium">Total Users</h2>
-                  <p class="text-gray-500">538</p>
-                </div>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    Total Users
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    583
+                  </Typography>                  
+                </CardContent>                
+              </Card>
+            </div>
+          </div>
+
+        </div>
+      
+        <div class="container p-6 mx-auto">
+          <div class="flex justify-center flex-wrap -mx-4 -mb-10 text-center">
+            <div class="sm:w-1/2 mb-10 p-3">
+              <div className="w-full">
+                <Card>
+                  <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                      Chart-1
+                    </Typography>
+                  </CardContent>
+                  <div className='p-1'>
+                    {/* Insert Chart Here! */}
+                    <img src={blog1} alt="" />
+                  </div>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </div>
+            </div>
+            <div class="sm:w-1/2 mb-10 p-3">
+              <div className="w-full">
+                <Card>
+                  <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                      Chart-2
+                    </Typography>
+                  </CardContent>
+                  <div className='p-1'>
+                    {/* Insert Chart Here! */}
+                    <img src={blog1} alt="" />
+                  </div>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="container px-5 py-8 mx-auto">
-          <div class="flex flex-wrap -m-4 text-center">
-            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                  <path d="M8 17l4 4 4-4m-4-5v9"></path>
-                  <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
-                </svg>
-                <h2 class="title-font font-medium text-3xl text-gray-900">2.7K</h2>
-                <p class="leading-relaxed">Downloads</p>
-              </div>
-            </div>
-            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
-                </svg>
-                <h2 class="title-font font-medium text-3xl text-gray-900">1.3K</h2>
-                <p class="leading-relaxed">Users</p>
-              </div>
-            </div>
-            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                  <path d="M3 18v-6a9 9 0 0118 0v6"></path>
-                  <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"></path>
-                </svg>
-                <h2 class="title-font font-medium text-3xl text-gray-900">74</h2>
-                <p class="leading-relaxed">Files</p>
-              </div>
-            </div>
-            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-                <h2 class="title-font font-medium text-3xl text-gray-900">46</h2>
-                <p class="leading-relaxed">Places</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
     );
 }
