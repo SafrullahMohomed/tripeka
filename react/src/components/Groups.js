@@ -23,8 +23,8 @@ import img2 from "../assets/dalada.jpg";
 import img3 from "../assets/jaffna.jpg";
 import img from "../assets/customer2.jpg";
 import { getGroups } from "../services/GroupsService";
+import { getGroupsById } from "../services/GroupsService";
 import createGroup from "../services/GroupsService";
-
 
 const Groups = () => {
   // Display Groups
@@ -104,7 +104,7 @@ const Groups = () => {
                 <Card sx={{ maxWidth: 345 }}>
                   <CardActionArea
                     onClick={() => {
-                      window.location.href = "/trip";
+                      window.location.href = "/trip?group_id=" + group.group_id;
                     }}
                   >
                     <CardMedia
@@ -118,7 +118,7 @@ const Groups = () => {
                         {group.name}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Created by : {group.location}
+                        Created by : {group.owner}
                       </Typography>
                     </CardContent>
                   </CardActionArea>

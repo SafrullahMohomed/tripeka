@@ -1,6 +1,7 @@
 package com.example.postgre.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,9 +35,9 @@ public class GroupController {
     }
 
     // get users groups
-    @GetMapping("/groups/{group_id}")
-    public Groups getGroupsById(@PathVariable Integer group_id) {
-        return groupRepository.findById(group_id).get();
+    @GetMapping("/groups/{user_id}")
+    public Groups getGroupsById(@PathVariable Integer user_id) {
+        return groupRepository.findByUserId(user_id);
     }
 
     @PostMapping("/groups")

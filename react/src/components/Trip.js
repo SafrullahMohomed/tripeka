@@ -96,6 +96,14 @@ const Trip = () => {
         
       }
 
+      //prints the variable and group_id value from URL
+      const params = new URLSearchParams(window.location.search);
+      for (const param of params) {
+        console.log(param[0]); //variable
+        console.log(param[1]); //value
+      }
+      
+
     return ( 
         <>
         <div className="flex flex-wrap px-10 mb-10">
@@ -110,7 +118,7 @@ const Trip = () => {
                                 aria-expanded={open ? 'true' : undefined}
                                 aria-haspopup="true"
                                 onClick={handleClick}
-                                >
+                            >
                                 <MoreVertIcon />
                             </IconButton>
                         }
