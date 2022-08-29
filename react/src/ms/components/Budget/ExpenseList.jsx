@@ -4,11 +4,47 @@ import ListItem from "./ListItem";
 import ListItemsAll from "./AllExpenses/ListItemsAll";
 import FormPart from "./FormPart";
 
+import Fab from '@mui/material/Fab';
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+// import createBudget from "../services/BudgetService";
+
+
 const ExpenseList = (props) => {
+
+  // Budget Modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  // Budget Form
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+
+  const budgetForm = (e) => {
+    e.preventDefault();
+    // const budget = {name, amount, description}; console.log(budget);
+    // createBudget(name, amount, description)
+    //   .then((response) => console.log(response));
+  };
+
   const [isIndividual, setIsIndividual] = useState(true);
   return (
     <div className="Expenses flex flex-col">
+
       <div className="ButtonSet flex justify-between">
+        {/* Add Budget Button */}
+        <Fab onClick={handleOpen} variant="extended" size="medium" color="primary" aria-label="add">
+            <CreditCardIcon sx={{ mr: 1 }} />
+            Add Amount
+        </Fab>
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button
             type="button"
@@ -143,10 +179,68 @@ const ExpenseList = (props) => {
             </div>
           )}
         </div>
-        <div className="formPart mx-60 md:mx-30 sm:mx-20">
+        {/* <div className="formPart mx-60 md:mx-30 sm:mx-20">
           <FormPart></FormPart>
-        </div>
+        </div> */}
       </div>
+
+      {/* Add Expense Modal */}
+      <Dialog
+        aria-labelledby="expense-title"
+        aria-describedby="expense-description"
+        onClose={handleClose}
+        open={open}
+      >
+        <form onSubmit={budgetForm}>
+          <DialogTitle id="expense-title" sx={{ width: 450, marginBottom: -1 }}>
+            {"Add Expense"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="expense-name" sx={{ marginTop: 2 }}>
+            </DialogContentText>
+            <TextField
+              onChange={(e) => setName(e.target.value)}
+              autoFocus
+              margin="dense"
+              id="expense-name"
+              label="Expense"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <DialogContentText id="expense-amount" sx={{ marginTop: 2 }}>
+            </DialogContentText>
+            <TextField
+              onChange={(e) => setAmount(e.target.value)}
+              autoFocus
+              margin="dense"
+              id="amount"
+              label="Amount"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <DialogContentText id="expense-description" sx={{ marginTop: 2 }}>
+            </DialogContentText>
+            <TextField
+              onChange={(e) => setDescription(e.target.value)}
+              autoFocus
+              margin="dense"
+              id="description"
+              label="Description"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit" onClick={handleClose} autoFocus>
+              Done
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
     </div>
   );
 };
