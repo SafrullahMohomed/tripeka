@@ -10,8 +10,8 @@ const ListItem = (props) => {
     <div className="mainclass-list flex mr-3 ml-3 items-center">
       <div className="list flex items-center bg-slate-200">
         <div className="first-column mr-5">
-          <div className="title font-medium text-xl">{props.title}</div>
-          <div className="description text-gray-700 ">{props.description}</div>
+          <div className="title font-medium text-lg">{props.title}</div>
+          <div className="description text-gray-700 text-sm">{props.description}</div>
         </div>
         <div className="second-column ">
           <div className="price font-medium ">Rs. {props.amount}</div>

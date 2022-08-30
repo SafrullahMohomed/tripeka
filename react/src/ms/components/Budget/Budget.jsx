@@ -1,19 +1,98 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserList from "./UserList";
-import List2 from "./List2";
+// import List2 from "./List2";
 import ExpenseList from "./ExpenseList";
-import FormPart from "./FormPart";
+// import FormPart from "./FormPart";
 // import Chart from "./chart/ChartBudget";
 // import { Doughnut } from "react-chartjs-2";
 // import ChartBudget from "./chart/ChartBudget";
 // import Charts from './chart/Chart';
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import HoverBoxes from "./HoverBoxes";
 import Header from "../../../components/Header";
+import {getAllUserBudgetByGroupId, getUserBudgetByGroupId, getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../../services/BudgetService";
 
 // import axios from "axios";
 
 const Budget = () => {
+  const [yourAmount, setYourAmount] = useState(null);
+  const [totalAmount, setTotalAmount] = useState(null);
+  const [individualAmount, setIndividualAmount] = useState(null);
+  const [yourDue, setYourDue] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [Error, setError] = useState(false);
+  console.log(yourAmount);
+  console.log(totalAmount);
+  console.log(individualAmount);
+  console.log(yourDue);
+
+  // initializing the state variable function
+  const init = () => {
+
+    // to get individual amount spended by user
+    getIndividualamountSpendedByGroupIdUserId()
+    .then((response) => {
+      console.log("Printing Groups data", response.data);
+      setIsPending(false);
+      setYourAmount(parseFloat(response.data.toFixed(2)));
+      setError(null);
+    })
+    .catch((err) => {
+      console.log("Something went wrong", err);
+      setIsPending(false);
+      setError(err.message);
+    });
+
+    // to get total amount spended by group
+    getTotalamountSpendedByGroupId()
+    .then((response) => {
+      console.log("Printing Groups data", response.data);
+      setIsPending(false);
+      setTotalAmount(parseFloat(response.data.toFixed(2)));
+      setError(null);
+    }).catch((err) => {
+      console.log("Something went wrong", err);
+      setIsPending(false);
+      setError(err.message);
+    }
+    );
+
+    // to get average amount spended by group
+    getAverageamountSpendedByGroupId()
+    .then((response) => {
+      console.log("Printing Groups data", response.data);
+      setIsPending(false);
+      setIndividualAmount(parseFloat(response.data.toFixed(2)));
+      setError(null);
+    }
+    ).catch((err) => {
+      console.log("Something went wrong", err);
+      setIsPending(false);
+      setError(err.message);
+    }
+    );
+
+    // to get individual due amount
+    getDueamountSpendedByGroupIdUserId()
+    .then((response) => {
+      console.log("Printing Groups data", response.data);
+      setIsPending(false);
+      setYourDue(parseFloat(response.data.toFixed(2)));
+      setError(null);
+    }
+    ).catch((err) => {
+      console.log("Something went wrong", err);
+      setIsPending(false);
+      setError(err.message);
+    }
+    );
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
+
+
   return (
     <div className="main-budget">
       <div className="first-row">
@@ -21,10 +100,7 @@ const Budget = () => {
 
         {/* cards starts here  */}
 
-        {/* const [yourAmount, setYourAmount] = useState(0);
-        const [totalAmount, setTotalAmount] = useState(0);
-        const [individualAmount, setIndividualAmount] = useState(0);
-        const [yourDue, setYourDue] = useState(0); */}
+       
 
         {/* {axios.get("http://localhost:8080/api/v1/budget/totalamount/1")
         .then(res => res.data).
@@ -34,16 +110,16 @@ const Budget = () => {
 
         <div className="first-row-row2 flex flex-wrap justify-around">
           <div className="first-row-row2-col1 w-40 m-3">
-            <HoverBoxes title="Your Amount" amount="8700.00" />
+            <HoverBoxes title="Your Amount" amount={yourAmount} />
           </div>
           <div className="first-row-row2-col2 w-40 h-20 m-3">
-            <HoverBoxes title="Total Expenses" amount="40500.00" />
+            <HoverBoxes title="Total Expenses" amount={totalAmount} />
           </div>
           <div className="first-row-row2-col3 w-40 m-3">
-            <HoverBoxes title="Individual Expense" amount="10125.00" />
+            <HoverBoxes title="Individual Expense" amount={individualAmount} />
           </div>
           <div className="first-row-row2-col3 w-40 m-3">
-            <HoverBoxes title="Your Due" amount="1425.00" />
+            <HoverBoxes title="Your Due" amount={yourDue} />
           </div>
         </div>
         {/* cards ends here  */}
