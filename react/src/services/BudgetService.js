@@ -9,7 +9,7 @@ export function getAllUserBudgetByGroupId(group_id = 1) {
 
 // get a specific user budget in a specific group
 
-export function getUserBudgetByGroupId(group_id = 1, user_id = 1) {
+export function getUserBudgetByGroupIdAndUserId(group_id = 1, user_id = 1) {
   return axios.get(ServerBaseUrl + "/budget/user/" + group_id + "/" + user_id);
 }
 
@@ -36,6 +36,15 @@ export function getDueamountSpendedByGroupIdUserId(group_id = 1, user_id = 1) {
     return axios.get(
         ServerBaseUrl + "/budget/dueamount/" + group_id + "/" + user_id
     );
+}
+
+// add budget to the database
+export function addBudget(group_id = 1, user_id = 1, budget) {
+  return axios.post(
+    ServerBaseUrl + "/budget/addbudget/1" + "/" + user_id,
+    budget,
+    { headers: authHeader() }
+  );
 }
 
 
