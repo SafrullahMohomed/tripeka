@@ -3,14 +3,30 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import { useForm } from "react-hook-form";
 import pop6 from "../assets/reset.jpg";
+import { resetPassword } from "../services/AuthAPIService";
+import { useParams } from "react-router-dom";
 
 
 
 const ResetPassword = () => {
     const { handleSubmit, register,watch, formState: { errors } } = useForm();
-    const onSubmit = values => console.log(values);
+    const { email } = useParams();
+    const onSubmit = (data) => {
+      resetPassword(email, data["password"], data["confirm1password"]).then((resp) => {
+        if (resp["success"]) {
+          alert(resp["msg"] + "Please login with new credentials");
+          window.location.href = "http://localhost:3000/login";
+        } else {
+          alert("Failed : " + resp["msg"]);
+        }
+      });
+    };
+    
     const password = useRef({});
     password.current = watch("password", "");
+    
+
+    
 
   return (
     <div>

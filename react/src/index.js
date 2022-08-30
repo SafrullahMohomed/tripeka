@@ -52,8 +52,7 @@ root.render(
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/resetpassword" element={<ResetPassword />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/resetpassword/:email" element={<ResetPassword />} />      <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
