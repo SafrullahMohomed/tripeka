@@ -2,16 +2,24 @@ package com.example.postgre.Model.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.id.CompositeNestedGeneratedValueGenerator.GenerationPlan;
 
 @Entity
 @Table(name = "groups_users")
 public class Groups_users {
     @Id
-    @GeneratedValue(strategy = GenerationPlan.IDENTITY)
+    @SequenceGenerator(
+            name = "groups_users_sequence",
+            sequenceName = "groups_users_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "groups_users_sequence"
+    )
     private Integer group_id;
     private Integer user_id;
 
