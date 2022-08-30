@@ -5,7 +5,11 @@ import com.example.postgre.repository.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+
+import static jdk.nashorn.internal.objects.Global.println;
 
 @Service
 public class BudgetService {
@@ -30,6 +34,9 @@ public class BudgetService {
     public void addBudgetTo(Integer group_id, Integer user_id, Budget budget) {
         budget.setGroup_id(group_id);
         budget.setUser_id(user_id);
+//        budget.setDate(LocalDate.now());
+//        budget.setTime(LocalTime.now());
+//        println(budget);
         budgetRepository.save(budget);
     }
 
