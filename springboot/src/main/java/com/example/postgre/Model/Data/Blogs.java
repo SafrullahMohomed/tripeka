@@ -1,19 +1,31 @@
 package com.example.postgre.Model.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Generated;
 
 @Entity
 @Table(name = "blogs")
 public class Blogs {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = Generated.IDENTITY)
     private Integer blog_id;
     private String title;
     private String subtitle;
     private String location;
     private String content;
     private Integer user_id;
-    
+    private String image_url;
+
+    public String getImage_url() {
+        return image_url;
+    }
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
     public Integer getBlog_id() {
         return blog_id;
     }
