@@ -1,14 +1,25 @@
+package com.example.postgre.Model.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "blog_image")
 public class Blog_image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "blog_image_sequence",
+            sequenceName = "blog_image_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "blog_image_sequence"
+    )
     private Integer blog_id;
     private String image_url;
     

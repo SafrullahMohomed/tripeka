@@ -2,21 +2,29 @@ package com.example.postgre.Model.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.tool.schema.internal.exec.GenerationTarget;
 
 @Entity
 @Table(name = "chat")
 public class Chat {
     @Id
-    @GeneratedValue(strategy = GenerationTarget.IDENTITY)
+    @SequenceGenerator(
+            name = "chat_sequence",
+            sequenceName = "chat_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "chat_sequence"
+    )
     private Integer group_id;
     private Integer user_id;
     private String timestamp;
     private String message;
-    
+
     public Integer getGroup_id() {
         return group_id;
     }
