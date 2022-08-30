@@ -9,22 +9,25 @@ import javax.persistence.Table;
 public class Suggestions {
     @Id
     private String location;
-    private String user_id;
+    private Integer user_id;
     private String description;
-
     
+    public Integer getUser_id() {
+        return user_id;
+    }
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+   
+
+
     public String getLocation() {
         return location;
     }
     public void setLocation(String location) {
         this.location = location;
     }
-    public String getUser_id() {
-        return user_id;
-    }
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
+    
     public String getDescription() {
         return description;
     }
