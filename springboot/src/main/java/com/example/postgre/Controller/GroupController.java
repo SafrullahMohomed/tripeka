@@ -35,9 +35,9 @@ public class GroupController {
     }
 
     // get users groups
-    @GetMapping("/groups/{user_id}")
-    public Groups getGroupsById(@PathVariable Integer user_id) {
-        return groupRepository.findByUserId(user_id);
+    @GetMapping("/groups/{group_id}")
+    public Groups getGroupsById(@PathVariable Integer group_id) {
+        return groupRepository.findById(group_id).get();
     }
 
     @PostMapping("/groups")

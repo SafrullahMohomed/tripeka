@@ -51,7 +51,7 @@ export default function Users() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ p: 3 }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Travellers" {...a11yProps(0)} />
           <Tab label="Hotel Owners" {...a11yProps(1)} />
