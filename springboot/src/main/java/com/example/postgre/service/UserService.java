@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
         System.out.println("IN loadByUsername METHOD");
 
 
-        return new User(user.getEmail(),user.getHashedpswd(), Arrays.stream(user.getUserrole().split(","))
+        return new User(user.getUser_id().toString(),user.getHashedpswd(), Arrays.stream(user.getUserrole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList()));
 
