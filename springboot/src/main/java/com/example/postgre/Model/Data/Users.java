@@ -72,8 +72,12 @@ public class Users {
 	public void setUserrole(String userrole) {
 		this.userrole = userrole;
 	}
-	
-	
-	
-	
+
+	public Integer getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}
 }

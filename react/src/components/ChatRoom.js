@@ -564,7 +564,7 @@ var subscription = null;
 
 const MyChatRoom = () => {
   var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  console.log(decoded);
+  console.log(decoded.sub);
   const username = decoded.sub;
   const [textBoxMessage, settextBoxMessage] = useState();
   const [groupList, setgroupList] = useState([]);
