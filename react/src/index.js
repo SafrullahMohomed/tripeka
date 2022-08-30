@@ -25,6 +25,7 @@ import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
+import Users from "./components/Users";
 
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
@@ -53,7 +54,7 @@ root.render(
       <Route path="/register" element={<Register />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/blogwrite" element={<WriteBlog />} />
+      <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
       <Route path="/climate" element={<><Header /><Climate /></>} />
@@ -83,6 +84,7 @@ root.render(
       <Route path='/trip' element={<><Header /><Trip /></>}/>
       <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
+      <Route path='/users' element={<><Users /></>}/>
 
     </Routes>
   </Router>
