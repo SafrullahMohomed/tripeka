@@ -10,7 +10,6 @@ import java.util.List;
 import static jdk.nashorn.internal.objects.Global.println;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping(path = "/api/v1/budget")
 public class BudgetController {
 
