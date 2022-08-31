@@ -25,7 +25,7 @@ export function getAverageamountSpendedByGroupId(group_id = 1) {
 }
 
 //    individual amount total which each user spent
-export function getIndividualamountSpendedByGroupIdUserId(group_id = 1, user_id = 1) {
+export function getIndividualamountSpendedByGroupIdUserId(group_id, user_id) {
   return axios.get(
     ServerBaseUrl + "/budget/individualamount/" + group_id + "/" + user_id
   );
@@ -39,11 +39,12 @@ export function getDueamountSpendedByGroupIdUserId(group_id = 1, user_id = 1) {
 }
 
 // add budget to the database
-export function addBudget(group_id = 1, user_id = 1, budget) {
+export function addBudget(group_id, user_id, budget) {
+  console.log(budget)
   return axios.post(
-    ServerBaseUrl + "/budget/addbudget/1" + "/" + user_id,
-    budget,
-    { headers: authHeader() }
+    ServerBaseUrl + "/budget/addbudget/"+ group_id + "/" + user_id,
+    budget
+    //{ headers: authHeader() }
   );
 }
 
