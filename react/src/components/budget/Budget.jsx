@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import UserList from "./UserList";
-// import List2 from "./List2";
+
 import ExpenseList from "./ExpenseList";
-// import FormPart from "./FormPart";
-// import Chart from "./chart/ChartBudget";
-// import { Doughnut } from "react-chartjs-2";
-// import ChartBudget from "./chart/ChartBudget";
-// import Charts from './chart/Chart';
-// import SearchBar from "./SearchBar";
+
 import HoverBoxes from "./HoverBoxes";
-import Header from "../../../components/Header";
+import Header from "../Header";
 import {getAllUserBudgetByGroupId, getUserBudgetByGroupId, getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../../services/BudgetService";
 import jwt_decode from "jwt-decode";
 

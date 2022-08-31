@@ -1,8 +1,7 @@
 import React from "react";
-import "../styles/Budget.css";
-import ReactDOM from 'react-dom'
+import "../../styles/Budget.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBackspace, faTrash, faPencil } from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 
 const ListItem = (props) => {
