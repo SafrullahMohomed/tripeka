@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/Budget.css";
+import "../../../styles/Budget.css";
 
 const ListItemsAll = (props) => {
   return (
