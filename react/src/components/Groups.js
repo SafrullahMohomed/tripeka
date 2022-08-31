@@ -70,7 +70,7 @@ const Groups = () => {
       .then((response) => console.log(response));
 
     // after done submit, navigate to the group?
-    navigate('/trip');
+    // navigate('/trip');
   };
 
   return (
@@ -99,6 +99,7 @@ const Groups = () => {
                   <CircularProgress />
               </div> 
             }
+            
             { groups.map((group) => (
               <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
                 <Card sx={{ maxWidth: 345 }}>

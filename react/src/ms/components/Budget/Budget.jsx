@@ -11,6 +11,7 @@ import ExpenseList from "./ExpenseList";
 import HoverBoxes from "./HoverBoxes";
 import Header from "../../../components/Header";
 import {getAllUserBudgetByGroupId, getUserBudgetByGroupId, getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../../services/BudgetService";
+import jwt_decode from "jwt-decode";
 
 // import axios from "axios";
 
@@ -25,6 +26,9 @@ const Budget = () => {
   console.log(totalAmount);
   console.log(individualAmount);
   console.log(yourDue);
+
+  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  // console.log(decoded.sub);
 
   // initializing the state variable function
   const init = () => {
