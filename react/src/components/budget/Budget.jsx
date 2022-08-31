@@ -5,10 +5,10 @@ import ExpenseList from "./ExpenseList";
 
 import HoverBoxes from "./HoverBoxes";
 import Header from "../Header";
-import {getAllUserBudgetByGroupId, getUserBudgetByGroupId, getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../../services/BudgetService";
+import {getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../services/BudgetService";
+
 import jwt_decode from "jwt-decode";
 
-// import axios from "axios";
 
 const Budget = () => {
   const [yourAmount, setYourAmount] = useState(null);

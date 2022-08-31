@@ -10,7 +10,7 @@ import Popular from "./components/Popular";
 import ContactUs from "./components/ContactUs";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Budget from "./ms/components/Budget/Budget";
+import Budget from "./components/budget/Budget";
 import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
@@ -32,11 +32,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
 
 import ChatRoom from "./components/ChatRoom";
-import TempDashBoard from "./components/TempDashBoard";
+// import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
 
-import CreateGroupFloat from './components/CreateGroupFloat';
+// import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
 

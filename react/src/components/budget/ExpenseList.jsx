@@ -16,7 +16,7 @@ import {
   addBudget,
   getAllUserBudgetByGroupId,
   getUserBudgetByGroupIdAndUserId,
-} from "../../../services/BudgetService";
+} from "../../services/BudgetService";
 import jwt_decode from "jwt-decode";
 
 const ExpenseList = (props) => {
