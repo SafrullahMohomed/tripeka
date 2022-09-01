@@ -1,5 +1,6 @@
 package com.example.postgre.Model.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,31 +9,42 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@IdClass(UsersPK.class)
+// @IdClass(UsersPK.class)
 public class Users {
 
 	@Id
-	@Column(name = "email")
-	private String email;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer user_id;
 
+	@Column(name = "email")
+	private String email;
 	@Column(name = "username")
 	private String username;
 	@Column(name = "hashedpswd")
 	private String hashedpswd;
 	@Column(name = "userrole")
 	private String userrole;
-	
-	public Users() {}
-	
+
+	// @ManyToMany(cascade = CascadeType.ALL)
+	// @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	// private Groups groups;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+	Set<Groups> userGroups;
+
+	public Users() {
+	}
+
 	public Users(String email, String username, String hashedpswd, String userrole) {
 		super();
 		this.email = email;
