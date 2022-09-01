@@ -6,6 +6,15 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import com.example.postgre.Model.Requests.*;
+import com.example.postgre.Model.Response.*;
+import com.example.postgre.service.EmailSenderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import com.example.postgre.Model.Requests.*;
+import com.example.postgre.Model.Response.*;
+import com.example.postgre.service.EmailSenderService;
+import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +33,8 @@ import org.yaml.snakeyaml.util.EnumUtils;
 import com.example.postgre.Constants.RegisterableRoles;
 import com.example.postgre.Model.Data.Tokens;
 import com.example.postgre.Model.Data.Users;
-import com.example.postgre.Model.Requests.LoginRequest;
-import com.example.postgre.Model.Requests.RegisterRequest;
-import com.example.postgre.Model.Response.IntrospectResponse;
-import com.example.postgre.Model.Response.LoginResponse;
-import com.example.postgre.Model.Response.RegisterResponse;
+
+
 import com.example.postgre.repository.TokenRepository;
 import com.example.postgre.repository.UserRepository;
 
@@ -42,6 +48,12 @@ public class AuthController {
 
 	@Autowired
 	TokenRepository tokenRepository;
+
+	@Autowired
+	private EmailSenderService emailService;
+
+	@Value("${frontend.base.url}")
+	private String frontendBaseUrl;
 
 	@PostMapping(value = "/register")
 	public ResponseEntity<RegisterResponse> registerUser(@RequestBody @Valid RegisterRequest registerRequest) {
@@ -184,5 +196,82 @@ public class AuthController {
 					.body(new IntrospectResponse(null, null, null, false, e.toString()));
 		}
 	}
+
+	@PostMapping(value = "/forgot-password")
+	public ResponseEntity<ForgotPasswordResponse> forgotPassword(@RequestBody @Valid ForgotPasswordRequest forgotPasswordRequest) {
+
+		try {
+			// USER EXISTS
+			List<Users> registeredUsers = userRepository.findAll();
+			Users user = null;
+			for (Users users : registeredUsers) {
+				if (users.getEmail().equals(forgotPasswordRequest.getEmail())) {
+					user = users;
+					break;
+				}
+			}
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new ForgotPasswordResponse(false, "User Not Exists"));
+			}
+
+			//Email sending part
+			String url = frontendBaseUrl + "/resetpassword/" + forgotPasswordRequest.getEmail();
+			String body = "<h1>You requested the password reset</h1>Click <a href=" + url + ">this link</a> to reset password";
+			emailService.sendHtmlMail(
+					forgotPasswordRequest.getEmail(),
+					body,
+					"Your Password reset link of TripEka account"
+			);
+
+			// RETURN
+			return ResponseEntity.status(HttpStatus.OK).body(new ForgotPasswordResponse(true, "Email sent successfully"));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ForgotPasswordResponse(false, e.toString()));
+		}
+
+	}
+
+	@PutMapping(value = "/reset-password")
+	public ResponseEntity<ResetPasswordResponse> resetPassword(@RequestBody @Valid ResetPasswordRequest resetPasswordRequest) {
+
+		try {
+			//Check validation
+			if(!resetPasswordRequest.getHashedPass().equals(resetPasswordRequest.getHashedConfirmPass())){
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new ResetPasswordResponse(false, "Password Mismatch"));
+			}
+
+			// USER EXISTS
+			List<Users> registeredUsers = userRepository.findAll();
+			Users user = null;
+			for (Users users : registeredUsers) {
+				if (users.getEmail().equals(resetPasswordRequest.getEmail())) {
+					user = users;
+					break;
+				}
+			}
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new ResetPasswordResponse(false, "User Not Exists"));
+			}
+
+			//Updating new password
+			user.setHashedpswd(resetPasswordRequest.getHashedConfirmPass());
+			Users updatedUser = userRepository.save(user);
+
+			// RETURN
+			return ResponseEntity.status(HttpStatus.OK).body(new ResetPasswordResponse(true, "Password reset successfully"));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResetPasswordResponse(false, e.toString()));
+		}
+
+	}
+
+
 
 }

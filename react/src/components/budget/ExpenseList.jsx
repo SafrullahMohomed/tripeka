@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import ButtonSet from "./ButtonSet";
+import React, { useState, useEffect } from "react";
 import ListItem from "./ListItem";
 import ListItemsAll from "./AllExpenses/ListItemsAll";
-import FormPart from "./FormPart";
 
-import Fab from '@mui/material/Fab';
+import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -12,11 +10,23 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import CreditCardIcon from '@mui/icons-material/CreditCard';
+import CreditCardIcon from "@mui/icons-material/CreditCard";
 // import createBudget from "../services/BudgetService";
-
+import {
+  addBudget,
+  getAllUserBudgetByGroupId,
+  getUserBudgetByGroupIdAndUserId,
+} from "../../services/BudgetService";
+import jwt_decode from "jwt-decode";
 
 const ExpenseList = (props) => {
+  const [userListIndividual, setUserListIndividual] = useState([]);
+  const [userListAll, setUserListAll] = useState([]);
+  const [error, setError] = useState(null);
+
+  // get current users userId
+  const currentUserId = JSON.parse(localStorage.getItem("user")).userId;
+  // console.log(currentUserId);
 
   // Budget Modal
   const [open, setOpen] = useState(false);
@@ -24,26 +34,88 @@ const ExpenseList = (props) => {
   const handleClose = () => setOpen(false);
 
   // Budget Form
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
+  // to render initial list for use effect
+  const init = () => {
+    getUserBudgetByGroupIdAndUserId(1, currentUserId)
+      .then((response) => {
+        console.log("Printing Groups data", response.data);
+        setUserListIndividual(response.data);
+        setError(null);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+        setError(err.message);
+      });
+
+    // to get all user list for user effect
+    getAllUserBudgetByGroupId(1)
+      .then((response) => {
+        console.log("Printing Groups data", response.data);
+        setUserListAll(response.data);
+        setError(null);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+        setError(err.message);
+      });
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+  console.log("individual list", userListIndividual);
+  console.log("all list", userListAll);
+
   const budgetForm = (e) => {
     e.preventDefault();
-    // const budget = {name, amount, description}; console.log(budget);
-    // createBudget(name, amount, description)
-    //   .then((response) => console.log(response));
+
+    // var time = new Time().now();
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        ("0" + (today.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + today.getDate()).slice(-2);
+
+    var today = new Date(),
+      time =
+        ("0" + today.getHours()).slice(-2) +
+        ":" +
+        ("0" + today.getMinutes()).slice(-2) +
+        ":" +
+        ("0" + today.getSeconds()).slice(-2);
+
+    const amount_double = parseFloat(amount);
+    const budget = { title, amount: amount_double, description, date, time };
+    console.log(budget);
+    addBudget(1, 3, budget)
+      .then((response) => {
+        console.log("Printing Groups data", response.data);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+      });
   };
 
   const [isIndividual, setIsIndividual] = useState(true);
   return (
     <div className="Expenses flex flex-col">
-
       <div className="ButtonSet flex justify-between">
         {/* Add Budget Button */}
-        <Fab onClick={handleOpen} variant="extended" size="medium" color="primary" aria-label="add">
-            <CreditCardIcon sx={{ mr: 1 }} />
-            Add Amount
+        <Fab
+          onClick={handleOpen}
+          variant="extended"
+          size="medium"
+          color="primary"
+          aria-label="add"
+        >
+          <CreditCardIcon sx={{ mr: 1 }} />
+          Add Amount
         </Fab>
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button
@@ -73,41 +145,18 @@ const ExpenseList = (props) => {
               <div className="m-auto text-3xl my-4">My expenses</div>
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
                 <div className="list-container">
-                  <ListItem
-                    title="Breakfast"
-                    description="I payed for the breakfast in colombo"
-                    amount="5400.00"
-                    date="2019-02-09"
-                    time="10:34:23"
-                  />
-                  <ListItem
-                    title="Bus charge"
-                    description="bus charge from kandy to nuwareliya"
-                    amount="2400.00"
-                    date="2019-02-09"
-                    time="13:03:04"
-                  />
-                  <ListItem
-                    title="Lunch"
-                    description="I bought lunch from Taj hotel nuwareliya"
-                    amount="7800.00"
-                    date="2019-02-09"
-                    time="14:39:54"
-                  />
-                  <ListItem
-                    title="Evening snacks"
-                    description="Bought some snacks from the park"
-                    amount="2300.00"
-                    date="2019-02-09"
-                    time="18:00:03"
-                  />
-                  <ListItem
-                    title="Dinner"
-                    description="Bought the dinner from badulla"
-                    amount="5600.00"
-                    date="2019-02-09"
-                    time="20:23:43"
-                  />
+                  {userListIndividual.map((user) => (
+                    <ListItem
+                      key={user.budget_id}
+                      group={user.group_id}
+                      user={user.title}
+                      title={user.title}
+                      amount={user.amount}
+                      description={user.description}
+                      date={user.date}
+                      time={user.time}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -116,64 +165,27 @@ const ExpenseList = (props) => {
               <div className="m-auto text-3xl my-4">All expenses</div>
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
                 <div className="list-container">
-                  <ListItemsAll
-                    user="Mohamed"
-                    title="Train Ticket"
-                    description="Train ticket from colombo to kandy"
-                    amount="3200.00"
-                    date="2019-02-09"
-                    time="10:09:03"
-                  />
+                  {userListAll.map((user) => (
+                    <ListItemsAll
+                      key={user.budget_id}
+                      group={user.group_id}
+                      user={user.user_id}
+                      title={user.title}
+                      amount={user.amount}
+                      description={user.description}
+                      date={user.date}
+                      time={user.time}
+                    />
+                  ))}
 
-                  <ListItemsAll
-                    user="Johnathan"
-                    title="Tuk rent"
-                    description="Tuk charge from colombo to maradana"
-                    amount="560.00"
-                    date="2019-02-09"
-                    time="12:23:00"
-                  />
-
-                  <ListItemsAll
-                    user="Ahamed"
-                    title="Breakfast"
-                    description="I payed for the breakfast in colombo"
-                    amount="5400.00"
-                    date="2019-02-09"
-                    time="10:34:23"
-                  />
-                  <ListItemsAll
-                    user="Nisan"
-                    title="Bus charge"
-                    description="bus charge from kandy to nuwareliya"
-                    amount="2400.00"
-                    date="2019-02-09"
-                    time="13:03:04"
-                  />
-                  <ListItemsAll
-                    user="Kavishan"
-                    title="Lunch"
-                    description="I bought lunch from Taj hotel nuwareliya"
-                    amount="7800.00"
-                    date="2019-02-09"
-                    time="14:39:54"
-                  />
-                  <ListItemsAll
-                    user="Nimal"
-                    title="Evening snacks"
-                    description="Bought some snacks from the park"
-                    amount="2300.00"
-                    date="2019-02-09"
-                    time="18:00:03"
-                  />
-                  <ListItemsAll
+                  {/* <ListItemsAll
                     user="Kamal"
                     title="Dinner"
                     description="Bought the dinner from badulla"
                     amount="5600.00"
                     date="2019-02-09"
                     time="20:23:43"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -196,20 +208,24 @@ const ExpenseList = (props) => {
             {"Add Expense"}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText id="expense-name" sx={{ marginTop: 2 }}>
-            </DialogContentText>
+            <DialogContentText
+              id="expense-title"
+              sx={{ marginTop: 2 }}
+            ></DialogContentText>
             <TextField
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               autoFocus
               margin="dense"
-              id="expense-name"
-              label="Expense"
+              id="expense-title"
+              label="Title"
               type="text"
               fullWidth
               variant="standard"
             />
-            <DialogContentText id="expense-amount" sx={{ marginTop: 2 }}>
-            </DialogContentText>
+            <DialogContentText
+              id="expense-amount"
+              sx={{ marginTop: 2 }}
+            ></DialogContentText>
             <TextField
               onChange={(e) => setAmount(e.target.value)}
               autoFocus
@@ -220,8 +236,10 @@ const ExpenseList = (props) => {
               fullWidth
               variant="standard"
             />
-            <DialogContentText id="expense-description" sx={{ marginTop: 2 }}>
-            </DialogContentText>
+            <DialogContentText
+              id="expense-description"
+              sx={{ marginTop: 2 }}
+            ></DialogContentText>
             <TextField
               onChange={(e) => setDescription(e.target.value)}
               autoFocus
@@ -236,7 +254,7 @@ const ExpenseList = (props) => {
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
             <Button type="submit" onClick={handleClose} autoFocus>
-              Done
+              Add
             </Button>
           </DialogActions>
         </form>
@@ -246,3 +264,9 @@ const ExpenseList = (props) => {
 };
 
 export default ExpenseList;
+
+const params = new URLSearchParams(window.location.search);
+for (const param of params) {
+  console.log(param[0]);
+  console.log(param[1]);
+}

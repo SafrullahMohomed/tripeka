@@ -1,8 +1,7 @@
 import React from "react";
-import "../styles/Budget.css";
-import ReactDOM from 'react-dom'
+import "../../styles/Budget.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBackspace, faTrash, faPencil } from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 
 const ListItem = (props) => {
@@ -10,8 +9,8 @@ const ListItem = (props) => {
     <div className="mainclass-list flex mr-3 ml-3 items-center">
       <div className="list flex items-center bg-slate-200">
         <div className="first-column mr-5">
-          <div className="title font-medium text-xl">{props.title}</div>
-          <div className="description text-gray-700 ">{props.description}</div>
+          <div className="title font-medium text-lg">{props.title}</div>
+          <div className="description text-gray-700 text-sm">{props.description}</div>
         </div>
         <div className="second-column ">
           <div className="price font-medium ">Rs. {props.amount}</div>
