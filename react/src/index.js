@@ -81,7 +81,7 @@ root.render(
       <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
-      <Route path='/trip' element={<><Header /><Trip /></>}/>
+      <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
       <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
