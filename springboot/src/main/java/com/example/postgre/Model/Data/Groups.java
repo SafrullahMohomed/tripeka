@@ -1,7 +1,8 @@
 package com.example.postgre.Model.Data;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "groups")
+@Table
 public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +22,8 @@ public class Groups {
     private String location;
     private String owner;
 
-    // @ManyToMany(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    // private Users user;
+    @ManyToMany(mappedBy = "userGroups")
+    Set<Users> groupUsers;
 
     public Groups() {
 

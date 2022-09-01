@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate  } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -20,6 +20,7 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -34,6 +35,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 
+import { deleteGroup } from "../services/GroupsService";
+import { getGroup } from "../services/GroupsService";
 import Footer from "../components/Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -43,15 +46,40 @@ import map from '../assets/map.png'
 
 const options = [
     {name: 'Add People', action: 'handleOpenFM'},
-    {name: 'Edit Trip', action: ''},
-    {name: 'Delete Trip', action: 'handleDelete'},
+    {name: 'Edit Trip', action: 'handleOpenEM'},
     {name: 'Add description', action: ''},
-    {name: 'Group members', action: ''},
+    {name: 'Delete Trip', action: 'handleDelete'},
   ];
   
-const emails = ['kasun.withanage@gmail.com', 'ravindu.perera@gmail.com'];
+const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
 
 const Trip = () => {
+
+    //prints the variable and group_id value from URL
+    const { id } = useParams();
+    console.log(id);
+
+    const [trip, setTrip] = useState([]);
+
+    const init = () => {
+    
+        getGroup(id)
+          .then((response) => {
+            console.log("Printing Group data", response.data);
+            //setIsPending(false);
+            setTrip(response.data);
+            //setError(null);
+          })
+          .catch((err) => {
+            console.log("Something went wrong", err);
+            //setIsPending(false);
+            //setError(err.message);
+          });
+      };
+
+      useEffect(() => {
+        init();
+      }, []);
 
     // dropdown
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,38 +99,42 @@ const Trip = () => {
     };
     const handleCloseFM = () => setOpenFM(false);
 
+    // edit trip modal
+    const [openEM, setOpenEM] = useState(false);
+    const handleOpenEM = () => {
+        setOpenEM(true); 
+        setAnchorEl(null);
+    };
+    const handleCloseEM = () => setOpenEM(false);
+
     // delete trip
     const navigate = useNavigate();
 
     const handleDelete = () => {
-        // fetch('http://localhost:8000/groups/' + group_id, {
-        //     method: 'DELETE'
-        // }).then(() => {
-        //     // after Delete...
-        //     navigate('/groups'); 
-        // })
-
-        // after Delete...
-        navigate('/groups'); 
-      }
+         
+        deleteGroup(id)
+        .then(response => {
+            console.log('group deleted successfully', response.data);   
+            // after Delete...
+            navigate('/groups'); 
+        })
+        .catch(error => {
+            console.log('Something went wrong', error);
+        })
+    }
 
     const addHandler = (name) => {
         if (name === "handleOpenFM") {
             handleOpenFM();
         }
+        if (name === "handleOpenEM") {
+            handleOpenEM();
+        }
         if (name === "handleDelete") {
             handleDelete();
         }
         
-      }
-
-      //prints the variable and group_id value from URL
-      const params = new URLSearchParams(window.location.search);
-      for (const param of params) {
-        console.log(param[0]); //variable
-        console.log(param[1]); //value
-      }
-      
+      }      
 
     return ( 
         <>
@@ -122,8 +154,8 @@ const Trip = () => {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title="Dalanda Palace"
-                        subheader="by Kasun"
+                        title={trip.name}
+                        subheader={"By " + trip.owner}
                     />
                     <CardMedia
                         component="img"
@@ -167,6 +199,7 @@ const Trip = () => {
                         </Tooltip>
                     </CardActions>
                 </Card>
+
                 <Menu
                     id="long-menu"
                     MenuListProps={{
@@ -214,6 +247,7 @@ const Trip = () => {
 
             </div>
 
+
             {/* Add Friends Modal*/}
             <Dialog
                 aria-labelledby="dialog-title"
@@ -226,37 +260,77 @@ const Trip = () => {
                 </DialogTitle>
                 <DialogContent>
                 
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    id="email"
-                    label="Email"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                />
-                <DialogContentText id="dialog-description" sx={{marginY: 2}}>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        variant="filled"
+                    />
+                    <DialogContentText id="dialog-description" sx={{marginY: 2}}>
                         Group members
                     </DialogContentText>
-                    <List sx={{ p: 0 }}>
+                    <List sx={{ width: '100%', bgcolor: 'background.paper', height: 200 }} >
                         {emails.map((email) => (
                         <ListItem sx={{ pl: 0 }} key={email}>
-                        <ListItemAvatar>
-                            <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                            <PersonIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={email} />
+                            <ListItemAvatar>
+                                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                                    <PersonIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText id="switch-list-label-wifi" primary={email} />
+                            <IconButton edge="end" aria-label="delete">
+                                <DeleteIcon />
+                            </IconButton>
                         </ListItem>
                         ))}
                     </List>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleCloseFM}>Cancel</Button>
-                <Button onClick={handleCloseFM} autoFocus>Done</Button>
+                    <Button onClick={handleCloseFM}>Cancel</Button>
+                    <Button onClick={handleCloseFM} autoFocus>Done</Button>
                 </DialogActions>
             </Dialog>
 
+            {/* Edit Trip Modal*/}
+            <Dialog
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-description"
+                onClose={handleCloseEM}
+                open={openEM}
+            >
+                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
+                    {"Edit Trip Details"}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="title"
+                        label="Title"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <DialogContentText id="dialog-description" sx={{marginY: 2}}>
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="location"
+                        label="Add New Location"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseEM}>Cancel</Button>
+                    <Button onClick={handleCloseEM} autoFocus>Done</Button>
+                </DialogActions>
+            </Dialog>
 
             {/* map */}
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
