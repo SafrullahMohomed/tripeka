@@ -115,3 +115,56 @@ export async function getSignedRole() {
 
   return JSON.parse(localStorage.getItem("user")).role;
 }
+
+export async function forgotPassword(email) {
+  try {
+
+    const body = {
+      email: email
+    };
+
+    var response = await axios.post(ServerBaseUrl + "/auth/forgot-password", body);
+    if (response.status === 200) {
+      return {
+        success: response.data["success"],
+        msg: response.data["msg"]
+      };
+    } else {
+      throw "Unhandled Exception";
+    }
+  } catch (e) {
+    return {
+      success: false,
+      msg: e.toString()
+    };
+  }
+}
+
+export async function resetPassword(email, password, confirmPassword) {
+  try {
+
+    var md5 = require("md5");
+
+    const body = {
+      email: email,
+      hashedPass: md5(password),
+      hashedConfirmPass: md5(confirmPassword)
+    };
+
+    var response = await axios.put(ServerBaseUrl + "/auth/reset-password", body);
+    if (response.status === 200) {
+      return {
+        success: response.data["success"],
+        msg: response.data["msg"]
+      };
+    } else {
+      throw "Unhandled Exception";
+    }
+  } catch (e) {
+    return {
+      success: false,
+      msg: e.toString()
+    };
+  }
+}
+

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ButtonSet from "./ButtonSet";
 import ListItem from "./ListItem";
 import ListItemsAll from "./AllExpenses/ListItemsAll";
-import FormPart from "./FormPart";
 
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
@@ -18,12 +16,17 @@ import {
   addBudget,
   getAllUserBudgetByGroupId,
   getUserBudgetByGroupIdAndUserId,
-} from "../../../services/BudgetService";
+} from "../../services/BudgetService";
+import jwt_decode from "jwt-decode";
 
 const ExpenseList = (props) => {
   const [userListIndividual, setUserListIndividual] = useState([]);
   const [userListAll, setUserListAll] = useState([]);
   const [error, setError] = useState(null);
+
+  // get current users userId
+  const currentUserId = JSON.parse(localStorage.getItem("user")).userId;
+  // console.log(currentUserId);
 
   // Budget Modal
   const [open, setOpen] = useState(false);
@@ -37,7 +40,7 @@ const ExpenseList = (props) => {
 
   // to render initial list for use effect
   const init = () => {
-    getUserBudgetByGroupIdAndUserId(1, 1)
+    getUserBudgetByGroupIdAndUserId(1, currentUserId)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListIndividual(response.data);
@@ -75,17 +78,22 @@ const ExpenseList = (props) => {
       date =
         today.getFullYear() +
         "-" +
-        (today.getMonth() + 1) +
+        ("0" + (today.getMonth() + 1)).slice(-2) +
         "-" +
-        today.getDate();
+        ("0" + today.getDate()).slice(-2);
 
     var today = new Date(),
       time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        ("0" + today.getHours()).slice(-2) +
+        ":" +
+        ("0" + today.getMinutes()).slice(-2) +
+        ":" +
+        ("0" + today.getSeconds()).slice(-2);
 
-    const budget = { title, amount, description, date, time };
+    const amount_double = parseFloat(amount);
+    const budget = { title, amount: amount_double, description, date, time };
     console.log(budget);
-    addBudget(budget)
+    addBudget(1, 3, budget)
       .then((response) => {
         console.log("Printing Groups data", response.data);
       })
@@ -136,25 +144,19 @@ const ExpenseList = (props) => {
             <div>
               <div className="m-auto text-3xl my-4">My expenses</div>
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
-                
                 <div className="list-container">
-                {userListIndividual.map((user) => (
-                  <ListItem
-
-                    key={user.budget_id}
-                    group = {user.group_id}
-                    user={user.title} 
-                    title = {user.title}
-                    amount={user.amount}
-                    description={user.description}
-                    date={user.date}
-                    time={user.time}
-
+                  {userListIndividual.map((user) => (
+                    <ListItem
+                      key={user.budget_id}
+                      group={user.group_id}
+                      user={user.title}
+                      title={user.title}
+                      amount={user.amount}
+                      description={user.description}
+                      date={user.date}
+                      time={user.time}
                     />
-                ))}
-
-
-
+                  ))}
                 </div>
               </div>
             </div>
@@ -163,23 +165,19 @@ const ExpenseList = (props) => {
               <div className="m-auto text-3xl my-4">All expenses</div>
               <div className="lists-of-expenses overflow-y-scroll max-h-96">
                 <div className="list-container">
-
-                {userListAll.map((user) => (
-                  <ListItemsAll
-
-                    key={user.budget_id}
-                    group = {user.group_id}
-                    user={user.user_id}
-                    title = {user.title}
-                    amount={user.amount}
-                    description={user.description}
-                    date={user.date}
-                    time={user.time}
-
+                  {userListAll.map((user) => (
+                    <ListItemsAll
+                      key={user.budget_id}
+                      group={user.group_id}
+                      user={user.user_id}
+                      title={user.title}
+                      amount={user.amount}
+                      description={user.description}
+                      date={user.date}
+                      time={user.time}
                     />
-                ))}
-                  
-                  
+                  ))}
+
                   {/* <ListItemsAll
                     user="Kamal"
                     title="Dinner"
@@ -266,3 +264,9 @@ const ExpenseList = (props) => {
 };
 
 export default ExpenseList;
+
+const params = new URLSearchParams(window.location.search);
+for (const param of params) {
+  console.log(param[0]);
+  console.log(param[1]);
+}

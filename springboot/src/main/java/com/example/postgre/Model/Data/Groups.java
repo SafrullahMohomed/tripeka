@@ -1,24 +1,29 @@
 package com.example.postgre.Model.Data;
 
-import javax.persistence.Column;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "groups")
+@Table
 public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer group_id;
-
-    @Column(name = "name")
+    private Integer user_id;
     private String name;
-
-    @Column(name = "location")
     private String location;
+    private String owner;
+
+    @ManyToMany(mappedBy = "userGroups")
+    Set<Users> groupUsers;
 
     public Groups() {
 
@@ -30,6 +35,14 @@ public class Groups {
 
     public void setGroup_id(Integer group_id) {
         this.group_id = group_id;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public String getName() {
@@ -46,6 +59,14 @@ public class Groups {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
 }

@@ -23,16 +23,36 @@ import img2 from "../assets/dalada.jpg";
 import img3 from "../assets/jaffna.jpg";
 import img from "../assets/customer2.jpg";
 import { getGroups } from "../services/GroupsService";
+import { getGroupsById } from "../services/GroupsService";
 import createGroup from "../services/GroupsService";
+import jwt_decode from "jwt-decode";
 
+// userId from token
+var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+const user_id = decoded.sub;
+console.log(user_id);
 
 const Groups = () => {
+
+  // userId from token
+  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  const user_id = decoded.sub;
+  //console.log(user_id);
+
   // Display Groups
   const [groups, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   
   const init = () => {
+
+    // fetch('http://localhost:8080/groups/' + user_id, {
+    //     method: 'GET'
+    // }).then(() => {
+    //     // after Delete...
+    //     // navigate('/'); 
+    // })
+
     getGroups()
       .then((response) => {
         console.log("Printing Groups data", response.data);
@@ -59,18 +79,17 @@ const Groups = () => {
   // creating-group form
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [uid, setUID] = useState(user_id);
 
   const navigate = useNavigate();
 
   const createGroupFrom = (e) => {
     e.preventDefault();
     
-    // const group = {name, location}; console.log(group);
-    createGroup(name, location)
-      .then((response) => console.log(response));
-
-    // after done submit, navigate to the group?
-    navigate('/trip');
+    //const group = {name, location}; console.log(group);
+    createGroup(uid, name, location)
+      .then((response) => navigate("/trip/" + response.data.group_id));
+        
   };
 
   return (
@@ -99,12 +118,13 @@ const Groups = () => {
                   <CircularProgress />
               </div> 
             }
+            
             { groups.map((group) => (
               <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
                 <Card sx={{ maxWidth: 345 }}>
                   <CardActionArea
                     onClick={() => {
-                      window.location.href = "/trip";
+                      window.location.href = `/trip/${group.group_id}`;
                     }}
                   >
                     <CardMedia
@@ -118,7 +138,7 @@ const Groups = () => {
                         {group.name}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Created by : {group.location}
+                        Created by : {group.owner}
                       </Typography>
                     </CardContent>
                   </CardActionArea>

@@ -10,7 +10,7 @@ import Popular from "./components/Popular";
 import ContactUs from "./components/ContactUs";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Budget from "./ms/components/Budget/Budget";
+import Budget from "./components/budget/Budget";
 import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
@@ -25,6 +25,7 @@ import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
+import Users from "./components/Users";
 
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
@@ -32,11 +33,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
 
 import ChatRoom from "./components/ChatRoom";
-import TempDashBoard from "./components/TempDashBoard";
+// import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
 
-import CreateGroupFloat from './components/CreateGroupFloat';
+// import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
 
@@ -51,9 +52,8 @@ root.render(
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/resetpassword" element={<ResetPassword />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/blogwrite" element={<WriteBlog />} />
+      <Route path="/resetpassword/:email" element={<ResetPassword />} />      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
       <Route path="/climate" element={<><Header /><Climate /></>} />
@@ -80,9 +80,10 @@ root.render(
       <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
-      <Route path='/trip' element={<><Header /><Trip /></>}/>
+      <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
       <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
+      <Route path='/users' element={<><Users /></>}/>
 
     </Routes>
   </Router>
