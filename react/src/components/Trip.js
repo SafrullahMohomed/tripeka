@@ -19,8 +19,9 @@ import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import InputAdornment from '@mui/material/InputAdornment';
+import NearMeIcon from '@mui/icons-material/NearMe';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -35,6 +36,9 @@ import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
+import EditIcon from '@mui/icons-material/Edit';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import { deleteGroup } from "../services/GroupsService";
 import { getGroup, editTrip } from "../services/GroupsService";
@@ -46,11 +50,11 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    {icon: <CalendarMonthIcon />, name: 'Add People', action: 'handleOpenFM'},
-    {icon: <CalendarMonthIcon />, name: 'Edit Trip', action: 'handleOpenEM'},
-    {icon: <CalendarMonthIcon />, name: 'Add description', action: 'handleOpenDM'},
-    {icon: <CalendarMonthIcon />, name: 'Delete Trip', action: 'handleDelete'},
-    {icon: <CalendarMonthIcon />, name: 'Exit Group', action: ''},
+    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM'},
+    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM'},
+    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM'},
+    {icon: <DeleteIcon />, name: 'Delete Trip', action: 'handleDelete'},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: ''},
   ];
   
 const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
@@ -59,9 +63,10 @@ const Trip = () => {
 
     //prints the variable and group_id value from URL
     const { id } = useParams();
-    console.log(id);
+    //console.log(id);
 
     const [trip, setTrip] = useState([]);
+    //console.log(trip.name);
 
     const init = () => {
     
@@ -134,21 +139,24 @@ const Trip = () => {
     }
 
     // edit trip form
-    const [name, setName] = useState("");
-    const [location, setLocation] = useState("");
+    const [name, setName] = useState();
+    const [location, setLocation] = useState();
+    const [description, setDescription] = useState();
+    // console.log(trip)
 
     const editform = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         
-        editTrip(id, name, location)
+        editTrip(id, name, location, description)
             .then((response) => {
                 console.log('group Edited successfully', response.data);
             })
             .catch(error => {
                 console.log('Something went wrong', error);
             });      
-      };
+    };
 
+    // dropdown calls
     const addHandler = (name) => {
         if (name === "handleOpenFM") {
             handleOpenFM();
@@ -267,9 +275,12 @@ const Trip = () => {
                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     
                 >
+
+                 {/* if owner == user <MenuItem disabled> */}
                   {options.map((option) => (
-                    <MenuItem key={option.name} onClick={() => addHandler(option.action)}>
+                    <MenuItem key={option.name} onClick={() => addHandler(option.action)}> 
                         <Avatar>{option.icon}</Avatar>
+                        <div className="mr-2"></div>
                         {option.name}
                     </MenuItem>
                    ))}
@@ -331,11 +342,13 @@ const Trip = () => {
                 onClose={handleCloseDM}
                 open={openDM}
             >
+              <form onSubmit={editform}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                     {"Add Description"}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
+                        onChange={(e) => setDescription(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="description"
@@ -350,6 +363,7 @@ const Trip = () => {
                     <Button onClick={handleCloseDM}>Cancel</Button>
                     <Button type="submit" onClick={handleCloseDM} autoFocus>Done</Button>
                 </DialogActions>
+              </form>
             </Dialog>
 
             {/* Edit Trip Modal*/}
@@ -373,16 +387,24 @@ const Trip = () => {
                         type="text"
                         fullWidth
                         variant="standard"
+                        
                     />
                     <DialogContentText id="dialog-description" sx={{marginY: 2}}>
                     </DialogContentText>
-                    <TextField
+                    <TextField 
                         onChange={(e) => setLocation(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="location"
                         label="Add New Location"
                         type="text"
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <NearMeIcon />
+                              </InputAdornment>
+                            ),
+                          }}
                         fullWidth
                         variant="standard"
                     />
