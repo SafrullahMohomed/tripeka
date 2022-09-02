@@ -29,6 +29,12 @@ public class Groups {
 
     }
 
+    public Groups(String name, String location, String owner) {
+        this.name = name;
+        this.location = location;
+        this.owner = owner;
+    }
+
     public Integer getGroup_id() {
         return group_id;
     }

@@ -20,6 +20,7 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -36,7 +37,7 @@ import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 
 import { deleteGroup } from "../services/GroupsService";
-import { getGroup } from "../services/GroupsService";
+import { getGroup, editTrip } from "../services/GroupsService";
 import Footer from "../components/Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -45,10 +46,11 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    {name: 'Add People', action: 'handleOpenFM'},
-    {name: 'Edit Trip', action: 'handleOpenEM'},
-    {name: 'Add description', action: ''},
-    {name: 'Delete Trip', action: 'handleDelete'},
+    {icon: <CalendarMonthIcon />, name: 'Add People', action: 'handleOpenFM'},
+    {icon: <CalendarMonthIcon />, name: 'Edit Trip', action: 'handleOpenEM'},
+    {icon: <CalendarMonthIcon />, name: 'Add description', action: 'handleOpenDM'},
+    {icon: <CalendarMonthIcon />, name: 'Delete Trip', action: 'handleDelete'},
+    {icon: <CalendarMonthIcon />, name: 'Exit Group', action: ''},
   ];
   
 const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
@@ -107,6 +109,14 @@ const Trip = () => {
     };
     const handleCloseEM = () => setOpenEM(false);
 
+    // add descrption modal
+    const [openDM, setOpenDM] = useState(false);
+    const handleOpenDM = () => {
+        setOpenDM(true); 
+        setAnchorEl(null);
+    };
+    const handleCloseDM = () => setOpenDM(false);
+
     // delete trip
     const navigate = useNavigate();
 
@@ -123,12 +133,31 @@ const Trip = () => {
         })
     }
 
+    // edit trip form
+    const [name, setName] = useState("");
+    const [location, setLocation] = useState("");
+
+    const editform = (e) => {
+        //e.preventDefault();
+        
+        editTrip(id, name, location)
+            .then((response) => {
+                console.log('group Edited successfully', response.data);
+            })
+            .catch(error => {
+                console.log('Something went wrong', error);
+            });      
+      };
+
     const addHandler = (name) => {
         if (name === "handleOpenFM") {
             handleOpenFM();
         }
         if (name === "handleOpenEM") {
             handleOpenEM();
+        }
+        if (name === "handleOpenDM") {
+            handleOpenDM();
         }
         if (name === "handleDelete") {
             handleDelete();
@@ -240,6 +269,7 @@ const Trip = () => {
                 >
                   {options.map((option) => (
                     <MenuItem key={option.name} onClick={() => addHandler(option.action)}>
+                        <Avatar>{option.icon}</Avatar>
                         {option.name}
                     </MenuItem>
                    ))}
@@ -290,7 +320,35 @@ const Trip = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseFM}>Cancel</Button>
-                    <Button onClick={handleCloseFM} autoFocus>Done</Button>
+                    <Button type="submit" onClick={handleCloseFM} autoFocus>Done</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Add Description Modal*/}
+            <Dialog
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-description"
+                onClose={handleCloseDM}
+                open={openDM}
+            >
+                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
+                    {"Add Description"}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label="Description"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseDM} autoFocus>Done</Button>
                 </DialogActions>
             </Dialog>
 
@@ -300,12 +358,14 @@ const Trip = () => {
                 aria-describedby="dialog-description"
                 onClose={handleCloseEM}
                 open={openEM}
-            >
+            > 
+              <form onSubmit={editform}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                     {"Edit Trip Details"}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
+                        onChange={(e) => setName(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="title"
@@ -317,6 +377,7 @@ const Trip = () => {
                     <DialogContentText id="dialog-description" sx={{marginY: 2}}>
                     </DialogContentText>
                     <TextField
+                        onChange={(e) => setLocation(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="location"
@@ -328,8 +389,9 @@ const Trip = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseEM}>Cancel</Button>
-                    <Button onClick={handleCloseEM} autoFocus>Done</Button>
+                    <Button type="submit" onClick={handleCloseEM} autoFocus>Done</Button>
                 </DialogActions>
+              </form>
             </Dialog>
 
             {/* map */}

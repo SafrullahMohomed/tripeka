@@ -51,9 +51,17 @@ public class GroupController {
         return groupRepository.save(groups);
     }
 
-    @PutMapping("/groups/{group_id}")
-    public Groups updateGroup(@RequestBody Groups groups) {
-        return groupRepository.save(groups);
+    @PutMapping("/trip/{group_id}")
+    public Groups updateGroup(@RequestBody Groups groups, @PathVariable Integer group_id) {
+        return groupRepository.findById(group_id)
+                .map(group -> {
+                    group.setName(groups.getName());
+                    group.setLocation(groups.getLocation());
+                    return groupRepository.save(group);
+                })
+                .orElseGet(() -> {
+                    return groupRepository.save(groups);
+                });
     }
 
     @DeleteMapping("/groups/{group_id}")

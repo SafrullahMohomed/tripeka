@@ -552,8 +552,10 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SendIcon from "@mui/icons-material/Send";
+import Avatar from '@mui/material/Avatar';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
 import "../styles/chat.css";
@@ -566,6 +568,7 @@ const MyChatRoom = () => {
   var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
   console.log(decoded.sub);
   const username = decoded.sub;
+
   const [textBoxMessage, settextBoxMessage] = useState();
   const [groupList, setgroupList] = useState([]);
   const [currentGroup, setcurrentGroup] = useState(null);
@@ -740,10 +743,15 @@ const MyChatRoom = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="absolute bottom-0 top-0 right-0 left-0 flex flex-row m-10 max-h-screen bg-gray-200">
       <div className="hidden lg:flex flex-col basis-1/3  max-h-screen border-r-2 border-gray-500 bg-gray-200">
-        <ArrowBackIcon sx={{ margin: 1 }} />
+        <Avatar>
+          <ArrowBackIcon sx={{ margin: 1 }}/>
+        </Avatar> 
+        
         {/* Search Bar */}
         <div className="mt-6 ml-3 mr-1">
           <label className="relative block">
