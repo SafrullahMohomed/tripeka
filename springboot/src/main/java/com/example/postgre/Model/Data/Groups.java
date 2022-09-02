@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class Groups {
@@ -21,8 +23,8 @@ public class Groups {
     private String description;
     private String owner;
 
-    @ManyToMany(mappedBy = "userGroups")
-    Set<Users> groupUsers;
+    @ManyToMany(mappedBy = "groups")
+    Set<Users> users;
 
     public Groups() {
 
@@ -81,6 +83,14 @@ public class Groups {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public Set<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<Users> users) {
+        this.users = users;
     }
 
 }

@@ -12,5 +12,5 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	Users findByEmail(String email);
 
 	// @Query(value = "from Groups where group_id = ?1")
-	// List<Users> findByGroupId(Integer group_id);
+	// Users findUsersByGroupId(Integer group_id);
 }

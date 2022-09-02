@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.postgre.Model.Data.Users;
+import com.example.postgre.repository.GroupRepository;
 import com.example.postgre.repository.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,6 +22,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // get users of a group
+    @Autowired
+    private GroupRepository groupRepository;
 
+    // get users of a group
+    // @GetMapping("/trip/{group_id}")
+    // public Users getGroupMembers(@PathVariable("group_id") Integer group_id) {
+    // return userRepository.findByGroupId(group_id);
+    // }
 }

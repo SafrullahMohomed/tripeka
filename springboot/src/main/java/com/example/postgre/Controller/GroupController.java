@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 //import com.example.postgre.Execption.ResourceNotFoundException;
 import com.example.postgre.Model.Data.Groups;
+import com.example.postgre.Model.Data.Users;
 import com.example.postgre.repository.GroupRepository;
+import com.example.postgre.repository.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -27,6 +29,9 @@ public class GroupController {
 
     @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     // get all groups for testing
     @GetMapping("/groups")
@@ -45,6 +50,11 @@ public class GroupController {
     public Optional<Groups> getGroup(@PathVariable("group_id") Integer group_id) {
         return groupRepository.findById(group_id);
     }
+
+    // @GetMapping("/trip/{group_id}/users")
+    // public Users getUsers(@PathVariable("group_id") Integer group_id) {
+    // return userRepository.findUsersByGroupId(group_id);
+    // }
 
     @PostMapping("/groups/{user_id}")
     public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer user_id) {
