@@ -50,23 +50,25 @@ export default function Users() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ p: 3 }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Travellers" {...a11yProps(0)} />
-          <Tab label="Hotel Owners" {...a11yProps(1)} />
-          <Tab label="Tour Guides" {...a11yProps(2)} />
-        </Tabs>
+    <section class="w-full text-gray-600 body-font mt-20">
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ p: 3 }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Travellers" {...a11yProps(0)} />
+            <Tab label="Hotel Owners" {...a11yProps(1)} />
+            <Tab label="Tour Guides" {...a11yProps(2)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <Travellers />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <HotelOwners />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Guides />
+        </TabPanel>
       </Box>
-      <TabPanel value={value} index={0}>
-        <Travellers />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <HotelOwners />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Guides />
-      </TabPanel>
-    </Box>
+    </section>
   );
 }
