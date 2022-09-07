@@ -1,5 +1,9 @@
 package com.example.postgre.Model;
 
+import com.example.postgre.Model.Data.Groups;
+import com.example.postgre.Model.Data.Users;
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,18 +26,34 @@ public class Budget{
             generator = "budget_sequence"
     )
     private Integer budget_id;
-    private Integer group_id;
-    private Integer user_id;
+    @ManyToOne(
+            cascade = CascadeType.MERGE
+    )
+    @JoinColumn(
+            name = "group_id",
+            referencedColumnName = "group_id"
+    )
+    private Groups groups;
+    @ManyToOne(
+            cascade = CascadeType.MERGE
+    )
+
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "user_id"
+    )
+
+    private Users users;
     private LocalDate date;
     private LocalTime time;
     private String title;
     private String description;
     private Double amount;
 
-    public Budget(Integer budget_id, Integer group_id, Integer user_id, LocalDate date, LocalTime time, String title, String description, Double amount) {
+    public Budget(Integer budget_id, Groups groups, Users users, LocalDate date, LocalTime time, String title, String description, Double amount) {
         this.budget_id = budget_id;
-        this.group_id = group_id;
-        this.user_id = user_id;
+        this.groups = groups;
+        this.users = users;
         this.date = date;
         this.time = time;
         this.title = title;
@@ -52,20 +72,20 @@ public class Budget{
         this.budget_id = budget_id;
     }
 
-    public Integer getGroup_id() {
-        return group_id;
+    public Groups getGroups() {
+        return groups;
     }
 
-    public void setGroup_id(Integer group_id) {
-        this.group_id = group_id;
+    public void setGroups(Groups groups) {
+        this.groups = groups;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public LocalDate getDate() {

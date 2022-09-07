@@ -1,11 +1,21 @@
 package com.example.postgre.Model.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "locations")
 public class Locations {
+
+    @Id
+    @SequenceGenerator(
+            name = "location_sequence",
+            sequenceName = "location_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "location_sequence"
+    )
     private String name;
     private String location;
     private String image_url;

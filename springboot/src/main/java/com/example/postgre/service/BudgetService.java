@@ -29,12 +29,8 @@ public class BudgetService {
     }
 
     //
-    public void addBudgetTo(Integer group_id, Integer user_id, Budget budget) {
-        budget.setGroup_id(group_id);
-        budget.setUser_id(user_id);
-        // budget.setDate(LocalDate.now());
-        // budget.setTime(LocalTime.now());
-        // println(budget);
+    public void addBudgetTo(Budget budget) {
+
         budgetRepository.save(budget);
     }
 
