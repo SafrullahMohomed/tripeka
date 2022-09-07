@@ -56,14 +56,14 @@ root.render(
       <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
-      <Route path="/climate" element={<><Header /><Climate /></>} />
+      <Route path="/climate/:id" element={<><Header /><Climate /></>} />
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
       <Route path='/Hotels' element={<Test/>}/>
       <Route path="/ms" element={<Budget />} />
 
-      <Route path="/budget" element={<Budget />} />
-      <Route path="/groupChat" element={<ChatRoom />} />
+      <Route path="/budget/:id" element={<Budget />} />
+      <Route path="/groupChat/:id" element={<ChatRoom />} />
 
       <Route path="/hotel" element={
           <>
@@ -81,7 +81,7 @@ root.render(
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
-      <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
+      <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
 

@@ -43,6 +43,7 @@ import img1 from '../assets/customer1.jpg'
 import img2 from '../assets/customer2.jpg'
 import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
+import { groupIntersectingEntries } from "@fullcalendar/react";
 
 const options = [
     {name: 'Add People', action: 'handleOpenFM'},
@@ -179,22 +180,22 @@ const Trip = () => {
                     <CardActions disableSpacing>
                         <Tooltip title="Chat">
                             <IconButton aria-label="group chat">
-                                <ChatBubbleRoundedIcon onClick = {() => {window.location.href = '/groupChat'}}/>
+                                <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Budget">
                             <IconButton aria-label="budget">
-                                <PaidOutlinedIcon onClick = {() => {window.location.href = '/budget'}}/>
+                                <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Weather">
                             <IconButton aria-label="climate">
-                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = '/climate'}}/>
+                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Gallery">
                             <IconButton aria-label="gallery">
-                                <CameraAltIcon onClick = {() => {window.location.href = '/gallery'}}/>
+                                <CameraAltIcon onClick = {() => {window.location.href = `/gallery/${id}`}}/>
                             </IconButton>
                         </Tooltip>
                     </CardActions>

@@ -1,6 +1,7 @@
 package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
+import com.example.postgre.Model.Data.Users;
 import com.example.postgre.service.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +39,9 @@ public class BudgetController {
     }
 
     // to add a new budget
-    @PostMapping(path = "/addbudget/{group_id}/{user_id}")
-    public void addBudgetTo(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id,
-            @RequestBody Budget budget) {
-        budgetService.addBudgetTo(group_id, user_id, budget);
+    @PostMapping(path = "/addbudget")
+    public void addBudgetTo(@RequestBody Budget budget) {
+        budgetService.addBudgetTo(budget);
     }
 
     // to get total amount which the group is spended

@@ -28,9 +28,9 @@ import createGroup from "../services/GroupsService";
 import jwt_decode from "jwt-decode";
 
 // userId from token
-var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-const user_id = decoded.sub;
-console.log(user_id);
+// var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+// const user_id = decoded.sub;
+// console.log(user_id);
 
 const Groups = () => {
 

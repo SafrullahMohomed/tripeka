@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import UserList from "./UserList";
 
 import ExpenseList from "./ExpenseList";
@@ -8,6 +8,7 @@ import Header from "../Header";
 import {getTotalamountSpendedByGroupId, getAverageamountSpendedByGroupId, getIndividualamountSpendedByGroupIdUserId, getDueamountSpendedByGroupIdUserId} from "../../services/BudgetService";
 
 import jwt_decode from "jwt-decode";
+
 
 
 const Budget = () => {
@@ -21,6 +22,11 @@ const Budget = () => {
   console.log(totalAmount);
   console.log(individualAmount);
   console.log(yourDue);
+
+  // to get the group id
+
+  const {id} = useParams();
+  console.log(id);
 
   var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
   // console.log(decoded.sub);
@@ -133,7 +139,7 @@ const Budget = () => {
 
       {/* <div className="second-row"><ChartBudget></ChartBudget></div> */}
       <div className="third-row mx-5 mb-20">
-        <ExpenseList className=""></ExpenseList>
+        <ExpenseList group_id = {id} user_id = {decoded} className=""></ExpenseList>
       </div>
     </div>
   );
