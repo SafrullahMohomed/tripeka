@@ -34,11 +34,6 @@ console.log(user_id);
 
 const Groups = () => {
 
-  // userId from token
-  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  const user_id = decoded.sub;
-  //console.log(user_id);
-
   // Display Groups
   const [groups, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
@@ -91,7 +86,7 @@ const Groups = () => {
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
-
+  
   return (
     <section class="text-gray-600 body-font mb-10">
 

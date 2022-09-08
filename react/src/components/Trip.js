@@ -177,7 +177,7 @@ const Trip = () => {
         <>
         <div className="flex flex-wrap px-10 mb-10">
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
-                <Card>
+                <Card sx={{width: 1}}>
                     <CardHeader
                         action={
                             <IconButton
@@ -210,7 +210,7 @@ const Trip = () => {
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary">
-                            The Royal Palace of Kandy, located to the north of the Temple of the Tooth in Kandy, was the royal residence of the Sri Lankan monarchy of the Kingdom of Kandy in Sri Lanka. The last king to reside in it was King Sri Vikrama Rajasinha.
+                            The Royal Palace of Kandy.
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
@@ -427,7 +427,7 @@ const Trip = () => {
             </Dialog>
 
             {/* map */}
-            <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
+            <div class="p-1 lg:w-2/3 md:w-1/2 w-full bg-gray-100">
                 <img src={map} alt="" />
             </div>
         </div>
