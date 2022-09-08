@@ -330,8 +330,8 @@ export default function MiniDrawer() {
             </IconButton>
           </DrawerHeader>
           <List>
-            {['Home', 'Starred', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text) => (
-              <ListItem key={text} sx={{ display: 'block',  }}>
+            {['Home', 'Users', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text) => (
+              <ListItem key={text} sx={{ display: 'block',}}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -347,7 +347,7 @@ export default function MiniDrawer() {
                     {
                       if (text === 'Home') {
                         setHome(<AdminDash />)
-                      } if (text === 'Starred') {
+                      } if (text === 'Users') {
                         setHome(<Users />)
                       } if (text === 'Send email') {
                         setHome(<AdminDash />)

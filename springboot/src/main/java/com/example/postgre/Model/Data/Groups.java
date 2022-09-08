@@ -1,8 +1,11 @@
 package com.example.postgre.Model.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +26,15 @@ public class Groups {
     private String description;
     private String owner;
 
-    @ManyToMany(mappedBy = "groups")
-    Set<Users> users;
+    // @ManyToMany(mappedBy = "groups")
+    // Set<Users> users;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, mappedBy = "groups")
+    @JsonIgnore
+    private Set<Users> users = new HashSet<>();
 
     public Groups() {
 

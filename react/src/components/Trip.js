@@ -50,11 +50,11 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 
 const options = [
-    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM'},
-    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM'},
-    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM'},
-    {icon: <DeleteIcon />, name: 'Delete Trip', action: 'handleDelete'},
-    {icon: <ExitToAppIcon />, name: 'Exit Group', action: ''},
+    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', visibility: ''},
+    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM', visibility: ''},
+    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM', visibility: ''},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', visibility: ''},
+    {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', visibility: ''},
   ];
   
 const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
@@ -277,12 +277,22 @@ const Trip = () => {
                 >
 
                  {/* if owner == user <MenuItem disabled> */}
+                 {/* Dropdown */}
                   {options.map((option) => (
-                    <MenuItem key={option.name} onClick={() => addHandler(option.action)}> 
-                        <Avatar>{option.icon}</Avatar>
-                        <div className="mr-2"></div>
-                        {option.name}
-                    </MenuItem>
+                    <div key={option.name}>
+                        {option.name === 'Delete Group' ? 
+                            <MenuItem onClick={() => addHandler(option.action)} sx={{color: 'error.main'}} disabled> 
+                                <Avatar sx={{bgcolor: 'error.main'}} >{option.icon}</Avatar>
+                                <div className="mr-2"></div>
+                                {option.name}
+                            </MenuItem> : 
+                            <MenuItem onClick={() => addHandler(option.action)}> 
+                                <Avatar>{option.icon}</Avatar>
+                                <div className="mr-2"></div>
+                                {option.name}
+                            </MenuItem>
+                        }
+                    </div>
                    ))}
                 </Menu>
 

@@ -104,7 +104,7 @@ const Groups = () => {
         </div>*/}
 
       {/*Displaying Group Cards */}
-      <div class="container px-5 py-5 mx-auto">
+      <div class="container px-32 py-5 mx-auto">
         <div class="w-full mb-8 pl-2">Your Trip Groups</div>
           <div class="flex flex-wrap -m-2">
 

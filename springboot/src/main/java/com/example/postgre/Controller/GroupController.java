@@ -52,8 +52,10 @@ public class GroupController {
     }
 
     // @GetMapping("/trip/{group_id}/users")
-    // public Users getUsers(@PathVariable("group_id") Integer group_id) {
-    // return userRepository.findUsersByGroupId(group_id);
+    // public ResponseEntity<Users> getUsersByGroupId(@PathVariable("group_id")
+    // Integer group_id) {
+    // Users users = userRepository.findUsersByGroupId(group_id);
+    // return new ResponseEntity<>(users, HttpStatus.OK);
     // }
 
     @PostMapping("/groups/{user_id}")
