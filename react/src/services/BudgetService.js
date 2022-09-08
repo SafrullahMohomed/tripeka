@@ -4,9 +4,13 @@ import authHeader from "../jwtAuthServices/auth-header";
 import jwt_decode from "jwt-decode";
 
 // get all users budget in a specific group
+if(localStorage.getItem("user").jwtToken !== null){
 
-var currentUserId = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  console.log(currentUserId.sub);
+  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  const currentUserId = decoded.sub;
+  console.log(decoded.sub);
+}
+
 
 
 export function getAllUserBudgetByGroupId(group_id) {
