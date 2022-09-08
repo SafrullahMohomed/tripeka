@@ -64,7 +64,7 @@ root.render(
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
 
-      <Route path="/budget/:id" element={<Budget />} />
+      <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
 
       <Route path="/hotel" element={

@@ -11,22 +11,27 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
+import jwt_decode from "jwt-decode";
+
 // import createBudget from "../services/BudgetService";
 import {
   addBudget,
   getAllUserBudgetByGroupId,
   getUserBudgetByGroupIdAndUserId,
 } from "../../services/BudgetService";
-import jwt_decode from "jwt-decode";
 
 const ExpenseList = (props) => {
+
+  
   const [userListIndividual, setUserListIndividual] = useState([]);
   const [userListAll, setUserListAll] = useState([]);
   const [error, setError] = useState(null);
 
   // get current users userId
-  const currentUserId = JSON.parse(localStorage.getItem("user")).userId;
-  // console.log(currentUserId);
+  var currentUserId = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  console.log(currentUserId.sub);
+
+ 
 
   // Budget Modal
   const [open, setOpen] = useState(false);
@@ -38,9 +43,12 @@ const ExpenseList = (props) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
+  const amount_double = parseFloat(amount);
+  const group_id_int = parseInt(props.group_id);
+  const user_id_int = parseInt(currentUserId.sub);
   // to render initial list for use effect
   const init = () => {
-    getUserBudgetByGroupIdAndUserId(1, currentUserId)
+    getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListIndividual(response.data);
@@ -52,7 +60,7 @@ const ExpenseList = (props) => {
       });
 
     // to get all user list for user effect
-    getAllUserBudgetByGroupId(1)
+    getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListAll(response.data);
@@ -90,10 +98,11 @@ const ExpenseList = (props) => {
         ":" +
         ("0" + today.getSeconds()).slice(-2);
 
-    const amount_double = parseFloat(amount);
-    const budget = { title, amount: amount_double, users:{user_id : currentUserId}, groups:{group_id : props.group_id},  description, date, time };
+    
+
+    const budget = { title, amount: amount_double, users:{user_id : user_id_int}, groups:{group_id : group_id_int},  description, date, time };
     console.log(budget);
-    addBudget(1, 3, budget)
+    addBudget(budget)
       .then((response) => {
         console.log("Printing Groups data", response.data);
       })

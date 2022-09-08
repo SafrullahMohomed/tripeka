@@ -23,7 +23,7 @@ public class BudgetService {
         return budgetRepository.findAll();
     }
 
-    //// to get the users from a particular group
+    // to get the users from a particular group
     public List<Budget> getBudgetForAGroup(Integer group_id) {
         return budgetRepository.findAllByGroupIds(group_id);
     }
