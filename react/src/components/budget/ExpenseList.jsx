@@ -81,6 +81,7 @@ const ExpenseList = (props) => {
   const budgetForm = (e) => {
     e.preventDefault();
 
+
     // var time = new Time().now();
     var today = new Date(),
       date =
@@ -105,6 +106,7 @@ const ExpenseList = (props) => {
     addBudget(budget)
       .then((response) => {
         console.log("Printing Groups data", response.data);
+        init();
       })
       .catch((err) => {
         console.log("Something went wrong", err);

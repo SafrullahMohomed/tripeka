@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/budget")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BudgetController {
 
     private final BudgetService budgetService;
