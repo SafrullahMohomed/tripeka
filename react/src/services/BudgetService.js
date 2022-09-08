@@ -5,11 +5,9 @@ import jwt_decode from "jwt-decode";
 
 // get all users budget in a specific group
 
-  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  const currentUserId = decoded.sub;
-  console.log(decoded.sub);
-
-
+  // var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  // const currentUserId = decoded.sub;
+  // console.log(decoded.sub);
 
 
 export function getAllUserBudgetByGroupId(group_id) {
