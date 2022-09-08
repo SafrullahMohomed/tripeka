@@ -135,7 +135,7 @@ const Register = () => {
                   </div>
 
                   <div class="mb-6">
-                    <select
+                    <select 
                       {...register("role")}
                       id="role"
                       name="role"

@@ -14,6 +14,7 @@ import Budget from "./components/budget/Budget";
 import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
+import TypePage from "./pages/TypePage";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -61,6 +62,7 @@ root.render(
       <Route path="/help" element={<Help />} />
       <Route path='/Hotels' element={<Test/>}/>
       <Route path="/ms" element={<Budget />} />
+      <Route path="/registerType" element={<TypePage />} />
 
       <Route path="/budget/:id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
