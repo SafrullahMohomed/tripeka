@@ -47,8 +47,8 @@ const ExpenseList = (props) => {
   const group_id_int = parseInt(props.group_id);
   const user_id_int = parseInt(currentUserId.sub);
   // to render initial list for use effect
-  const init = () => {
-    getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
+  const init = async() => {
+    await getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListIndividual(response.data);
@@ -60,7 +60,7 @@ const ExpenseList = (props) => {
       });
 
     // to get all user list for user effect
-    getAllUserBudgetByGroupId(group_id_int)
+    await  getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListAll(response.data);
@@ -180,7 +180,7 @@ const ExpenseList = (props) => {
                     <ListItemsAll
                       key={user.budget_id}
                       group={user.group_id}
-                      user={user.user_id}
+                      user={user.users.lastname}
                       title={user.title}
                       amount={user.amount}
                       description={user.description}
