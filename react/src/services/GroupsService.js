@@ -19,9 +19,9 @@ export function editTrip(group_id, name, location, description) {
   return axios.put(ServerBaseUrl + `/trip/${group_id}`, { group_id, name, location, description }, { headers: authHeader() });
 }
 
-export default function createGroup(user_id, name, location) {
-  console.log(user_id +" "+ name +" "+ location);
-  return axios.post(ServerBaseUrl + "/groups/" + user_id, { user_id, name, location }, { headers: authHeader() });
+export default function createGroup(user_id, name, location, url) {
+  console.log(user_id +" "+ name +" "+ location +" "+ url);
+  return axios.post(ServerBaseUrl + "/groups/" + user_id, { user_id, name, location, url }, { headers: authHeader() });
 }
 
 export function deleteGroup(group_id) {

@@ -25,6 +25,7 @@ public class Groups {
     private String location;
     private String description;
     private String owner;
+    private String url;
 
     // @ManyToMany(mappedBy = "groups")
     // Set<Users> users;
@@ -40,11 +41,12 @@ public class Groups {
 
     }
 
-    public Groups(String name, String location, String owner, String description) {
+    public Groups(String name, String location, String owner, String description, String url) {
         this.name = name;
         this.location = location;
         this.description = description;
         this.owner = owner;
+        this.url = url;
     }
 
     public Integer getGroup_id() {
@@ -93,6 +95,14 @@ public class Groups {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Set<Users> getUsers() {

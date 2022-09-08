@@ -33,9 +33,4 @@ public class UserController {
     // return userRepository.findByEmail(email).getGroups();
     // }
 
-    // get users of a group
-    // @GetMapping("/trip/{group_id}")
-    // public Users getGroupMembers(@PathVariable("group_id") Integer group_id) {
-    // return userRepository.findUsersByGroupId(group_id).get;
-    // }
 }
