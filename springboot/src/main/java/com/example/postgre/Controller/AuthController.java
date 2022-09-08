@@ -83,7 +83,7 @@ public class AuthController {
 			}
 
 			// SAVE USER
-			Users newUser = new Users(registerRequest.getEmail(), registerRequest.getUserName(),
+			Users newUser = new Users(registerRequest.getEmail(), registerRequest.getUserName(), registerRequest.getFirstname(), registerRequest.getLastname(),
 					registerRequest.getHashedPswd(), "ROLE_" + registerRequest.getRole());
 			Users afterSaved = userRepository.save(newUser);
 

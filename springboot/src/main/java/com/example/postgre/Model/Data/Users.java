@@ -29,6 +29,12 @@ public class Users {
 	private String email;
 	@Column(name = "username")
 	private String username;
+
+	@Column(name = "firstname")
+	private String firstname;
+
+	@Column(name = "lastname")
+	private String lastname;
 	@Column(name = "hashedpswd")
 	private String hashedpswd;
 	@Column(name = "userrole")
@@ -45,12 +51,14 @@ public class Users {
 	public Users() {
 	}
 
-	public Users(String email, String username, String hashedpswd, String userrole) {
+	public Users(String email, String username, String firstname, String lastname, String hashedpswd, String userrole) {
 		super();
 		this.email = email;
 		this.username = username;
 		this.hashedpswd = hashedpswd;
 		this.userrole = userrole;
+		this.firstname = firstname;
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -67,6 +75,22 @@ public class Users {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getHashedpswd() {
