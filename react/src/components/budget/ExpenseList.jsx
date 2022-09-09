@@ -91,7 +91,7 @@ const ExpenseList = (props) => {
         ("0" + today.getSeconds()).slice(-2);
 
     const amount_double = parseFloat(amount);
-    const budget = { title, amount: amount_double, description, date, time };
+    const budget = { title, amount: amount_double, users:{user_id : currentUserId}, groups:{group_id : props.group_id},  description, date, time };
     console.log(budget);
     addBudget(1, 3, budget)
       .then((response) => {

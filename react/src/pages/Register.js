@@ -14,6 +14,8 @@ function onSubmit(data) {
   console.log(data);
   register(
     data["email"],
+    data["firstname"],
+    data["lastname"],
     data["username"],
     data["role"],
     data["password"]
@@ -66,6 +68,36 @@ const Register = () => {
                     </h2>
                   </div>
                   <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"></div>
+                  
+                  <div class="mb-6">
+                    <input
+                      type="text"
+                      name="firstname"
+                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-emerald-600 focus:outline-none"
+                      id="exampleFormControlInput4"
+                      {...register("firstname", { required: true })}
+                      placeholder="First Name"
+                    />
+                    <error className="text-red-600">
+                      {errors.username?.type === "required" &&
+                        "First Name is required"}
+                    </error>
+                  </div>
+
+                  <div class="mb-6">
+                    <input
+                      type="text"
+                      name="lastname"
+                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-emerald-600 focus:outline-none"
+                      id="exampleFormControlInput3"
+                      {...register("lastname", { required: true })}
+                      placeholder="Last name"
+                    />
+                    <error className="text-red-600">
+                      {errors.username?.type === "required" &&
+                        "Last Name is required"}
+                    </error>
+                  </div>
 
                   <div class="mb-6">
                     <input
@@ -103,7 +135,7 @@ const Register = () => {
                   </div>
 
                   <div class="mb-6">
-                    <select
+                    <select 
                       {...register("role")}
                       id="role"
                       name="role"
@@ -200,6 +232,9 @@ const Register = () => {
           </div>
         </section>
       </div>
+      <br/>
+      <br/>
+      <br/>
       <Footer></Footer>
     </div>
   );

@@ -8,7 +8,7 @@ import { forgotPassword } from "../services/AuthAPIService";
 function onSubmit(data) {
   forgotPassword(data["email"]).then((resp) => {
     if (resp["success"]) {
-      alert(resp["msg"] + "Please check your email for reset link");
+      alert(resp["msg"] + "Please check your email for the reset link");
       window.location.href = "http://localhost:3000/";
     } else {
       alert("Failed : " + resp["msg"]);

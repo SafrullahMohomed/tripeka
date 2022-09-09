@@ -1,13 +1,15 @@
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 
-export async function register(email, username, role, password) {
+export async function register(email,firstname, lastname, username, role, password) {
   try {
     var md5 = require("md5");
     const hashedpswd = md5(password);
 
     const body = {
       email: email,
+      firstname: firstname,
+      lastname: lastname,
       userName: username,
       role: role,
       hashedPswd: hashedpswd,
