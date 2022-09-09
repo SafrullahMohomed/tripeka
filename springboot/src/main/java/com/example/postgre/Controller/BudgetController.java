@@ -81,4 +81,16 @@ public class BudgetController {
 
     }
 
+//    update the budget
+    @PutMapping(path = "/updatebudget/{budget_id}")
+    public void updateBudget(
+            @PathVariable("budget_id") Integer budget_id,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Double amount,
+            @RequestParam(required = false) String description
+            ){
+        budgetService.updateBudget(budget_id, title, amount, description);
+
+    }
+
 }
