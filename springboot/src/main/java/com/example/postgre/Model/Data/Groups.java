@@ -1,13 +1,17 @@
 package com.example.postgre.Model.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -18,13 +22,30 @@ public class Groups {
     private Integer user_id;
     private String name;
     private String location;
+    private String description;
     private String owner;
+    private String url;
 
-    @ManyToMany(mappedBy = "userGroups")
-    Set<Users> groupUsers;
+    // @ManyToMany(mappedBy = "groups")
+    // Set<Users> users;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, mappedBy = "groups")
+    @JsonIgnore
+    private Set<Users> users = new HashSet<>();
 
     public Groups() {
 
+    }
+
+    public Groups(String name, String location, String owner, String description, String url) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.owner = owner;
+        this.url = url;
     }
 
     public Integer getGroup_id() {
@@ -59,12 +80,36 @@ public class Groups {
         this.location = location;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getOwner() {
         return owner;
     }
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Set<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<Users> users) {
+        this.users = users;
     }
 
 }

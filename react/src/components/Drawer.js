@@ -30,6 +30,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdminDash from './AdminDash';
+import Users from './Users';
 import user from '../assets/customer2.jpg';
 
 const customTheme = createTheme({
@@ -144,6 +145,8 @@ export default function MiniDrawer() {
   const handleCloseN = () => {
     setAnchorElNotification(null);
   };
+
+  const [home, setHome] = useState(< AdminDash/>);
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -327,8 +330,8 @@ export default function MiniDrawer() {
             </IconButton>
           </DrawerHeader>
           <List>
-            {['Home', 'Starred', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text, index) => (
-              <ListItem key={text} sx={{ display: 'block' }}>
+            {['Home', 'Users', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text) => (
+              <ListItem key={text} sx={{ display: 'block',}}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -340,14 +343,25 @@ export default function MiniDrawer() {
                       bgcolor: 'primary.light',
                     },
                   }}
+                  onClick = {() => 
+                    {
+                      if (text === 'Home') {
+                        setHome(<AdminDash />)
+                      } if (text === 'Users') {
+                        setHome(<Users />)
+                      } if (text === 'Send email') {
+                        setHome(<AdminDash />)
+                      } if (text === 'Drafts') {
+                        setHome(<Users />)
+                      } if (text === 'Hotels') {
+                        setHome(<AdminDash />)
+                      } if (text === 'Draft') {
+                        setHome(<Users />)
+                      }
+                    }
+                  }
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
+                  <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }} >
                     <InboxIcon />
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
@@ -356,7 +370,7 @@ export default function MiniDrawer() {
             ))}
           </List>
         </Drawer>
-        <AdminDash />
+        {home}
       </Box>
       </ThemeProvider>
   );

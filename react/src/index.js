@@ -27,6 +27,8 @@ import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
 import Users from "./components/Users";
+import Profile from "./components/Profile";
+
 
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
@@ -79,13 +81,14 @@ root.render(
       />
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Search /><Suggestions /><Cards /><Groups /><Footer /></>}/>
+      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
+      <Route path='/profile' element={<><Profile /></>}/>
 
     </Routes>
   </Router>

@@ -14,7 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -41,12 +43,17 @@ public class Users {
 	private String userrole;
 
 	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	// private Groups groups;
+	// @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"),
+	// inverseJoinColumns = @JoinColumn(name = "group_id"))
+	// Set<Groups> groups;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-	Set<Groups> userGroups;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(name = "user_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "group_id") })
+	Set<Groups> groups = new HashSet<>();
 
 	public Users() {
 	}
@@ -116,4 +123,13 @@ public class Users {
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
+
+	public Set<Groups> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Groups> groups) {
+		this.groups = groups;
+	}
+
 }

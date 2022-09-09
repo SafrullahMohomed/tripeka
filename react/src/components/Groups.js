@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate  } from "react-router-dom";
+import { createApi } from "unsplash-js";
 
 import Box from "@mui/material/Box";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -33,11 +34,6 @@ import jwt_decode from "jwt-decode";
 // console.log(user_id);
 
 const Groups = () => {
-
-  // userId from token
-  var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  const user_id = decoded.sub;
-  //console.log(user_id);
 
   // Display Groups
   const [groups, setGroups] = useState([]);
@@ -77,21 +73,36 @@ const Groups = () => {
   const handleCloseM = () => setOpenM(false);
 
   // creating-group form
+
+  // form location's unsplash API
+  // const unsplash = new createApi({
+  //   accessKey: "9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0",
+  // });
+
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [uid, setUID] = useState(user_id);
+  const [url, setUrl] = useState("");
 
   const navigate = useNavigate();
 
-  const createGroupFrom = (e) => {
+  const createGroupFrom = async(e) => {
     e.preventDefault();
-    
-    //const group = {name, location}; console.log(group);
-    createGroup(uid, name, location)
+
+    // get location image url
+    const data = await fetch(
+      `https://api.unsplash.com/search/photos?page=1&query=${location}&client_id=9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0`
+    );
+    const dataJ = await data.json();
+    const result = dataJ.results;
+    setUrl(result[0].urls.raw);
+
+    // const group = {name, location, url}; console.log(group);
+    createGroup(uid, name, location, url)
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
-
+  
   return (
     <section class="text-gray-600 body-font mb-10">
 
@@ -104,7 +115,7 @@ const Groups = () => {
         </div>*/}
 
       {/*Displaying Group Cards */}
-      <div class="container px-5 py-5 mx-auto">
+      <div class="container px-32 py-5 mx-auto">
         <div class="w-full mb-8 pl-2">Your Trip Groups</div>
           <div class="flex flex-wrap -m-2">
 
@@ -205,6 +216,7 @@ const Groups = () => {
               onChange={(e) => setLocation(e.target.value)}
               autoFocus
               margin="dense"
+              name="location"
               id="location"
               label="Location"
               type="text"
