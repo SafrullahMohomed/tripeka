@@ -55,11 +55,19 @@ export function addBudget(budget) {
   );
 }
 
-// delete budget from the list
 export function deleteBudget(budget_id){
   return axios.delete(
     ServerBaseUrl + "/budget/deletebudget/" + budget_id,
     { headers: authHeader() }
+  )
+  .then((response) => {
+    console.log(response.data);
+    window.location.reload();
+  }
+  )
+  .catch((err) => {
+    console.log(err);
+  }
   );
 }
 

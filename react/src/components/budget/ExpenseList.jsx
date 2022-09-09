@@ -43,7 +43,7 @@ const ExpenseList = (props) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
-  const amount_double = parseFloat(amount);
+  const amount_double = parseFloat(amount).toFixed(2);
   const group_id_int = parseInt(props.group_id);
   const user_id_int = parseInt(currentUserId.sub);
   // to render initial list for use effect
@@ -159,6 +159,7 @@ const ExpenseList = (props) => {
                   {userListIndividual.map((user) => (
                     <ListItem
                       key={user.budget_id}
+                      budget_id={user.budget_id}
                       group={user.group_id}
                       user={user.title}
                       title={user.title}

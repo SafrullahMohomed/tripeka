@@ -7,6 +7,30 @@ import { updateBudget, deleteBudget } from "../../services/BudgetService";
 
 const ListItem = (props) => {
 
+  const delete_function = async () => {
+    await deleteBudget(props.budget_id)
+      .then((response) => {
+        console.log("successfully deleted", response.data);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+        
+      });
+  };
+
+  const update_function = async () => {
+    await updateBudget(props.budget_id, props.title, props.amount, props.description)
+      .then((response) => {
+        console.log("successfully updated", response.data);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+      });
+  };
+
+
+  // delete budget from the list
+
   return (
     <div className="mainclass-list flex mr-3 ml-3 items-center">
       <div className="list flex items-center bg-slate-200">
@@ -23,12 +47,11 @@ const ListItem = (props) => {
         </div>
       </div>
       <div className="edit-delete ml-2 ">
-        <div className="edit-list" onClick={updateBudget(props.budget_id)}><FontAwesomeIcon style={{color:"green"}} icon={faPencil} /></div>
-        <div className="delete-list" onClick={deleteBudget(props.budget_id)
-        .then((res) => {
-          console.log(res);
-        }
-        )}>
+        <div className="edit-list" onClick={ () => update_function()}>
+
+        <FontAwesomeIcon style={{color:"green"}} icon={faPencil} /></div>
+        <div className="delete-list" onClick= {() => {delete_function()}}>
+
         {/*Or*/}
    	    <FontAwesomeIcon style={{color:"red"}} icon={faTrash} /></div>
       </div>

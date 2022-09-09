@@ -15,7 +15,7 @@ const Budget = () => {
   const [yourAmount, setYourAmount] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const [individualAmount, setIndividualAmount] = useState(0);
-  const [yourDue, setYourDue] = useState(0);
+  const [yourDue, setYourDue] = useState();
   const [isPending, setIsPending] = useState(true);
   const [Error, setError] = useState(false);
   console.log(yourAmount);
