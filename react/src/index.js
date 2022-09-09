@@ -15,6 +15,7 @@ import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
+import Car from "./components/car/CarMain"
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -86,6 +87,7 @@ root.render(
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
+      <Route path='/car' element={<><Car /></>}/>
 
     </Routes>
   </Router>

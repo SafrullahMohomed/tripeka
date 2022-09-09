@@ -12,10 +12,10 @@ import jwt_decode from "jwt-decode";
 
 
 const Budget = () => {
-  const [yourAmount, setYourAmount] = useState(null);
-  const [totalAmount, setTotalAmount] = useState(null);
-  const [individualAmount, setIndividualAmount] = useState(null);
-  const [yourDue, setYourDue] = useState(null);
+  const [yourAmount, setYourAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [individualAmount, setIndividualAmount] = useState(0);
+  const [yourDue, setYourDue] = useState(0);
   const [isPending, setIsPending] = useState(true);
   const [Error, setError] = useState(false);
   console.log(yourAmount);

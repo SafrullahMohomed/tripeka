@@ -55,4 +55,21 @@ export function addBudget(budget) {
   );
 }
 
+// delete budget from the list
+export function deleteBudget(budget_id){
+  return axios.delete(
+    ServerBaseUrl + "/budget/deletebudget/" + budget_id,
+    { headers: authHeader() }
+  );
+}
+
+// update budget
+export function updateBudget(budget_id, budget){
+  return axios.put(
+    ServerBaseUrl + "/budget/updatebudget/" + budget_id,
+    budget,
+    { headers: authHeader() }
+  );
+}
+
 

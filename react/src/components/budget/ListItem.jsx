@@ -2,9 +2,11 @@ import React from "react";
 import "../../styles/Budget.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrash, faPencil } from '@fortawesome/free-solid-svg-icons'
+import { updateBudget, deleteBudget } from "../../services/BudgetService";
 
 
 const ListItem = (props) => {
+
   return (
     <div className="mainclass-list flex mr-3 ml-3 items-center">
       <div className="list flex items-center bg-slate-200">
@@ -21,8 +23,12 @@ const ListItem = (props) => {
         </div>
       </div>
       <div className="edit-delete ml-2 ">
-        <div className="edit-list"><FontAwesomeIcon style={{color:"green"}} icon={faPencil} /></div>
-        <div className="delete-list">
+        <div className="edit-list" onClick={updateBudget(props.budget_id)}><FontAwesomeIcon style={{color:"green"}} icon={faPencil} /></div>
+        <div className="delete-list" onClick={deleteBudget(props.budget_id)
+        .then((res) => {
+          console.log(res);
+        }
+        )}>
         {/*Or*/}
    	    <FontAwesomeIcon style={{color:"red"}} icon={faTrash} /></div>
       </div>
