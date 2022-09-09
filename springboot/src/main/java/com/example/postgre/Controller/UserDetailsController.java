@@ -20,6 +20,6 @@ public class UserDetailsController {
     @GetMapping("/user/{email}")
     public Users getUserDetails(@PathVariable("email") String email) {
         Users user =  userRepository.findByEmail(email);
-        return new Users(user.getEmail(), user.getUsername(), user.getFirstname(), user.getLastname(), null, user.getUserrole());
+        return new Users(user.getEmail(), user.getFirstname(), user.getLastname(), null, user.getUserrole());
     }
 }

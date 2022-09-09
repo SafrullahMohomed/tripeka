@@ -16,7 +16,6 @@ function onSubmit(data) {
     data["email"],
     data["firstname"],
     data["lastname"],
-    data["username"],
     data["role"],
     data["password"]
   ).then((resp) => {
@@ -79,7 +78,7 @@ const Register = () => {
                       placeholder="First Name"
                     />
                     <error className="text-red-600">
-                      {errors.username?.type === "required" &&
+                      {errors.firstname?.type === "required" &&
                         "First Name is required"}
                     </error>
                   </div>
@@ -94,23 +93,8 @@ const Register = () => {
                       placeholder="Last name"
                     />
                     <error className="text-red-600">
-                      {errors.username?.type === "required" &&
+                      {errors.lastname?.type === "required" &&
                         "Last Name is required"}
-                    </error>
-                  </div>
-
-                  <div class="mb-6">
-                    <input
-                      type="text"
-                      name="username"
-                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-emerald-600 focus:outline-none"
-                      id="exampleFormControlInput2"
-                      {...register("username", { required: true })}
-                      placeholder="Username"
-                    />
-                    <error className="text-red-600">
-                      {errors.username?.type === "required" &&
-                        "Name is required"}
                     </error>
                   </div>
 
