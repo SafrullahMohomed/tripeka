@@ -26,6 +26,8 @@ import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
 import Users from "./components/Users";
+import Profile from "./components/Profile";
+
 
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
@@ -84,6 +86,7 @@ root.render(
       <Route path='/gallery' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
+      <Route path='/profile' element={<><Profile /></>}/>
 
     </Routes>
   </Router>
