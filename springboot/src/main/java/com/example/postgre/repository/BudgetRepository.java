@@ -1,6 +1,7 @@
 package com.example.postgre.repository;
 
 import com.example.postgre.Model.Budget;
+import com.example.postgre.Model.Dto.BudgetUserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,6 +28,11 @@ public interface BudgetRepository extends JpaRepository<Budget, Integer> {
     //    get the individual total of a user
     @Query("select sum(cast(amount as double)) from Budget where group_id = ?1 and user_id = ?2")
     Double getIndividualTotalAmount(@Param("group_id") Integer group_id, @Param("user_id") Integer user_id);
+
+    //    get the individual total user list
+//    @Query("select Users.lastname, sum(cast(amount as double)) from Budget where group_id = ?1")
+//    @Query("SELECT new com.example.postgre.Model.Dto.BudgetUserDto(Budget.users.user_id, Budget.users.lastname, amount) FROM Budget")
+//    List<BudgetUserDto> getALLIndividualTotalAmount(@Param("group_id") Integer group_id);
 
     //get the average amount for the trip
     @Query("select avg(cast(amount as double) ) from Budget where group_id = ?1")

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+
 @Service
 public class BudgetService {
     private final BudgetRepository budgetRepository;
@@ -52,4 +53,17 @@ public class BudgetService {
         return budgetRepository.findAllByGroupIdAndUserId(group_id, user_id);
     }
 
+    //    delete budgets
+    public String deleteBudget(Integer budget_id) {
+        Boolean exist = budgetRepository.existsById(budget_id);
+        String message;
+        if (!exist) {
+            message =  "budget of " + budget_id + " cannot be deleted";
+            throw new IllegalStateException("budget with " + budget_id + "does not exist");
+        } else {
+            message =  "budget of " + budget_id + " is deleted successfully";
+            budgetRepository.deleteById(budget_id);
+        }
+        return message;
+    }
 }

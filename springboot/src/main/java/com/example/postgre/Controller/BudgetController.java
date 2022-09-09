@@ -74,4 +74,11 @@ public class BudgetController {
         return due_amount;
     }
 
+//    delete budget
+    @DeleteMapping(path = "/deletebudget/{budget_id}")
+    public String deleteBudget(@PathVariable("budget_id") Integer budget_id){
+       return budgetService.deleteBudget(budget_id);
+
+    }
+
 }
