@@ -132,4 +132,8 @@ public class Users {
 		this.groups = groups;
 	}
 
+	public void addGroup(Groups group) {
+		groups.add(group);
+	}
+
 }
