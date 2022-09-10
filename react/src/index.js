@@ -30,6 +30,7 @@ import Users from "./components/Users";
 import Profile from "./components/Profile";
 
 
+
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -40,6 +41,9 @@ import ChatRoom from "./components/ChatRoom";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
 
+import TripHotels from "./pages/TripHotels/TripHotels";
+import TripList from "./pages/TripList/TripList";
+
 // import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
@@ -49,6 +53,7 @@ root.render(
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/triphotel" element={<TripHotels />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
       <Route path="/places" element={<Popular />} />
@@ -68,6 +73,11 @@ root.render(
 
       <Route path="/budget/:id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
+
+     
+      <Route path="/triphotels" element={<TripList />} />
+      <Route path="/triphotels/:id" element={<TripHotels />} />
+
 
       <Route path="/hotel" element={
           <>
