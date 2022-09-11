@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import pop3 from '../assets/arugam.jpg';
 import pop4 from '../assets/nuwera.jpg';
 import pop5 from '../assets/trinco.jpg';
+import Navbar from '../components/Navbar';
 
 const TypePage = () => {
   return (
     <div>
-        <Header/>
+        <Navbar/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <h2 class="font-medium leading-tight text-4xl mt-5 mb-2 text-emerald-600 text-align:center grid justify-items-center ">Choose the type you wish to register</h2>
