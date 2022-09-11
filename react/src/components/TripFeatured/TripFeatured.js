@@ -13,8 +13,8 @@ const TripFeatured = () => {
             style={{width: "100%",height: "100%",objectFit: "cover"}}
             />
             <div style={{ position: "absolute",bottom: "20px",left: "20px"}}>
-                <h1>Galle</h1>
-                <h2>17 properties</h2>
+                <h1 class = 'font-medium leading-tight text-2xl mt-0 mb-2'>Galle</h1>
+                <h2 class = 'font-medium leading-tight text-xl mt-0 mb-2'>17 properties</h2>
             </div>
         </div>
         <div style={{position: "relative", color: "white",borderRadius: "10px",overflow: "hidden",height: "250px",flex:"1"}}>
@@ -24,8 +24,8 @@ const TripFeatured = () => {
             style={{width: "100%",height: "100%",objectFit: "cover"}}
             />
             <div style={{ position: "absolute",bottom: "20px",left: "20px"}}>
-                <h1>Colombo</h1>
-                <h2>30 properties</h2>
+                <h1 class = 'font-medium leading-tight text-2xl mt-0 mb-2'>Colombo</h1>
+                <h2 class = 'font-medium leading-tight text-xl mt-0 mb-2'>30 properties</h2>
             </div>
         </div>
         <div style={{position: "relative", color: "white",borderRadius: "10px",overflow: "hidden",height: "250px",flex:"1"}}>
@@ -35,8 +35,8 @@ const TripFeatured = () => {
             style={{width: "100%",height: "100%",objectFit: "cover"}}
             />
             <div style={{ position: "absolute",bottom: "20px",left: "20px"}}>
-                <h1>Nuwera Eliya</h1>
-                <h2>30 properties</h2>
+                <h1 class = 'font-medium leading-tight text-2xl mt-0 mb-2'>Nuwera Eliya</h1>
+                <h2 class = 'font-medium leading-tight text-xxl mt-0 mb-2'>30 properties</h2>
             </div>
         </div>
     </div>
