@@ -42,8 +42,8 @@ public class GroupController {
 
     // get users groups
     @GetMapping("/groups/{user_id}")
-    public List<Groups> getGroupsById(@PathVariable("user_id") Integer user_id) {
-        return groupRepository.findByUserId(user_id);
+    public Users getGroupsById(@PathVariable("user_id") Integer user_id) {
+        return groupRepository.findGroupsByUserId(user_id);
     }
 
     // get group
@@ -51,6 +51,19 @@ public class GroupController {
     public Optional<Groups> getGroup(@PathVariable("group_id") Integer group_id) {
         return groupRepository.findById(group_id);
     }
+
+    @PostMapping("/groups/{user_id}")
+    public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer user_id) {
+        return groupRepository.save(groups);
+    }
+
+    // @PostMapping("/groups/{user_id}")
+    // public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer
+    // user_id) {
+    // Users user = userRepository.findById(user_id).get();
+    // groups.addUser(user);
+    // return groupRepository.save(groups);
+    // }
 
     // @GetMapping("/trip/{group_id}/users")
     // public ResponseEntity<Users> getUsersByGroupId(@PathVariable("group_id")
@@ -65,11 +78,6 @@ public class GroupController {
     // {
     // return groupRepository.findUsersByGroupId(group_id).getUsers();
     // }
-
-    @PostMapping("/groups/{user_id}")
-    public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer user_id) {
-        return groupRepository.save(groups);
-    }
 
     @PutMapping("/trip/{group_id}")
     public Groups updateGroup(@RequestBody Groups groups, @PathVariable Integer group_id) {

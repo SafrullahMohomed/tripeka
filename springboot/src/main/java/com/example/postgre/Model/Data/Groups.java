@@ -3,6 +3,7 @@ package com.example.postgre.Model.Data;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -112,4 +113,7 @@ public class Groups {
         this.users = users;
     }
 
+    public void addUser(Users user) {
+        users.add(user);
+    }
 }

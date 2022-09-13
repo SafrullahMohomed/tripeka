@@ -29,14 +29,14 @@ import createGroup from "../services/GroupsService";
 import jwt_decode from "jwt-decode";
 
 // userId from token
-// var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-// const user_id = decoded.sub;
-// console.log(user_id);
+var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+const user_id = decoded.sub;
+console.log("UserID : " + user_id);
 
 const Groups = () => {
 
   // Display Groups
-  const [groups, setGroups] = useState([]);
+  const [groupList, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   
@@ -49,11 +49,11 @@ const Groups = () => {
     //     // navigate('/'); 
     // })
 
-    getGroups()
+    getGroupsById(user_id)
       .then((response) => {
-        console.log("Printing Groups data", response.data);
+        //console.log("Printing Groups data", response.data.groups);
         setIsPending(false);
-        setGroups(response.data);
+        setGroups(response.data.groups);
         setError(null);
       })
       .catch((err) => {
@@ -73,11 +73,6 @@ const Groups = () => {
   const handleCloseM = () => setOpenM(false);
 
   // creating-group form
-
-  // form location's unsplash API
-  // const unsplash = new createApi({
-  //   accessKey: "9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0",
-  // });
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -105,14 +100,14 @@ const Groups = () => {
   
   return (
     <section class="text-gray-600 body-font mb-10">
-
-      {/*<div>
-        {groups.map((group) => (
-          <div key={group.id}>
+      {/* {console.log(groupList)}
+      <div>
+        {groupList.map((group, index) => (
+          <div key={index}>
             <div>{group.name}</div>
           </div>
         ))}
-        </div>*/}
+      </div> */}
 
       {/*Displaying Group Cards */}
       <div class="container px-32 py-5 mx-auto">
@@ -130,7 +125,7 @@ const Groups = () => {
               </div> 
             }
             
-            { groups.map((group) => (
+            { groupList.map((group) => (
               <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
                 <Card sx={{ maxWidth: 345 }}>
                   <CardActionArea

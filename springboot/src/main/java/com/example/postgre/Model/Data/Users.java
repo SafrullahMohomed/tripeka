@@ -29,8 +29,6 @@ public class Users {
 
 	@Column(name = "email")
 	private String email;
-	@Column(name = "username")
-	private String username;
 
 	@Column(name = "firstname")
 	private String firstname;
@@ -58,10 +56,9 @@ public class Users {
 	public Users() {
 	}
 
-	public Users(String email, String username, String firstname, String lastname, String hashedpswd, String userrole) {
+	public Users(String email, String firstname, String lastname, String hashedpswd, String userrole) {
 		super();
 		this.email = email;
-		this.username = username;
 		this.hashedpswd = hashedpswd;
 		this.userrole = userrole;
 		this.firstname = firstname;
@@ -74,14 +71,6 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getFirstname() {
