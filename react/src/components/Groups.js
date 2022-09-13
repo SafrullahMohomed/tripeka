@@ -29,14 +29,14 @@ import createGroup from "../services/GroupsService";
 import jwt_decode from "jwt-decode";
 
 // userId from token
-var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-const user_id = decoded.sub;
-console.log("UserID : " + user_id);
+// var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+// const user_id = decoded.sub;
+// console.log(user_id);
 
 const Groups = () => {
 
   // Display Groups
-  const [groupList, setGroups] = useState([]);
+  const [groups, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   
@@ -74,6 +74,11 @@ const Groups = () => {
 
   // creating-group form
 
+  // form location's unsplash API
+  // const unsplash = new createApi({
+  //   accessKey: "9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0",
+  // });
+
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [uid, setUID] = useState(user_id);
@@ -100,14 +105,14 @@ const Groups = () => {
   
   return (
     <section class="text-gray-600 body-font mb-10">
-      {/* {console.log(groupList)}
-      <div>
-        {groupList.map((group, index) => (
-          <div key={index}>
+
+      {/*<div>
+        {groups.map((group) => (
+          <div key={group.id}>
             <div>{group.name}</div>
           </div>
         ))}
-      </div> */}
+        </div>*/}
 
       {/*Displaying Group Cards */}
       <div class="container px-32 py-5 mx-auto">

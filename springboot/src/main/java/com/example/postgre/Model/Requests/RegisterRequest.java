@@ -6,8 +6,7 @@ public class RegisterRequest {
 	
 	@NotNull
 	private String email;
-	@NotNull
-	private String userName;
+
 
 	@NotNull
 	private String firstname;
@@ -19,10 +18,9 @@ public class RegisterRequest {
 	@NotNull
 	private String hashedPswd;
 	
-	public RegisterRequest(String email, String userName, String role, String hashedPswd, String firstname, String lastname) {
+	public RegisterRequest(String email, String role, String hashedPswd, String firstname, String lastname) {
 		super();
 		this.email = email;
-		this.userName = userName;
 		this.role = role;
 		this.hashedPswd = hashedPswd;
 		this.firstname = firstname;
@@ -35,14 +33,6 @@ public class RegisterRequest {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getFirstname() {

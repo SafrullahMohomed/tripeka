@@ -15,6 +15,7 @@ import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
+import GuideRegister from "./pages/GuideRegister";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -30,6 +31,7 @@ import Users from "./components/Users";
 import Profile from "./components/Profile";
 
 
+
 import Test from './components/Test';
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -40,6 +42,10 @@ import ChatRoom from "./components/ChatRoom";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
 
+import TripHotels from "./pages/TripHotels/TripHotels";
+import TripList from "./pages/TripList/TripList";
+import CarRegister from "./pages/CarRegister";
+
 // import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
@@ -49,11 +55,14 @@ root.render(
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/triphotel" element={<TripHotels />} />
+      <Route path="/guideregister" element={<GuideRegister />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
+
       <Route path="/register" element={<Register />} />
       <Route path="/resetpassword/:email" element={<ResetPassword />} />      <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
@@ -65,9 +74,15 @@ root.render(
       <Route path='/Hotels' element={<Test/>}/>
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
+      <Route path="/carregister" element={<CarRegister />} />
 
       <Route path="/budget/:id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
+
+     
+      <Route path="/triphotels" element={<TripList />} />
+      <Route path="/triphotels/:id" element={<TripHotels />} />
+
 
       <Route path="/hotel" element={
           <>
