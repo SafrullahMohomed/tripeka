@@ -15,6 +15,7 @@ import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
+import Car from "./components/car/CarMain"
 import GuideRegister from "./pages/GuideRegister";
 
 import Header from "./components/Header";
@@ -76,10 +77,10 @@ root.render(
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
 
-      <Route path="/budget/:id" element={<Budget />} />
+      <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
 
-     
+
       <Route path="/triphotels" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
 

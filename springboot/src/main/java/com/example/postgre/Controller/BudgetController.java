@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/budget")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BudgetController {
 
     private final BudgetService budgetService;
@@ -71,6 +72,25 @@ public class BudgetController {
         Double due_amount = budgetService.getIndividualTotalAmount(group_id, user_id)
                 - budgetService.getAverageAmount(group_id);
         return due_amount;
+    }
+
+//    delete budget
+    @DeleteMapping(path = "/deletebudget/{budget_id}")
+    public String deleteBudget(@PathVariable("budget_id") Integer budget_id){
+       return budgetService.deleteBudget(budget_id);
+
+    }
+
+//    update the budget
+    @PutMapping(path = "/updatebudget/{budget_id}")
+    public void updateBudget(
+            @PathVariable("budget_id") Integer budget_id,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Double amount,
+            @RequestParam(required = false) String description
+            ){
+        budgetService.updateBudget(budget_id, title, amount, description);
+
     }
 
 }

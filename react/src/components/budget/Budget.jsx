@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useEffect } from "react";
 import UserList from "./UserList";
-
+import { useParams } from "react-router-dom";
 import ExpenseList from "./ExpenseList";
 
 import HoverBoxes from "./HoverBoxes";
@@ -12,10 +12,10 @@ import jwt_decode from "jwt-decode";
 
 
 const Budget = () => {
-  const [yourAmount, setYourAmount] = useState(null);
-  const [totalAmount, setTotalAmount] = useState(null);
-  const [individualAmount, setIndividualAmount] = useState(null);
-  const [yourDue, setYourDue] = useState(null);
+  const [yourAmount, setYourAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [individualAmount, setIndividualAmount] = useState(0);
+  const [yourDue, setYourDue] = useState();
   const [isPending, setIsPending] = useState(true);
   const [Error, setError] = useState(false);
   console.log(yourAmount);
@@ -25,17 +25,20 @@ const Budget = () => {
 
   // to get the group id
 
-  const {id} = useParams();
-  console.log(id);
+  const {group_id} = useParams();
+  console.log(group_id);
 
   var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  // console.log(decoded.sub);
+  const currentUserId = decoded.sub;
+  console.log(decoded.sub);
 
+  const group_id_int = parseInt(group_id);
+  const user_id_int = parseInt(currentUserId);
   // initializing the state variable function
   const init = () => {
 
     // to get individual amount spended by user
-    getIndividualamountSpendedByGroupIdUserId()
+    getIndividualamountSpendedByGroupIdUserId(group_id_int, user_id_int)
     .then((response) => {
       console.log("Printing Groups data", response.data);
       setIsPending(false);
@@ -49,7 +52,7 @@ const Budget = () => {
     });
 
     // to get total amount spended by group
-    getTotalamountSpendedByGroupId()
+    getTotalamountSpendedByGroupId(group_id_int)
     .then((response) => {
       console.log("Printing Groups data", response.data);
       setIsPending(false);
@@ -63,7 +66,7 @@ const Budget = () => {
     );
 
     // to get average amount spended by group
-    getAverageamountSpendedByGroupId()
+    getAverageamountSpendedByGroupId(group_id_int)
     .then((response) => {
       console.log("Printing Groups data", response.data);
       setIsPending(false);
@@ -78,7 +81,7 @@ const Budget = () => {
     );
 
     // to get individual due amount
-    getDueamountSpendedByGroupIdUserId()
+    getDueamountSpendedByGroupIdUserId(group_id_int, user_id_int)
     .then((response) => {
       console.log("Printing Groups data", response.data);
       setIsPending(false);
@@ -139,7 +142,7 @@ const Budget = () => {
 
       {/* <div className="second-row"><ChartBudget></ChartBudget></div> */}
       <div className="third-row mx-5 mb-20">
-        <ExpenseList group_id = {id} user_id = {decoded} className=""></ExpenseList>
+        <ExpenseList group_id = {group_id} user_id = {user_id_int} className=""></ExpenseList>
       </div>
     </div>
   );
