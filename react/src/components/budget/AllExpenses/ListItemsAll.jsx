@@ -5,8 +5,8 @@ const ListItemsAll = (props) => {
   return (
     <div className="mainclass-list flex mr-3 ml-3 items-center">
       <div className="list flex items-center bg-slate-200">
-        <div className="user font-medium text-L mr-3">{props.user}</div>
-        <div className="first-column mr-3">
+        <div className="user w-1/6 font-medium text-xl font-medium mr-3">{props.user}</div>
+        <div className="first-column w-3/6 mr-3">
           <div className="title font-medium text-lg">{props.title}</div>
           <div className="description text-gray-700 text-sm ">{props.description}</div>
         </div>
