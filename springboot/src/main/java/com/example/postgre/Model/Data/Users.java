@@ -14,7 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -27,8 +29,6 @@ public class Users {
 
 	@Column(name = "email")
 	private String email;
-	@Column(name = "username")
-	private String username;
 
 	@Column(name = "firstname")
 	private String firstname;
@@ -41,20 +41,24 @@ public class Users {
 	private String userrole;
 
 	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	// private Groups groups;
+	// @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"),
+	// inverseJoinColumns = @JoinColumn(name = "group_id"))
+	// Set<Groups> groups;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-	Set<Groups> userGroups;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(name = "user_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "group_id") })
+	Set<Groups> groups = new HashSet<>();
 
 	public Users() {
 	}
 
-	public Users(String email, String username, String firstname, String lastname, String hashedpswd, String userrole) {
+	public Users(String email, String firstname, String lastname, String hashedpswd, String userrole) {
 		super();
 		this.email = email;
-		this.username = username;
 		this.hashedpswd = hashedpswd;
 		this.userrole = userrole;
 		this.firstname = firstname;
@@ -67,14 +71,6 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getFirstname() {
@@ -116,4 +112,17 @@ public class Users {
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
+
+	public Set<Groups> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Groups> groups) {
+		this.groups = groups;
+	}
+
+	public void addGroup(Groups group) {
+		groups.add(group);
+	}
+
 }

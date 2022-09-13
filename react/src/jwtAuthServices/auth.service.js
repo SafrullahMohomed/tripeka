@@ -21,10 +21,23 @@ class AuthService {
         console.log("2222222222222222");
         return response.data;
       });
+    // .then((responseData) => {
+    //   // axios
+    //   //   .get(API_URL + "api/v1/" + "user/" + username)
+    //   //   .then((response) => {
+    //   //     console.log(response.data);
+    //   //     localStorage.setItem("userDetails", JSON.stringify(response.data));
+    //   //   })
+    //   //   .then(() => {
+    //   //     return responseData;
+    //   //   });
+    //   // return responseData;
+    // });
   }
 
   logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("userDetails");
   }
 
   getCurrentUser() {

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import pop6 from "../assets/register.png";
 import { useForm } from "react-hook-form";
-import { getSignedRole, travelregister } from "../services/AuthAPIService";
+import { getSignedRole, carregister } from "../services/AuthAPIService";
 
 import Aos from 'aos'
 import "aos/dist/aos.css"
@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 function onSubmit(data) {
   console.log(data);
-  travelregister(
+  carregister(
     data["email"],
     data["firstname"],
     data["lastname"],
@@ -28,7 +28,7 @@ function onSubmit(data) {
   });
 }
 
-const Register = () => {
+const CarRegister = () => {
   const {
     register,
     watch,
@@ -126,10 +126,10 @@ const Register = () => {
                       class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-emerald-600 focus:outline-none"
                     >
                       {/* <option selected>Choose your type</option> */}
-                      <option value="TRAVELLER">Traveller</option>
-                      {/* <option value="LODGE_PROVIDER">Lodge Provider</option>
+                      {/* <option value="TRAVELLER">Traveller</option>
+                      <option value="LODGE_PROVIDER">Lodge Provider</option> */}
                       <option value="VEHICLE_OWNER">Vehicle Owner</option>
-                      <option value="TRIP_GUIDER">Trip Guider</option> */}
+                      {/* <option value="TRIP_GUIDER">Trip Guider</option> */}
                     </select>
                   </div>
 
@@ -224,4 +224,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CarRegister;

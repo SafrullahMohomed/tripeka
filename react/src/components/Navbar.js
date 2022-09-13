@@ -94,7 +94,7 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <button className="px-8 py-3 bg-emerald-400">
-              <Link to="/register">Sign up</Link>
+              <Link to="/registerType">Sign up</Link>
             </button>
           )}
         </div>

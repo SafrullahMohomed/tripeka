@@ -19,7 +19,9 @@ import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
+import NearMeIcon from '@mui/icons-material/NearMe';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -34,9 +36,12 @@ import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
+import EditIcon from '@mui/icons-material/Edit';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import { deleteGroup } from "../services/GroupsService";
-import { getGroup } from "../services/GroupsService";
+import { getGroup, editTrip } from "../services/GroupsService";
 import Footer from "../components/Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -46,10 +51,11 @@ import map from '../assets/map.png'
 import { groupIntersectingEntries } from "@fullcalendar/react";
 
 const options = [
-    {name: 'Add People', action: 'handleOpenFM'},
-    {name: 'Edit Trip', action: 'handleOpenEM'},
-    {name: 'Add description', action: ''},
-    {name: 'Delete Trip', action: 'handleDelete'},
+    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', visibility: ''},
+    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM', visibility: ''},
+    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM', visibility: ''},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', visibility: ''},
+    {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', visibility: ''},
   ];
   
 const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
@@ -58,9 +64,10 @@ const Trip = () => {
 
     //prints the variable and group_id value from URL
     const { id } = useParams();
-    console.log(id);
+    //console.log(id);
 
     const [trip, setTrip] = useState([]);
+    //console.log(trip.name);
 
     const init = () => {
     
@@ -108,6 +115,14 @@ const Trip = () => {
     };
     const handleCloseEM = () => setOpenEM(false);
 
+    // add descrption modal
+    const [openDM, setOpenDM] = useState(false);
+    const handleOpenDM = () => {
+        setOpenDM(true); 
+        setAnchorEl(null);
+    };
+    const handleCloseDM = () => setOpenDM(false);
+
     // delete trip
     const navigate = useNavigate();
 
@@ -124,12 +139,34 @@ const Trip = () => {
         })
     }
 
+    // edit trip form
+    const [name, setName] = useState();
+    const [location, setLocation] = useState();
+    const [description, setDescription] = useState();
+    // console.log(trip)
+
+    const editform = (e) => {
+        e.preventDefault();
+        
+        editTrip(id, name, location, description)
+            .then((response) => {
+                console.log('group Edited successfully', response.data);
+            })
+            .catch(error => {
+                console.log('Something went wrong', error);
+            });      
+    };
+
+    // dropdown calls
     const addHandler = (name) => {
         if (name === "handleOpenFM") {
             handleOpenFM();
         }
         if (name === "handleOpenEM") {
             handleOpenEM();
+        }
+        if (name === "handleOpenDM") {
+            handleOpenDM();
         }
         if (name === "handleDelete") {
             handleDelete();
@@ -141,7 +178,7 @@ const Trip = () => {
         <>
         <div className="flex flex-wrap px-10 mb-10">
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
-                <Card>
+                <Card sx={{width: 1}}>
                     <CardHeader
                         action={
                             <IconButton
@@ -174,7 +211,7 @@ const Trip = () => {
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary">
-                            The Royal Palace of Kandy, located to the north of the Temple of the Tooth in Kandy, was the royal residence of the Sri Lankan monarchy of the Kingdom of Kandy in Sri Lanka. The last king to reside in it was King Sri Vikrama Rajasinha.
+                            The Royal Palace of Kandy.
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
@@ -239,10 +276,24 @@ const Trip = () => {
                       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     
                 >
+
+                 {/* if owner == user <MenuItem disabled> */}
+                 {/* Dropdown */}
                   {options.map((option) => (
-                    <MenuItem key={option.name} onClick={() => addHandler(option.action)}>
-                        {option.name}
-                    </MenuItem>
+                    <div key={option.name}>
+                        {option.name === 'Delete Group' ? 
+                            <MenuItem onClick={() => addHandler(option.action)} sx={{color: 'error.main'}} disabled> 
+                                <Avatar sx={{bgcolor: 'error.main'}} >{option.icon}</Avatar>
+                                <div className="mr-2"></div>
+                                {option.name}
+                            </MenuItem> : 
+                            <MenuItem onClick={() => addHandler(option.action)}> 
+                                <Avatar>{option.icon}</Avatar>
+                                <div className="mr-2"></div>
+                                {option.name}
+                            </MenuItem>
+                        }
+                    </div>
                    ))}
                 </Menu>
 
@@ -291,8 +342,39 @@ const Trip = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseFM}>Cancel</Button>
-                    <Button onClick={handleCloseFM} autoFocus>Done</Button>
+                    <Button type="submit" onClick={handleCloseFM} autoFocus>Done</Button>
                 </DialogActions>
+            </Dialog>
+
+            {/* Add Description Modal*/}
+            <Dialog
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-description"
+                onClose={handleCloseDM}
+                open={openDM}
+            >
+              <form onSubmit={editform}>
+                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
+                    {"Add Description"}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
+                        onChange={(e) => setDescription(e.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label="Description"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseDM} autoFocus>Done</Button>
+                </DialogActions>
+              </form>
             </Dialog>
 
             {/* Edit Trip Modal*/}
@@ -301,12 +383,14 @@ const Trip = () => {
                 aria-describedby="dialog-description"
                 onClose={handleCloseEM}
                 open={openEM}
-            >
+            > 
+              <form onSubmit={editform}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                     {"Edit Trip Details"}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
+                        onChange={(e) => setName(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="title"
@@ -314,27 +398,37 @@ const Trip = () => {
                         type="text"
                         fullWidth
                         variant="standard"
+                        
                     />
                     <DialogContentText id="dialog-description" sx={{marginY: 2}}>
                     </DialogContentText>
-                    <TextField
+                    <TextField 
+                        onChange={(e) => setLocation(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="location"
                         label="Add New Location"
                         type="text"
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <NearMeIcon />
+                              </InputAdornment>
+                            ),
+                          }}
                         fullWidth
                         variant="standard"
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseEM}>Cancel</Button>
-                    <Button onClick={handleCloseEM} autoFocus>Done</Button>
+                    <Button type="submit" onClick={handleCloseEM} autoFocus>Done</Button>
                 </DialogActions>
+              </form>
             </Dialog>
 
             {/* map */}
-            <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
+            <div class="p-1 lg:w-2/3 md:w-1/2 w-full bg-gray-100">
                 <img src={map} alt="" />
             </div>
         </div>
