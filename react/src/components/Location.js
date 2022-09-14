@@ -24,8 +24,7 @@ const Location = () => {
     const location = useGeoLocation();
 
     // 
-    const handleLocation = () => {
-        console.log("Clicked");
+    const handleFlytoLocation = () => {
         if (location.loaded && !location.error) {
           mapRef.current.leafletElement.flyTo(
             [location.coordinates.lat, location.coordinates.lng],
@@ -60,7 +59,7 @@ const Location = () => {
                 </MapContainer>
             </div>
             <div className=''>
-                <Button onClick={handleLocation} disableElevation variant="outlined" startIcon={<MyLocationIcon />}>
+                <Button onClick={handleFlytoLocation} disableElevation variant="outlined" startIcon={<MyLocationIcon />}>
                     Locate Me
                 </Button>
             </div>
