@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
@@ -7,6 +7,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 import { FileUploader } from "react-drag-drop-files";
 import PhotoAlbum from "react-photo-album";
@@ -15,6 +22,7 @@ import photos from "./photos";
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import { addurl } from "../services/GalleryService";
+import { geturls } from "../services/GalleryService";
 import jwt_decode from "jwt-decode";
 
 import blog1 from '../assets/blog1.jpg'
@@ -31,7 +39,23 @@ console.log("UserID : " + user_id);
 
 const Gallery = () => {
 
-    // upload photos
+    const [urlList, seturlList] = useState([]);
+
+    const init = () => {
+        geturls(uid)
+            .then((item) => {
+                seturlList(item.data);
+            })
+            .catch((err) => {
+                console.log("Something went wrong", err);
+              });
+    };
+
+    useEffect(() => {
+        init();
+    }, []);
+
+    // upload photos-modal
     const [openP, setOpenP] = useState(false);
     const handleOpenP = () => setOpenP(true);
     const handleCloseP = () => setOpenP(false);
@@ -44,11 +68,13 @@ const Gallery = () => {
 
     // **********Clodinary**********
 
-  const [image, setImage ] = useState("");
-  const [imgurl, setImgurl ] = useState("");
-  const [uid, setId] = useState(user_id);
+const [image, setImage ] = useState("");
+const [imgurl, setImgurl ] = useState("");
+const [uid, setId] = useState(user_id);
 
-  const uploadImage = () => {
+const uploadImage = async(e) => {
+    e.preventDefault();
+
     const data = new FormData()
       data.append("file", image)
       data.append("upload_preset", "tripeka")
@@ -70,27 +96,41 @@ const Gallery = () => {
       .then((response) => {
         console.log(response.data)
       });
-  }  
-
-//   const addURL = async(e) => {
-//     e.preventDefault();
-
-//     // const url = {uid, imgurl}; console.log(url);
-//     addurl(uid, imgurl)
-//       .then((response) => {
-//         console.log(response.data)
-//       });
-        
-//   };
+}
 
     return ( 
 
-        <section class="text-gray-600 body-font px-24">
+        <section class="flex flex-col items-center text-gray-600 body-font px-24">
+            {console.log(urlList)}
+            <div className="w-5/6 mb-8">
+                <Card>
+                    <CardActionArea>
+                        
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Album
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Lizards are a widespread group of squamate reptiles, with over 6,000
+                            species, ranging across all continents except Antarctica
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </div>
+            <div className="w-5/6">
+                <ImageList cols={4}>
+                {urlList.map((item) => (
+                    <ImageListItem key={item.photo_id}>
+                    <img
+                        src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    />
+                    </ImageListItem>
+                ))}
+                </ImageList>
+            </div>
 
-            <div></div>
-            
-            <PhotoAlbum photos={photos} layout="columns" />
-            
             <div class="px-5 py-1 mx-auto flex flex-wrap justify-center">
                 
                 <div className="flex justify-center w-full my-8">

@@ -12,9 +12,8 @@ import com.example.postgre.Model.Data.Gallery;
 @Repository
 public interface GalleryRepository extends JpaRepository<Gallery, Integer> {
 
-    // @Query(value = "from Gallery where user_id = ?1")
-    // Gallery findGalleryByUserId(@Param("user_id") Integer user_id);
-
+    // from Gallery where user_id = ?1 order by random() limit 2
+    // from Gallery where user_id = ?1
     @Query(value = "from Gallery where user_id = ?1")
     List<Gallery> findGalleryByUserId(@Param("user_id") Integer user_id);
 
