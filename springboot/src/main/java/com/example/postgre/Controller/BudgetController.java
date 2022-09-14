@@ -2,11 +2,13 @@ package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
 import com.example.postgre.Model.Data.Users;
+import com.example.postgre.Model.Dto.BudgetUserDto;
 import com.example.postgre.service.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/budget")
@@ -37,6 +39,12 @@ public class BudgetController {
     public List<Budget> getBudgetForAUser(@PathVariable("group_id") Integer group_id,
             @PathVariable("user_id") Integer user_id) {
         return budgetService.getBudgetForAUser(group_id, user_id);
+    }
+
+//    get all budget for specific users
+    @GetMapping(path = "/getallbudgets/{group_id}")
+    public List<BudgetUserDto> getAllIndividualTotalAmount(@PathVariable("group_id") Integer group_id){
+        return budgetService.getAllIndividualAmount(group_id);
     }
 
     // to add a new budget

@@ -30,8 +30,8 @@ public interface BudgetRepository extends JpaRepository<Budget, Integer> {
     Double getIndividualTotalAmount(@Param("group_id") Integer group_id, @Param("user_id") Integer user_id);
 
     //    get the individual total user list
-//    @Query("select Users.lastname, sum(cast(amount as double)) from Budget where group_id = ?1")
-//    @Query("SELECT new com.example.postgre.Model.Dto.BudgetUserDto(Budget.users.user_id, Budget.users.lastname, amount) FROM Budget")
+//    @Query("select  from Budget b where group_id = ?1 ")
+////    @Query("SELECT new com.example.postgre.Model.Dto.BudgetUserDto(Budget.users.user_id, Budget.users.lastname, amount) FROM Budget")
 //    List<BudgetUserDto> getALLIndividualTotalAmount(@Param("group_id") Integer group_id);
 
     //get the average amount for the trip

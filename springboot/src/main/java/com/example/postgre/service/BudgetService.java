@@ -1,6 +1,7 @@
 package com.example.postgre.service;
 
 import com.example.postgre.Model.Budget;
+import com.example.postgre.Model.Dto.BudgetUserDto;
 import com.example.postgre.repository.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,8 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Service
@@ -50,6 +50,46 @@ public class BudgetService {
         return budgetRepository.getIndividualTotalAmount(group_id, user_id);
     }
 
+//    get all individual budgets for a group
+    public List<BudgetUserDto> getAllIndividualAmount(Integer group_id){
+        List<Budget> budget_array = budgetRepository.findAllByGroupIds(group_id);
+//        return budget_array;
+
+//      get user ids for each budget group
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for(Budget budget: budget_array){
+
+            arrayList.add(budget.getUsers().getUser_id());
+
+        }
+        Set<Integer> users_set = new HashSet<Integer>(arrayList);
+
+//        define budget userdto object array list
+        ArrayList<BudgetUserDto> budgetDtoList = new ArrayList<BudgetUserDto>();
+
+//       get users amount summation
+        for (Integer userId: users_set){
+            BudgetUserDto budgetUserDto = new BudgetUserDto();
+
+            Double total_amount = 0.00;
+
+            for(Budget budget: budget_array){
+                if(budget.getUsers().getUser_id() == userId){
+                    total_amount += budget.getAmount();
+                    budgetUserDto.setLastname(budget.getUsers().getLastname());
+                }
+            }
+//            initialize objects
+            budgetUserDto.setAmount(total_amount);
+            budgetUserDto.setUser_id(userId);
+
+//            add objects to the array list
+            budgetDtoList.add(budgetUserDto);
+
+        }
+        return budgetDtoList;
+    }
+
     // get a budget
     public List<Budget> getBudgetForAUser(Integer group_id, Integer user_id) {
         return budgetRepository.findAllByGroupIdAndUserId(group_id, user_id);
@@ -69,6 +109,7 @@ public class BudgetService {
         return message;
     }
 
+//    update budget
     @Transactional
     public void updateBudget(Integer budget_id, String title, Double amount, String description) {
         Budget budget = budgetRepository.findById(budget_id)
