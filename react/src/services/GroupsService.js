@@ -1,6 +1,10 @@
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import authHeader from "../jwtAuthServices/auth-header";
+import jwt_decode from "jwt-decode";
+var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+const user_id = decoded.sub;
+
 
 // export function getGroups() {
 //   return axios.get(ServerBaseUrl + "/groups");
@@ -19,9 +23,9 @@ export function editTrip(group_id, name, location, description) {
   return axios.put(ServerBaseUrl + `/trip/${group_id}`, { group_id, name, location, description }, { headers: authHeader() });
 }
 
-export default function createGroup(user_id, name, location, url) {
-  console.log(user_id +" "+ name +" "+ location +" "+ url);
-  return axios.post(ServerBaseUrl + "/groups/" + user_id, { user_id, name, location, url }, { headers: authHeader() });
+export default function createGroup(owner, name, location, url) {
+  console.log(owner +" "+ name +" "+ location +" "+ url);
+  return axios.post(ServerBaseUrl + "/groups/" + user_id, { owner, name, location, url }, { headers: authHeader() });
 }
 
 export function deleteGroup(group_id) {

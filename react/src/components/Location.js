@@ -5,6 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
 import useGeoLocation from "../hooks/useGeoLocation";
 
+// import cities from "./cities.json";
+
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import Button from '@mui/material/Button';
 
@@ -46,16 +48,32 @@ const Location = () => {
                         url={osm.maptiler.url}
                         attribution={osm.maptiler.attribution}
                     />
-                    {location.loaded && !location.error && (
-                    <Marker icon={markerIcon} position={[
-                        location.coordinates.lat, 
-                        location.coordinates.lng,
-                        ]}>
+                        {location.loaded && !location.error && (
+                        <Marker icon={markerIcon} position={[
+                            location.coordinates.lat, 
+                            location.coordinates.lng,
+                            ]}>
+                            <Popup>
+                                You are Here!
+                            </Popup>
+                        </Marker>
+                        )}
+                        
+                    {/* multiple users */}
+                    {/* {cities.map((city, idx) => (
+                    <Marker
+                        position={[city.lat, city.lng]}
+                        icon={markerIcon}
+                        key={idx}
+                    >
                         <Popup>
-                            You are Here!
+                            <b>
+                            {city.city}, {city.country}
+                            </b>
                         </Popup>
                     </Marker>
-                     )}
+                    ))} */}
+
                 </MapContainer>
             </div>
             <div className=''>

@@ -34,11 +34,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
+import { CardActionArea } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PlaceIcon from '@mui/icons-material/Place';
+import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
 
 import { deleteGroup } from "../services/GroupsService";
 import { getGroup, editTrip } from "../services/GroupsService";
@@ -52,8 +55,8 @@ import { groupIntersectingEntries } from "@fullcalendar/react";
 
 const options = [
     {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', visibility: ''},
-    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM', visibility: ''},
-    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM', visibility: ''},
+    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', visibility: ''},
+    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', visibility: ''},
     {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', visibility: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', visibility: ''},
   ];
@@ -202,7 +205,7 @@ const Trip = () => {
                         sx={{height: 180}}
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <AvatarGroup max={4} sx={{mb: 2}}>
+                        <AvatarGroup max={4}>
                             <Avatar alt="" src={img1} />
                             <Avatar alt="" src={img2} />
                             <Avatar alt="" src={img3} />
@@ -211,30 +214,81 @@ const Trip = () => {
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary">
-                            The Royal Palace of Kandy.
+                            {/* The Royal Palace of Kandy. */}
                         </Typography>
                     </CardContent>
-                    <CardActions disableSpacing>
-                        <Tooltip title="Chat">
-                            <IconButton aria-label="group chat">
-                                <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Budget">
+                    <CardActions sx={{flexWrap: 'wrap', justifyContent: 'center'}} disableSpacing>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                                <Tooltip title="Chat">
+                                    <IconButton aria-label="group chat">
+                                        <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                    Chat
+                                </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent>
+                            <Tooltip title="Budget">
                             <IconButton aria-label="budget">
                                 <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
                             </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Weather">
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Budget
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent>
+                            <Tooltip title="Weather">
                             <IconButton aria-label="climate">
                                 <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
                             </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Gallery">
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Weather
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent>
+                            <Tooltip title="Gallery">
                             <IconButton aria-label="gallery">
                                 <CameraAltIcon onClick = {() => {window.location.href = `/gallery/${id}`}}/>
                             </IconButton>
-                        </Tooltip>
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Gallery
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent>
+                            {/* TODO : Location based on group ID if doing for all users location*/}
+                            <Tooltip title="Live Location">
+                                <IconButton aria-label="location">
+                                    <PlaceIcon onClick = {() => {window.location.href = `/location`}}/>
+                                </IconButton>
+                            </Tooltip>
+                            <Typography variant="body2" color="text.secondary">
+                                Location
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
                     </CardActions>
                 </Card>
 

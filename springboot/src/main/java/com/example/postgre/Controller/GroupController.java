@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.postgre.Execption.ResourceNotFoundException;
 //import com.example.postgre.Execption.ResourceNotFoundException;
 import com.example.postgre.Model.Data.Groups;
 import com.example.postgre.Model.Data.Users;
@@ -52,18 +53,23 @@ public class GroupController {
         return groupRepository.findById(group_id);
     }
 
-    @PostMapping("/groups/{user_id}")
-    public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer user_id) {
-        return groupRepository.save(groups);
-    }
-
     // @PostMapping("/groups/{user_id}")
-    // public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer
-    // user_id) {
-    // Users user = userRepository.findById(user_id).get();
-    // groups.addUser(user);
+    // public Groups createGroup(@RequestBody Groups groups, @RequestBody Users
+    // users, @PathVariable Integer user_id) {
+
     // return groupRepository.save(groups);
     // }
+
+    @PostMapping("/groups/{user_id}")
+    public ResponseEntity<Groups> addGroup(@PathVariable("user_id") Integer user_id,
+            @RequestBody Groups groupRequest) {
+        Groups groups = userRepository.findById(user_id).map(user -> {
+            user.addGroup(groupRequest);
+            return groupRepository.save(groupRequest);
+        }).orElseThrow(() -> new ResourceNotFoundException("Not found User with id = " + user_id));
+
+        return new ResponseEntity<>(groups, HttpStatus.CREATED);
+    }
 
     // @GetMapping("/trip/{group_id}/users")
     // public ResponseEntity<Users> getUsersByGroupId(@PathVariable("group_id")

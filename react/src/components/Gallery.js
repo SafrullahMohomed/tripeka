@@ -14,6 +14,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import { CardActionArea } from '@mui/material';
 
 import { FileUploader } from "react-drag-drop-files";
@@ -38,6 +39,8 @@ var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
 const user_id = decoded.sub;
 console.log("UserID : " + user_id);
 
+
+
 const Gallery = () => {
 
     // get groupId
@@ -45,14 +48,18 @@ const Gallery = () => {
 
     const [urlList, seturlList] = useState([]);
 
+
+    // let list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    // list = list.sort(() => Math.random() - 0.5)
+
     const init = () => {
         geturls(id)
             .then((item) => {
-                seturlList(item.data);
+                seturlList(item.data.sort(() => Math.random() - 0.5));
             })
             .catch((err) => {
                 console.log("Something went wrong", err);
-              });
+            });
     };
 
     useEffect(() => {
@@ -79,18 +86,18 @@ const uploadImage = async(e) => {
     e.preventDefault();
 
     const data = new FormData()
-      data.append("file", image)
-      data.append("upload_preset", "tripeka")
-      data.append("cloud_name","tripeka")
-      fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-        method:"post",
-        body: data
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        setImgurl(data.url)
-      })
-      .catch(err => console.log("Cloud Error : "+err))
+    data.append("file", image)
+    data.append("upload_preset", "tripeka")
+    data.append("cloud_name","tripeka")
+    await fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+      method:"post",
+      body: data
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      setImgurl(data.url)
+    })
+    .catch(err => console.log("Cloud Error : "+err))
 
     setOpenP(false);
 
@@ -105,23 +112,27 @@ const uploadImage = async(e) => {
 
         <section class="flex flex-col items-center text-gray-600 body-font px-24">
             {console.log(urlList)}
+
             <div className="w-5/6 mb-8">
                 <Card>
                     <CardActionArea>
                         
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Album
+                            Because every photo has a story to tell
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
+                            Generate your album 
+                            <IconButton aria-label="refresh" sx={{ml: 1}}>
+                                <RefreshRoundedIcon onClick = {() => {window.location.reload(false);}}/>
+                            </IconButton>
                         </Typography>
+                        
                         </CardContent>
                     </CardActionArea>
                 </Card>
             </div>
-            <div className="w-5/6">
+            <div id="album" className="w-5/6">
                 <ImageList cols={4}>
                 {urlList.map((item) => (
                     <ImageListItem key={item.photo_id}>

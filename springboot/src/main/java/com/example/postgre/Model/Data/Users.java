@@ -14,7 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -42,18 +44,15 @@ public class Users {
 	@Column(name = "userrole")
 	private String userrole;
 
-	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"),
-	// inverseJoinColumns = @JoinColumn(name = "group_id"))
-	// Set<Groups> groups;
+	@ManyToMany(cascade = CascadeType.MERGE, mappedBy = "users")
+	private List<Groups> groups = new ArrayList<Groups>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(name = "user_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "group_id") })
-	Set<Groups> groups = new HashSet<>();
+	// @ManyToMany(cascade = CascadeType.ALL)
+	// @JoinTable(name = "user_groups", joinColumns = {
+	// @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
+	// inverseJoinColumns = {
+	// @JoinColumn(name = "group_id", referencedColumnName = "group_id") })
+	// Set<Groups> groups = new HashSet<>();
 
 	public Users() {
 	}
@@ -124,16 +123,17 @@ public class Users {
 		this.user_id = user_id;
 	}
 
-	public Set<Groups> getGroups() {
+	public List<Groups> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Groups> groups) {
+	public void setGroups(List<Groups> groups) {
 		this.groups = groups;
 	}
 
 	public void addGroup(Groups group) {
-		groups.add(group);
+		this.groups.add(group);
+		group.getUsers().add(this);
 	}
 
 }

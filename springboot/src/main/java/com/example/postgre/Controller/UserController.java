@@ -41,12 +41,13 @@ public class UserController {
     // }
 
     // insert a group to user
-    @PutMapping("/{user_id}/groups/{group_id}")
-    Users findusergroup(@PathVariable Integer user_id, @PathVariable Integer group_id) {
-        Users user = userRepository.findById(user_id).get();
-        Groups group = groupRepository.findById(group_id).get();
-        user.addGroup(group);
-        return userRepository.save(user);
-    }
+    // @PutMapping("/{user_id}/groups/{group_id}")
+    // Users findusergroup(@PathVariable Integer user_id, @PathVariable Integer
+    // group_id) {
+    // Users user = userRepository.findById(user_id).get();
+    // Groups group = groupRepository.findById(group_id).get();
+    // user.addGroup(group);
+    // return userRepository.save(user);
+    // }
 
 }

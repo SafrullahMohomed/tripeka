@@ -1,6 +1,8 @@
 package com.example.postgre.Model.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,15 +29,12 @@ public class Groups {
     private String owner;
     private String url;
 
-    // @ManyToMany(mappedBy = "groups")
-    // Set<Users> users;
+    @ManyToMany(cascade = { CascadeType.MERGE })
+    private List<Users> users = new ArrayList<Users>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    }, mappedBy = "groups")
-    @JsonIgnore
-    private Set<Users> users = new HashSet<>();
+    // @ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "groups")
+    // @JsonIgnore
+    // private Set<Users> users = new HashSet<>();
 
     public Groups() {
 
@@ -105,11 +104,11 @@ public class Groups {
         this.url = url;
     }
 
-    public Set<Users> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
