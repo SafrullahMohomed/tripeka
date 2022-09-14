@@ -13,15 +13,15 @@ public class Gallery {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer photo_id;
-    private Integer user_id;
+    private Integer group_id;
     private String url;
 
     public Gallery() {
     }
 
-    public Gallery(Integer photo_id, Integer user_id, String url) {
+    public Gallery(Integer photo_id, Integer group_id, String url) {
         this.photo_id = photo_id;
-        this.user_id = user_id;
+        this.group_id = group_id;
         this.url = url;
     }
 
@@ -33,12 +33,12 @@ public class Gallery {
         this.photo_id = photo_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getGroup_id() {
+        return group_id;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setGroup_id(Integer group_id) {
+        this.group_id = group_id;
     }
 
     public String getUrl() {

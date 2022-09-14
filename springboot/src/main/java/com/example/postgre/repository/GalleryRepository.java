@@ -14,7 +14,7 @@ public interface GalleryRepository extends JpaRepository<Gallery, Integer> {
 
     // from Gallery where user_id = ?1 order by random() limit 2
     // from Gallery where user_id = ?1
-    @Query(value = "from Gallery where user_id = ?1")
-    List<Gallery> findGalleryByUserId(@Param("user_id") Integer user_id);
+    @Query(value = "from Gallery where group_id = ?1")
+    List<Gallery> findGalleryByUserId(@Param("group_id") Integer group_id);
 
 }

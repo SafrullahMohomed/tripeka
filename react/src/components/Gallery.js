@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
@@ -39,10 +40,13 @@ console.log("UserID : " + user_id);
 
 const Gallery = () => {
 
+    // get groupId
+    const { id } = useParams();
+
     const [urlList, seturlList] = useState([]);
 
     const init = () => {
-        geturls(uid)
+        geturls(id)
             .then((item) => {
                 seturlList(item.data);
             })
@@ -70,7 +74,6 @@ const Gallery = () => {
 
 const [image, setImage ] = useState("");
 const [imgurl, setImgurl ] = useState("");
-const [uid, setId] = useState(user_id);
 
 const uploadImage = async(e) => {
     e.preventDefault();
@@ -91,8 +94,8 @@ const uploadImage = async(e) => {
 
     setOpenP(false);
 
-    // const url = {uid, imgurl}; console.log(url);
-    addurl(uid, imgurl)
+    // const url = {id, imgurl}; console.log(url);
+    addurl(id, imgurl)
       .then((response) => {
         console.log(response.data)
       });

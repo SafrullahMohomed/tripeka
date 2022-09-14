@@ -25,13 +25,13 @@ public class GalleryController {
     @Autowired
     private GalleryRepository galleryRepository;
 
-    @GetMapping("/gallery/{user_id}")
-    public List<Gallery> getGroupsById(@PathVariable("user_id") Integer user_id) {
-        return galleryRepository.findGalleryByUserId(user_id);
+    @GetMapping("/gallery/{group_id}")
+    public List<Gallery> getGroupsById(@PathVariable("group_id") Integer group_id) {
+        return galleryRepository.findGalleryByUserId(group_id);
     }
 
-    @PostMapping("/gallery/{user_id}")
-    public Gallery createGroup(@RequestBody Gallery gallery, @PathVariable Integer user_id) {
+    @PostMapping("/gallery/{group_id}")
+    public Gallery createGroup(@RequestBody Gallery gallery, @PathVariable Integer group_id) {
         return galleryRepository.save(gallery);
     }
 
