@@ -3,24 +3,24 @@ package com.example.postgre.Model.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 // @IdClass(UsersPK.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
 public class Users {
 
 	@Id
@@ -40,20 +40,23 @@ public class Users {
 	@Column(name = "userrole")
 	private String userrole;
 
-	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"),
-	// inverseJoinColumns = @JoinColumn(name = "group_id"))
-	// Set<Groups> groups;
-
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
-	})
-	@JoinTable(name = "user_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "group_id") })
-	Set<Groups> groups = new HashSet<>();
+	}, mappedBy = "users")
+
+	private List<Groups> groups = new ArrayList<>();
 
 	public Users() {
+	}
+
+	public Users(Integer user_id, String email, String firstname, String lastname, String hashedpswd, String userrole) {
+		this.user_id = user_id;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.hashedpswd = hashedpswd;
+		this.userrole = userrole;
 	}
 
 	public Users(String email, String firstname, String lastname, String hashedpswd, String userrole) {
@@ -113,16 +116,17 @@ public class Users {
 		this.user_id = user_id;
 	}
 
-	public Set<Groups> getGroups() {
+	public List<Groups> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Groups> groups) {
+	public void setGroups(List<Groups> groups) {
 		this.groups = groups;
 	}
 
 	public void addGroup(Groups group) {
-		groups.add(group);
+		this.groups.add(group);
+		group.getUsers().add(this);
 	}
 
 }

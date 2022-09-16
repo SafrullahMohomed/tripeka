@@ -34,14 +34,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
+import { CardActionArea } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PlaceIcon from '@mui/icons-material/Place';
+import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
 
 import { deleteGroup } from "../services/GroupsService";
 import { getGroup, editTrip } from "../services/GroupsService";
+import addFriend from "../services/GroupsService";
 import Footer from "../components/Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -52,8 +56,8 @@ import { groupIntersectingEntries } from "@fullcalendar/react";
 
 const options = [
     {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', visibility: ''},
-    {icon: <EditIcon />, name: 'Edit Trip', action: 'handleOpenEM', visibility: ''},
-    {icon: <DescriptionIcon />, name: 'Add description', action: 'handleOpenDM', visibility: ''},
+    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', visibility: ''},
+    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', visibility: ''},
     {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', visibility: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', visibility: ''},
   ];
@@ -66,16 +70,20 @@ const Trip = () => {
     const { id } = useParams();
     //console.log(id);
 
+    
     const [trip, setTrip] = useState([]);
     //console.log(trip.name);
+    const [members, setMembers]  = useState([]);
+    //console.log(members);
 
     const init = () => {
     
         getGroup(id)
           .then((response) => {
-            console.log("Printing Group data", response.data);
+            //console.log("Printing Group data", response.data);
             //setIsPending(false);
             setTrip(response.data);
+            setMembers(response.data.users);
             //setError(null);
           })
           .catch((err) => {
@@ -106,6 +114,20 @@ const Trip = () => {
         setAnchorEl(null);
     };
     const handleCloseFM = () => setOpenFM(false);
+
+    // add friend form
+    const [friend, setFriend] = useState("");
+
+    const addFriendForm = async(e) => {
+        e.preventDefault();
+    
+        // const friend = {email}; console.log(friend);
+        addFriend(friend)
+          .then((response) => 
+            console.log(response)
+          );
+            
+      };
 
     // edit trip modal
     const [openEM, setOpenEM] = useState(false);
@@ -176,6 +198,14 @@ const Trip = () => {
 
     return ( 
         <>
+        {/* <div>
+            {trip.users.map((user, index) => (
+            <div key={index}>
+                <div>{user.email}</div>
+            </div>
+            ))}
+        </div> */}
+        
         <div className="flex flex-wrap px-10 mb-10">
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
@@ -201,8 +231,8 @@ const Trip = () => {
                         alt=""
                         sx={{height: 180}}
                     />
-                    <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <AvatarGroup max={4} sx={{mb: 2}}>
+                    <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', pb: 0}}>
+                        <AvatarGroup max={4}>
                             <Avatar alt="" src={img1} />
                             <Avatar alt="" src={img2} />
                             <Avatar alt="" src={img3} />
@@ -210,31 +240,97 @@ const Trip = () => {
                             <Avatar alt="" src={img2} />
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
-                        <Typography variant="body2" color="text.secondary">
-                            The Royal Palace of Kandy.
+                        <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
+                            Group Features
                         </Typography>
                     </CardContent>
-                    <CardActions disableSpacing>
-                        <Tooltip title="Chat">
-                            <IconButton aria-label="group chat">
-                                <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Budget">
-                            <IconButton aria-label="budget">
-                                <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Weather">
-                            <IconButton aria-label="climate">
-                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Gallery">
+                    <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            <Tooltip title="Gallery">
                             <IconButton aria-label="gallery">
                                 <CameraAltIcon onClick = {() => {window.location.href = `/gallery/${id}`}}/>
                             </IconButton>
-                        </Tooltip>
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Gallery
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            <Tooltip title="Budget">
+                            <IconButton aria-label="budget">
+                                <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
+                            </IconButton>
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Budget
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            <Tooltip title="Weather">
+                            <IconButton aria-label="climate">
+                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
+                            </IconButton>
+                            </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                Weather
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                                <Tooltip title="Chat">
+                                    <IconButton aria-label="group chat">
+                                        <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Typography variant="body2" color="text.secondary">
+                                    Chat
+                                </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            {/* TODO : Location based on group ID if doing for all users location*/}
+                            <Tooltip title="Live Location">
+                                <IconButton aria-label="location">
+                                    <PlaceIcon onClick = {() => {window.location.href = `/location`}}/>
+                                </IconButton>
+                            </Tooltip>
+                            <Typography variant="body2" color="text.secondary">
+                                Location
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                            <CardActionArea>
+                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            {/* TODO : Location based on group ID if doing for all users location*/}
+                            <Tooltip title="Live Location">
+                                <IconButton aria-label="location">
+                                    <PlaceIcon onClick = {() => {window.location.href = `/location`}}/>
+                                </IconButton>
+                            </Tooltip>
+                            <Typography variant="body2" color="text.secondary">
+                                Location
+                            </Typography>
+                            </CardContent>
+                            </CardActionArea>
+                        </Card>
                     </CardActions>
                 </Card>
 
@@ -307,12 +403,14 @@ const Trip = () => {
                 onClose={handleCloseFM}
                 open={openFM}
             >
+                <form onSubmit={addFriendForm}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                 {"Add New Friends"}
                 </DialogTitle>
                 <DialogContent>
                 
                     <TextField
+                        onChange={(e) => setFriend(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="email"
@@ -325,25 +423,28 @@ const Trip = () => {
                         Group members
                     </DialogContentText>
                     <List sx={{ width: '100%', bgcolor: 'background.paper', height: 200 }} >
-                        {emails.map((email) => (
-                        <ListItem sx={{ pl: 0 }} key={email}>
+                        
+                        {members.map((user, index) => (
+                        <ListItem sx={{ pl: 0 }} key={index}>
                             <ListItemAvatar>
                                 <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
                                     <PersonIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText id="switch-list-label-wifi" primary={email} />
+                            <ListItemText id="switch-list-label-wifi" primary={user.email} />
                             <IconButton edge="end" aria-label="delete">
                                 <DeleteIcon />
                             </IconButton>
                         </ListItem>
                         ))}
+
                     </List>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseFM}>Cancel</Button>
                     <Button type="submit" onClick={handleCloseFM} autoFocus>Done</Button>
                 </DialogActions>
+                </form>
             </Dialog>
 
             {/* Add Description Modal*/}

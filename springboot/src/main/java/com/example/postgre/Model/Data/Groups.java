@@ -1,7 +1,8 @@
 package com.example.postgre.Model.Data;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,41 +13,52 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "group_id")
 public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer group_id;
-    private Integer user_id;
+    private Integer owner_id;
     private String name;
     private String location;
     private String description;
     private String owner;
+    private LocalDate start_date;
+    private LocalDate end_date;
     private String url;
-
-    // @ManyToMany(mappedBy = "groups")
-    // Set<Users> users;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    }, mappedBy = "groups")
-    @JsonIgnore
-    private Set<Users> users = new HashSet<>();
+    })
+
+    private List<Users> users = new ArrayList<>();
+
+    // @ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "groups")
+    // @JsonIgnore
+    // private Set<Users> users = new HashSet<>();
 
     public Groups() {
 
     }
 
-    public Groups(String name, String location, String owner, String description, String url) {
+    public Groups(Integer group_id, Integer owner_id, String name, String location, String description, String owner,
+            LocalDate start_date, LocalDate end_date, String url, List<Users> users) {
+        this.group_id = group_id;
+        this.owner_id = owner_id;
         this.name = name;
         this.location = location;
         this.description = description;
         this.owner = owner;
+        this.start_date = start_date;
+        this.end_date = end_date;
         this.url = url;
+        this.users = users;
     }
 
     public Integer getGroup_id() {
@@ -57,12 +69,12 @@ public class Groups {
         this.group_id = group_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
     public String getName() {
@@ -97,6 +109,22 @@ public class Groups {
         this.owner = owner;
     }
 
+    public LocalDate getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(LocalDate start_date) {
+        this.start_date = start_date;
+    }
+
+    public LocalDate getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(LocalDate end_date) {
+        this.end_date = end_date;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -105,15 +133,24 @@ public class Groups {
         this.url = url;
     }
 
-    public Set<Users> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 
     public void addUser(Users user) {
-        users.add(user);
+        this.users.add(user);
+        user.getGroups().add(this);
+    }
+
+    public void removeUser(Integer user_id) {
+        Users user = this.users.stream().filter(t -> t.getUser_id() == user_id).findFirst().orElse(null);
+        if (user != null) {
+            this.users.remove(user);
+            user.getGroups().remove(this);
+        }
     }
 }
