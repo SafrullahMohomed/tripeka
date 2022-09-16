@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 
-export async function register(email,firstname, lastname, role, password) {
+export async function travelregister(email,firstname, lastname, role, password) {
   try {
     var md5 = require("md5");
     const hashedpswd = md5(password);
@@ -14,7 +14,7 @@ export async function register(email,firstname, lastname, role, password) {
       hashedPswd: hashedpswd,
     };
 
-    var response = await axios.post(ServerBaseUrl + "/auth/register", body);
+    var response = await axios.post(ServerBaseUrl + "/auth/travelregister", body);
     if (response.status === 200) {
       return {
         success: response.data["isSuccess"],
@@ -30,6 +30,67 @@ export async function register(email,firstname, lastname, role, password) {
     };
   }
 }
+
+export async function carregister(email,firstname, lastname, role, password) {
+  try {
+    var md5 = require("md5");
+    const hashedpswd = md5(password);
+
+    const body = {
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      role: role,
+      hashedPswd: hashedpswd,
+    };
+
+    var response = await axios.post(ServerBaseUrl + "/auth/carregister", body);
+    if (response.status === 200) {
+      return {
+        success: response.data["isSuccess"],
+        msg: response.data["msg"],
+      };
+    } else {
+      throw "Unhandled Exception";
+    }
+  } catch (e) {
+    return {
+      success: false,
+      msg: e.toString(),
+    };
+  }
+}
+
+export async function guideregister(email,firstname, lastname, role, password) {
+  try {
+    var md5 = require("md5");
+    const hashedpswd = md5(password);
+
+    const body = {
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      role: role,
+      hashedPswd: hashedpswd,
+    };
+
+    var response = await axios.post(ServerBaseUrl + "/auth/guideregister", body);
+    if (response.status === 200) {
+      return {
+        success: response.data["isSuccess"],
+        msg: response.data["msg"],
+      };
+    } else {
+      throw "Unhandled Exception";
+    }
+  } catch (e) {
+    return {
+      success: false,
+      msg: e.toString(),
+    };
+  }
+}
+
 
 export async function login(email, password) {
   try {

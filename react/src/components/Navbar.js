@@ -33,9 +33,9 @@ const Navbar = () => {
     <div className="w-screen h-[80px] z-10 fixed">
       <div className="px-2 flex justify-between items-center w-full h-full bg-white">
         <div className="flex items-center">
-          <Link to="/"
+          <Link
+            to="/"
             class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-           
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,9 @@ const Navbar = () => {
               />
             </svg>
           </Link>
-          <Link to="/"><h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1></Link>
+          <Link to="/">
+            <h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1>
+          </Link>
           <ul className="hidden md:flex text-black cursor-pointer">
             <li>
               <Link to="/dashboard">Dashboard</Link>
@@ -81,7 +83,8 @@ const Navbar = () => {
             <button
               className="border-none bg-transparent text-black mr-4"
               onClick={() => {
-                logout();
+                authService.logout();
+                setIsSignedIn(false);
               }}
             >
               Log out
@@ -94,7 +97,7 @@ const Navbar = () => {
           )}
           {!isSignedIn && (
             <button className="px-8 py-3 bg-emerald-400">
-              <Link to="/register">Sign up</Link>
+              <Link to="/registerType">Sign up</Link>
             </button>
           )}
         </div>

@@ -14,8 +14,8 @@ import com.example.postgre.Model.Data.Users;
 @Repository
 public interface GroupRepository extends JpaRepository<Groups, Integer> {
 
-    @Query(value = "from Groups where user_id = ?1")
-    List<Groups> findByUserId(Integer user_id);
+    @Query(value = "from Users where user_id = ?1")
+    Users findGroupsByUserId(Integer user_id);
 
     // Groups findUsersByGroupId(Integer group_id);
 

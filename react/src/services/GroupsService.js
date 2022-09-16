@@ -2,9 +2,9 @@ import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import authHeader from "../jwtAuthServices/auth-header";
 
-export function getGroups() {
-  return axios.get(ServerBaseUrl + "/groups");
-}
+// export function getGroups() {
+//   return axios.get(ServerBaseUrl + "/groups");
+// }
 
 export function getGroupsById(user_id) {
   return axios.get(ServerBaseUrl + "/groups/" + user_id);

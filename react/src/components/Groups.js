@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createApi } from "unsplash-js";
 
 import Box from "@mui/material/Box";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -30,30 +30,35 @@ import jwt_decode from "jwt-decode";
 
 // userId from token
 // var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-// const user_id = decoded.sub;
-// console.log(user_id);
+var user_id = null;
+if (localStorage.getItem("userDetails")) {
+  user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+  // const user_id = decoded.sub;
+  console.log("UserID : " + user_id);
+}
+// const user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+// // const user_id = decoded.sub;
+// console.log("UserID : " + user_id);
 
 const Groups = () => {
-
   // Display Groups
-  const [groups, setGroups] = useState([]);
+  const [groupList, setGroups] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  
-  const init = () => {
 
+  const init = () => {
     // fetch('http://localhost:8080/groups/' + user_id, {
     //     method: 'GET'
     // }).then(() => {
     //     // after Delete...
-    //     // navigate('/'); 
+    //     // navigate('/');
     // })
 
-    getGroups()
+    getGroupsById(user_id)
       .then((response) => {
-        console.log("Printing Groups data", response.data);
+        //console.log("Printing Groups data", response.data.groups);
         setIsPending(false);
-        setGroups(response.data);
+        setGroups(response.data.groups);
         setError(null);
       })
       .catch((err) => {
@@ -74,11 +79,6 @@ const Groups = () => {
 
   // creating-group form
 
-  // form location's unsplash API
-  // const unsplash = new createApi({
-  //   accessKey: "9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0",
-  // });
-
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [uid, setUID] = useState(user_id);
@@ -86,7 +86,7 @@ const Groups = () => {
 
   const navigate = useNavigate();
 
-  const createGroupFrom = async(e) => {
+  const createGroupFrom = async (e) => {
     e.preventDefault();
 
     // get location image url
@@ -98,64 +98,61 @@ const Groups = () => {
     setUrl(result[0].urls.raw);
 
     // const group = {name, location, url}; console.log(group);
-    createGroup(uid, name, location, url)
-      .then((response) => navigate("/trip/" + response.data.group_id));
-        
+    createGroup(uid, name, location, url).then((response) =>
+      navigate("/trip/" + response.data.group_id)
+    );
   };
-  
+
   return (
     <section class="text-gray-600 body-font mb-10">
-
-      {/*<div>
-        {groups.map((group) => (
-          <div key={group.id}>
+      {/* {console.log(groupList)}
+      <div>
+        {groupList.map((group, index) => (
+          <div key={index}>
             <div>{group.name}</div>
           </div>
         ))}
-        </div>*/}
+      </div> */}
 
       {/*Displaying Group Cards */}
       <div class="container px-32 py-5 mx-auto">
         <div class="w-full mb-8 pl-2">Your Trip Groups</div>
-          <div class="flex flex-wrap -m-2">
-
-            { error && 
-            <div className="flex items-center px-10 text-rose-500">
-               { error }
+        <div class="flex flex-wrap -m-2">
+          {error && (
+            <div className="flex items-center px-10 text-rose-500">{error}</div>
+          )}
+          {isPending && (
+            <div className="flex items-center px-10">
+              <CircularProgress />
             </div>
-           }
-            { isPending && 
-              <div className="flex items-center px-10">
-                  <CircularProgress />
-              </div> 
-            }
-            
-            { groups.map((group) => (
-              <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
-                <Card sx={{ maxWidth: 345 }}>
-                  <CardActionArea
-                    onClick={() => {
-                      window.location.href = `/trip/${group.group_id}`;
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={group.name === "Dalanda Palace" ? img2 : img3}
-                      alt=""
-                      sx={{ height: 100 }}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h6" component="div">
-                        {group.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Created by : {group.owner}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-            )) }
+          )}
+
+          {groupList.map((group) => (
+            <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
+              <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea
+                  onClick={() => {
+                    window.location.href = `/trip/${group.group_id}`;
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={group.name === "Dalanda Palace" ? img2 : img3}
+                    alt=""
+                    sx={{ height: 100 }}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h6" component="div">
+                      {group.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Created by : {group.owner}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </div>
+          ))}
 
           {/* Add Group Card-Button */}
           <div class="p-4 lg:w-1/5 md:w-1/2 w-full">

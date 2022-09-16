@@ -55,8 +55,92 @@ public class AuthController {
 	@Value("${frontend.base.url}")
 	private String frontendBaseUrl;
 
-	@PostMapping(value = "/register")
+	@PostMapping(value = "/travelregister")
 	public ResponseEntity<RegisterResponse> registerUser(@RequestBody @Valid RegisterRequest registerRequest) {
+
+		try {
+			// CHECK USER EXIST
+			List<Users> registeredUsers = userRepository.findAll();
+			for (Users users : registeredUsers) {
+				if (users.getEmail().equals(registerRequest.getEmail())) {
+					return ResponseEntity.status(HttpStatus.OK)
+							.body(new RegisterResponse(null, null, false, "User Already Exists"));
+				}
+			}
+
+			// CHECK ROLE
+			RegisterableRoles[] allowedRoles = RegisterableRoles.values();
+			boolean isValidRole = false;
+			for (RegisterableRoles registerableRoles : allowedRoles) {
+				if (registerableRoles.toString().equals(registerRequest.getRole())) {
+					isValidRole = true;
+					break;
+				}
+			}
+			if (!isValidRole) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new RegisterResponse(null, null, false, "Invalid Role"));
+			}
+
+			// SAVE USER
+			Users newUser = new Users(registerRequest.getEmail(),  registerRequest.getFirstname(), registerRequest.getLastname(),
+					registerRequest.getHashedPswd(), "ROLE_" + registerRequest.getRole());
+			Users afterSaved = userRepository.save(newUser);
+
+			// RETURN RESPONSE
+			return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(afterSaved.getEmail(),
+					afterSaved.getUserrole(), true, "Registration Success"));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new RegisterResponse(null, null, false, e.toString()));
+		}
+	}
+
+	@PostMapping(value = "/carregister")
+	public ResponseEntity<RegisterResponse> registerCarUser(@RequestBody @Valid RegisterRequest registerRequest) {
+
+		try {
+			// CHECK USER EXIST
+			List<Users> registeredUsers = userRepository.findAll();
+			for (Users users : registeredUsers) {
+				if (users.getEmail().equals(registerRequest.getEmail())) {
+					return ResponseEntity.status(HttpStatus.OK)
+							.body(new RegisterResponse(null, null, false, "User Already Exists"));
+				}
+			}
+
+			// CHECK ROLE
+			RegisterableRoles[] allowedRoles = RegisterableRoles.values();
+			boolean isValidRole = false;
+			for (RegisterableRoles registerableRoles : allowedRoles) {
+				if (registerableRoles.toString().equals(registerRequest.getRole())) {
+					isValidRole = true;
+					break;
+				}
+			}
+			if (!isValidRole) {
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(new RegisterResponse(null, null, false, "Invalid Role"));
+			}
+
+			// SAVE USER
+			Users newUser = new Users(registerRequest.getEmail(),  registerRequest.getFirstname(), registerRequest.getLastname(),
+					registerRequest.getHashedPswd(), "ROLE_" + registerRequest.getRole());
+			Users afterSaved = userRepository.save(newUser);
+
+			// RETURN RESPONSE
+			return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(afterSaved.getEmail(),
+					afterSaved.getUserrole(), true, "Registration Success"));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new RegisterResponse(null, null, false, e.toString()));
+		}
+	}
+
+	@PostMapping(value = "/guideregister")
+	public ResponseEntity<RegisterResponse> registerGuideUser(@RequestBody @Valid RegisterRequest registerRequest) {
 
 		try {
 			// CHECK USER EXIST

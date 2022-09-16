@@ -57,16 +57,11 @@ const MyChatRoom = () => {
     if (subscription !== null) {
       subscription.unsubscribe();
       // fetch all messages for that group
-      axios
-        .get(ServerBaseUrl + "/groupMessages/" + group.group_id)
-        .then((response) => {
-          setmessages(response.data);
-        });
+      axios.get(ServerBaseUrl + "/groupMessages/" + group.group_id).then((response) => {
+        setmessages(response.data);
+      });
     }
-    subscription = stompClient.subscribe(
-      "/chat-room/" + group.group_id,
-      onRecieveMessage
-    );
+    subscription = stompClient.subscribe("/chat-room/" + group.group_id, onRecieveMessage);
   };
 
   const onSubscribe = (payload) => {
@@ -116,11 +111,7 @@ const MyChatRoom = () => {
         content: textBoxMessage,
       };
       console.log(chatMessage);
-      stompClient.send(
-        "/chat-app/chat/" + currentGroup.group_id + "/sendMessage",
-        {},
-        JSON.stringify(chatMessage)
-      );
+      stompClient.send("/chat-app/chat/" + currentGroup.group_id + "/sendMessage", {}, JSON.stringify(chatMessage));
       settextBoxMessage("");
     }
   };
@@ -139,10 +130,7 @@ const MyChatRoom = () => {
           <label className="relative block">
             <span className="sr-only">Search</span>
             <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-              <SearchIcon
-                className="!h-5 !w-5 fill-slate-300"
-                viewBox="0 0 20 20"
-              />
+              <SearchIcon className="!h-5 !w-5 fill-slate-300" viewBox="0 0 20 20" />
             </span>
             <input
               className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
@@ -165,27 +153,21 @@ const MyChatRoom = () => {
             >
               <div></div>
               <div className="col-span-5 flex flex-col">
-                <p className="text-lg font-medium capitalize truncate">
-                  {group.name}
-                </p>
+                <p className="text-lg font-medium capitalize truncate">{group.name}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {!messages && (
-        <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>
-      )}
+      {!messages && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
 
       {/* Current Group */}
       {messages && (
         <div className=" flex flex-col lg:basis-2/3 basis-full mt-6 ml-3">
           <div className="flex flex-row justify-start items-center border-b-2">
             <ArrowBackIosIcon className="!w-5 !h-10 mr-5 lg:!hidden" />
-            <p className="font-serif text-2xl capitalize">
-              {currentGroup.name}
-            </p>
+            <p className="font-serif text-2xl capitalize">{currentGroup.name}</p>
           </div>
 
           {/* Messages */}
@@ -207,14 +189,10 @@ const MyChatRoom = () => {
               </div>
               <div className="bg-white rounded p-1">
                 <div className="flex ">
-                  <p className="text-sm italic ml-3 max-w-md ">
-                    {message.message}
-                  </p>
+                  <p className="text-sm italic ml-3 max-w-md ">{message.message}</p>
                 </div>
                 <div className="flex">
-                  <p className="text-sm italic ml-3 max-w-md font-bold">
-                    {message.senderName}
-                  </p>
+                  <p className="text-sm italic ml-3 max-w-md font-bold">{message.senderName}</p>
                 </div>
               </div>
             </div>
@@ -235,11 +213,7 @@ const MyChatRoom = () => {
               </label>
             </div>
             <div className="flex items-center">
-              <button
-                type="button"
-                className="cursor-pointer ml-1 w-1/10 justify-end bg-black"
-                onClick={sendMessage}
-              >
+              <button type="button" className="cursor-pointer ml-1 w-1/10 justify-end bg-black" onClick={sendMessage}>
                 <span>
                   <SendIcon className="!h-9 !w-9" viewBox="0 0 20 20" />
                 </span>

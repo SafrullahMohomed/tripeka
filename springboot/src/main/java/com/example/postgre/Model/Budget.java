@@ -61,6 +61,16 @@ public class Budget{
         this.amount = amount;
     }
 
+    public Budget(Groups groups, Users users, LocalDate date, LocalTime time, String title, String description, Double amount) {
+        this.groups = groups;
+        this.users = users;
+        this.date = date;
+        this.time = time;
+        this.title = title;
+        this.description = description;
+        this.amount = amount;
+    }
+
     public Budget() {
     }
 

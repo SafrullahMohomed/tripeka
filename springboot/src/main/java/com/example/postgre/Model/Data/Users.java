@@ -56,6 +56,15 @@ public class Users {
 	public Users() {
 	}
 
+	public Users(Integer user_id, String email, String firstname, String lastname, String hashedpswd, String userrole) {
+		this.user_id = user_id;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.hashedpswd = hashedpswd;
+		this.userrole = userrole;
+	}
+
 	public Users(String email, String firstname, String lastname, String hashedpswd, String userrole) {
 		super();
 		this.email = email;
