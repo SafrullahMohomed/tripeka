@@ -31,6 +31,7 @@ import jwt_decode from "jwt-decode";
 // userId from token
 // var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
 var user_id = null;
+var firstname = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
   firstname = JSON.parse(localStorage.getItem("userDetails")).firstname;
