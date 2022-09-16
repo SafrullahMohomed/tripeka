@@ -40,6 +40,7 @@ const Location = () => {
       };
 
     return ( 
+
         <div className='flex flex-col items-center'>
             {console.log("lat : "+location.coordinates.lat+" lng : "+location.coordinates.lng)}
             <div className='w-4/6 p-4'>
@@ -59,16 +60,16 @@ const Location = () => {
                         </Marker>
                         )}
                         
-                    {/* multiple users */}
-                    {/* {cities.map((city, idx) => (
+                    {/* locations of multiple users */}
+                    {/* {cities.map((city, index) => (
                     <Marker
                         position={[city.lat, city.lng]}
                         icon={markerIcon}
-                        key={idx}
+                        key={index}
                     >
                         <Popup>
                             <b>
-                            {city.city}, {city.country}
+                            {city.name}
                             </b>
                         </Popup>
                     </Marker>
@@ -80,9 +81,9 @@ const Location = () => {
                 <Button onClick={handleFlytoLocation} disableElevation variant="outlined" startIcon={<MyLocationIcon />}>
                     Locate Me
                 </Button>
-            </div>
-            
+            </div>            
         </div>
+        
      );
 }
  
