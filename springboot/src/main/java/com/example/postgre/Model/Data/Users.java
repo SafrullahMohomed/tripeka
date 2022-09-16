@@ -3,26 +3,24 @@ package com.example.postgre.Model.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 // @IdClass(UsersPK.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
 public class Users {
 
 	@Id
@@ -44,15 +42,12 @@ public class Users {
 	@Column(name = "userrole")
 	private String userrole;
 
-	@ManyToMany(cascade = CascadeType.MERGE, mappedBy = "users")
-	private List<Groups> groups = new ArrayList<Groups>();
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	}, mappedBy = "users")
 
-	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinTable(name = "user_groups", joinColumns = {
-	// @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
-	// inverseJoinColumns = {
-	// @JoinColumn(name = "group_id", referencedColumnName = "group_id") })
-	// Set<Groups> groups = new HashSet<>();
+	private List<Groups> groups = new ArrayList<>();
 
 	public Users() {
 	}
