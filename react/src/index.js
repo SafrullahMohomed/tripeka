@@ -15,7 +15,7 @@ import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
-import Car from "./components/car/CarMain"
+import Car from "./components/car/CarMain";
 import GuideRegister from "./pages/GuideRegister";
 
 import Header from "./components/Header";
@@ -31,9 +31,7 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 
-
-
-import Test from './components/Test';
+import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
@@ -48,9 +46,11 @@ import TripList from "./pages/TripList/TripList";
 import CarRegister from "./pages/CarRegister";
 
 // import CreateGroupFloat from './components/CreateGroupFloat';
-import Trip from './components/Trip';
-import SpeedDialButton from './components/SpeedDialButton';
+
+import Trip from "./components/Trip";
+import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
+import authService from "./jwtAuthServices/auth.service";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -64,20 +64,35 @@ root.render(
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
-
       <Route path="/register" element={<Register />} />
-      <Route path="/resetpassword/:email" element={<ResetPassword />} />      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
+      <Route path="/resetpassword/:email" element={<ResetPassword />} />{" "}
+      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route
+        path="/blogwrite"
+        element={
+          <>
+            <Header />
+            <WriteBlog />
+          </>
+        }
+      />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
-      <Route path="/climate/:id" element={<><Header /><Climate /></>} />
+      <Route
+        path="/climate/:id"
+        element={
+          <>
+            <Header />
+            <Climate />
+          </>
+        }
+      />
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
-      <Route path='/Hotels' element={<Test/>}/>
+      <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
-
       <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
       <Route path="/carprofile/:id" element={<CarProfile />} />
@@ -86,9 +101,9 @@ root.render(
 
       <Route path="/triphotels" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
-
-
-      <Route path="/hotel" element={
+      <Route
+        path="/hotel"
+        element={
           <>
             <Header />
             <Search />
@@ -98,17 +113,97 @@ root.render(
           </>
         }
       />
-
-      <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
-      <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
-      <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
-      <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
-      <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
-      <Route path='/admin' element={<><Drawer /></>}/>
-      <Route path='/users' element={<><Users /></>}/>
-      <Route path='/profile' element={<><Profile /></>}/>
-
+      <Route
+        path="*"
+        element={
+          <>
+            <Header />
+            <NotFound />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          authService.isSignedIn() ? (
+            <>
+              <Header />
+              <SpeedDialButton />
+              <Groups />
+              <Search />
+              <Suggestions />
+              <Cards />
+              <Footer />
+            </>
+          ) : (
+            <Login />
+          )
+        }
+      />
+      <Route
+        path="/blogs"
+        element={
+          <>
+            <Header />
+            <Blogs />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/groups/:id"
+        element={
+          <>
+            <Header />
+            <Groups />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/trip/:id"
+        element={
+          <>
+            <Header />
+            <Trip />
+          </>
+        }
+      />
+      <Route
+        path="/gallery/:id"
+        element={
+          <>
+            <Header />
+            <Gallery />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <>
+            <Drawer />
+          </>
+        }
+      />
+      <Route
+        path="/users"
+        element={
+          <>
+            <Users />
+          </>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <>
+            <Profile />
+          </>
+        }
+      />
     </Routes>
   </Router>
 );

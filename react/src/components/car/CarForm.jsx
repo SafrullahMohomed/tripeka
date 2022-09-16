@@ -12,10 +12,11 @@ import jwt_decode from "jwt-decode";
 
 const CarForm = () => {
   // get current users userId
-  var currentUserId = jwt_decode(
-    JSON.parse(localStorage.getItem("user")).jwtToken
-  );
-  console.log(currentUserId.sub);
+  // var currentUserId = jwt_decode(
+  //   JSON.parse(localStorage.getItem("user")).jwtToken
+  // );
+  // console.log(currentUserId.sub);
+  const currentUserId = JSON.parse(localStorage.getItem("userDetails")).user_id;
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -29,7 +30,8 @@ const CarForm = () => {
   const car_id_int = 1;
 
   // const group_id_int = parseInt(props.group_id);
-  const user_id_int = parseInt(currentUserId.sub);
+  // const user_id_int = parseInt(currentUserId.sub);
+  const user_id_int = parseInt(currentUserId);
 
   const {
     register,
@@ -65,9 +67,10 @@ const CarForm = () => {
 
   return (
     <form onSubmit={carbookingForm}>
-      <DialogTitle id="expense-title" sx={{ width: 450, marginBottom: -1 }}>
-      
-      </DialogTitle>
+      <DialogTitle
+        id="expense-title"
+        sx={{ width: 450, marginBottom: -1 }}
+      ></DialogTitle>
       <DialogContent>
         <DialogContentText
           id="pickup"
