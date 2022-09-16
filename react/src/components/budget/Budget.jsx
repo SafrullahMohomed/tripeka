@@ -136,7 +136,7 @@ const Budget = () => {
       </div>
       {/* user carousel starts here */}
 
-      <UserList> </UserList>
+      <UserList group_id = {group_id} user_id = {user_id_int} > </UserList>
 
       {/* user carousel ends here */}
 

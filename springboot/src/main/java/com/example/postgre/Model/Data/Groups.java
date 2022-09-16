@@ -20,7 +20,7 @@ public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer group_id;
-    private Integer user_id;
+//    private Integer user_id;
     private String name;
     private String location;
     private String description;
@@ -57,13 +57,13 @@ public class Groups {
         this.group_id = group_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
+//    public Integer getUser_id() {
+//        return user_id;
+//    }
+//
+//    public void setUser_id(Integer user_id) {
+//        this.user_id = user_id;
+//    }
 
     public String getName() {
         return name;

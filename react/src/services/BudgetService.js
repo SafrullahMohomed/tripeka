@@ -31,12 +31,18 @@ export function getAverageamountSpendedByGroupId(group_id) {
   return axios.get(ServerBaseUrl + "/budget/averageamount/" + group_id);
 }
 
-//    individual amount total which each user spent
+//    individual amount total which each user spent using group and user id
 export function getIndividualamountSpendedByGroupIdUserId(group_id, user_id) {
   return axios.get(
     ServerBaseUrl + "/budget/individualamount/" + group_id + "/" + user_id
   );
 }
+
+// individual amount total for all users in a specific group
+export function getIndividualamountSpendedByGroupId(group_id) {
+  return axios.get(ServerBaseUrl + "/budget/getallbudgets/" + group_id);
+}
+
 
 //   to get due amount for each user
 export function getDueamountSpendedByGroupIdUserId(group_id, user_id) {

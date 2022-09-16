@@ -50,6 +50,7 @@ import CarRegister from "./pages/CarRegister";
 // import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
+import CarProfile from "./components/car/CarProfile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -79,6 +80,8 @@ root.render(
 
       <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
+      <Route path="/carprofile/:id" element={<CarProfile />} />
+      <Route path="/car" element={<Car />} />
 
 
       <Route path="/triphotels" element={<TripList />} />
