@@ -29,6 +29,7 @@ import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
+import Location from "./components/Location";
 
 
 
@@ -64,7 +65,8 @@ root.render(
       <Route path="/login" element={<Login />} />
 
       <Route path="/register" element={<Register />} />
-      <Route path="/resetpassword/:email" element={<ResetPassword />} />      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/resetpassword/:email" element={<ResetPassword />} />      
+      <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
@@ -103,6 +105,7 @@ root.render(
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
+      <Route path='/location' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
 
     </Routes>

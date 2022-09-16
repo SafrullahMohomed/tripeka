@@ -28,10 +28,12 @@ import { getGroupsById } from "../services/GroupsService";
 import createGroup from "../services/GroupsService";
 import jwt_decode from "jwt-decode";
 
-// userId from token
+// userId from token and details from local storage
 var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+const userData = JSON.parse(localStorage.getItem("userDetails"));
 const user_id = decoded.sub;
 console.log("UserID : " + user_id);
+console.log("User Details : " + userData.firstname);
 
 const Groups = () => {
 
@@ -51,7 +53,7 @@ const Groups = () => {
 
     getGroupsById(user_id)
       .then((response) => {
-        //console.log("Printing Groups data", response.data.groups);
+        console.log("Printing Groups data", response.data);
         setIsPending(false);
         setGroups(response.data.groups);
         setError(null);
@@ -76,7 +78,8 @@ const Groups = () => {
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [uid, setUID] = useState(user_id);
+  const [username, setUsername] = useState(userData.firstname);
+  const [owner_id, setOwnerId] = useState(user_id);
   const [url, setUrl] = useState("");
 
   const navigate = useNavigate();
@@ -93,7 +96,7 @@ const Groups = () => {
     setUrl(result[0].urls.raw);
 
     // const group = {name, location, url}; console.log(group);
-    createGroup(uid, name, location, url)
+    createGroup(username, name, location, owner_id, url)
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
