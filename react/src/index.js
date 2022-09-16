@@ -15,6 +15,7 @@ import Weather from "./pages/Weather";
 import Climate from "./pages/Climate";
 import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
+import Car from "./components/car/CarMain";
 import GuideRegister from "./pages/GuideRegister";
 
 import Header from "./components/Header";
@@ -31,9 +32,7 @@ import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
 
-
-
-import Test from './components/Test';
+import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
 import ForgotPassword from "./pages/ForgotPassword";
 import Complaint from "./pages/Complaint";
@@ -48,8 +47,10 @@ import TripList from "./pages/TripList/TripList";
 import CarRegister from "./pages/CarRegister";
 
 // import CreateGroupFloat from './components/CreateGroupFloat';
-import Trip from './components/Trip';
-import SpeedDialButton from './components/SpeedDialButton';
+import Trip from "./components/Trip";
+import SpeedDialButton from "./components/SpeedDialButton";
+
+import authService from "./jwtAuthServices/auth.service";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -63,30 +64,42 @@ root.render(
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
-
       <Route path="/register" element={<Register />} />
-      <Route path="/resetpassword/:email" element={<ResetPassword />} />      
+      <Route path="/resetpassword/:email" element={<ResetPassword />} />{" "}
       <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/blogwrite" element={<><Header /><WriteBlog /></>} />
+      <Route
+        path="/blogwrite"
+        element={
+          <>
+            <Header />
+            <WriteBlog />
+          </>
+        }
+      />
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/weather" element={<Weather />} />
-      <Route path="/climate/:id" element={<><Header /><Climate /></>} />
+      <Route
+        path="/climate/:id"
+        element={
+          <>
+            <Header />
+            <Climate />
+          </>
+        }
+      />
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
-      <Route path='/Hotels' element={<Test/>}/>
+      <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
-
-      <Route path="/budget/:id" element={<Budget />} />
+      <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
-
-     
       <Route path="/triphotels" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
-
-
-      <Route path="/hotel" element={
+      <Route
+        path="/hotel"
+        element={
           <>
             <Header />
             <Search />
