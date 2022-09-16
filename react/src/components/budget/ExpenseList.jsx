@@ -21,17 +21,14 @@ import {
 } from "../../services/BudgetService";
 
 const ExpenseList = (props) => {
-
-  
   const [userListIndividual, setUserListIndividual] = useState([]);
   const [userListAll, setUserListAll] = useState([]);
   const [error, setError] = useState(null);
 
   // get current users userId
-  var currentUserId = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  console.log(currentUserId.sub);
-
- 
+  // var currentUserId = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+  // console.log(currentUserId.sub);
+  const currentUserId = JSON.parse(localStorage.getItem("userDetails")).user_id;
 
   // Budget Modal
   const [open, setOpen] = useState(false);
@@ -45,9 +42,10 @@ const ExpenseList = (props) => {
 
   const amount_double = parseFloat(amount).toFixed(2);
   const group_id_int = parseInt(props.group_id);
-  const user_id_int = parseInt(currentUserId.sub);
+  // const user_id_int = parseInt(currentUserId.sub);
+  const user_id_int = parseInt(currentUserId);
   // to render initial list for use effect
-  const init = async() => {
+  const init = async () => {
     await getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
@@ -60,7 +58,7 @@ const ExpenseList = (props) => {
       });
 
     // to get all user list for user effect
-    await  getAllUserBudgetByGroupId(group_id_int)
+    await getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListAll(response.data);
@@ -81,7 +79,6 @@ const ExpenseList = (props) => {
   const budgetForm = (e) => {
     e.preventDefault();
 
-
     // var time = new Time().now();
     var today = new Date(),
       date =
@@ -99,9 +96,15 @@ const ExpenseList = (props) => {
         ":" +
         ("0" + today.getSeconds()).slice(-2);
 
-    
-
-    const budget = { title, amount: amount_double, users:{user_id : user_id_int}, groups:{group_id : group_id_int},  description, date, time };
+    const budget = {
+      title,
+      amount: amount_double,
+      users: { user_id: user_id_int },
+      groups: { group_id: group_id_int },
+      description,
+      date,
+      time,
+    };
     console.log(budget);
     addBudget(budget)
       .then((response) => {

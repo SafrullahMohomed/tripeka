@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import authService from "../jwtAuthServices/auth.service";
 
 import logo from "../assets/logo2.png";
 import user from "../assets/customer2.jpg";
@@ -208,7 +209,8 @@ const Header = () => {
             </MenuItem>
             <MenuItem
               onClick={() => {
-                window.location.href = "/";
+                authService.logout();
+                window.location.href = "http://localhost:3000/";
               }}
             >
               <ListItemIcon>
