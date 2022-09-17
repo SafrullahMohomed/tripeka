@@ -25,7 +25,7 @@ import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import { addurl } from "../services/GalleryService";
 import { geturls } from "../services/GalleryService";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 import blog1 from '../assets/blog1.jpg'
 import blog2 from '../assets/blog2.jpg'
@@ -35,8 +35,7 @@ import blog5 from '../assets/blog5.jpg'
 import blog6 from '../assets/blog6.jpg'
 
 // userId from token
-var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-const user_id = decoded.sub;
+var user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
 console.log("UserID : " + user_id);
 
 
