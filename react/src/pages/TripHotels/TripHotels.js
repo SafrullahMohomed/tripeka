@@ -4,7 +4,10 @@ import TripHeader from '../../components/TripHeader/TripHeader'
 import Navbar from './../../components/Navbar';
 import c3 from '../../assets/galleFeature.jpg'
 import TripHotelList from '../TripHotelList/TripHotelList';
+
 import Footer from '../../components/Footer';
+import TripFavourite from '../../components/TripFavourite/TripFavourite';
+import TripEmailList from '../../components/TripEmailList/TripEmailList';
 
 const TripHotels = () => {
   return (
@@ -21,8 +24,12 @@ const TripHotels = () => {
           <br></br>
           <TripFeatured/>
           <br/>
+          
           <h1 class="font-medium leading-tight text-3xl mt-0 mb-2 text-emerald-600" style={{width: "1024px"}}>Browse by best hotels in Island</h1>
-          <TripHotelList/>
+          <br/>
+          <TripFavourite/>
+          <br/>
+          <TripEmailList/>
         </div>
         <br/>
         <br/>
