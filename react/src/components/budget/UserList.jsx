@@ -28,13 +28,14 @@ const init = async() => {
       
     });
 
-
+  }
     useEffect(() => {
      init();
     }, []);
 
-    () =>{init()}
-    ;
+    init();
+    // () =>{init()}
+    // ;
   const settings = {
     dots: false,
     infinite: true,
@@ -165,5 +166,5 @@ const init = async() => {
     </div>
   );
 };
-}
-export default UserList
+
+export default UserList;
