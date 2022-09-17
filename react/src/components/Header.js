@@ -65,9 +65,6 @@ const Header = () => {
           <Link to="/blogs" class="mr-7 hover:text-gray-900">
             Blogs
           </Link>
-          <Link to="/gallery" class="mr-7 hover:text-gray-900">
-            Photos
-          </Link>
         </nav>
 
         <Box
