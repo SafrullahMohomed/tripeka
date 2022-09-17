@@ -1,9 +1,6 @@
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import authHeader from "../jwtAuthServices/auth-header";
-// import jwt_decode from "jwt-decode";
-// var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-// const user_id = decoded.sub;
 
 export function getGroupsById(user_id) {
   return axios.get(ServerBaseUrl + "/groups/" + user_id);

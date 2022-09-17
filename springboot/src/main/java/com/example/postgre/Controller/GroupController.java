@@ -132,11 +132,4 @@ public class GroupController {
     // return new ResponseEntity<>(users, HttpStatus.OK);
     // }
 
-    // get users of a group
-    // @GetMapping("/asd/{group_id}")
-    // public Set<Users> getGroupMembers(@PathVariable("group_id") Integer group_id)
-    // {
-    // return groupRepository.findUsersByGroupId(group_id).getUsers();
-    // }
-
 }

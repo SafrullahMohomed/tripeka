@@ -307,7 +307,7 @@ const Trip = () => {
                             {/* TODO : Location based on group ID if doing for all users location*/}
                             <Tooltip title="Live Location">
                                 <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location`}}/>
+                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
@@ -322,7 +322,7 @@ const Trip = () => {
                             {/* TODO : Location based on group ID if doing for all users location*/}
                             <Tooltip title="Live Location">
                                 <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location`}}/>
+                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">

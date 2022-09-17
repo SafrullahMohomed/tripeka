@@ -30,19 +30,16 @@ import jwt_decode from "jwt-decode";
 
 // userId from token
 // var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+// const user_id = decoded.sub;
 var user_id = null;
 var firstname = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
   firstname = JSON.parse(localStorage.getItem("userDetails")).firstname;
-  // const user_id = decoded.sub;
-  console.log("UserID : " + user_id);
+
+  console.log("UserID : " + parseInt(user_id));
   console.log("FirstName : " + firstname);
 }
-
-// const user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
-// // const user_id = decoded.sub;
-// console.log("UserID : " + user_id);
 
 const Groups = () => {
   // Display Groups
