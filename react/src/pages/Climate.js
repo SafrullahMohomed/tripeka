@@ -29,7 +29,7 @@ function Climate(){
   
     return(
         <div
-          className='p-8 -mt-8' 
+          className='px-8 py-6 -mt-8' 
           style={{ 
             backgroundImage: `url(${climate})`
         }}>
@@ -37,17 +37,22 @@ function Climate(){
             <source src={weatherVid} type='video/mp4' />
         </video> */}
 
-        <div className='bg-sky-700 opacity-60 rounded-lg mx-auto max-w-screen-md mt-0 py-5 px-32'>
-            <TopButtons setQuery={setQuery}/>
-            <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
+        <div className='bg-sky-700 opacity-60 rounded-lg mx-auto mt-0 py-0 px-10'>
+            <div className="flex-col flex items-center">
+              <TopButtons setQuery={setQuery}/>
+              <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
+            </div>
             {weather && (
-              <div>
+            <div className='flex justify-center'>
+              <div className='px-10 py-4'>
                 <TimeAndLocation weather={weather} />
                 <TemperatureAndDetails weather={weather} />
-
+              </div>
+              <div className='p-10 py-4'>
                 <Forecast title="hourly forecast" items={weather.hourly} />
                 <Forecast title="daily forecast" items={weather.daily} />
               </div>
+            </div>
             )}
         </div>
       </div>
