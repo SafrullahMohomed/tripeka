@@ -7,6 +7,7 @@ import Forecast from '../components/Forecast';
 import getFormattedWeatherData from '../ClimateServices/WeatherServices';
 import { useEffect, useState } from "react";
 import pop6 from '../assets/sunset.jpg'
+import weatherVid from "../assets/herovideo.mp4";
 import "../styles/climate.css";
 
 function Climate(){
@@ -27,6 +28,11 @@ function Climate(){
   
     return(
       <div className=''>
+
+        {/* <video className='videoTag fixed -z-1 w-full' autoPlay loop muted>
+            <source src={weatherVid} type='video/mp4' />
+        </video> */}
+
         <div className='bg-gray-400 rounded-lg mx-auto max-w-screen-md mt-0 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400'>
             <TopButtons setQuery={setQuery}/>
             <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
