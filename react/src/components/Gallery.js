@@ -19,6 +19,7 @@ import { CardActionArea } from '@mui/material';
 
 import { FileUploader } from "react-drag-drop-files";
 import PhotoAlbum from "react-photo-album";
+import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
 import photos from "./photos";
 
 import {AdvancedImage} from '@cloudinary/react';
@@ -112,14 +113,14 @@ const Gallery = () => {
                     <CardActionArea>
                         
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Because every photo has a story to tell
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Generate your album 
+                        <Typography gutterBottom variant="h6" color="text.secondary">
+                            Generate a random album 
                             <IconButton aria-label="refresh" sx={{ml: 1}}>
-                                <RefreshRoundedIcon onClick = {() => {window.location.reload(false);}}/>
+                                <DriveFileMoveIcon onClick = {() => {window.location.reload(false);}}/>
                             </IconButton>
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="div" color="text.secondary">
+                            Because every photo has a story to tell
                         </Typography>
                         
                         </CardContent>

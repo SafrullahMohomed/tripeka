@@ -31,6 +31,7 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
+import DeleteUser from "./components/DeleteUser";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -115,6 +116,7 @@ root.render(
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
+      <Route path='/trip/:id/:id' element={<><Header /><DeleteUser /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
