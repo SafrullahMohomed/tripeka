@@ -74,7 +74,7 @@ const Trip = () => {
     const [trip, setTrip] = useState([]);
     //console.log(trip.name);
     const [members, setMembers]  = useState([]);
-    //console.log(members);
+    //console.log( members.map((user) => (user.user_id)));
 
     const init = () => {
     
@@ -433,7 +433,7 @@ const Trip = () => {
                             </ListItemAvatar>
                             <ListItemText id="switch-list-label-wifi" primary={user.email} />
                             <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon />
+                                <DeleteIcon onClick = {() => {window.location.href = `/trip/${id}/${user.user_id}`}}/>
                             </IconButton>
                         </ListItem>
                         ))}

@@ -66,6 +66,7 @@
     "slick-carousel": "^1.8.1",
     "sockjs-client": "^1.5.2",
     "stompjs": "^2.3.3",
+    "sweetalert2": "^11.4.33",
     "unsplash-js": "^7.0.15",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
