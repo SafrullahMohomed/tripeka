@@ -3,7 +3,7 @@ import TripFeatured from '../../components/TripFeatured/TripFeatured';
 import TripHeader from '../../components/TripHeader/TripHeader'
 import Navbar from './../../components/Navbar';
 import c3 from '../../assets/galleFeature.jpg'
-import TripHotelList from '../TripHotelList/TripHotelList';
+
 
 import Footer from '../../components/Footer';
 import TripFavourite from '../../components/TripFavourite/TripFavourite';
