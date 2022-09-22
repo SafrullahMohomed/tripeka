@@ -18,6 +18,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import img1 from "../assets/arugam.jpg";
 import img2 from "../assets/dalada.jpg";
@@ -37,8 +40,8 @@ if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
   firstname = JSON.parse(localStorage.getItem("userDetails")).firstname;
 
-  console.log("UserID : " + parseInt(user_id));
-  console.log("FirstName : " + firstname);
+  // console.log("UserID : " + parseInt(user_id));
+  // console.log("FirstName : " + firstname);
 }
 
 const Groups = () => {
@@ -85,6 +88,7 @@ const Groups = () => {
   const [username, setUsername] = useState(firstname);
   const [owner_id, setOwnerId] = useState(user_id);
   const [url, setUrl] = useState("");
+  const [date, setDate] = useState(null);
 
   const navigate = useNavigate();
 
@@ -222,6 +226,31 @@ const Groups = () => {
               fullWidth
               variant="standard"
             />
+
+          <div className="date-picker flex items-center mt-8">
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="Start-Date"
+                value={date}
+                onChange={(newValue) => {
+                  setDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <Box sx={{ mx: 2 }}> to </Box>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="End-Date"
+                value={date}
+                onChange={(newValue) => {
+                  setDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </div>
+             
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCloseM}>Cancel</Button>
