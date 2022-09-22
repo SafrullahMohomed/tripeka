@@ -44,7 +44,7 @@ import {
     };
   
     const handleSearch = () => {
-      navigate("/triphotels", { state: { destination, date, options } });
+      navigate("/triphotellist", { state: { destination, date, options } });
     };
   
     return (
