@@ -17,6 +17,7 @@ import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
 import Car from "./components/car/CarMain";
 import GuideRegister from "./pages/GuideRegister";
+import TripHotelDetails from "./pages/TripHotelDetails/TripHotelDetails";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -65,6 +66,7 @@ root.render(
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/triphoteldetails" element={<TripHotelDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/resetpassword/:email" element={<ResetPassword />} />{" "}
       <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -96,7 +98,7 @@ root.render(
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
       <Route path="/groupChat/:id" element={<ChatRoom />} />
-      <Route path="/triphotels" element={<TripList />} />
+      <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
       <Route
         path="/hotel"
