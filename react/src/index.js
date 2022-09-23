@@ -17,6 +17,7 @@ import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
 import Car from "./components/car/CarMain";
 import GuideRegister from "./pages/GuideRegister";
+import TripHotelDetails from "./pages/TripHotelDetails/TripHotelDetails";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -31,6 +32,7 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
+import DeleteUser from "./components/DeleteUser";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -65,6 +67,7 @@ root.render(
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/triphoteldetails" element={<TripHotelDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/resetpassword/:email" element={<ResetPassword />} />{" "}
       <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -98,9 +101,7 @@ root.render(
       <Route path="/groupChat/:id" element={<ChatRoom />} />
       <Route path="/carprofile/:id" element={<CarProfile />} />
       <Route path="/car" element={<Car />} />
-
-
-      <Route path="/triphotels" element={<TripList />} />
+      <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
       <Route
         path="/hotel"
@@ -120,6 +121,7 @@ root.render(
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
+      <Route path='/trip/:id/:id' element={<><Header /><DeleteUser /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>

@@ -39,6 +39,8 @@ public class Users {
 	private String hashedpswd;
 	@Column(name = "userrole")
 	private String userrole;
+	@Column(name = "profile_url")
+	private String profile_url;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 			CascadeType.PERSIST,
@@ -118,6 +120,14 @@ public class Users {
 
 	public List<Groups> getGroups() {
 		return groups;
+	}
+
+	public String getProfile_url() {
+		return profile_url;
+	}
+
+	public void setProfile_url(String profile_url) {
+		this.profile_url = profile_url;
 	}
 
 	public void setGroups(List<Groups> groups) {
