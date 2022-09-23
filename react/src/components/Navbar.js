@@ -5,6 +5,11 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { getSignedRole, logout } from "../services/AuthAPIService";
 import authService from "../jwtAuthServices/auth.service";
 
+var user_id = null;
+if (localStorage.getItem("userDetails")) {
+  user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+}
+
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
@@ -59,22 +64,22 @@ const Navbar = () => {
           </Link>
           <ul className="hidden md:flex text-black cursor-pointer">
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to={`/dashboard/${user_id}`}>Dashboard</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
             </li>
             <li>
-              <Link to="/testomonials">Testomonials</Link>
+              <Link to="/testomonials">Testomonials </Link>
             </li>
             <li>
               <Link to="/places">Places</Link>
             </li>
             <li>
-              <Link to="/contactus">Contact us</Link>
+              <Link to="/contactus">Contact&nbsp;us </Link>
             </li>
             <li>
-              <Link to="/help">Help</Link>
+              <Link to="/help">Help </Link>
             </li>
           </ul>
         </div>

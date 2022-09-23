@@ -116,14 +116,14 @@ root.render(
       />
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route path='/dashboard/:id' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
-      <Route path='/location' element={<><Location /></>}/>
+      <Route path='/location/:id' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
 
     </Routes>

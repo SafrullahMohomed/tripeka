@@ -57,8 +57,9 @@ const Login = () => {
       })
       .then(() => {
         const userRole = JSON.parse(localStorage.getItem("user")).role;
+        const user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
         if (userRole === "ROLE_TRAVELLER") {
-          window.location.href = "/dashboard";
+          window.location.href = `/dashboard/${user_id}`;
         } else if (userRole === "ROLE_ADMIN") {
           window.location.href = "/admin";
         } else if (userRole === "ROLE_TRIP_GUIDER") {

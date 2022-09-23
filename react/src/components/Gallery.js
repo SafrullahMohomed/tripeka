@@ -25,7 +25,6 @@ import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import { addurl } from "../services/GalleryService";
 import { geturls } from "../services/GalleryService";
-// import jwt_decode from "jwt-decode";
 
 import blog1 from '../assets/blog1.jpg'
 import blog2 from '../assets/blog2.jpg'
@@ -34,11 +33,11 @@ import blog4 from '../assets/blog4.jpg'
 import blog5 from '../assets/blog5.jpg'
 import blog6 from '../assets/blog6.jpg'
 
-// userId from token
-var user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
-console.log("UserID : " + user_id);
-
-
+// userId - who uploaded the photo?
+// var user_id = null;
+// if (localStorage.getItem("userDetails")) {
+//   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+// }
 
 const Gallery = () => {
 
@@ -46,10 +45,6 @@ const Gallery = () => {
     const { id } = useParams();
 
     const [urlList, seturlList] = useState([]);
-
-
-    // let list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    // list = list.sort(() => Math.random() - 0.5)
 
     const init = () => {
         geturls(id)
@@ -78,34 +73,34 @@ const Gallery = () => {
 
     // **********Clodinary**********
 
-const [image, setImage ] = useState("");
-const [imgurl, setImgurl ] = useState("");
+    const [image, setImage ] = useState("");
+    const [imgurl, setImgurl ] = useState("");
 
-const uploadImage = async(e) => {
-    e.preventDefault();
+    const uploadImage = async(e) => {
+        e.preventDefault();
 
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "tripeka")
-    data.append("cloud_name","tripeka")
-    await fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-      method:"post",
-      body: data
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      setImgurl(data.url)
-    })
-    .catch(err => console.log("Cloud Error : "+err))
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "tripeka")
+        data.append("cloud_name","tripeka")
+        await fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+        method:"post",
+        body: data
+        })
+        .then(resp => resp.json())
+        .then(data => {
+        setImgurl(data.url)
+        })
+        .catch(err => console.log("Cloud Error : "+err))
 
-    setOpenP(false);
+        setOpenP(false);
 
-    // const url = {id, imgurl}; console.log(url);
-    addurl(id, imgurl)
-      .then((response) => {
-        console.log(response.data)
-      });
-}
+        // const url = {id, imgurl}; console.log(url);
+        addurl(id, imgurl)
+        .then((response) => {
+            console.log(response.data)
+        });
+    }
 
     return ( 
 
