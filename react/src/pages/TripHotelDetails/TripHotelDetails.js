@@ -61,23 +61,26 @@ const TripHotelDetails = () => {
       <br/>
       <div className="hotelContainer" style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"20px"}}>
         {open && (
-          <div className="slider">
+          <div className="slider" style={{position:"sticky",top:"0",left:"0",width:"100vw",height:"100vh",backgroundColor:"rgba(0,0,0,0.613)",zIndex:"999",display:"flex",alignItems:"center"}}>
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="close"
+              style={{position:"absolute",top:"20px",right:"20px",fontSize:"30px",color:"lightgrey",cursor:"pointer"}}
               onClick={() => setOpen(false)}
             />
             <FontAwesomeIcon
               icon={faCircleArrowLeft}
               className="arrow"
+              style={{margin:"20px",fontSize:"50px",color:"lightgray",cursor:"pointer"}}
               onClick={() => handleMove("l")}
             />
-            <div className="sliderWrapper">
-              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+            <div className="sliderWrapper" style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+              <img src={photos[slideNumber].src} alt="" className="sliderImg" style={{width:"80%",height:"80vh"}} />
             </div>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
               className="arrow"
+              style={{margin:"20px",fontSize:"50px",color:"lightgray",cursor:"pointer"}}
               onClick={() => handleMove("r")}
             />
           </div>
@@ -125,16 +128,16 @@ const TripHotelDetails = () => {
                 airport shuttle service.
               </p>
             </div>
-            <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
-              <span>
+            <div className="hotelDetailsPrice" style={{flex:"1", backgroundColor:"#ebf3ff",padding:"20px",display:"flex",flexDirection:"column",gap:"20px"}}>
+              <h1 style={{fontSize:"18px",color:"#555"}}>Perfect for a 9-night stay!</h1>
+              <span style={{fontSize:"14px"}}>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
-              <h2>
+              <h2 style={{fontWeight:"300"}}>
                 <b>$945</b> (9 nights)
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
@@ -143,7 +146,8 @@ const TripHotelDetails = () => {
         
       </div>
       <TripEmailList/>
-        <Footer/>
+      <br/>
+      <Footer/>
     </div>
   );
 }
