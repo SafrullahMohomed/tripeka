@@ -69,7 +69,7 @@ public class GroupController {
                 .map(group -> {
                     group.setName(groups.getName());
                     group.setLocation(groups.getLocation());
-                    group.setDescription(groups.getDescription());
+                    // group.setDescription(groups.getDescription());
                     return groupRepository.save(group);
                 })
                 .orElseGet(() -> {
