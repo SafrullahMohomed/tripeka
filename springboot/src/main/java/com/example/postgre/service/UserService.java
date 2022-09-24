@@ -25,14 +25,16 @@ public class UserService implements UserDetailsService {
 
         //Logic to get the user form the Database
 
-        Users user = userRepository.findByEmail(userName);
-
-        System.out.println("IN loadByUsername METHOD");
+            Users user = userRepository.findByEmail(userName);
 
 
-        return new User(user.getUser_id().toString(),user.getHashedpswd(), Arrays.stream(user.getUserrole().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList()));
+            System.out.println("IN loadByUsername METHOD");
+
+
+            return new User(user.getUser_id().toString(), user.getHashedpswd(), Arrays.stream(user.getUserrole().split(","))
+                    .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList()));
+
 
     }
 }
