@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import UserListUser from "./UserListUser";
 import {
-  getTotalamountSpendedByGroupId,
+  getIndividualamountSpendedByGroupId
 } from "../../services/BudgetService";
 import { useEffect, useState } from "react";
 import { bgcolor } from "@mui/system";
@@ -17,9 +17,9 @@ const UserList = (props) => {
   const group_id_int = parseInt(props.group_id);
 
 
-const init = async() => {
+const init = () => {
   // to get total amount spended by group
-  await getTotalamountSpendedByGroupId(group_id_int)
+   getIndividualamountSpendedByGroupId(group_id_int)
     .then((response) => {
       setTotalAmountSpended(response.data);
     })
@@ -33,7 +33,7 @@ const init = async() => {
      init();
     }, []);
 
-    init();
+    // init();
     // () =>{init()}
     // ;
   const settings = {
@@ -98,17 +98,28 @@ const init = async() => {
           />
         </div> */}
 
-        {/* {totalAmountSpended.map((user) => (
+        {totalAmountSpended.map((user) => (
       <div>
+      {user.amount >= 0 ? 
       <UserListUser
             title={user.lastname}
             amount={user.amount}
-            
             bgcolor="rgba(108, 237, 75, 0.29)"
+
           />
+          :
+          <UserListUser
+            title={user.lastname}
+            amount={user.amount}
+            bgcolor="rgba(215, 44, 44, 0.29)"
+
+          />}
       </div>
-                  ))} */}
-        {/* <div>
+
+        ))}
+
+        {console.log("erorrrrrr", totalAmountSpended)}
+        <div>
           <UserListUser
             title="Sunil"
             amount="1000"
@@ -156,7 +167,7 @@ const init = async() => {
             amount="-4500"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
-        </div> */}
+        </div>
       </Slider>
     </div>
   );
