@@ -11,7 +11,7 @@ const VerticalStepper = () => {
   return (
     <div>
         <div className="flex flex-col text-center w-full mb-20">
-            <h2 className="text-xs text-emerald-500 tracking-widest font-medium title-font mb-1">SO YOU MAY WONDERING HOW TO WORK WITH THE SYSTEN</h2>
+            <h2 className="text-xs text-emerald-500 tracking-widest font-medium title-font mb-1">SO YOU MAY WONDERING HOW TO WORK WITH THE SYSTEM</h2>
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">HERE YOU GO</h1>
         </div>
         <VerticalTimeline>
