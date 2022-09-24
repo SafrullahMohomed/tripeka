@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { FaHeart } from "react-icons/fa";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { FaSearchLocation } from "react-icons/fa";
+import { FaRocketchat } from "react-icons/fa";
 import { FaPeopleArrows } from "react-icons/fa";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
@@ -23,10 +25,10 @@ const VerticalStepper = () => {
                 
                 
             >
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+                <h3 className="vertical-timeline-element-title">Form a Group</h3>
+                
                 <p>
-                Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                Form a group with your members who are registered with our system
                 </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
@@ -35,12 +37,11 @@ const VerticalStepper = () => {
                 contentArrowStyle={{ borderRight: '7px solid  rgb(80, 200, 120)' }}
                 
                 iconStyle={{ background: 'rgb(80, 200, 120)', color: '#fff' }}
-                // icon={<WorkIcon />}
+                icon={<FaRocketchat />}
             >
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+                <h3 className="vertical-timeline-element-title">Chat</h3>
                 <p>
-                Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                Chat with your teammates of your trip inorder to make decisions
                 </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
@@ -49,26 +50,24 @@ const VerticalStepper = () => {
                 contentArrowStyle={{ borderRight: '7px solid  rgb(80, 200, 120)' }}
                 
                 iconStyle={{ background: 'rgb(80, 200, 120)', color: '#fff' }}
-                // icon={<WorkIcon />}
+                icon={<FaSearchLocation />}
             >
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+                <h3 className="vertical-timeline-element-title">Live Location</h3>
                 <p>
-                Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                Share your live locations among your teammates in case of emergency 
                 </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
                 className="vertical-timeline-element--work"
                 contentStyle={{ background: 'rgb(80, 200, 120)', color: '#fff' }}
-                contentArrowStyle={{ borderRight: '7px solid  emerald-500' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(80, 200, 120)' }}
                 
                 iconStyle={{ background: 'rgb(80, 200, 120)', color: '#fff' }}
-                // icon={<WorkIcon />}
+                icon={<FaMoneyBillWave />}
             >
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+                <h3 className="vertical-timeline-element-title">Budget</h3>
                 <p>
-                Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                Set the budget of your trip and share it among your friends, so you will assure about your pay
                 </p>
             </VerticalTimelineElement>
         </VerticalTimeline>

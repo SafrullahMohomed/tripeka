@@ -63,22 +63,22 @@ const Navbar = () => {
             <h1 className="text-3xl font-bold mr-4 sm:text-4xl">TRAVEL.</h1>
           </Link>
           <ul className="hidden md:flex text-black cursor-pointer">
-            <li>
+            <li class="px-6">
               <Link to={`/dashboard/${user_id}`}>Dashboard</Link>
             </li>
-            <li>
+            <li class="px-6">
               <Link to="/services">Services</Link>
             </li>
-            <li>
+            <li class="px-6">
               <Link to="/testomonials">Testomonials</Link>
             </li>
-            <li>
+            <li class="px-6">
               <Link to="/places">Places</Link>
             </li>
-            <li>
+            <li class="px-6">
               <Link to="/contactus">Contact us</Link>
             </li>
-            <li>
+            <li class="px-6">
               <Link to="/help">Help</Link>
             </li>
           </ul>
@@ -116,37 +116,37 @@ const Navbar = () => {
           !nav ? "hidden" : "absolute bg-slate-50 w-full px-8 cursor-pointer"
         }
       >
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/" onClick={handleClose}>
             Home
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/dashboard" onClick={handleClose}>
             Dashboard
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/services" onClick={handleClose}>
             Services
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/testomonials" onClick={handleClose}>
             Testomonials
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/places" onClick={handleClose}>
             Places
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/contactus" onClick={handleClose}>
             ContactUs
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full py-4">
           <Link to="/ms" onClick={handleClose}>
             ms
           </Link>
