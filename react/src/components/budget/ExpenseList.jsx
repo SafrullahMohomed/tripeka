@@ -267,7 +267,7 @@ const ExpenseList = (props) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="reset" onClick={handleClose}>Cancel</Button>
             <Button type="submit" onClick={handleClose} autoFocus>
               Add
             </Button>
