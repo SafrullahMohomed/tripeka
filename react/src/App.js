@@ -12,6 +12,7 @@ import TestAuthJwt from "./components/TestAuthJwt";
 import { useState } from "react";
 import { getSignedRole } from "./services/AuthAPIService";
 import StepsAlter from "./components/StepsAlter";
+import VerticalStepper from "./components/VerticalStepper";
 
 function App() {
   // return <TestAuthJwt></TestAuthJwt>;
@@ -20,7 +21,8 @@ function App() {
     <div>
       <Navbar></Navbar>
       <Hero></Hero>
-      <StepsAlter/>
+      {/* <StepsAlter/> */}
+      <VerticalStepper/>
       <Services></Services>
       <Blog></Blog>
       <Testomonials></Testomonials>

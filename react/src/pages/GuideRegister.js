@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import pop6 from "../assets/register.png";
+import pop6 from "../assets/tourguider.png";
 import { useForm } from "react-hook-form";
 import { getSignedRole, guideregister } from "../services/AuthAPIService";
 
