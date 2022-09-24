@@ -39,6 +39,7 @@ import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DescriptionIcon from '@mui/icons-material/Description';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PlaceIcon from '@mui/icons-material/Place';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
@@ -54,12 +55,20 @@ import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
 import { groupIntersectingEntries } from "@fullcalendar/react";
 
+var user_id = null;
+if (localStorage.getItem("userDetails")) {
+  user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+
+  console.log("Uid : " + parseInt(user_id));
+}
+
 const options = [
-    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', visibility: ''},
-    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', visibility: ''},
-    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', visibility: ''},
-    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', visibility: ''},
-    {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', visibility: ''},
+    {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', color: '', disable: 'false'},
+    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', color: '', disable: ''},
+    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', color: '', disable: ''},
+    {icon: <CalendarMonthIcon />, name: 'Change Date', action: '', color: '', disable: ''},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', color: 'error.main', disable: ''},
+    {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', color: 'error.main', disable: 'false'},
   ];
   
 const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
@@ -227,7 +236,7 @@ const Trip = () => {
                     />
                     <CardMedia
                         component="img"
-                        image={dalanda}
+                        image={trip.url}
                         alt=""
                         sx={{height: 180}}
                     />
@@ -241,7 +250,10 @@ const Trip = () => {
                             <Avatar alt="" src={img3} />
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
-                            Group Features
+                            Trip Timeline
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
+                            {trip.start_date} to {trip.end_date}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
@@ -377,14 +389,15 @@ const Trip = () => {
                  {/* Dropdown */}
                   {options.map((option) => (
                     <div key={option.name}>
-                        {option.name === 'Delete Group' ? 
-                            <MenuItem onClick={() => addHandler(option.action)} sx={{color: 'error.main'}} disabled> 
-                                <Avatar sx={{bgcolor: 'error.main'}} >{option.icon}</Avatar>
+                        {trip.owner_id === user_id ? 
+                            <MenuItem onClick={() => addHandler(option.action)} sx={{color: `${option.color}`}}> 
+                                <Avatar sx={{bgcolor: `${option.color}`}}>{option.icon}</Avatar>
                                 <div className="mr-2"></div>
                                 {option.name}
-                            </MenuItem> : 
-                            <MenuItem onClick={() => addHandler(option.action)}> 
-                                <Avatar>{option.icon}</Avatar>
+                            </MenuItem> 
+                            : 
+                            <MenuItem onClick={() => addHandler(option.action)} sx={{color: `${option.color}`}} disabled={option.disable}> 
+                                <Avatar sx={{bgcolor: `${option.color}`}}>{option.icon}</Avatar>
                                 <div className="mr-2"></div>
                                 {option.name}
                             </MenuItem>

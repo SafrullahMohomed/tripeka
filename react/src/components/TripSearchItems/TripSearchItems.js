@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const TripSearchItems = () => {
     return (
@@ -38,7 +39,9 @@ const TripSearchItems = () => {
             <div className="siDetailTexts" style={{textAlign: "right",display: "flex",flexDirection: "column",gap: "5px"}}>
               <span className="siPrice" style={{fontSize:"24px"}}>$112</span>
               <span className="siTaxOp" style={{fontSize:"12px", color:"gray"}}>Includes taxes and fees</span>
-              <button className="siCheckButton" style={{backgroundColor: "#0071c2", color:"white",fontWeight:"bold", padding:"10px 5px", border:"none", cursor:"pointer",borderRadius:"5px"}}>See availability</button>
+              <Link to="/triphoteldetails">
+                <button className="siCheckButton" style={{backgroundColor: "#0071c2", color:"white",fontWeight:"bold", padding:"10px 5px", border:"none", cursor:"pointer",borderRadius:"5px"}}>See availability</button>
+              </Link>
             </div>
           </div>
         </div>

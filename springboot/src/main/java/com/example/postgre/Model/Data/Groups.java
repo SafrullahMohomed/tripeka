@@ -24,6 +24,7 @@ public class Groups {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer group_id;
     private Integer owner_id;
+
     private String name;
     private String location;
     private String description;
@@ -68,6 +69,7 @@ public class Groups {
     public void setGroup_id(Integer group_id) {
         this.group_id = group_id;
     }
+
 
     public Integer getOwner_id() {
         return owner_id;

@@ -30,8 +30,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="hero-second-col w-2/3 ">
-        <img class="w-full h-full object-cover p-10" src={img} alt="content" />
+      <div className="hero-second-col w-2/3 px-3 py-8">
+        <img class="object-cover p-10 px-10 h-7/8 w-full" src={img} alt="content" />
       </div>
     </div>
   );

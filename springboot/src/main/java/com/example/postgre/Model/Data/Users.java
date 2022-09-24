@@ -27,8 +27,7 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer user_id;
 
-	@Column(name = "email")
-	private String email;
+
 
 	@Column(name = "firstname")
 	private String firstname;
@@ -39,6 +38,12 @@ public class Users {
 	private String hashedpswd;
 	@Column(name = "userrole")
 	private String userrole;
+	@Column(name = "profile_url")
+	private String profile_url;
+
+	@Column(name = "email")
+	private String email;
+
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 			CascadeType.PERSIST,
@@ -68,13 +73,7 @@ public class Users {
 		this.lastname = lastname;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -82,6 +81,19 @@ public class Users {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+
+	public String getEmail() {
+		if(email == null){
+
+			return email;
+		}else{
+			return email;
+		}
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getLastname() {
@@ -118,6 +130,14 @@ public class Users {
 
 	public List<Groups> getGroups() {
 		return groups;
+	}
+
+	public String getProfile_url() {
+		return profile_url;
+	}
+
+	public void setProfile_url(String profile_url) {
+		this.profile_url = profile_url;
 	}
 
 	public void setGroups(List<Groups> groups) {

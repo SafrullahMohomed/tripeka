@@ -3,8 +3,39 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import UserListUser from "./UserListUser";
+import {
+  getIndividualamountSpendedByGroupId
+} from "../../services/BudgetService";
+import { useEffect, useState } from "react";
+import { bgcolor } from "@mui/system";
 
-const UserList = () => {
+
+
+
+const UserList = (props) => {
+  const [totalAmountSpended, setTotalAmountSpended] = useState([]);
+  const group_id_int = parseInt(props.group_id);
+
+
+const init = () => {
+  // to get total amount spended by group
+   getIndividualamountSpendedByGroupId(group_id_int)
+    .then((response) => {
+      setTotalAmountSpended(response.data);
+    })
+    .catch((err) => {
+      console.log("Something went wrong", err);
+      
+    });
+
+  }
+    useEffect(() => {
+     init();
+    }, []);
+
+    // init();
+    // () =>{init()}
+    // ;
   const settings = {
     dots: false,
     infinite: true,
@@ -59,14 +90,35 @@ const UserList = () => {
   return (
     <div>
       <Slider {...settings}>
-        <div>
+        {/* <div>
           <UserListUser
             title="Nimal"
             amount="3300"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
-        </div>
+        </div> */}
 
+        {totalAmountSpended.map((user) => (
+      <div>
+      {user.amount >= 0 ? 
+      <UserListUser
+            title={user.lastname}
+            amount={user.amount}
+            bgcolor="rgba(108, 237, 75, 0.29)"
+
+          />
+          :
+          <UserListUser
+            title={user.lastname}
+            amount={user.amount}
+            bgcolor="rgba(215, 44, 44, 0.29)"
+
+          />}
+      </div>
+
+        ))}
+
+        {console.log("erorrrrrr", totalAmountSpended)}
         <div>
           <UserListUser
             title="Sunil"
