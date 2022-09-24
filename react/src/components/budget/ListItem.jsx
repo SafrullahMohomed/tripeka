@@ -7,8 +7,8 @@ import { updateBudget, deleteBudget } from "../../services/BudgetService";
 
 const ListItem = (props) => {
 
-  const delete_function = async () => {
-    await deleteBudget(props.budget_id)
+  const delete_function = () => {
+     deleteBudget(props.budget_id)
       .then((response) => {
         console.log("successfully deleted", response.data);
       })
@@ -19,7 +19,7 @@ const ListItem = (props) => {
   };
 
   const update_function = async () => {
-    await updateBudget(props.budget_id, props.title, props.amount, props.description)
+     updateBudget(props.budget_id, props.title, props.amount, props.description)
       .then((response) => {
         console.log("successfully updated", response.data);
       })
@@ -47,6 +47,7 @@ const ListItem = (props) => {
         </div>
       </div>
       <div className="edit-delete ml-2 ">
+        {/* HERE */}
         <div className="edit-list" onClick={ () => update_function()}>
 
         <FontAwesomeIcon style={{color:"green"}} icon={faPencil} /></div>
