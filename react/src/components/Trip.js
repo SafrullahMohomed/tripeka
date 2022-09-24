@@ -257,54 +257,62 @@ const Trip = () => {
                         </Typography>
                     </CardContent>
                     <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/gallery/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
-                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                            <Tooltip title="Gallery">
-                            <IconButton aria-label="gallery">
-                                <CameraAltIcon onClick = {() => {window.location.href = `/gallery/${id}`}}/>
-                            </IconButton>
-                            </Tooltip>
+                                <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                                <Tooltip title="Gallery">
+                                <IconButton aria-label="gallery">
+                                    <CameraAltIcon/>
+                                </IconButton>
+                                </Tooltip>
                                 <Typography variant="body2" color="text.secondary">
-                                Gallery
-                            </Typography>
-                            </CardContent>
+                                    Gallery
+                                </Typography>
+                                </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/budget/${id}` }}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <Tooltip title="Budget">
                             <IconButton aria-label="budget">
-                                <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
+                                <PaidOutlinedIcon/>
                             </IconButton>
                             </Tooltip>
-                                <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary">
                                 Budget
                             </Typography>
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/climate/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <Tooltip title="Weather">
                             <IconButton aria-label="climate">
-                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
+                                <ThunderstormOutlinedIcon/>
                             </IconButton>
                             </Tooltip>
-                                <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary">
                                 Weather
                             </Typography>
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/groupChat/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                                 <Tooltip title="Chat">
                                     <IconButton aria-label="group chat">
-                                        <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
+                                        <ChatBubbleRoundedIcon/>
                                     </IconButton>
                                 </Tooltip>
                                 <Typography variant="body2" color="text.secondary">
@@ -313,13 +321,15 @@ const Trip = () => {
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/location/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             {/* TODO : Location based on group ID if doing for all users location*/}
                             <Tooltip title="Live Location">
                                 <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
+                                    <PlaceIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
@@ -328,13 +338,15 @@ const Trip = () => {
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/location/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             {/* TODO : Location based on group ID if doing for all users location*/}
                             <Tooltip title="Live Location">
                                 <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
+                                    <PlaceIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
