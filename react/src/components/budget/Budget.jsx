@@ -10,15 +10,16 @@ import {
   getAverageamountSpendedByGroupId,
   getIndividualamountSpendedByGroupIdUserId,
   getDueamountSpendedByGroupIdUserId,
+  getCards
 } from "../../services/BudgetService";
 
 import jwt_decode from "jwt-decode";
 
 const Budget = () => {
-  const [yourAmount, setYourAmount] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [individualAmount, setIndividualAmount] = useState(0);
-  const [yourDue, setYourDue] = useState();
+  const [yourAmount, setYourAmount] = useState(parseFloat(0.00));
+  const [totalAmount, setTotalAmount] = useState(parseFloat(0.00));
+  const [individualAmount, setIndividualAmount] = useState(parseFloat(0.00));
+  const [yourDue, setYourDue] = useState(0.00);
   const [isPending, setIsPending] = useState(true);
   const [Error, setError] = useState(false);
   console.log(yourAmount);
@@ -40,61 +41,79 @@ const Budget = () => {
   const user_id_int = parseInt(currentUserId);
   // initializing the state variable function
   const init = () => {
-    // to get individual amount spended by user
-    getIndividualamountSpendedByGroupIdUserId(group_id_int, user_id_int)
+    // to get calculated card amounts
+    getCards(group_id_int, user_id_int)
       .then((response) => {
-        console.log("Printing Groups data", response.data);
-        setIsPending(false);
-        setYourAmount(parseFloat(response.data.toFixed(2)));
-        setError(null);
-      })
-      .catch((err) => {
-        console.log("Something went wrong", err);
-        setIsPending(false);
-        setError(err.message);
+        console.log("Printing Card details", response.data);
+        setYourAmount(parseFloat(response.data.mytotal).toFixed(2));
+        setTotalAmount(parseFloat(response.data.alltotal).toFixed(2));
+        setIndividualAmount(parseFloat(response.data.average).toFixed(2));
+        setYourDue(parseFloat(response.data.due).toFixed(2));
+
+
+      }
+      )
+      .catch((err) =>{
+        console.log("Something Went wrong", err);
+          
       });
 
-    // to get total amount spended by group
-    getTotalamountSpendedByGroupId(group_id_int)
-      .then((response) => {
-        console.log("Printing Groups data", response.data);
-        setIsPending(false);
-        setTotalAmount(parseFloat(response.data.toFixed(2)));
-        setError(null);
-      })
-      .catch((err) => {
-        console.log("Something went wrong", err);
-        setIsPending(false);
-        setError(err.message);
-      });
 
-    // to get average amount spended by group
-    getAverageamountSpendedByGroupId(group_id_int)
-      .then((response) => {
-        console.log("Printing Groups data", response.data);
-        setIsPending(false);
-        setIndividualAmount(parseFloat(response.data.toFixed(2)));
-        setError(null);
-      })
-      .catch((err) => {
-        console.log("Something went wrong", err);
-        setIsPending(false);
-        setError(err.message);
-      });
+    // // to get individual amount spended by user
+    // getIndividualamountSpendedByGroupIdUserId(group_id_int, user_id_int)
+    //   .then((response) => {
+    //     console.log("Printing Groups data", response.data);
+    //     setIsPending(false);
+    //     setYourAmount(parseFloat(response.data).toFixed(2));
+    //     setError(null);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Something went wrong", err);
+    //     setIsPending(false);
+    //     setError(err.message);
+    //   });
 
-    // to get individual due amount
-    getDueamountSpendedByGroupIdUserId(group_id_int, user_id_int)
-      .then((response) => {
-        console.log("Printing Groups data", response.data);
-        setIsPending(false);
-        setYourDue(parseFloat(response.data.toFixed(2)));
-        setError(null);
-      })
-      .catch((err) => {
-        console.log("Something went wrong", err);
-        setIsPending(false);
-        setError(err.message);
-      });
+    // // to get total amount spended by group
+    // getTotalamountSpendedByGroupId(group_id_int)
+    //   .then((response) => {
+    //     // console.log("Printing Groups data", response.data);
+    //     setIsPending(false);
+    //     setTotalAmount(parseFloat(response.data).toFixed(2));
+    //     setError(null);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Something went wrong", err);
+    //     setIsPending(false);
+    //     setError(err.message);
+    //   });
+
+    // // to get average amount spended by group
+    // getAverageamountSpendedByGroupId(group_id_int)
+    //   .then((response) => {
+    //     // console.log("Printing Groups data", response.data);
+    //     setIsPending(false);
+    //     setIndividualAmount(parseFloat(response.data).toFixed(2));
+    //     setError(null);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Something went wrong", err);
+    //     setIsPending(false);
+    //     setError(err.message);
+    //   });
+
+    // // to get individual due amount
+    // getDueamountSpendedByGroupIdUserId(group_id_int, user_id_int)
+    //   .then((response) => {
+    //     // console.log("Printing Groups data", response.data);
+    //     setIsPending(false);
+    //     setYourDue(parseFloat(response.data).toFixed(2));
+    //     setError(null);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Something went wrong", err);
+    //     setIsPending(false);
+    //     setError(err.message);
+    //   });
   };
 
   useEffect(() => {

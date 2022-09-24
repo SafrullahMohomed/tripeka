@@ -1,18 +1,21 @@
 package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Budget;
+import com.example.postgre.Model.Data.Groups;
 import com.example.postgre.Model.Data.Users;
+import com.example.postgre.Model.Dto.BudgetCardDetails;
 import com.example.postgre.Model.Dto.BudgetUserDto;
 import com.example.postgre.service.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/budget")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BudgetController {
 
     private final BudgetService budgetService;
@@ -20,6 +23,12 @@ public class BudgetController {
     @Autowired
     public BudgetController(BudgetService budgetService) {
         this.budgetService = budgetService;
+    }
+
+//    get all users in a group
+    @GetMapping(path = "/groups/allusers/{group_id}")
+    public Optional<Groups> getUsersInAGroup(@PathVariable("group_id") Integer group_id){
+        return budgetService.getUsersInAGroup(group_id);
     }
 
     // get all budget in all groups
@@ -59,11 +68,18 @@ public class BudgetController {
         return budgetService.getTotalAmount(group_id);
     }
 
-    // to get average amount which the group is spended
-    @GetMapping(path = "/averageamount/{group_id}")
-    public Double getAverageAmount(@PathVariable("group_id") Integer group_id) {
-        return budgetService.getAverageAmount(group_id);
+
+    // to get total amount which the group is spended
+    @GetMapping(path = "/getcards/{group_id}/{user_id}")
+    public BudgetCardDetails getBudgetCardDetails(@PathVariable("group_id") Integer group_id, @PathVariable("user_id") Integer user_id) {
+
+        return budgetService.getBudgetCardDetails(group_id, user_id);
     }
+    // to get average amount which the group is spended
+//    @GetMapping(path = "/averageamount/{group_id}")
+//    public Double getAverageAmount(@PathVariable("group_id") Integer group_id) {
+//        return budgetService.getAverageAmount(group_id);
+//    }
 
     // individual amount total which each user spent
     @GetMapping(path = "/individualamount/{group_id}/{user_id}")
@@ -75,12 +91,12 @@ public class BudgetController {
 
     @GetMapping(path = "/dueamount/{group_id}/{user_id}")
 
-    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id,
-            @PathVariable("user_id") Integer user_id) {
-        Double due_amount = budgetService.getIndividualTotalAmount(group_id, user_id)
-                - budgetService.getAverageAmount(group_id);
-        return due_amount;
-    }
+//    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id,
+//            @PathVariable("user_id") Integer user_id) {
+//        Double due_amount = budgetService.getIndividualTotalAmount(group_id, user_id)
+//                - budgetService.getAverageAmount(group_id);
+//        return due_amount;
+//    }
 
 //    delete budget
     @DeleteMapping(path = "/deletebudget/{budget_id}")

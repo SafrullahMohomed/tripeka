@@ -20,7 +20,6 @@ public interface BudgetRepository extends JpaRepository<Budget, Integer> {
     @Query(value = "from Budget where group_id = ?1 and user_id = ?2")
     List<Budget> findAllByGroupIdAndUserId(@Param("group_id") Integer group_id, @Param("user_id") Integer user_id);
 
-
     //get the total expenses for a trip
     @Query("select sum(cast(amount as double)) from Budget where group_id = ?1")
     Double getTotalAmount(@Param("group_id") Integer group_id);
@@ -29,13 +28,9 @@ public interface BudgetRepository extends JpaRepository<Budget, Integer> {
     @Query("select sum(cast(amount as double)) from Budget where group_id = ?1 and user_id = ?2")
     Double getIndividualTotalAmount(@Param("group_id") Integer group_id, @Param("user_id") Integer user_id);
 
-    //    get the individual total user list
-//    @Query("select  from Budget b where group_id = ?1 ")
-////    @Query("SELECT new com.example.postgre.Model.Dto.BudgetUserDto(Budget.users.user_id, Budget.users.lastname, amount) FROM Budget")
-//    List<BudgetUserDto> getALLIndividualTotalAmount(@Param("group_id") Integer group_id);
 
-    //get the average amount for the trip
-    @Query("select avg(cast(amount as double) ) from Budget where group_id = ?1")
-    Double getAverageAmount(@Param("group_id") Integer group_id);
+//    //get the average amount for the trip
+//    @Query("select avg(cast(amount as double) ) from Budget where group_id = ?1")
+//    Double getAverageAmount(@Param("group_id") Integer group_id);
 }
 

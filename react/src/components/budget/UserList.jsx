@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import UserListUser from "./UserListUser";
 import {
-  getTotalamountSpendedByGroupId
+  getTotalamountSpendedByGroupId,
 } from "../../services/BudgetService";
 import { useEffect, useState } from "react";
 import { bgcolor } from "@mui/system";
@@ -90,30 +90,25 @@ const init = async() => {
   return (
     <div>
       <Slider {...settings}>
-        <div>
+        {/* <div>
           <UserListUser
             title="Nimal"
             amount="3300"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
-        </div>
+        </div> */}
 
-        {totalAmountSpended.map((user) => (
-          <div>
-            if ({user.amount >= 0}) {
-              
-              
-            }
-
+        {/* {totalAmountSpended.map((user) => (
+      <div>
       <UserListUser
             title={user.lastname}
             amount={user.amount}
             
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
-                    </div>
-                  ))}
-        <div>
+      </div>
+                  ))} */}
+        {/* <div>
           <UserListUser
             title="Sunil"
             amount="1000"
@@ -161,7 +156,7 @@ const init = async() => {
             amount="-4500"
             bgcolor="rgba(108, 237, 75, 0.29)"
           />
-        </div>
+        </div> */}
       </Slider>
     </div>
   );
