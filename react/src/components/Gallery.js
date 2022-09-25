@@ -109,7 +109,7 @@ const Gallery = () => {
             {console.log(urlList)}
 
             <div className="w-5/6 mb-8">
-                <Card>
+                {/* <Card>
                     <CardActionArea>
                         
                         <CardContent>
@@ -125,7 +125,7 @@ const Gallery = () => {
                         
                         </CardContent>
                     </CardActionArea>
-                </Card>
+                </Card> */}
             </div>
             <div id="album" className="w-5/6">
                 <ImageList cols={4}>
@@ -182,14 +182,12 @@ const Gallery = () => {
                     </DialogActions>
                 </Dialog> */}
 
-                <div className="bg-gray-900">
+                {console.log(imgurl)}
+                {/* <div className="bg-gray-900">
                     <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
                     <button onClick={uploadImage}>Upload</button>
-                </div>       
-                {console.log(imgurl)}       
-                {/* <div>
-                    <img src={} />    
-                </div>   */}
+                </div>        */}
+                       
             </div>
         </section>
      );

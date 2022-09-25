@@ -47,7 +47,7 @@ import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRound
 import { deleteGroup } from "../services/GroupsService";
 import { getGroup, editTrip } from "../services/GroupsService";
 import addFriend from "../services/GroupsService";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
 import img2 from '../assets/customer2.jpg'
@@ -64,15 +64,12 @@ if (localStorage.getItem("userDetails")) {
 
 const options = [
     {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', color: '', disable: 'false'},
-    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', color: '', disable: ''},
-    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', color: '', disable: ''},
-    {icon: <CalendarMonthIcon />, name: 'Change Date', action: '', color: '', disable: ''},
-    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', color: 'error.main', disable: ''},
+    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenTM', color: '', disable: ''},
+    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenLM', color: '', disable: ''},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: 'handleLeave', color: 'error.main', disable: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', color: 'error.main', disable: 'false'},
   ];
   
-const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
-
 const Trip = () => {
 
     //prints the variable and group_id value from URL
@@ -138,27 +135,28 @@ const Trip = () => {
             
       };
 
-    // edit trip modal
-    const [openEM, setOpenEM] = useState(false);
-    const handleOpenEM = () => {
-        setOpenEM(true); 
+    // edit title modal
+    const [openTM, setOpenTM] = useState(false);
+    const handleOpenTM = () => {
+        setOpenTM(true); 
         setAnchorEl(null);
     };
-    const handleCloseEM = () => setOpenEM(false);
+    const handleCloseTM = () => setOpenTM(false);
 
-    // add descrption modal
-    const [openDM, setOpenDM] = useState(false);
-    const handleOpenDM = () => {
-        setOpenDM(true); 
+    // edit location modal
+    const [openLM, setOpenLM] = useState(false);
+    const handleOpenLM = () => {
+        setOpenLM(true); 
         setAnchorEl(null);
     };
-    const handleCloseDM = () => setOpenDM(false);
+    const handleCloseLM = () => setOpenLM(false);
+
+    // leave group
+
 
     // delete trip
     const navigate = useNavigate();
-
     const handleDelete = () => {
-         
         deleteGroup(id)
         .then(response => {
             console.log('group deleted successfully', response.data);   
@@ -171,15 +169,16 @@ const Trip = () => {
     }
 
     // edit trip form
-    const [name, setName] = useState();
-    const [location, setLocation] = useState();
-    const [description, setDescription] = useState();
-    // console.log(trip)
+    const [name, setName] = useState(trip.name);
+    const [location, setLocation] = useState(trip.location);
+    // console.log("trip.location :"+ trip.location)
+    // console.log("location :"+ location)
 
     const editform = (e) => {
         e.preventDefault();
-        
-        editTrip(id, name, location, description)
+
+        //{console.log('Inside form '+location)}
+        editTrip(id, name, location)
             .then((response) => {
                 console.log('group Edited successfully', response.data);
             })
@@ -193,11 +192,11 @@ const Trip = () => {
         if (name === "handleOpenFM") {
             handleOpenFM();
         }
-        if (name === "handleOpenEM") {
-            handleOpenEM();
+        if (name === "handleOpenTM") {
+            handleOpenTM();
         }
-        if (name === "handleOpenDM") {
-            handleOpenDM();
+        if (name === "handleOpenLM") {
+            handleOpenLM();
         }
         if (name === "handleDelete") {
             handleDelete();
@@ -252,7 +251,7 @@ const Trip = () => {
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
                             Trip Timeline
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
+                        <Typography variant="body1" color="text.main" sx={{mt: 0, pl: 1}}>
                             {trip.start_date} to {trip.end_date}
                         </Typography>
                     </CardContent>
@@ -472,47 +471,16 @@ const Trip = () => {
                 </form>
             </Dialog>
 
-            {/* Add Description Modal*/}
+            {/* Edit Title Modal*/}
             <Dialog
                 aria-labelledby="dialog-title"
                 aria-describedby="dialog-description"
-                onClose={handleCloseDM}
-                open={openDM}
+                onClose={handleCloseTM}
+                open={openTM}
             >
               <form onSubmit={editform}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
-                    {"Add Description"}
-                </DialogTitle>
-                <DialogContent>
-                    <TextField
-                        onChange={(e) => setDescription(e.target.value)}
-                        autoFocus
-                        margin="dense"
-                        id="description"
-                        label="Description"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                    />
-                    
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDM}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseDM} autoFocus>Done</Button>
-                </DialogActions>
-              </form>
-            </Dialog>
-
-            {/* Edit Trip Modal*/}
-            <Dialog
-                aria-labelledby="dialog-title"
-                aria-describedby="dialog-description"
-                onClose={handleCloseEM}
-                open={openEM}
-            > 
-              <form onSubmit={editform}>
-                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
-                    {"Edit Trip Details"}
+                    {"Change Name"}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
@@ -524,31 +492,53 @@ const Trip = () => {
                         type="text"
                         fullWidth
                         variant="standard"
-                        
                     />
-                    <DialogContentText id="dialog-description" sx={{marginY: 2}}>
-                    </DialogContentText>
-                    <TextField 
+                    {/* <TextField
+                        //sx={{ display: 'none' }}
+                        //value={trip.location}
+                        //onChange={(e) => setLocation(e.target.value)}
+                    /> */}
+                    
+                </DialogContent>
+                
+                <DialogActions>
+                    <Button onClick={handleCloseTM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseTM} autoFocus>Done</Button>
+                </DialogActions>
+              </form>
+            </Dialog>
+
+            {/* Edit Location Modal*/}
+            <Dialog
+                aria-labelledby="dialog-location"
+                aria-describedby="dialog-location"
+                onClose={handleCloseLM}
+                open={openLM}
+            > 
+              <form onSubmit={editform}>
+                <DialogTitle id="dialog-location" sx={{width: 450, marginBottom: -1}}>
+                    {"Change Location"}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
                         onChange={(e) => setLocation(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="location"
-                        label="Add New Location"
+                        label="Location"
                         type="text"
-                        InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <NearMeIcon />
-                              </InputAdornment>
-                            ),
-                          }}
                         fullWidth
                         variant="standard"
                     />
+                    {/* <TextField 
+                        // sx={{ display: 'none' }}
+                        // value={trip.name}
+                        // onChange={(e) => setName(e.target.value)} 
+                    /> */}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseEM}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseEM} autoFocus>Done</Button>
+                    <Button onClick={handleCloseLM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseLM} autoFocus>Done</Button>
                 </DialogActions>
               </form>
             </Dialog>

@@ -122,7 +122,7 @@ const Groups = () => {
 
       {/*Displaying Group Cards */}
       <div class="container px-32 py-5 mx-auto">
-        <div class="w-full mb-8 pl-2">Your Trip Groups</div>
+        <div class="w-full mb-8 pl-2 text-slate-500 text-2xl">Trip Groups</div>
         <div class="flex flex-wrap -m-2">
           {error && (
             <div className="flex items-center px-10 text-rose-500">{error}</div>
@@ -134,8 +134,8 @@ const Groups = () => {
           )}
 
           {groupList.map((group) => (
-            <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
-              <Card sx={{ maxWidth: 345 }}>
+            <div key={group.group_id} class="px-4 py-1 lg:w-1/5 md:w-1/2 w-full">
+              <Card sx={{ maxWidth: 400 }}>
                 <CardActionArea
                   onClick={() => {
                     window.location.href = `/trip/${group.group_id}`;
@@ -143,9 +143,9 @@ const Groups = () => {
                 >
                   <CardMedia
                     component="img"
-                    image={group.name === "Dalanda Palace" ? img2 : img3}
+                    image={group.url}
                     alt=""
-                    sx={{ height: 100 }}
+                    sx={{ height: 120 }}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
@@ -161,8 +161,8 @@ const Groups = () => {
           ))}
 
           {/* Add Group Card-Button */}
-          <div class="p-4 lg:w-1/5 md:w-1/2 w-full">
-            <Card sx={{ maxWidth: 345 }} onClick={handleOpenM}>
+          <div class="px-4 py-1 lg:w-1/5 md:w-1/2 w-full">
+            <Card sx={{ maxWidth: 400 }} onClick={handleOpenM}>
               <CardActionArea>
                 <Box
                   sx={{
@@ -171,7 +171,7 @@ const Groups = () => {
                     alignItems: "center",
                     bgcolor: grey[100],
                     color: grey[600],
-                    height: 100,
+                    height: 120,
                   }}
                 >
                   <AddCircle />
