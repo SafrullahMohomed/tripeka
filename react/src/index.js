@@ -50,6 +50,7 @@ import Trip from "./components/Trip";
 import SpeedDialButton from "./components/SpeedDialButton";
 
 import authService from "./jwtAuthServices/auth.service";
+import LiveLocation from "./pages/LiveLocation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -93,7 +94,7 @@ root.render(
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
-      <Route path="/groupChat/:id" element={<ChatRoom />} />
+      <Route path="/groupChat/:id" element={authService.isSignedIn() ? <ChatRoom /> : <Login />} />
       <Route path="/triphotels" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
       <Route
@@ -196,6 +197,14 @@ root.render(
         element={
           <>
             <Profile />
+          </>
+        }
+      />
+      <Route
+        path="/livelocation"
+        element={
+          <>
+            <LiveLocation />
           </>
         }
       />

@@ -12,28 +12,39 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import { set } from "date-fns";
+import authHeader from "../jwtAuthServices/auth-header";
 
 var stompClient = null;
 var subscription = null;
 
+const addMessageToDB = (group_id, chatMessage) => {
+  return axios.post(ServerBaseUrl + "/groupMessages", chatMessage, { headers: authHeader() });
+};
+
 const MyChatRoom = () => {
+  console.log("Main Function Ran....");
   var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
-  console.log(decoded.sub);
   const username = decoded.sub;
   const userEmail = JSON.parse(localStorage.getItem("userDetails")).email;
+  const user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+  const userFullName =
+    JSON.parse(localStorage.getItem("userDetails")).firstname +
+    " " +
+    JSON.parse(localStorage.getItem("userDetails")).lastname;
   const [textBoxMessage, settextBoxMessage] = useState();
   const [groupList, setgroupList] = useState([]);
   const [currentGroup, setcurrentGroup] = useState(null);
-  const [messages, setmessages] = useState(null);
+  const [messages, setmessages] = useState([]);
 
   useEffect(() => {
+    console.log("useEffect Ran....");
     // fetch all the group names of the user from db
     axios.get(ServerBaseUrl + "/userGroups/" + userEmail).then((response) => {
       setgroupList(response.data);
       connect();
     });
     // connect();
-  }, []);
+  }, [currentGroup]);
 
   const connect = () => {
     let Sock = new SockJS("http://localhost:8080/ws");
@@ -61,6 +72,7 @@ const MyChatRoom = () => {
         setmessages(response.data);
       });
     }
+    console.log(messages);
     subscription = stompClient.subscribe("/chat-room/" + group.group_id, onRecieveMessage);
   };
 
@@ -76,24 +88,33 @@ const MyChatRoom = () => {
     console.log(messages);
 
     // this is just to add unique keys to messages, ideally should be the messageID from the database
-    let r = (Math.random() + 1).toString(36).substring(7);
+    // let r = (Math.random() + 1).toString(36).substring(7);
     // messages.push({
     //   senderName: payloadData.senderName,
     //   content: payloadData.content,
-    //   id: r,
+    //   id: payloadData.id,
     // });
     // setmessages([
     //   ...messages,
     //   {
     //     senderName: payloadData.senderName,
     //     message: payloadData.content,
-    //     id: r,
+    //     id: payloadData.id,
     //   },
     // ]);
+    setmessages((messages) => [
+      ...messages,
+      {
+        senderName: payloadData.senderName,
+        message: payloadData.content,
+        id: payloadData.id,
+      },
+    ]);
 
-    if (!messages) {
-      setmessages(payloadData);
-    }
+    // if (!messages) {
+    //   console.log("messages is empty....");
+    //   setmessages(payloadData);
+    // }
 
     console.log(messages);
     // setmessages([...messages]);
@@ -107,11 +128,26 @@ const MyChatRoom = () => {
     console.log("Sending.....");
     if (stompClient) {
       var chatMessage = {
-        senderName: username,
-        content: textBoxMessage,
+        group_id: currentGroup.group_id,
+        user_id: user_id,
+        time: null,
+        message: textBoxMessage,
       };
+      let r = (Math.random() + 1).toString(36).substring(7);
+
       console.log(chatMessage);
-      stompClient.send("/chat-app/chat/" + currentGroup.group_id + "/sendMessage", {}, JSON.stringify(chatMessage));
+      stompClient.send(
+        "/chat-app/chat/" + currentGroup.group_id + "/sendMessage",
+        {},
+        JSON.stringify({
+          senderName: userFullName,
+          content: textBoxMessage,
+          id: r,
+        })
+      );
+      addMessageToDB(currentGroup.group_id, chatMessage)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
       settextBoxMessage("");
     }
   };
@@ -160,12 +196,12 @@ const MyChatRoom = () => {
         </div>
       </div>
 
-      {!messages && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
+      {messages.length === 0 && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
 
       {/* Current Group */}
-      {messages && (
-        <div className=" flex flex-col lg:basis-2/3 basis-full mt-6 ml-3">
-          <div className="flex flex-row justify-start items-center border-b-2">
+      {messages.length > 0 && (
+        <div className=" flex flex-col lg:basis-2/3 basis-full mt-6 ml-3  overflow-y-scroll pb-10">
+          <div className="flex flex-row justify-start items-center border-b-2 ">
             <ArrowBackIosIcon className="!w-5 !h-10 mr-5 lg:!hidden" />
             <p className="font-serif text-2xl capitalize">{currentGroup.name}</p>
           </div>
@@ -174,9 +210,9 @@ const MyChatRoom = () => {
           {messages.map((message) => (
             <div
               className={
-                message.senderName !== username
-                  ? "flex flex-row p-3 m-3 items-center justify-start"
-                  : "flex flex-row-reverse p-3 m-3 items-center justify-start"
+                message.senderName !== userFullName
+                  ? "flex flex-row p-3 m-3 items-center justify-start "
+                  : "flex flex-row-reverse p-3 m-3 items-center justify-start "
               }
               key={message.id}
             >

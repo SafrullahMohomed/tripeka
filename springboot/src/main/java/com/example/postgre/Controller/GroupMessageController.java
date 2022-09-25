@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")p
 @RequestMapping("/api/v1/")
 public class GroupMessageController {
 
@@ -31,14 +31,14 @@ public class GroupMessageController {
 
 
     @PostMapping("groupMessages")
-    public ResponseEntity<GroupMessages> addGroupMessage(@RequestBody GroupMessages req) {
+    public GroupMessages addGroupMessage(@RequestBody GroupMessages req) {
 
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Users sender = userRepository.findById(req.getUser_id()).get();
         GroupMessages var1 = new GroupMessages(req.getGroup_id(), req.getUser_id(), sender.getFirstname() + " " + sender.getLastname(),time, req.getMessage());
         GroupMessages grpMsg = groupMessageRepository.save(var1);
 
-        return ResponseEntity.status(HttpStatus.OK).body(grpMsg);
+        return grpMsg;
     }
 
     @GetMapping("userGroups/{email}")
