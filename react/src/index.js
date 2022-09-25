@@ -91,7 +91,7 @@ root.render(
           </>
         }
       />
-      <Route path="/events" element={<EventCalendar />} />
+      <Route path="/events" element={<><Header /><EventCalendar /></>} />
       <Route path="/help" element={<Help />} />
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
