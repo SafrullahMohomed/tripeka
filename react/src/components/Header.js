@@ -61,7 +61,7 @@ const Header = () => {
           <Link to={`/dashboard/${user_id}`} class="mr-7 hover:text-gray-900">
             Dashboard
           </Link>
-          <Link to="/hotels" class="mr-7 hover:text-gray-900">
+          <Link to="/triphotel" class="mr-7 hover:text-gray-900">
             Hotels
           </Link>
           <Link to={`/groups/${user_id}`} class="mr-7 hover:text-gray-900">

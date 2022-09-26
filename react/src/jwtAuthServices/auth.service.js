@@ -38,6 +38,7 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("userDetails");
+    window.location.href = "http://localhost:3000/";
   }
 
   getCurrentUser() {
