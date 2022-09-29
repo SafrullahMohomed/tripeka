@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080/";
 
 class AuthService {
   login(username, password) {
-    console.log("KAKKA BARAI");
+    console.log("got the user details");
     return axios
       .post(API_URL + "authenticate", {
         username,
@@ -38,6 +38,7 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("userDetails");
+    window.location.href = "http://localhost:3000/";
   }
 
   getCurrentUser() {

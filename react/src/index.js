@@ -17,6 +17,7 @@ import EventCalendar from "./pages/EventCalendar";
 import TypePage from "./pages/TypePage";
 import Car from "./components/car/CarMain";
 import GuideRegister from "./pages/GuideRegister";
+import TripHotelDetails from "./pages/TripHotelDetails/TripHotelDetails";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -30,6 +31,8 @@ import Gallery from "./components/Gallery";
 import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
+import Location from "./components/Location";
+import DeleteUser from "./components/DeleteUser";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -46,9 +49,10 @@ import TripList from "./pages/TripList/TripList";
 import CarRegister from "./pages/CarRegister";
 
 // import CreateGroupFloat from './components/CreateGroupFloat';
+
 import Trip from "./components/Trip";
 import SpeedDialButton from "./components/SpeedDialButton";
-
+import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
 import LiveLocation from "./pages/LiveLocation";
 
@@ -64,6 +68,7 @@ root.render(
       <Route path="/places" element={<Popular />} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/triphoteldetails" element={<TripHotelDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/resetpassword/:email" element={<ResetPassword />} />{" "}
       <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -87,15 +92,20 @@ root.render(
           </>
         }
       />
-      <Route path="/events" element={<EventCalendar />} />
+      <Route path="/events" element={<><Header /><EventCalendar /></>} />
       <Route path="/help" element={<Help />} />
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
+
       <Route path="/groupChat/:id" element={authService.isSignedIn() ? <ChatRoom /> : <Login />} />
       <Route path="/triphotels" element={<TripList />} />
+
+      <Route path="/carprofile/:id" element={<CarProfile />} />
+      <Route path="/car" element={<Car />} />
+      <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
       <Route
         path="/hotel"
@@ -109,16 +119,8 @@ root.render(
           </>
         }
       />
-      <Route
-        path="*"
-        element={
-          <>
-            <Header />
-            <NotFound />
-            <Footer />
-          </>
-        }
-      />
+
+      <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route
         path="/dashboard"
         element={
@@ -136,78 +138,17 @@ root.render(
             <Login />
           )
         }
-      />
-      <Route
-        path="/blogs"
-        element={
-          <>
-            <Header />
-            <Blogs />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/groups/:id"
-        element={
-          <>
-            <Header />
-            <Groups />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/trip/:id"
-        element={
-          <>
-            <Header />
-            <Trip />
-          </>
-        }
-      />
-      <Route
-        path="/gallery/:id"
-        element={
-          <>
-            <Header />
-            <Gallery />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/admin"
-        element={
-          <>
-            <Drawer />
-          </>
-        }
-      />
-      <Route
-        path="/users"
-        element={
-          <>
-            <Users />
-          </>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <>
-            <Profile />
-          </>
-        }
-      />
-      <Route
-        path="/livelocation"
-        element={
-          <>
-            <LiveLocation />
-          </>
-        }
-      />
+      />      
+      <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
+      <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
+      <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
+      <Route path='/trip/:id/:id' element={<><Header /><DeleteUser /></>}/>
+      <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
+      <Route path='/admin' element={<><Drawer /></>}/>
+      <Route path='/users' element={<><Users /></>}/>
+      <Route path='/location/:id' element={<><Location /></>}/>
+      <Route path='/profile' element={<><Profile /></>}/>
+
     </Routes>
   </Router>
 );

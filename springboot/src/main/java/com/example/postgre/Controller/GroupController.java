@@ -2,7 +2,6 @@ package com.example.postgre.Controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-//import com.example.postgre.Execption.ResourceNotFoundException;
+import com.example.postgre.Execption.ResourceNotFoundException;
 import com.example.postgre.Model.Data.Groups;
 import com.example.postgre.Model.Data.Users;
 import com.example.postgre.repository.GroupRepository;
@@ -34,34 +32,96 @@ public class GroupController {
     @Autowired
     private UserRepository userRepository;
 
-    // get all groups for testing
+    // *** testing ***
     @GetMapping("/groups")
     public List<Groups> getAllGroups() {
         return groupRepository.findAll();
     }
 
-    // get users groups
+    // Get users' groups
     @GetMapping("/groups/{user_id}")
     public Users getGroupsById(@PathVariable("user_id") Integer user_id) {
         return groupRepository.findGroupsByUserId(user_id);
     }
 
-    // get group
+    // Get group details
     @GetMapping("/trip/{group_id}")
     public Optional<Groups> getGroup(@PathVariable("group_id") Integer group_id) {
         return groupRepository.findById(group_id);
     }
 
+    // Create group
     @PostMapping("/groups/{user_id}")
-    public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer user_id) {
-        return groupRepository.save(groups);
+    public ResponseEntity<Groups> addGroup(@PathVariable("user_id") Integer user_id,
+            @RequestBody Groups groupRequest) {
+        Groups groups = userRepository.findById(user_id).map(user -> {
+            user.addGroup(groupRequest);
+            return groupRepository.save(groupRequest);
+        }).orElseThrow(() -> new ResourceNotFoundException("Not found User with id = " + user_id));
+
+        return new ResponseEntity<>(groups, HttpStatus.CREATED);
+    }
+
+    // Edit group
+    @PutMapping("/trip/{group_id}")
+    public Groups updateGroup(@RequestBody Groups groups, @PathVariable Integer group_id) {
+        return groupRepository.findById(group_id)
+                .map(group -> {
+                    group.setName(groups.getName());
+                    group.setLocation(groups.getLocation());
+                    // group.setDescription(groups.getDescription());
+                    return groupRepository.save(group);
+                })
+                .orElseGet(() -> {
+                    return groupRepository.save(groups);
+                });
+    }
+
+    // Delete group
+    @DeleteMapping("/groups/{group_id}")
+    public ResponseEntity<HttpStatus> deleteGroupById(@PathVariable Integer group_id) {
+        groupRepository.deleteById(group_id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    // Add user to group
+    @PostMapping("/trip/{group_id}")
+    public ResponseEntity<Users> addUser(@RequestBody Users userRequest, @PathVariable Integer group_id) {
+        Users user = groupRepository.findById(group_id)
+                .map(group -> {
+                    // Integer userId = userRequest.getUser_id();
+
+                    // TODO : If user existed already or Not Found
+                    // if (userId != null) {
+                    // Users _user = userRepository.findById(userId)
+                    // .orElseThrow(() -> new ResourceNotFoundException("Not found"));
+                    // group.addUser(_user);
+                    // groupRepository.save(group);
+                    // return _user;
+                    // }
+                    group.addUser(userRequest);
+                    return userRepository.save(userRequest);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException("Not found User"));
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    // Delete user from group
+    @DeleteMapping("/trip/{group_id}/{user_id}")
+    public ResponseEntity<HttpStatus> deleteUserFromGroup(@PathVariable(value = "group_id") Integer group_id,
+            @PathVariable(value = "user_id") Integer user_id) {
+        Groups group = groupRepository.findById(group_id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found Tutorial with id = " + group_id));
+
+        group.removeUser(user_id);
+        groupRepository.save(group);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // @PostMapping("/groups/{user_id}")
-    // public Groups createGroup(@RequestBody Groups groups, @PathVariable Integer
-    // user_id) {
-    // Users user = userRepository.findById(user_id).get();
-    // groups.addUser(user);
+    // public Groups createGroup(@RequestBody Groups groups, @RequestBody Users
+    // users, @PathVariable Integer user_id) {
     // return groupRepository.save(groups);
     // }
 
@@ -71,42 +131,5 @@ public class GroupController {
     // Users users = userRepository.findUsersByGroupId(group_id);
     // return new ResponseEntity<>(users, HttpStatus.OK);
     // }
-
-    // get users of a group
-    // @GetMapping("/asd/{group_id}")
-    // public Set<Users> getGroupMembers(@PathVariable("group_id") Integer group_id)
-    // {
-    // return groupRepository.findUsersByGroupId(group_id).getUsers();
-    // }
-
-    @PutMapping("/trip/{group_id}")
-    public Groups updateGroup(@RequestBody Groups groups, @PathVariable Integer group_id) {
-        return groupRepository.findById(group_id)
-                .map(group -> {
-                    group.setName(groups.getName());
-                    group.setLocation(groups.getLocation());
-                    group.setDescription(groups.getDescription());
-                    return groupRepository.save(group);
-                })
-                .orElseGet(() -> {
-                    return groupRepository.save(groups);
-                });
-    }
-
-    @DeleteMapping("/groups/{group_id}")
-    public ResponseEntity<HttpStatus> deleteGroupById(@PathVariable Integer group_id) {
-        groupRepository.deleteById(group_id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    /*
-     * @GetMapping("/groups/{user_id}")
-     * public ResponseEntity<Groups> getGroupById(@PathVariable Integer user_id) {
-     * Groups groups = groupRepository.findById(user_id)
-     * .orElseThrow(() -> new ResourceNotFoundException("No groups created yet"));
-     * return ResponseEntity.ok(groups);
-     * // return new ResponseEntity<>(groups, HttpStatus.OK);
-     * }
-     */
 
 }

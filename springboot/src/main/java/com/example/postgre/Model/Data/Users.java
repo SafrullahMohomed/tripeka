@@ -3,32 +3,31 @@ package com.example.postgre.Model.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 // @IdClass(UsersPK.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
 public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer user_id;
 
-	@Column(name = "email")
-	private String email;
+
 
 	@Column(name = "firstname")
 	private String firstname;
@@ -39,19 +38,19 @@ public class Users {
 	private String hashedpswd;
 	@Column(name = "userrole")
 	private String userrole;
+	@Column(name = "profile_url")
+	private String profile_url;
 
-	// @ManyToMany(cascade = CascadeType.ALL)
-	// @JoinTable(name = "user_groups", joinColumns = @JoinColumn(name = "user_id"),
-	// inverseJoinColumns = @JoinColumn(name = "group_id"))
-	// Set<Groups> groups;
+	@Column(name = "email")
+	private String email;
+
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
-	})
-	@JoinTable(name = "user_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "group_id") })
-	Set<Groups> groups = new HashSet<>();
+	}, mappedBy = "users")
+
+	private List<Groups> groups = new ArrayList<>();
 
 	public Users() {
 	}
@@ -74,13 +73,7 @@ public class Users {
 		this.lastname = lastname;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -88,6 +81,19 @@ public class Users {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+
+	public String getEmail() {
+		if(email == null){
+
+			return email;
+		}else{
+			return email;
+		}
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getLastname() {
@@ -122,16 +128,25 @@ public class Users {
 		this.user_id = user_id;
 	}
 
-	public Set<Groups> getGroups() {
+	public List<Groups> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Groups> groups) {
+	public String getProfile_url() {
+		return profile_url;
+	}
+
+	public void setProfile_url(String profile_url) {
+		this.profile_url = profile_url;
+	}
+
+	public void setGroups(List<Groups> groups) {
 		this.groups = groups;
 	}
 
 	public void addGroup(Groups group) {
-		groups.add(group);
+		this.groups.add(group);
+		group.getUsers().add(this);
 	}
 
 }

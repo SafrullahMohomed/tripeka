@@ -45,8 +45,8 @@ const ExpenseList = (props) => {
   // const user_id_int = parseInt(currentUserId.sub);
   const user_id_int = parseInt(currentUserId);
   // to render initial list for use effect
-  const init = async () => {
-    await getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
+  const init = () => {
+     getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListIndividual(response.data);
@@ -58,7 +58,7 @@ const ExpenseList = (props) => {
       });
 
     // to get all user list for user effect
-    await getAllUserBudgetByGroupId(group_id_int)
+     getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
         setUserListAll(response.data);
@@ -131,10 +131,10 @@ const ExpenseList = (props) => {
           <CreditCardIcon sx={{ mr: 1 }} />
           Add Amount
         </Fab>
-        <div class="inline-flex rounded-md shadow-sm" role="group">
+        <div class="inline-flex rounded-md" role="group">
           <button
             type="button"
-            class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border-2 border-blue-100 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+            class="ml-5 mr-5 inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-blue-100 rounded-l-lg border-2 border-blue-100 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
             onClick={() => {
               setIsIndividual(true);
             }}
@@ -143,12 +143,12 @@ const ExpenseList = (props) => {
           </button>
           <button
             type="button"
-            class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-2 border-blue-100 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+            class="ml-5 mr-5 inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-blue-100 border-t border-2 border-blue-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
             onClick={() => {
               setIsIndividual(false);
             }}
           >
-            All expenses
+            All Expenses
           </button>
         </div>
       </div>
@@ -267,7 +267,7 @@ const ExpenseList = (props) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="reset" onClick={handleClose}>Cancel</Button>
             <Button type="submit" onClick={handleClose} autoFocus>
               Add
             </Button>

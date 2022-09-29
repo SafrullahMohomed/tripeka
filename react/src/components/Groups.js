@@ -18,6 +18,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import img1 from "../assets/arugam.jpg";
 import img2 from "../assets/dalada.jpg";
@@ -30,15 +33,16 @@ import jwt_decode from "jwt-decode";
 
 // userId from token
 // var decoded = jwt_decode(JSON.parse(localStorage.getItem("user")).jwtToken);
+// const user_id = decoded.sub;
 var user_id = null;
+var firstname = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
-  // const user_id = decoded.sub;
-  console.log("UserID : " + user_id);
+  firstname = JSON.parse(localStorage.getItem("userDetails")).firstname;
+
+  // console.log("UserID : " + parseInt(user_id));
+  // console.log("FirstName : " + firstname);
 }
-// const user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
-// // const user_id = decoded.sub;
-// console.log("UserID : " + user_id);
 
 const Groups = () => {
   // Display Groups
@@ -56,7 +60,7 @@ const Groups = () => {
 
     getGroupsById(user_id)
       .then((response) => {
-        //console.log("Printing Groups data", response.data.groups);
+        console.log("Printing Groups data", response.data);
         setIsPending(false);
         setGroups(response.data.groups);
         setError(null);
@@ -81,8 +85,10 @@ const Groups = () => {
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [uid, setUID] = useState(user_id);
+  const [username, setUsername] = useState(firstname);
+  const [owner_id, setOwnerId] = useState(user_id);
   const [url, setUrl] = useState("");
+  const [date, setDate] = useState(null);
 
   const navigate = useNavigate();
 
@@ -98,9 +104,9 @@ const Groups = () => {
     setUrl(result[0].urls.raw);
 
     // const group = {name, location, url}; console.log(group);
-    createGroup(uid, name, location, url).then((response) =>
-      navigate("/trip/" + response.data.group_id)
-    );
+    createGroup(username, name, location, owner_id, url)
+      .then((response) => navigate("/trip/" + response.data.group_id));
+        
   };
 
   return (
@@ -116,7 +122,7 @@ const Groups = () => {
 
       {/*Displaying Group Cards */}
       <div class="container px-32 py-5 mx-auto">
-        <div class="w-full mb-8 pl-2">Your Trip Groups</div>
+        <div class="w-full mb-8 pl-2 text-slate-500 text-2xl">Trip Groups</div>
         <div class="flex flex-wrap -m-2">
           {error && (
             <div className="flex items-center px-10 text-rose-500">{error}</div>
@@ -128,8 +134,8 @@ const Groups = () => {
           )}
 
           {groupList.map((group) => (
-            <div key={group.group_id} class="p-4 lg:w-1/5 md:w-1/2 w-full">
-              <Card sx={{ maxWidth: 345 }}>
+            <div key={group.group_id} class="px-4 py-1 lg:w-1/5 md:w-1/2 w-full">
+              <Card sx={{ maxWidth: 400 }}>
                 <CardActionArea
                   onClick={() => {
                     window.location.href = `/trip/${group.group_id}`;
@@ -137,9 +143,9 @@ const Groups = () => {
                 >
                   <CardMedia
                     component="img"
-                    image={group.name === "Dalanda Palace" ? img2 : img3}
+                    image={group.url}
                     alt=""
-                    sx={{ height: 100 }}
+                    sx={{ height: 120 }}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
@@ -155,8 +161,8 @@ const Groups = () => {
           ))}
 
           {/* Add Group Card-Button */}
-          <div class="p-4 lg:w-1/5 md:w-1/2 w-full">
-            <Card sx={{ maxWidth: 345 }} onClick={handleOpenM}>
+          <div class="px-4 py-1 lg:w-1/5 md:w-1/2 w-full">
+            <Card sx={{ maxWidth: 400 }} onClick={handleOpenM}>
               <CardActionArea>
                 <Box
                   sx={{
@@ -165,7 +171,7 @@ const Groups = () => {
                     alignItems: "center",
                     bgcolor: grey[100],
                     color: grey[600],
-                    height: 100,
+                    height: 120,
                   }}
                 >
                   <AddCircle />
@@ -220,6 +226,31 @@ const Groups = () => {
               fullWidth
               variant="standard"
             />
+
+          <div className="date-picker flex items-center mt-8">
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="Start-Date"
+                value={date}
+                onChange={(newValue) => {
+                  setDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <Box sx={{ mx: 2 }}> to </Box>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="End-Date"
+                value={date}
+                onChange={(newValue) => {
+                  setDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </div>
+             
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCloseM}>Cancel</Button>

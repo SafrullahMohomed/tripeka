@@ -7,6 +7,8 @@ import Forecast from "../components/Forecast";
 import getFormattedWeatherData from "../ClimateServices/WeatherServices";
 import { useEffect, useState } from "react";
 import pop6 from "../assets/sunset.jpg";
+import climate from "../assets/climate.jpg";
+import weatherVid from "../assets/herovideo.mp4";
 import "../styles/climate.css";
 
 function Climate() {
@@ -25,17 +27,31 @@ function Climate() {
   }, [query, units]);
 
   return (
-    <div className="">
-      <div className="bg-blue-500 rounded-lg mx-auto max-w-screen-md mt-0 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400">
-        <TopButtons setQuery={setQuery} />
-        <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
-        {weather && (
-          <div>
-            <TimeAndLocation weather={weather} />
-            <TemperatureAndDetails weather={weather} />
+    <div
+      className="px-8 py-6 -mt-8"
+      style={{
+        backgroundImage: `url(${climate})`,
+      }}
+    >
+      {/* <video className='videoTag fixed -z-1 w-full' autoPlay loop muted>
+            <source src={weatherVid} type='video/mp4' />
+        </video> */}
 
-            <Forecast title="hourly forecast" items={weather.hourly} />
-            <Forecast title="daily forecast" items={weather.daily} />
+      <div className="bg-sky-700 opacity-60 rounded-lg mx-auto mt-0 py-0 px-10">
+        <div className="flex-col flex items-center">
+          <TopButtons setQuery={setQuery} />
+          <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
+        </div>
+        {weather && (
+          <div className="flex justify-center">
+            <div className="px-10 py-4">
+              <TimeAndLocation weather={weather} />
+              <TemperatureAndDetails weather={weather} />
+            </div>
+            <div className="p-10 py-4">
+              <Forecast title="hourly forecast" items={weather.hourly} />
+              <Forecast title="daily forecast" items={weather.daily} />
+            </div>
           </div>
         )}
       </div>
