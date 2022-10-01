@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-const TripSearchItems = () => {
+const TripSearchItems = (props) => {
     return (
         <div className="searchItem" style={{border: "1px solid lightgray",
             padding: "10px",
@@ -17,7 +17,7 @@ const TripSearchItems = () => {
             style={{width: "200px",height: "200px", objectFit: "cover"}}
           />
           <div className="siDesc" style={{display: "flex",flexDirection: "column", gap: "10px",flex: "2"}}>
-            <h1 className="siTitle" style={{fontSize: "20px",color: "#0071c2"}}>Tower Street Apartments</h1>
+            <h1 className="siTitle" style={{fontSize: "20px",color: "#0071c2"}}>{props.title}</h1>
             <span className="siDistance" style={{fontSize: "12px"}}>500m from center</span>
             <span className="siTaxiOp" style={{fontSize: "12px",backgroundColor: "#008009",color: "white",width: "max-content",padding: "3px",borderRadius: "5px"}}>Free airport taxi</span>
             <span className="siSubtitle" style={{fontSize: "12px",fontWeight: "bold"}}>
