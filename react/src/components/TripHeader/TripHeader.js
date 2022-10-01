@@ -14,6 +14,7 @@ import {
   import "react-date-range/dist/theme/default.css"; // theme css file
   import { format } from "date-fns";
   import { useNavigate } from "react-router-dom";
+  import { getAllHotelsAvailableByFilters } from "../../services/TripHotelService";
   
   const TripHeader = ({ type }) => {
     const [destination, setDestination] = useState("");
@@ -44,7 +45,26 @@ import {
     };
   
     const handleSearch = () => {
-      navigate("/triphotellist", { state: { destination, date, options } });
+
+      const params = {
+        district: destination,
+        fromDate: format(date[0].startDate, "yyyy-MM-dd"),
+        toDate: format(date[0].endDate, "yyyy-MM-dd"),
+        noOfAdults: options.adult,
+        noOfChildren: options.children,
+        rooms: options.room,
+        minPrice: 0,
+        maxPrice: 0
+      };
+      
+      // to get all hotels by filters
+      getAllHotelsAvailableByFilters(params)
+      .then((response) => {
+        navigate("/triphotellist", { state: { destination, date, options, data: response.data } });
+      })
+      .catch((err) => {
+        alert("Something went wrong");
+      });
     };
   
     return (
