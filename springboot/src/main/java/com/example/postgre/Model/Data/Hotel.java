@@ -18,6 +18,9 @@ public class Hotel {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "bedroom")
+    private String bedroom;
+
     @Column(name = "rooms")
     private Integer rooms;
 
@@ -56,9 +59,10 @@ public class Hotel {
 
     public Hotel(){}
 
-    public Hotel(String name, String address, Integer rooms, String grade, String district, Integer priceRoom, String facilities, String shortDescription, Integer noOfChildren, Integer noOfAdults, Integer hotelRating, Integer serviceRate, Date fromDate, Date toDate) {
+    public Hotel(String name, String bedroom, String address, Integer rooms, String grade, String district, Integer priceRoom, String facilities, String shortDescription, Integer noOfChildren, Integer noOfAdults, Integer hotelRating, Integer serviceRate, Date fromDate, Date toDate) {
         super();
         this.name = name;
+        this.bedroom = bedroom;
         this.address = address;
         this.rooms = rooms;
         this.grade = grade;
@@ -80,6 +84,14 @@ public class Hotel {
 
     public void setHotelId(long hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public String getBedroom() {
+        return this.bedroom;
+    }
+
+    public void setBedroom(String bedroom) {
+        this.bedroom = bedroom;
     }
 
     public String getName() {
