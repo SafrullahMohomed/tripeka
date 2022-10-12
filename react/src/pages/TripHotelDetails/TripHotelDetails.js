@@ -10,10 +10,15 @@ import { useState } from "react";
 import Navbar from '../../components/Navbar';
 import TripEmailList from '../../components/TripEmailList/TripEmailList';
 import Footer from '../../components/Footer';
+import { useLocation } from "react-router-dom";
 
 const TripHotelDetails = () => {
+  const location = useLocation();
+  
+
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [hotelData, sethotelData] = useState(location.state.hotelData);
 
   const photos = [
     {
@@ -52,6 +57,7 @@ const TripHotelDetails = () => {
 
     setSlideNumber(newSlideNumber)
   };
+  
 
   return (
     <div>
@@ -87,16 +93,16 @@ const TripHotelDetails = () => {
         )}
         <div className="hotelWrapper" style={{width:"100%",maxWidth:"1024px",display:"flex",flexDirection:"column",gap:"10px",position:"relative"}}>
           <button className="bookNow" style={{position:"absolute",top:"10px",right:"0",border:"none",padding:"10px 20px",backgroundColor:"#0071c2",color:"white",fontWeight:"bold",borderRadius:"5px",cursor:"pointer"}}>Reserve or Book Now!</button>
-          <h1 className="hotelTitle" style={{fontSize:"24px"}}>Tower Street Apartments</h1>
+          <h1 className="hotelTitle" style={{fontSize:"24px"}}>{hotelData.title}</h1>
           <div className="hotelAddress" style={{fontSize:"12px",display:"flex",alignItems:"center",gap:"10px"}}>
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>Elton St 125 New york</span>
+            <span>{hotelData.address}</span>
           </div>
           <span className="hotelDistance" style={{color:"#0071c2",fontWeight:"500"}}>
             Excellent location – 500m from center
           </span>
           <span className="hotelPriceHighlight" style={{color:"#008009",fontWeight:"500"}}>
-            Book a stay over $114 at this property and get a free airport taxi
+            Book a stay over LKR {hotelData.roomprice} at this property and get a free airport taxi
           </span>
           <div className="hotelImages" style={{display:"flex",flexWrap:"wrap",justifyContent:"space-between"}}>
             {photos.map((photo, i) => (
@@ -129,13 +135,13 @@ const TripHotelDetails = () => {
               </p>
             </div>
             <div className="hotelDetailsPrice" style={{flex:"1", backgroundColor:"#ebf3ff",padding:"20px",display:"flex",flexDirection:"column",gap:"20px"}}>
-              <h1 style={{fontSize:"18px",color:"#555"}}>Perfect for a 9-night stay!</h1>
+              <h1 style={{fontSize:"18px",color:"#555"}}>Perfect for a night stay!</h1>
               <span style={{fontSize:"14px"}}>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+                Located in the real heart of {hotelData.district}, this property has an
+                excellent location score of {hotelData.service}!
               </span>
               <h2 style={{fontWeight:"300"}}>
-                <b>$945</b> (9 nights)
+                <b>LKR {hotelData.roomprice}</b> (for a night)
               </h2>
               <button style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}}>Reserve or Book Now!</button>
             </div>

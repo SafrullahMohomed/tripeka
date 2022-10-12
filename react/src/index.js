@@ -33,6 +33,7 @@ import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
 import DeleteUser from "./components/DeleteUser";
+import HotelBookingForm from "./pages/HotelBookingForm";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -61,6 +62,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/triphotel" element={<TripHotels />} />
+      <Route path="/bookingform" element={<HotelBookingForm />} />
       <Route path="/guideregister" element={<GuideRegister />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
@@ -93,6 +95,7 @@ root.render(
       />
       <Route path="/events" element={<><Header /><EventCalendar /></>} />
       <Route path="/help" element={<Help />} />
+
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
