@@ -90,6 +90,7 @@ public class GroupController {
         Users user = groupRepository.findById(group_id)
                 .map(group -> {
                     Integer userId = userRequestId.getUser_id();
+                    // String email = userRequestEmail.getEmail();
 
                     // TODO : If user existed already or Not Found
                     if (userId != null) {

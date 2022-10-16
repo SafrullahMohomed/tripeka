@@ -19,10 +19,9 @@ export default function createGroup(username, name, location, owner_id, url) {
   // console.log(username +" "+ name +" "+ location +" "+ url);
   return axios.post(ServerBaseUrl + "/groups/" + owner_id, { username, name, location, owner_id, url }, { headers: authHeader() });
 }
-// TODO : add user_id and group_id in groups_user + check if hes existing also
-// export function addFriend(friend) {
-//   return axios.post(ServerBaseUrl + `/trip/${group_id}`, { user_id, group_id neda??? }, { headers: authHeader() });
-// }
+export function addFriend(group_id, user_id) {
+  return axios.post(ServerBaseUrl + `/trip/${group_id}`, { group_id, user_id }, { headers: authHeader() });
+}
 
 export function deleteGroup(group_id) {
   return axios.delete(ServerBaseUrl + "/groups/" + group_id);
