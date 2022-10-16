@@ -40,6 +40,7 @@ import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PlaceIcon from '@mui/icons-material/Place';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
@@ -338,18 +339,18 @@ const Trip = () => {
                             </CardActionArea>
                         </Card>
                         <Card 
-                          onClick = {() => {window.location.href = `/location/${id}`}}
+                            // TODO : /car/${id} per group?
+                          onClick = {() => {window.location.href = `/car`}}
                           sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                            {/* TODO : Location based on group ID if doing for all users location*/}
-                            <Tooltip title="Live Location">
-                                <IconButton aria-label="location">
-                                    <PlaceIcon/>
+                            <Tooltip title="Rental">
+                                <IconButton aria-label="Rental">
+                                    <AirportShuttleIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
-                                Location
+                                Rental
                             </Typography>
                             </CardContent>
                             </CardActionArea>

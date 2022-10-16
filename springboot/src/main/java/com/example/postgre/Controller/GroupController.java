@@ -86,21 +86,21 @@ public class GroupController {
 
     // Add user to group
     @PostMapping("/trip/{group_id}")
-    public ResponseEntity<Users> addUser(@RequestBody Users userRequest, @PathVariable Integer group_id) {
+    public ResponseEntity<Users> addUser(@RequestBody Users userRequestId, @PathVariable Integer group_id) {
         Users user = groupRepository.findById(group_id)
                 .map(group -> {
-                    // Integer userId = userRequest.getUser_id();
+                    Integer userId = userRequestId.getUser_id();
 
                     // TODO : If user existed already or Not Found
-                    // if (userId != null) {
-                    // Users _user = userRepository.findById(userId)
-                    // .orElseThrow(() -> new ResourceNotFoundException("Not found"));
-                    // group.addUser(_user);
-                    // groupRepository.save(group);
-                    // return _user;
-                    // }
-                    group.addUser(userRequest);
-                    return userRepository.save(userRequest);
+                    if (userId != null) {
+                        Users _user = userRepository.findById(userId)
+                                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
+                        group.addUser(_user);
+                        groupRepository.save(group);
+                        return _user;
+                    }
+                    group.addUser(userRequestId);
+                    return userRepository.save(userRequestId);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Not found User"));
         return new ResponseEntity<>(user, HttpStatus.CREATED);
