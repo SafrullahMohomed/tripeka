@@ -46,8 +46,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
 
 import { deleteGroup } from "../services/GroupsService";
-import { getGroup, editTrip } from "../services/GroupsService";
-import addFriend from "../services/GroupsService";
+import { getGroup, editTrip, addFriend } from "../services/GroupsService";
 import Footer from "./Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -73,9 +72,9 @@ const options = [
   
 const Trip = () => {
 
-    //prints the variable and group_id value from URL
+    // prints the group_id value from URL
     const { id } = useParams();
-    //console.log(id);
+    // console.log(id);
 
     
     const [trip, setTrip] = useState([]);
@@ -128,13 +127,11 @@ const Trip = () => {
     const addFriendForm = async(e) => {
         e.preventDefault();
     
-        // const friend = {email}; console.log(friend);
-        addFriend(friend)
+        addFriend(id, friend)
           .then((response) => 
             console.log(response)
           );
-            
-      };
+    };
 
     // edit title modal
     const [openTM, setOpenTM] = useState(false);
@@ -440,7 +437,7 @@ const Trip = () => {
                         margin="dense"
                         id="email"
                         label="Email"
-                        type="email"
+                        //type="email"
                         fullWidth
                         variant="filled"
                     />
