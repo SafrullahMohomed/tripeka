@@ -15,9 +15,9 @@ export function editTrip(group_id, name) {
   return axios.put(ServerBaseUrl + `/trip/${group_id}`, { group_id, name }, { headers: authHeader() });
 }
 
-export default function createGroup(username, name, location, owner_id, url) {
+export function createGroup(owner, name, location, owner_id, url, start_date, end_date) {
   // console.log(username +" "+ name +" "+ location +" "+ url);
-  return axios.post(ServerBaseUrl + "/groups/" + owner_id, { username, name, location, owner_id, url }, { headers: authHeader() });
+  return axios.post(ServerBaseUrl + "/groups/" + owner_id, { owner, name, location, owner_id, url, start_date, end_date }, { headers: authHeader() });
 }
 
 export function addFriend(group_id, user_id) {
