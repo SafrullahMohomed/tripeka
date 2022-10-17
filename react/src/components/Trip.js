@@ -180,15 +180,29 @@ const Trip = () => {
 
     // delete trip
     const handleDelete = () => {
-        deleteGroup(id)
-        .then(response => {
-            console.log('group deleted successfully', response.data);   
-            // after Delete...
-            navigate('/groups/'+ user_id); 
-        })
-        .catch(error => {
-            console.log('Something went wrong', error);
-        })
+        setAnchorEl(null);
+        Swal.fire({
+            title: 'Are you sure, You want to Delete Group?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteGroup(id)
+                Swal.fire(
+                  '',
+                  'Group Deleted!',
+                  'success'
+                ).then((result) => {
+                  if (result.isConfirmed){
+                      navigate('/groups/'+ user_id); 
+                  }
+                })
+            }
+        })        
     }
 
     // edit trip form
