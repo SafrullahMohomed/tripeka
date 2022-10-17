@@ -9,6 +9,10 @@
 .DS_Store
 general-comments.txt
 
+# ms
+general-comments.txt
+.DS_Store
+
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
 *.BASE.*
