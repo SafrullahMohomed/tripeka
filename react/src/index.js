@@ -121,7 +121,7 @@ root.render(
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
-      <Route path='/trip/:id/:id' element={<><Header /><DeleteUser /></>}/>
+      <Route path='/trip/:gid/:uid' element={<><Header /><DeleteUser /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>

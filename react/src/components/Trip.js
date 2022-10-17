@@ -125,7 +125,7 @@ const Trip = () => {
     const [friend, setFriend] = useState("");
 
     const addFriendForm = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
     
         addFriend(id, friend)
           .then((response) => 
