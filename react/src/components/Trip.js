@@ -65,7 +65,7 @@ if (localStorage.getItem("userDetails")) {
 const options = [
     {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', color: '', disable: 'false'},
     {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenTM', color: '', disable: ''},
-    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenLM', color: '', disable: ''},
+    {icon: <CalendarMonthIcon />, name: 'View Calendar', action: 'handleOpenCal', color: '', disable: ''},
     {icon: <ExitToAppIcon />, name: 'Exit Group', action: 'handleLeave', color: 'error.main', disable: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', color: 'error.main', disable: 'false'},
   ];
@@ -143,12 +143,12 @@ const Trip = () => {
     const handleCloseTM = () => setOpenTM(false);
 
     // edit location modal
-    const [openLM, setOpenLM] = useState(false);
-    const handleOpenLM = () => {
-        setOpenLM(true); 
-        setAnchorEl(null);
-    };
-    const handleCloseLM = () => setOpenLM(false);
+    // const [openLM, setOpenLM] = useState(false);
+    // const handleOpenLM = () => {
+    //     setOpenLM(true); 
+    //     setAnchorEl(null);
+    // };
+    // const handleCloseLM = () => setOpenLM(false);
 
     // leave group
     const handleLeave = () => {
@@ -192,16 +192,16 @@ const Trip = () => {
     }
 
     // edit trip form
+    
     const [name, setName] = useState(trip.name);
-    const [location, setLocation] = useState(trip.location);
+    // const [location, setLocation] = useState(trip.location);
     // console.log("trip.location :"+ trip.location)
-    // console.log("location :"+ location)
 
     const editform = (e) => {
         e.preventDefault();
 
         //{console.log('Inside form '+location)}
-        editTrip(id, name, location)
+        editTrip(id, name)
             .then((response) => {
                 console.log('group Edited successfully', response.data);
             })
@@ -218,8 +218,8 @@ const Trip = () => {
         if (name === "handleOpenTM") {
             handleOpenTM();
         }
-        if (name === "handleOpenLM") {
-            handleOpenLM();
+        if (name === "handleOpenCal") {
+            window.location.href = '/events'
         }
         if (name === "handleLeave") {
             handleLeave();
@@ -535,7 +535,7 @@ const Trip = () => {
             </Dialog>
 
             {/* Edit Location Modal*/}
-            <Dialog
+            {/* <Dialog
                 aria-labelledby="dialog-location"
                 aria-describedby="dialog-location"
                 onClose={handleCloseLM}
@@ -556,18 +556,13 @@ const Trip = () => {
                         fullWidth
                         variant="standard"
                     />
-                    {/* <TextField 
-                        // sx={{ display: 'none' }}
-                        // value={trip.name}
-                        // onChange={(e) => setName(e.target.value)} 
-                    /> */}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseLM}>Cancel</Button>
                     <Button type="submit" onClick={handleCloseLM} autoFocus>Done</Button>
                 </DialogActions>
               </form>
-            </Dialog>
+            </Dialog> */}
 
             {/* map */}
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full bg-gray-100">

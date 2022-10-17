@@ -68,8 +68,7 @@ public class GroupController {
         return groupRepository.findById(group_id)
                 .map(group -> {
                     group.setName(groups.getName());
-                    group.setLocation(groups.getLocation());
-                    // group.setDescription(groups.getDescription());
+                    // group.setLocation(groups.getLocation());
                     return groupRepository.save(group);
                 })
                 .orElseGet(() -> {
