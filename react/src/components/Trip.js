@@ -44,8 +44,8 @@ import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PlaceIcon from '@mui/icons-material/Place';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
-
-import { deleteGroup } from "../services/GroupsService";
+import Swal from 'sweetalert2'
+import { deleteGroup, removeFriend } from "../services/GroupsService";
 import { getGroup, editTrip, addFriend } from "../services/GroupsService";
 import Footer from "./Footer";
 import dalanda from '../assets/dalada.jpg'
@@ -72,6 +72,7 @@ const options = [
   
 const Trip = () => {
 
+    const navigate = useNavigate();
     // prints the group_id value from URL
     const { id } = useParams();
     // console.log(id);
@@ -150,16 +151,40 @@ const Trip = () => {
     const handleCloseLM = () => setOpenLM(false);
 
     // leave group
+    const handleLeave = () => {
+        setAnchorEl(null);
+        Swal.fire({
+            title: 'Are you sure, You want to leave?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Leave '
+          }).then((result) => {
+            if (result.isConfirmed) {
+              removeFriend(id, user_id)
+              Swal.fire(
+                '',
+                'You have left the group!',
+                'success'
+              ).then((result) => {
+                if (result.isConfirmed){
+                  navigate('/dashboard/'+ user_id); 
+                }
+              })
+            }
+          })
+    }
 
 
     // delete trip
-    const navigate = useNavigate();
     const handleDelete = () => {
         deleteGroup(id)
         .then(response => {
             console.log('group deleted successfully', response.data);   
             // after Delete...
-            navigate('/groups'); 
+            navigate('/groups/'+ user_id); 
         })
         .catch(error => {
             console.log('Something went wrong', error);
@@ -195,6 +220,9 @@ const Trip = () => {
         }
         if (name === "handleOpenLM") {
             handleOpenLM();
+        }
+        if (name === "handleLeave") {
+            handleLeave();
         }
         if (name === "handleDelete") {
             handleDelete();
