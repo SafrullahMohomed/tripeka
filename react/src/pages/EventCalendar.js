@@ -13,6 +13,11 @@ class EventCalendar extends React.Component {
     return (
       <div className="maincontainer">
         <div className='px-32 mb-3'>
+          <button 
+            // onClick={}
+            className='p-2 bg-gray-900'>Back</button>
+        </div>
+        <div className='px-32 mb-3'>
           <FullCalendar 
             plugins={[ dayGridPlugin, interactionPlugin ]}
             initialView="dayGridMonth"
