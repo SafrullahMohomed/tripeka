@@ -267,7 +267,7 @@ const Trip = () => {
             ))}
         </div> */}
         
-        <div className="flex flex-wrap px-10 mb-10">
+        <div className="flex flex-wrap pl-10 mb-10">
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
                     <CardHeader
