@@ -118,7 +118,7 @@ const Budget = () => {
 
   useEffect(() => {
     init();
-  }, []);
+  }, [yourAmount, totalAmount, individualAmount, yourDue]);
 
   return (
     <div className="main-budget">
