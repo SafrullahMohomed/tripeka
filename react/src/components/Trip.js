@@ -53,6 +53,8 @@ import img1 from '../assets/customer1.jpg'
 import img2 from '../assets/customer2.jpg'
 import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
+import SearchBox from "./SearchBox";
+import Maps from "./Maps";
 import { groupIntersectingEntries } from "@fullcalendar/react";
 
 var user_id = null;
@@ -79,7 +81,7 @@ const Trip = () => {
 
     
     const [trip, setTrip] = useState([]);
-    //console.log(trip.name);
+    // console.log(trip.name);
     const [members, setMembers]  = useState([]);
     //console.log( members.map((user) => (user.user_id)));
 
@@ -243,6 +245,9 @@ const Trip = () => {
         }
         
       }      
+
+    // map
+    const [selectPosition, setSelectPosition] = useState(null);
 
     return ( 
         <>
@@ -580,7 +585,16 @@ const Trip = () => {
 
             {/* map */}
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full bg-gray-100">
-                <img src={map} alt="" />
+                {/* <img src={map} alt="" />
+                <div>{trip.location}</div> */}
+                <div className="flex">
+                    <div className="w-2/3">
+                        <Maps selectPosition={selectPosition}/>
+                    </div>
+                    <div className="w-1/3 overflow-hidden">
+                        <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition}/>
+                    </div>
+                </div>
             </div>
         </div>
         <Footer />
