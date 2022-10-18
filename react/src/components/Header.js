@@ -61,14 +61,17 @@ const Header = () => {
           <Link to={`/dashboard/${user_id}`} class="mr-7 hover:text-gray-900">
             Dashboard
           </Link>
-          <Link to="/hotels" class="mr-7 hover:text-gray-900">
+          <Link to="/triphotel" class="mr-7 hover:text-gray-900">
             Hotels
           </Link>
           <Link to={`/groups/${user_id}`} class="mr-7 hover:text-gray-900">
             Trips
           </Link>
-          <Link to="/blogs" class="mr-7 hover:text-gray-900">
-            Blogs
+          <Link to="/car" class="mr-7 hover:text-gray-900">
+            Car
+          </Link>
+          <Link to="/events" class="mr-7 hover:text-gray-900">
+            Calendar
           </Link>
         </nav>
 

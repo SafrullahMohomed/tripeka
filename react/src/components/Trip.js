@@ -8,6 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -37,22 +38,25 @@ import PersonIcon from '@mui/icons-material/Person';
 import { CardActionArea } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import EditIcon from '@mui/icons-material/Edit';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PlaceIcon from '@mui/icons-material/Place';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
-
-import { deleteGroup } from "../services/GroupsService";
-import { getGroup, editTrip } from "../services/GroupsService";
-import addFriend from "../services/GroupsService";
-import Footer from "../components/Footer";
+import Swal from 'sweetalert2'
+import { deleteGroup, removeFriend } from "../services/GroupsService";
+import { getGroup, editTrip, addFriend } from "../services/GroupsService";
+import Footer from "./Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
 import img2 from '../assets/customer2.jpg'
 import img3 from '../assets/customer3.jpg'
 import map from '../assets/map.png'
+import SearchBox from "./SearchBox";
+import Maps from "./Maps";
 import { groupIntersectingEntries } from "@fullcalendar/react";
 
 var user_id = null;
@@ -64,24 +68,22 @@ if (localStorage.getItem("userDetails")) {
 
 const options = [
     {icon: <PersonAddIcon />, name: 'Add People', action: 'handleOpenFM', color: '', disable: 'false'},
-    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenEM', color: '', disable: ''},
-    {icon: <EditLocationAltRoundedIcon />, name: 'Change Location', action: 'handleOpenDM', color: '', disable: ''},
-    {icon: <CalendarMonthIcon />, name: 'Change Date', action: '', color: '', disable: ''},
-    {icon: <ExitToAppIcon />, name: 'Exit Group', action: '', color: 'error.main', disable: ''},
+    {icon: <EditIcon />, name: 'Edit Title', action: 'handleOpenTM', color: '', disable: ''},
+    {icon: <CalendarMonthIcon />, name: 'View Calendar', action: 'handleOpenCal', color: '', disable: ''},
+    {icon: <ExitToAppIcon />, name: 'Exit Group', action: 'handleLeave', color: 'error.main', disable: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', color: 'error.main', disable: 'false'},
   ];
   
-const emails = ['Kasun Withanage', 'Amali Perera', 'Ravindu Perera', 'Kasun Jay', 'Ravindu Perera', 'Ravindu Perera'];
-
 const Trip = () => {
 
-    //prints the variable and group_id value from URL
+    const navigate = useNavigate();
+    // prints the group_id value from URL
     const { id } = useParams();
-    //console.log(id);
+    // console.log(id);
 
     
     const [trip, setTrip] = useState([]);
-    //console.log(trip.name);
+    // console.log(trip.name);
     const [members, setMembers]  = useState([]);
     //console.log( members.map((user) => (user.user_id)));
 
@@ -128,58 +130,96 @@ const Trip = () => {
     const [friend, setFriend] = useState("");
 
     const addFriendForm = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
     
-        // const friend = {email}; console.log(friend);
-        addFriend(friend)
+        addFriend(id, friend)
           .then((response) => 
             console.log(response)
           );
-            
-      };
+    };
 
-    // edit trip modal
-    const [openEM, setOpenEM] = useState(false);
-    const handleOpenEM = () => {
-        setOpenEM(true); 
+    // edit title modal
+    const [openTM, setOpenTM] = useState(false);
+    const handleOpenTM = () => {
+        setOpenTM(true); 
         setAnchorEl(null);
     };
-    const handleCloseEM = () => setOpenEM(false);
+    const handleCloseTM = () => setOpenTM(false);
 
-    // add descrption modal
-    const [openDM, setOpenDM] = useState(false);
-    const handleOpenDM = () => {
-        setOpenDM(true); 
+    // edit location modal
+    // const [openLM, setOpenLM] = useState(false);
+    // const handleOpenLM = () => {
+    //     setOpenLM(true); 
+    //     setAnchorEl(null);
+    // };
+    // const handleCloseLM = () => setOpenLM(false);
+
+    // leave group
+    const handleLeave = () => {
         setAnchorEl(null);
-    };
-    const handleCloseDM = () => setOpenDM(false);
+        Swal.fire({
+            title: 'Are you sure, You want to leave?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Leave '
+          }).then((result) => {
+            if (result.isConfirmed) {
+              removeFriend(id, user_id)
+              Swal.fire(
+                '',
+                'You have left the group!',
+                'success'
+              ).then((result) => {
+                if (result.isConfirmed){
+                  navigate('/dashboard/'+ user_id); 
+                }
+              })
+            }
+          })
+    }
+
 
     // delete trip
-    const navigate = useNavigate();
-
     const handleDelete = () => {
-         
-        deleteGroup(id)
-        .then(response => {
-            console.log('group deleted successfully', response.data);   
-            // after Delete...
-            navigate('/groups'); 
-        })
-        .catch(error => {
-            console.log('Something went wrong', error);
-        })
+        setAnchorEl(null);
+        Swal.fire({
+            title: 'Are you sure, You want to Delete Group?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteGroup(id)
+                Swal.fire(
+                  '',
+                  'Group Deleted!',
+                  'success'
+                ).then((result) => {
+                  if (result.isConfirmed){
+                      navigate('/groups/'+ user_id); 
+                  }
+                })
+            }
+        })        
     }
 
     // edit trip form
-    const [name, setName] = useState();
-    const [location, setLocation] = useState();
-    const [description, setDescription] = useState();
-    // console.log(trip)
+    
+    const [name, setName] = useState(trip.name);
+    // const [location, setLocation] = useState(trip.location);
+    // console.log("trip.location :"+ trip.location)
 
     const editform = (e) => {
         e.preventDefault();
-        
-        editTrip(id, name, location, description)
+
+        //{console.log('Inside form '+location)}
+        editTrip(id, name)
             .then((response) => {
                 console.log('group Edited successfully', response.data);
             })
@@ -193,17 +233,29 @@ const Trip = () => {
         if (name === "handleOpenFM") {
             handleOpenFM();
         }
-        if (name === "handleOpenEM") {
-            handleOpenEM();
+        if (name === "handleOpenTM") {
+            handleOpenTM();
         }
-        if (name === "handleOpenDM") {
-            handleOpenDM();
+        if (name === "handleOpenCal") {
+            window.location.href = '/events'
+        }
+        if (name === "handleLeave") {
+            handleLeave();
         }
         if (name === "handleDelete") {
             handleDelete();
         }
         
       }      
+
+    // map
+    const [selectPosition, setSelectPosition] = useState(null);
+
+    //toggle search
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+
+    //Trip.handleClickOutside = () => setIsOpen(false);
 
     return ( 
         <>
@@ -252,59 +304,67 @@ const Trip = () => {
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
                             Trip Timeline
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
+                        <Typography variant="body1" color="text.main" sx={{mt: 0, pl: 1}}>
                             {trip.start_date} to {trip.end_date}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/gallery/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
-                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                            <Tooltip title="Gallery">
-                            <IconButton aria-label="gallery">
-                                <CameraAltIcon onClick = {() => {window.location.href = `/gallery/${id}`}}/>
-                            </IconButton>
-                            </Tooltip>
+                                <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                                <Tooltip title="Gallery">
+                                <IconButton aria-label="gallery">
+                                    <CameraAltIcon/>
+                                </IconButton>
+                                </Tooltip>
                                 <Typography variant="body2" color="text.secondary">
-                                Gallery
-                            </Typography>
-                            </CardContent>
+                                    Gallery
+                                </Typography>
+                                </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/budget/${id}` }}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <Tooltip title="Budget">
                             <IconButton aria-label="budget">
-                                <PaidOutlinedIcon onClick = {() => {window.location.href = `/budget/${id}` }}/>
+                                <PaidOutlinedIcon/>
                             </IconButton>
                             </Tooltip>
-                                <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary">
                                 Budget
                             </Typography>
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/climate/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <Tooltip title="Weather">
                             <IconButton aria-label="climate">
-                                <ThunderstormOutlinedIcon onClick = {() => {window.location.href = `/climate/${id}`}}/>
+                                <ThunderstormOutlinedIcon/>
                             </IconButton>
                             </Tooltip>
-                                <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary">
                                 Weather
                             </Typography>
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/groupChat/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                                 <Tooltip title="Chat">
                                     <IconButton aria-label="group chat">
-                                        <ChatBubbleRoundedIcon onClick = {() => {window.location.href = `/groupChat/${id}`}}/>
+                                        <ChatBubbleRoundedIcon/>
                                     </IconButton>
                                 </Tooltip>
                                 <Typography variant="body2" color="text.secondary">
@@ -313,13 +373,15 @@ const Trip = () => {
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                          onClick = {() => {window.location.href = `/location/${id}`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             {/* TODO : Location based on group ID if doing for all users location*/}
                             <Tooltip title="Live Location">
                                 <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
+                                    <PlaceIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
@@ -328,17 +390,19 @@ const Trip = () => {
                             </CardContent>
                             </CardActionArea>
                         </Card>
-                        <Card sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
+                        <Card 
+                            // TODO : /car/${id} per group?
+                          onClick = {() => {window.location.href = `/car`}}
+                          sx={{minWidth: 100, m: 1, display: 'flex', justifyContent: 'center', boxShadow: 1}}>
                             <CardActionArea>
                             <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                            {/* TODO : Location based on group ID if doing for all users location*/}
-                            <Tooltip title="Live Location">
-                                <IconButton aria-label="location">
-                                    <PlaceIcon onClick = {() => {window.location.href = `/location/${id}`}}/>
+                            <Tooltip title="Rental">
+                                <IconButton aria-label="Rental">
+                                    <AirportShuttleIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Typography variant="body2" color="text.secondary">
-                                Location
+                                Rental
                             </Typography>
                             </CardContent>
                             </CardActionArea>
@@ -428,7 +492,7 @@ const Trip = () => {
                         margin="dense"
                         id="email"
                         label="Email"
-                        type="email"
+                        //type="email"
                         fullWidth
                         variant="filled"
                     />
@@ -460,47 +524,16 @@ const Trip = () => {
                 </form>
             </Dialog>
 
-            {/* Add Description Modal*/}
+            {/* Edit Title Modal*/}
             <Dialog
                 aria-labelledby="dialog-title"
                 aria-describedby="dialog-description"
-                onClose={handleCloseDM}
-                open={openDM}
+                onClose={handleCloseTM}
+                open={openTM}
             >
               <form onSubmit={editform}>
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
-                    {"Add Description"}
-                </DialogTitle>
-                <DialogContent>
-                    <TextField
-                        onChange={(e) => setDescription(e.target.value)}
-                        autoFocus
-                        margin="dense"
-                        id="description"
-                        label="Description"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                    />
-                    
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDM}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseDM} autoFocus>Done</Button>
-                </DialogActions>
-              </form>
-            </Dialog>
-
-            {/* Edit Trip Modal*/}
-            <Dialog
-                aria-labelledby="dialog-title"
-                aria-describedby="dialog-description"
-                onClose={handleCloseEM}
-                open={openEM}
-            > 
-              <form onSubmit={editform}>
-                <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
-                    {"Edit Trip Details"}
+                    {"Change Name"}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
@@ -512,38 +545,69 @@ const Trip = () => {
                         type="text"
                         fullWidth
                         variant="standard"
-                        
                     />
-                    <DialogContentText id="dialog-description" sx={{marginY: 2}}>
-                    </DialogContentText>
-                    <TextField 
+                    {/* <TextField
+                        //sx={{ display: 'none' }}
+                        //value={trip.location}
+                        //onChange={(e) => setLocation(e.target.value)}
+                    /> */}
+                    
+                </DialogContent>
+                
+                <DialogActions>
+                    <Button onClick={handleCloseTM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseTM} autoFocus>Done</Button>
+                </DialogActions>
+              </form>
+            </Dialog>
+
+            {/* Edit Location Modal*/}
+            {/* <Dialog
+                aria-labelledby="dialog-location"
+                aria-describedby="dialog-location"
+                onClose={handleCloseLM}
+                open={openLM}
+            > 
+              <form onSubmit={editform}>
+                <DialogTitle id="dialog-location" sx={{width: 450, marginBottom: -1}}>
+                    {"Change Location"}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
                         onChange={(e) => setLocation(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="location"
-                        label="Add New Location"
+                        label="Location"
                         type="text"
-                        InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <NearMeIcon />
-                              </InputAdornment>
-                            ),
-                          }}
                         fullWidth
                         variant="standard"
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseEM}>Cancel</Button>
-                    <Button type="submit" onClick={handleCloseEM} autoFocus>Done</Button>
+                    <Button onClick={handleCloseLM}>Cancel</Button>
+                    <Button type="submit" onClick={handleCloseLM} autoFocus>Done</Button>
                 </DialogActions>
               </form>
-            </Dialog>
+            </Dialog> */}
 
             {/* map */}
-            <div class="p-1 lg:w-2/3 md:w-1/2 w-full bg-gray-100">
-                <img src={map} alt="" />
+            <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
+                {/* <img src={map} alt="" />
+                <div>{trip.location}</div> */}
+                <div className="flex relative">
+                    <div className="absolute top-0 right-3" onClick={toggle}>
+                        <IconButton color="primary" aria-label="upload picture" component="label">
+                            {isOpen ? <CancelRoundedIcon /> : <KeyboardDoubleArrowLeftIcon />}
+                        </IconButton>
+                    </div>
+                    <div className="w-11/12 drop-shadow-lg">
+                        <Maps selectPosition={selectPosition}/>
+                    </div>
+                    <div className={isOpen ? 'w-2/3 float-right mt-10' : 'hidden'} >
+                        <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition}/>
+                    </div>
+                </div>
             </div>
         </div>
         <Footer />

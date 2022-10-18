@@ -12,8 +12,12 @@ class EventCalendar extends React.Component {
   render() {    
     return (
       <div className="maincontainer">
-        <Navbar/>
-        <div className='p-32 mb-3'>
+        <div className='px-32 mb-3'>
+          <button 
+            // onClick={}
+            className='p-2 bg-gray-900'>Back</button>
+        </div>
+        <div className='px-32 mb-3'>
           <FullCalendar 
             plugins={[ dayGridPlugin, interactionPlugin ]}
             initialView="dayGridMonth"

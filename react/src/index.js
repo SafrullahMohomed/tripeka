@@ -33,6 +33,7 @@ import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
 import DeleteUser from "./components/DeleteUser";
+import HotelBookingForm from "./pages/HotelBookingForm";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -61,6 +62,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/triphotel" element={<TripHotels />} />
+      <Route path="/bookingform" element={<HotelBookingForm />} />
       <Route path="/guideregister" element={<GuideRegister />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
@@ -91,8 +93,9 @@ root.render(
           </>
         }
       />
-      <Route path="/events" element={<EventCalendar />} />
+      <Route path="/events" element={<><Header /><EventCalendar /></>} />
       <Route path="/help" element={<Help />} />
+
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms" element={<Budget />} />
       <Route path="/registerType" element={<TypePage />} />
@@ -121,7 +124,7 @@ root.render(
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
-      <Route path='/trip/:id/:id' element={<><Header /><DeleteUser /></>}/>
+      <Route path='/trip/:gid/:uid' element={<><Header /><DeleteUser /></>}/>
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>

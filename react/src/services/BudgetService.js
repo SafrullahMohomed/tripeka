@@ -85,11 +85,10 @@ export function deleteBudget(budget_id){
 }
 
 // update budget
-export function updateBudget(budget_id, budget){
+export function updateBudget(budget_id, title, amount, description) {
   return axios.put(
-    ServerBaseUrl + "/budget/updatebudget/" + budget_id,
-    budget,
-    { headers: authHeader() }
+    ServerBaseUrl + "/budget/updatebudget/" + budget_id +"?title=" + title + "&amount=" + amount + "&description=" + description,  
+    // { headers: authHeader() }
   );
 }
 
