@@ -11,7 +11,8 @@ const icon = new L.Icon({
     popupAnchor: [0, -46], //[left/right, top/bottom]
 });
 
-const position = [51.505, -0.09]
+// TODO : initial position should not be kandy always
+const position = [7.2906, 80.6337]
 
 function ResetCenterView(props) {
   const { selectPosition } = props;
@@ -34,27 +35,27 @@ function ResetCenterView(props) {
 
 const Maps = (props) => {
 
-    const { selectPosition } = props;
+    const { selectPosition, location } = props;
     const locationSelection = [selectPosition?.lat, selectPosition?.lon];
-    // const [center, setCenter] = useState({ lat: 6.9270786, lng: 79.861243 });
     
     return ( 
-      <div>
-          <MapContainer center={position} zoom={21} style={{ height: '500px', width: '100wh' }}>
-              <TileLayer
-                  url={osm.maptiler.url}
-                  attribution={osm.maptiler.attribution}
-              />
-                  {selectPosition && (
-                  <Marker icon={icon} position={position}>
-                      <Popup>
-                          You are Here!
-                      </Popup>
-                  </Marker>
-                  )}
-             <ResetCenterView selectPosition={selectPosition} />
-          </MapContainer>
-      </div>
+        <div>
+            {/* <div className="py-5">Location  {location}</div> */}
+            <MapContainer center={position} zoom={15} style={{ height: '590px', width: '100%' }}>
+                <TileLayer
+                    url={osm.maptiler.url}
+                    attribution={osm.maptiler.attribution}
+                />
+                    {/* {selectPosition && ( */}
+                    <Marker icon={icon} position={position}>
+                        <Popup>
+                            You are Here!
+                        </Popup>
+                    </Marker>
+                    {/* )} */}
+               <ResetCenterView selectPosition={selectPosition} />
+            </MapContainer>
+        </div>
      );
 }
  
