@@ -22,13 +22,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import img1 from "../assets/arugam.jpg";
-import img2 from "../assets/dalada.jpg";
-import img3 from "../assets/jaffna.jpg";
-import img from "../assets/customer2.jpg";
 import { getGroups } from "../services/GroupsService";
 import { getGroupsById } from "../services/GroupsService";
-import createGroup from "../services/GroupsService";
+import { createGroup } from "../services/GroupsService";
 import jwt_decode from "jwt-decode";
 
 // userId from token
@@ -51,16 +47,10 @@ const Groups = () => {
   const [error, setError] = useState(null);
 
   const init = () => {
-    // fetch('http://localhost:8080/groups/' + user_id, {
-    //     method: 'GET'
-    // }).then(() => {
-    //     // after Delete...
-    //     // navigate('/');
-    // })
 
     getGroupsById(user_id)
       .then((response) => {
-        console.log("Printing Groups data", response.data);
+        // console.log("Printing Groups data", response.data);
         setIsPending(false);
         setGroups(response.data.groups);
         setError(null);
@@ -87,8 +77,10 @@ const Groups = () => {
   const [location, setLocation] = useState("");
   const [username, setUsername] = useState(firstname);
   const [owner_id, setOwnerId] = useState(user_id);
+  // https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixid=MnwzNjIzNTd8MHwxfHNlYXJjaHwyfHxiZWFjaHxlbnwwfHx8fDE2NjYwMzE2MzQ&ixlib=rb-1.2.1
   const [url, setUrl] = useState("");
-  const [date, setDate] = useState(null);
+  const [startdate, setStartDate] = useState(null);
+  const [enddate, setEndDate] = useState(null);
 
   const navigate = useNavigate();
 
@@ -100,11 +92,13 @@ const Groups = () => {
       `https://api.unsplash.com/search/photos?page=1&query=${location}&client_id=9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0`
     );
     const dataJ = await data.json();
-    const result = dataJ.results;
-    setUrl(result[0].urls.raw);
+    const result = await dataJ.results;
+    const image = await result[0].urls.raw;
+    setUrl(image);
 
-    // const group = {name, location, url}; console.log(group);
-    createGroup(username, name, location, owner_id, url)
+    // const group = { username, name, location, owner_id, url, startdate, enddate, image }; 
+    // console.log(group);
+    createGroup(username, name, location, owner_id, url, startdate, enddate )
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
@@ -228,12 +222,12 @@ const Groups = () => {
             />
 
           <div className="date-picker flex items-center mt-8">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Start-Date"
-                value={date}
+                value={startdate}
                 onChange={(newValue) => {
-                  setDate(newValue);
+                  setStartDate(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -242,9 +236,9 @@ const Groups = () => {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="End-Date"
-                value={date}
+                value={enddate}
                 onChange={(newValue) => {
-                  setDate(newValue);
+                  setEndDate(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />

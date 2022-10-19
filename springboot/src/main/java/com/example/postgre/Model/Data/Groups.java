@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.ToString;
+import org.springframework.core.style.ToStringCreator;
 
 @Entity
 @Table
@@ -154,5 +156,13 @@ public class Groups {
             this.users.remove(user);
             user.getGroups().remove(this);
         }
+    }
+
+    public List<Users> toGetAllUsersInAGroup(){
+        return users;
+    }
+    @Override
+    public String toString() {
+        return users.toString();
     }
 }

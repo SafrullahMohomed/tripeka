@@ -10,19 +10,23 @@ export function getGroup(group_id) {
   return axios.get(ServerBaseUrl + `/trip/${group_id}`);
 }
 
-export function editTrip(group_id, name, location) {
+export function editTrip(group_id, name) {
   // console.log(group_id +" "+ name +" "+ location);
-  return axios.put(ServerBaseUrl + `/trip/${group_id}`, { group_id, name, location }, { headers: authHeader() });
+  return axios.put(ServerBaseUrl + `/trip/${group_id}`, { group_id, name }, { headers: authHeader() });
 }
 
-export default function createGroup(username, name, location, owner_id, url) {
+export function createGroup(owner, name, location, owner_id, url, start_date, end_date) {
   // console.log(username +" "+ name +" "+ location +" "+ url);
-  return axios.post(ServerBaseUrl + "/groups/" + owner_id, { username, name, location, owner_id, url }, { headers: authHeader() });
+  return axios.post(ServerBaseUrl + "/groups/" + owner_id, { owner, name, location, owner_id, url, start_date, end_date }, { headers: authHeader() });
 }
-// TODO : add user_id and group_id in groups_user + check if hes existing also
-// export function addFriend(friend) {
-//   return axios.post(ServerBaseUrl + `/trip/${group_id}`, { user_id, group_id neda??? }, { headers: authHeader() });
-// }
+
+export function addFriend(group_id, user_id) {
+  return axios.post(ServerBaseUrl + `/trip/${group_id}`, { group_id, user_id }, { headers: authHeader() });
+}
+
+export function removeFriend(group_id, user_id) {
+  return axios.delete(ServerBaseUrl + `/trip/${group_id}/${user_id}`);
+}
 
 export function deleteGroup(group_id) {
   return axios.delete(ServerBaseUrl + "/groups/" + group_id);
