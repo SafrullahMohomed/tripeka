@@ -40,6 +40,7 @@ const MyChatRoom = () => {
     console.log("useEffect Ran....");
     // fetch all the group names of the user from db
     axios.get(ServerBaseUrl + "/userGroups/" + userEmail).then((response) => {
+      console.log(response.data)
       setgroupList(response.data);
       connect();
     });
