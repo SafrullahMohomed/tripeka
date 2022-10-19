@@ -22,12 +22,13 @@ const SearchBox = (props) => {
   const [listPlace, setListPlace] = useState([]);
 
   return ( 
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex" }}>
+    <div className="flex flex-col">
+      <div className="flex">
         <div style={{ flex: 1 }}>
           <OutlinedInput
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "40px" }}
             value={searchText}
+            placeholder = "Search Location"
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
