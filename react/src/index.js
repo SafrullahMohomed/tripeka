@@ -55,6 +55,7 @@ import Trip from "./components/Trip";
 import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
+import LiveLocation from "./pages/LiveLocation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -101,7 +102,10 @@ root.render(
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
-      <Route path="/groupChat/:id" element={<ChatRoom />} />
+
+      <Route path="/groupChat/:id" element={authService.isSignedIn() ? <ChatRoom /> : <Login />} />
+      <Route path="/triphotels" element={<TripList />} />
+
       <Route path="/carprofile/:id" element={<CarProfile />} />
       <Route path="/car" element={<Car />} />
       <Route path="/triphotellist" element={<TripList />} />
@@ -120,7 +124,24 @@ root.render(
       />
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard/:id' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route
+        path="/dashboard"
+        element={
+          authService.isSignedIn() ? (
+            <>
+              <Header />
+              <SpeedDialButton />
+              <Groups />
+              <Search />
+              <Suggestions />
+              <Cards />
+              <Footer />
+            </>
+          ) : (
+            <Login />
+          )
+        }
+      />      
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
