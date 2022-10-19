@@ -267,7 +267,7 @@ const Trip = () => {
             ))}
         </div> */}
         
-        <div className="flex flex-wrap pl-10 mb-10">
+        <div className="flex flex-wrap pl-10 pr-2 mb-10">
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
                     <CardHeader
@@ -595,16 +595,16 @@ const Trip = () => {
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
                 {/* <img src={map} alt="" />
                 <div>{trip.location}</div> */}
-                <div className="flex relative">
-                    <div className="absolute top-0 right-3" onClick={toggle}>
+                <div className="flex relative drop-shadow-lg bg-gray-100">
+                    <div className="absolute top-1 right-3" onClick={toggle}>
                         <IconButton color="primary" aria-label="upload picture" component="label">
                             {isOpen ? <CancelRoundedIcon /> : <KeyboardDoubleArrowLeftIcon />}
                         </IconButton>
                     </div>
-                    <div className="w-11/12 drop-shadow-lg">
+                    <div className="w-11/12">
                         <Maps selectPosition={selectPosition}/>
                     </div>
-                    <div className={isOpen ? 'w-2/3 float-right mt-10' : 'hidden'} >
+                    <div className={isOpen ? 'w-2/3 float-right mt-10 p-2' : 'hidden'} >
                         <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition}/>
                     </div>
                 </div>
