@@ -39,9 +39,8 @@ const MyChatRoom = () => {
   useEffect(() => {
     console.log("useEffect Ran....");
     // fetch all the group names of the user from db
-    axios.get(ServerBaseUrl + "/userGroups/" + userEmail).then((response) => {
-      console.log(response.data)
-      setgroupList(response.data);
+    axios.get(ServerBaseUrl + "/groups/" + user_id).then((response) => {
+      setgroupList(response.data.groups);
       connect();
     });
     // connect();
@@ -197,10 +196,10 @@ const MyChatRoom = () => {
         </div>
       </div>
 
-      {messages.length === 0 && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
+      {messages.length === 0 && currentGroup === null && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
 
       {/* Current Group */}
-      {messages.length > 0 && (
+      {currentGroup !== null && (
         <div className=" flex flex-col lg:basis-2/3 basis-full mt-6 ml-3  overflow-y-scroll pb-10">
           <div className="flex flex-row justify-start items-center border-b-2 ">
             <ArrowBackIosIcon className="!w-5 !h-10 mr-5 lg:!hidden" />
