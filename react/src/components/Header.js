@@ -19,9 +19,12 @@ import logo from "../assets/logo2.png";
 import user from "../assets/customer2.jpg";
 
 var user_id = null;
+var profile_pic = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+  profile_pic = JSON.parse(localStorage.getItem("userDetails")).profile_pic;
 }
+
 
 const Header = () => {
   //dropdown
@@ -154,7 +157,7 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={openP ? "true" : undefined}
               >
-                <Avatar src={user} sx={{ width: 40, height: 40 }}></Avatar>
+                <Avatar src={profile_pic} sx={{ width: 40, height: 40 }}></Avatar>
               </IconButton>
             </Tooltip>
           </Box>
