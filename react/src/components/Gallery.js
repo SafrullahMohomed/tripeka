@@ -27,7 +27,7 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import { addurl } from "../services/GalleryService";
 import { geturls } from "../services/GalleryService";
 
-import blog1 from '../assets/blog1.jpg'
+import upoload from '../assets/upoload.png'
 import blog2 from '../assets/blog2.jpg'
 import blog3 from '../assets/blog3.jpg'
 import blog4 from '../assets/blog4.jpg'
@@ -127,16 +127,26 @@ const Gallery = () => {
                 </Card> */}
             </div>
             <div id="album" className="w-5/6">
-                <ImageList cols={4}>
-                {urlList.map((item) => (
-                    <ImageListItem key={item.photo_id}>
-                    <img
-                        src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
-                        srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    />
-                    </ImageListItem>
-                ))}
-                </ImageList>
+
+                {urlList[0] ? 
+                    <ImageList cols={4}>
+                    { urlList.map((item) => (
+                        <ImageListItem key={item.photo_id}>
+                        <img
+                            src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
+                            srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        />
+                        </ImageListItem>
+                    ))}
+                    </ImageList>
+                : 
+                    <center><div className="w-1/3">
+                        <h2 className="mb-6">Upload Your Images</h2>
+                        <img src={upoload} alt="" />
+                    </div></center>
+                }
+                
+
             </div>
 
             <div className="px-5 py-1 mx-auto flex flex-wrap justify-center">
