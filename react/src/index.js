@@ -25,6 +25,7 @@ import Search from "./components/Search";
 import Suggestions from "./components/Suggestions";
 import Cards from "./components/Cards";
 import Groups from "./components/Groups";
+import Review from "./pages/Review";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
@@ -118,6 +119,7 @@ root.render(
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard/:id' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route path='/Reviews' element={<><Header /><Review /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
