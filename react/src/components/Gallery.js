@@ -79,27 +79,27 @@ const Gallery = () => {
 
     const uploadImage = async(e) => {
         e.preventDefault();
+        console.log("start...");
 
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "tripeka")
         data.append("cloud_name","tripeka")
-        await fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-        method:"post",
-        body: data
+        const resp = await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+            method:"post",
+            body: data
         })
-        .then(resp => resp.json())
-        .then(data => {
-            setImgurl(data.url)
-        })
-        .catch(err => console.log("Cloud Error : "+err))
+        setImgurl(resp.data.url)
+
+        // console.log("here "+id, imgurl);
+        addurl(id, imgurl)
+        .then((response) => {
+            console.log("uploaded " + response.data)
+        });
+        console.log("finish");
 
         // put this at start to close modal
         setOpenP(false);
-        addurl(id, imgurl)
-        .then((response) => {
-            console.log("Uploaded "+response.data)
-        });
         
     }
 
@@ -166,10 +166,12 @@ const Gallery = () => {
                         <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
                             <Box component="span" sx={{p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file"></input>
-                                    <CameraAltOutlinedIcon />
+                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
+                                    <label for="image-upload">
+                                        <CameraAltOutlinedIcon />
+                                    </label>
                                 </IconButton>
-                                <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p>
+                                {/* <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p> */}
                             </Box>                            
                         </DialogContent>
                     {/* </FileUploader> */}
@@ -181,7 +183,7 @@ const Gallery = () => {
                     </DialogActions>
                 </Dialog>
 
-                {/* {console.log("put in DB "+imgurl)}
+                {/* {console.log("put this url in DB "+imgurl)}
                 <div className="bg-gray-900">
                     <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
                     <button onClick={uploadImage}>Upload</button>
