@@ -118,8 +118,12 @@ root.render(
       />
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard/:id' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
-      <Route path='/Reviews' element={<><Header /><Review /><Footer /></>}/>
+      <Route path='/dashboard/:id' element={
+        authService.isSignedIn() ? (
+          <><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>
+        ) : ( <Login />)
+      }/>
+      <Route path='/reviews' element={<><Header /><Review /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>

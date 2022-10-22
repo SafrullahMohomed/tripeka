@@ -32,7 +32,7 @@ const actions = [
     { icon: <HelpCenterIcon />, name: 'Help'},
   ];
   
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+// const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 const SpeedDialButton = () => {
 
@@ -42,16 +42,16 @@ const SpeedDialButton = () => {
   const handleClose = () => setOpen(false);
 
   // create-group modal
-  const [openM, setOpenM] = useState(false);
-  const handleOpenM = () => setOpenM(true);
-  const handleCloseM = () => setOpenM(false);
+  // const [openM, setOpenM] = useState(false);
+  // const handleOpenM = () => setOpenM(true);
+  // const handleCloseM = () => setOpenM(false);
 
   const addHandler = (name) => {
     if (name === "Calendar") {
       window.location.href = '/events'
     }
     if (name === "Review") {
-      window.location.href = '/blogs'
+      window.location.href = '/reviews'
     }
     if (name === "Complaint") {
       window.location.href = '/complaint'
@@ -83,7 +83,7 @@ const SpeedDialButton = () => {
           </Box>
           
           {/*Group-Modal*/}
-          <Dialog
+          {/* <Dialog
             aria-labelledby="dialog-title"
             aria-describedby="dialog-description"
             onClose={handleCloseM}
@@ -134,7 +134,7 @@ const SpeedDialButton = () => {
               <Button onClick={handleCloseM}>Cancel</Button>
               <Button onClick={handleCloseM} autoFocus>Done</Button>
             </DialogActions>
-          </Dialog>
+          </Dialog> */}
         </div>
      );
 }
