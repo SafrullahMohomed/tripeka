@@ -90,23 +90,22 @@ const Gallery = () => {
         })
         .then(resp => resp.json())
         .then(data => {
-        setImgurl(data.url)
+            setImgurl(data.url)
         })
         .catch(err => console.log("Cloud Error : "+err))
 
+        // put this at start to close modal
         setOpenP(false);
-
-        // const url = {id, imgurl}; console.log(url);
         addurl(id, imgurl)
         .then((response) => {
-            console.log(response.data)
+            console.log("Uploaded "+response.data)
         });
+        
     }
 
     return ( 
 
-        <section class="flex flex-col items-center text-gray-600 body-font px-24">
-            {console.log(urlList)}
+        <section className="flex flex-col items-center text-gray-600 body-font px-24">
 
             <div className="w-5/6 mb-8">
                 {/* <Card>
@@ -140,14 +139,14 @@ const Gallery = () => {
                 </ImageList>
             </div>
 
-            <div class="px-5 py-1 mx-auto flex flex-wrap justify-center">
+            <div className="px-5 py-1 mx-auto flex flex-wrap justify-center">
                 
                 <div className="flex justify-center w-full my-8">
                     <Button variant="contained" onClick={handleOpenP}>Upload</Button>
                 </div>
 
                 {/* Upload Modal*/}
-                {/* <Dialog
+                <Dialog
                     aria-labelledby="upload-title"
                     aria-describedby="upload-description"
                     onClose={handleCloseP}
@@ -157,13 +156,13 @@ const Gallery = () => {
                     <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
                         {"Upload Images"}
                     </DialogTitle>
-                    <FileUploader
+                    {/* <FileUploader
                         multiple={true}
                         handleChange={handleChange}
                         name="file"
                         types={fileTypes}
                         maxSize={2}
-                    >
+                    > */}
                         <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
                             <Box component="span" sx={{p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
@@ -173,20 +172,20 @@ const Gallery = () => {
                                 <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p>
                             </Box>                            
                         </DialogContent>
-                    </FileUploader>
+                    {/* </FileUploader> */}
                     <DialogActions>
                         <Button type="reset" onClick={handleCloseP}>Cancel</Button>
                         <Button onClick={uploadImage} autoFocus>
                             Upload
                         </Button>
                     </DialogActions>
-                </Dialog> */}
+                </Dialog>
 
-                {console.log(imgurl)}
-                {/* <div className="bg-gray-900">
+                {/* {console.log("put in DB "+imgurl)}
+                <div className="bg-gray-900">
                     <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
                     <button onClick={uploadImage}>Upload</button>
-                </div>        */}
+                </div> */}
                        
             </div>
         </section>
