@@ -1,16 +1,10 @@
 import upload from '../assets/upload.png';
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import EditIcon from '@mui/icons-material/Edit';
 import "../styles/write.css";
 
 
 const Blogs = () => {
     return ( 
         <div className="px-16 mx-auto">
-          <Fab sx={{float: 'right'}} color="primary" aria-label="edit">
-            <EditIcon />
-          </Fab>
           <div class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900"><center>Share Your Story</center></div>
           <div class="flex justify-center">
             <div class="w-2/5 h-60 p-2 relative bg-cover bg-center">
