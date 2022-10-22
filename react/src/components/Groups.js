@@ -78,7 +78,7 @@ const Groups = () => {
   const [username, setUsername] = useState(firstname);
   const [owner_id, setOwnerId] = useState(user_id);
   // https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixid=MnwzNjIzNTd8MHwxfHNlYXJjaHwyfHxiZWFjaHxlbnwwfHx8fDE2NjYwMzE2MzQ&ixlib=rb-1.2.1
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
   const [startdate, setStartDate] = useState(null);
   const [enddate, setEndDate] = useState(null);
 
@@ -94,11 +94,11 @@ const Groups = () => {
     const dataJ = await data.json();
     const result = await dataJ.results;
     const image = await result[0].urls.raw;
-    setUrl(image);
+    // setUrl(image);
 
-    // const group = { username, name, location, owner_id, url, startdate, enddate, image }; 
+    // const group = { username, name, location, owner_id, image , startdate, enddate }; 
     // console.log(group);
-    createGroup(username, name, location, owner_id, url, startdate, enddate )
+    createGroup(username, name, location, owner_id, image, startdate, enddate )
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };

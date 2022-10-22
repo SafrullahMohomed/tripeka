@@ -79,34 +79,33 @@ const Gallery = () => {
 
     const uploadImage = async(e) => {
         e.preventDefault();
+        console.log("start...");
 
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "tripeka")
         data.append("cloud_name","tripeka")
-        await fetch("  https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-        method:"post",
-        body: data
+        const resp = await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+            method:"post",
+            body: data
         })
-        .then(resp => resp.json())
-        .then(data => {
-        setImgurl(data.url)
-        })
-        .catch(err => console.log("Cloud Error : "+err))
+        setImgurl(resp.data.url)
 
-        setOpenP(false);
-
-        // const url = {id, imgurl}; console.log(url);
+        // console.log("here "+id, imgurl);
         addurl(id, imgurl)
         .then((response) => {
-            console.log(response.data)
+            console.log("uploaded " + response.data)
         });
+        console.log("finish");
+
+        // put this at start to close modal
+        setOpenP(false);
+        
     }
 
     return ( 
 
-        <section class="flex flex-col items-center text-gray-600 body-font px-24">
-            {console.log(urlList)}
+        <section className="flex flex-col items-center text-gray-600 body-font px-24">
 
             <div className="w-5/6 mb-8">
                 {/* <Card>
@@ -140,14 +139,14 @@ const Gallery = () => {
                 </ImageList>
             </div>
 
-            <div class="px-5 py-1 mx-auto flex flex-wrap justify-center">
+            <div className="px-5 py-1 mx-auto flex flex-wrap justify-center">
                 
                 <div className="flex justify-center w-full my-8">
                     <Button variant="contained" onClick={handleOpenP}>Upload</Button>
                 </div>
 
                 {/* Upload Modal*/}
-                {/* <Dialog
+                <Dialog
                     aria-labelledby="upload-title"
                     aria-describedby="upload-description"
                     onClose={handleCloseP}
@@ -157,36 +156,38 @@ const Gallery = () => {
                     <DialogTitle id="upload-title" sx={{ width: 450, marginBottom: -1 }}>
                         {"Upload Images"}
                     </DialogTitle>
-                    <FileUploader
+                    {/* <FileUploader
                         multiple={true}
                         handleChange={handleChange}
                         name="file"
                         types={fileTypes}
                         maxSize={2}
-                    >
+                    > */}
                         <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
                             <Box component="span" sx={{p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file"></input>
-                                    <CameraAltOutlinedIcon />
+                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
+                                    <label for="image-upload">
+                                        <CameraAltOutlinedIcon />
+                                    </label>
                                 </IconButton>
-                                <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p>
+                                {/* <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p> */}
                             </Box>                            
                         </DialogContent>
-                    </FileUploader>
+                    {/* </FileUploader> */}
                     <DialogActions>
                         <Button type="reset" onClick={handleCloseP}>Cancel</Button>
                         <Button onClick={uploadImage} autoFocus>
                             Upload
                         </Button>
                     </DialogActions>
-                </Dialog> */}
+                </Dialog>
 
-                {console.log(imgurl)}
-                {/* <div className="bg-gray-900">
+                {/* {console.log("put this url in DB "+imgurl)}
+                <div className="bg-gray-900">
                     <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
                     <button onClick={uploadImage}>Upload</button>
-                </div>        */}
+                </div> */}
                        
             </div>
         </section>

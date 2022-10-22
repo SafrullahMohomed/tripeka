@@ -294,12 +294,9 @@ const Trip = () => {
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', pb: 0}}>
                         <AvatarGroup max={4}>
-                            <Avatar alt="" src={img1} />
-                            <Avatar alt="" src={img2} />
-                            <Avatar alt="" src={img3} />
-                            <Avatar alt="" src={img1} />
-                            <Avatar alt="" src={img2} />
-                            <Avatar alt="" src={img3} />
+                            {members.map((user) => (
+                                <Avatar alt="" src={user.profile_url} />
+                            ))} 
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
                             Trip Timeline
