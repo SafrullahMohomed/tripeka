@@ -89,7 +89,7 @@ public class BudgetController {
         return budgetService.getIndividualTotalAmount(group_id, user_id);
     }
 
-    @GetMapping(path = "/dueamount/{group_id}/{user_id}")
+//    @GetMapping(path = "/dueamount/{group_id}/{user_id}")
 
 //    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id,
 //            @PathVariable("user_id") Integer user_id) {
@@ -98,10 +98,10 @@ public class BudgetController {
 //        return due_amount;
 //    }
 
-//    delete budget
+    //    delete budget
     @DeleteMapping(path = "/deletebudget/{budget_id}")
-    public void deleteBudget(@PathVariable("budget_id") Integer budget_id) {
-        budgetService.deleteBudget(budget_id);
+    public String deleteBudget(@PathVariable("budget_id") Integer budget_id) {
+        return budgetService.deleteBudget(budget_id);
 
     }
 

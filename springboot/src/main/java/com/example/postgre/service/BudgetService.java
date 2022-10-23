@@ -206,17 +206,17 @@ public class BudgetService {
 
 
     //    delete budgets
-    public void deleteBudget(Integer budget_id) {
-//        Boolean exist = budgetRepository.existsById(budget_id);
-//        String message;
-//        if (!exist) {
-//            message =  "budget of " + budget_id + " cannot be deleted";
-//            throw new IllegalStateException("budget with " + budget_id + "does not exist");
-//        } else {
-//        message = "budget of " + budget_id + " is deleted successfully";
+    public String deleteBudget(Integer budget_id) {
+        Boolean exist = budgetRepository.existsById(budget_id);
+        String message;
+        if (!exist) {
+            message =  "budget of " + budget_id + " cannot be deleted";
+            throw new IllegalStateException("budget with " + budget_id + "does not exist");
+        } else {
+        message = "budget of " + budget_id + " is deleted successfully";
         budgetRepository.deleteById(budget_id);
-//        }
-//        return message;
+        }
+        return message;
     }
 
 
