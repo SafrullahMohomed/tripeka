@@ -110,10 +110,10 @@ const Groups = () => {
     const latitude = await geo.lat;
     const longitude = await geo.lon;
 
-    const group = { username, name, location, owner_id, image , startdate, enddate, latitude, longitude }; 
-    console.log(group);
-    // createGroup(username, name, location, owner_id, image, startdate, enddate )
-    //   .then((response) => navigate("/trip/" + response.data.group_id));
+    // const group = { username, name, location, owner_id, image , startdate, enddate, latitude, longitude }; 
+    // console.log(group);
+    createGroup(username, name, location, owner_id, image, startdate, enddate, latitude, longitude )
+      .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
 
