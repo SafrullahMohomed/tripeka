@@ -96,10 +96,24 @@ const Groups = () => {
     const image = await result[0].urls.raw;
     // setUrl(image);
 
-    // const group = { username, name, location, owner_id, image , startdate, enddate }; 
-    // console.log(group);
-    createGroup(username, name, location, owner_id, image, startdate, enddate )
-      .then((response) => navigate("/trip/" + response.data.group_id));
+    // get location lat and lon
+    var requestOptions = {
+      method: 'GET',
+    };
+  
+    const points = await fetch(
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=7ed3f072828c45be9032acf0b379aeaf`, requestOptions
+    );
+    const pointsJ = await points.json();
+    const geopoints = await pointsJ.features;
+    const geo = await geopoints[0].properties;
+    const latitude = await geo.lat;
+    const longitude = await geo.lon;
+
+    const group = { username, name, location, owner_id, image , startdate, enddate, latitude, longitude }; 
+    console.log(group);
+    // createGroup(username, name, location, owner_id, image, startdate, enddate )
+    //   .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
 

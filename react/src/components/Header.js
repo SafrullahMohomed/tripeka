@@ -196,7 +196,11 @@ const Header = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/profile";
+              }}
+            >
               <Avatar /> Profile
             </MenuItem>
             <MenuItem>
