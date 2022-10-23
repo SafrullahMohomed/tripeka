@@ -111,24 +111,12 @@ root.render(
       <Route path="/car" element={<Car />} />
       <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
-      <Route
-        path="/hotel"
-        element={
-          <>
-            <Header />
-            <Search />
-            <Suggestions />
-            <Cards />
-            <Footer />
-          </>
-        }
-      />
-
+      
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard/:id' element={
         authService.isSignedIn() ? (
-          <><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>
+          <><Header /><SpeedDialButton /><Groups /><Suggestions /><Cards /><Footer /></>
         ) : ( <Login />)
       }/>
       <Route path='/reviews' element={<><Header /><Review /><Cards /><Footer /></>}/>

@@ -51,13 +51,13 @@ const Maps = (props) => {
               url={osm.maptiler.url}
               attribution={osm.maptiler.attribution}
           />
-              {/* {selectPosition && (
+              {/* {selectPosition && ( */}
               <Marker icon={icon} position={position}>
                   <Popup>
-                      You are Here!
+                      Your Destination!
                   </Popup>
               </Marker>
-              )} */}
+              {/* )} */}
           <ResetCenterView selectPosition={selectPosition} />
         </MapContainer>
       </div>

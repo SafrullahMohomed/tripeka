@@ -1,6 +1,8 @@
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import Search from "./Search";
+
 import blog1 from '../assets/coverpage1.jpg'
 import blog2 from '../assets/dalada.jpg'
 import blog3 from '../assets/blog3.jpg'
@@ -56,6 +58,8 @@ const itemData = [
 
 const Suggestions = () => {
   return ( 
+    <>
+    {/* <Search /> */}
     <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap w-full mb-10 flex-col items-center text-center">
@@ -126,6 +130,7 @@ const Suggestions = () => {
       </div>
     </div>
   </section>
+  </>
   );
 }
  
