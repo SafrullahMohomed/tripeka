@@ -57,6 +57,9 @@ import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
 import LiveLocation from "./pages/LiveLocation";
+import TestMS1 from "./components/car/carListing/CarCard";
+import TestMS2 from "./components/car/carDriver/CarDriverMain";
+import TestMS3 from "./components/car/carListing/CarListingMain";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -99,7 +102,10 @@ root.render(
       <Route path="/help" element={<Help />} />
 
       <Route path="/Hotels" element={<Test />} />
-      <Route path="/ms" element={<Budget />} />
+      <Route path="/ms1" element={<TestMS1 />} />
+      <Route path="/ms2" element={<TestMS2 />} />
+      <Route path="/ms3" element={<TestMS3 />} />
+
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
