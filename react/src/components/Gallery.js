@@ -4,6 +4,9 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -76,37 +79,63 @@ const Gallery = () => {
 
     const [image, setImage ] = useState("");
     const [imgurl, setImgurl ] = useState("");
+    const [uploaded, setUploaded ] = useState(false);
 
     const uploadImage = async(e) => {
         e.preventDefault();
-        console.log("start...");
+
+        // put this at start to close modal
+        setOpenP(false);
 
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "tripeka")
         data.append("cloud_name","tripeka")
-        const resp = await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-            method:"post",
+        await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+            method:"POST",
             body: data
         })
-        setImgurl(resp.data.url)
+        .then(resp => resp.json())
+        .then(data => {
+            setImgurl(data.url)
+            setUploaded(true)
+        })
+        .catch(err => console.log(err))
+        // setImgurl(resp.data.url)
 
-        // console.log("here "+id, imgurl);
+        // console.log("url "+id, imgurl);
         addurl(id, imgurl)
         .then((response) => {
             console.log("uploaded " + response.data)
         });
-        console.log("finish");
-
-        // put this at start to close modal
-        setOpenP(false);
+        
         
     }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setUploaded(false);
+    };
 
     return ( 
 
         <section className="flex flex-col items-center text-gray-600 body-font px-24">
 
+            <div> 
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    open={uploaded}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                >
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Image have been Uploaded
+                    </Alert>
+                </Snackbar>
+            </div>
             <div className="w-5/6 mb-8">
                 {/* <Card>
                     <CardActionArea>
@@ -195,7 +224,7 @@ const Gallery = () => {
 
                 {/* {console.log("put this url in DB "+imgurl)}
                 <div className="bg-gray-900">
-                    <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
+                    <input multiple type="file" onChange= {(e)=> setImage(e.target.files)}></input>
                     <button onClick={uploadImage}>Upload</button>
                 </div> */}
                        
