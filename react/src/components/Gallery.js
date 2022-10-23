@@ -78,7 +78,7 @@ const Gallery = () => {
     // **********Clodinary**********
 
     const [image, setImage ] = useState("");
-    const [imgurl, setImgurl ] = useState("");
+    const [imgurl, setImgurl ] = useState(null);
     const [uploaded, setUploaded ] = useState(false);
 
     const uploadImage = async(e) => {
@@ -103,11 +103,11 @@ const Gallery = () => {
         .catch(err => console.log(err))
         // setImgurl(resp.data.url)
 
-        // console.log("url "+id, imgurl);
-        addurl(id, imgurl)
-        .then((response) => {
-            console.log("uploaded " + response.data)
-        });
+         console.log("url " + imgurl);
+        // addurl(id, imgurl)
+        // .then((response) => {
+        //     console.log("uploaded " + response.data)
+        // });
         
         
     }
