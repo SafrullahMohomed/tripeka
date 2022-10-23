@@ -32,7 +32,8 @@ const Footer = () => {
               <span className="ml-3 text-xl">Travel</span>
             </a>
             <p className="mt-2 text-sm text-gray-500">
-              Air plant banjo lyft occupy retro adaptogen indego
+              Is it a hassle to plan a trip?<br/>
+              We can help you to plan the whole trip ...
             </p>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
