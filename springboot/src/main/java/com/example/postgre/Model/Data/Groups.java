@@ -32,6 +32,8 @@ public class Groups {
     private LocalDate start_date;
     private LocalDate end_date;
     private String url;
+    private String lat;
+    private String lon;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
@@ -49,7 +51,7 @@ public class Groups {
     }
 
     public Groups(Integer group_id, Integer owner_id, String name, String location, String description, String owner,
-            LocalDate start_date, LocalDate end_date, String url, List<Users> users) {
+            LocalDate start_date, LocalDate end_date, String url, String lat, String lon, List<Users> users) {
         this.group_id = group_id;
         this.owner_id = owner_id;
         this.name = name;
@@ -59,6 +61,8 @@ public class Groups {
         this.start_date = start_date;
         this.end_date = end_date;
         this.url = url;
+        this.lat = lat;
+        this.lon = lon;
         this.users = users;
     }
 
@@ -69,7 +73,6 @@ public class Groups {
     public void setGroup_id(Integer group_id) {
         this.group_id = group_id;
     }
-
 
     public Integer getOwner_id() {
         return owner_id;
@@ -133,6 +136,22 @@ public class Groups {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 
     public List<Users> getUsers() {
