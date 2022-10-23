@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.postgre.Model.Dto.BudgetUserDto;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -26,7 +27,6 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer user_id;
-
 
 
 	@Column(name = "firstname")
@@ -74,7 +74,6 @@ public class Users {
 	}
 
 
-
 	public String getFirstname() {
 		return firstname;
 	}
@@ -84,10 +83,10 @@ public class Users {
 	}
 
 	public String getEmail() {
-		if(email == null){
+		if (email == null) {
 
 			return email;
-		}else{
+		} else {
 			return email;
 		}
 	}
@@ -149,4 +148,8 @@ public class Users {
 		group.getUsers().add(this);
 	}
 
+	@Override
+	public String toString() {
+		return user_id.toString();
+	}
 }

@@ -3,6 +3,8 @@ import Header from "../Header";
 import CarForm from "./CarForm";
 import CarImage from "./CarImage";
 import Footer from "../Footer";
+import "../../styles/Car.css"
+import CarOrderedList from "./CarOrderedList";
 
 const CarMain = () => {
   return (
@@ -16,8 +18,9 @@ const CarMain = () => {
        {/* main component */}
       <div className="class-main flex justify-between">
         <div className="car-left w-full item-center flex flex-col ">
-          <div className="left-title text-emerald-700 2xl:text-5xl font-semibold my-4 flex justify-center mt-12 md:text-3xl lg:text-4xl"> BOOK A CAR</div>
-          <CarImage />
+          <div className="left-title text-emerald-700 2xl:text-5xl font-semibold my-4 flex justify-center mt-12 md:text-3xl lg:text-4xl"> BOOK A VEHICLE</div>
+          {/* <CarImage /> */}
+          <CarOrderedList />
         </div>
 
         {/* car form component */}

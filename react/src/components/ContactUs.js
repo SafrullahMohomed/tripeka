@@ -20,7 +20,7 @@ function onSubmit(data) {
         window.location.href = "http://localhost:3000/";
       }
     });
-  }
+}
 
 const ContactUs = () => {
   let url="";

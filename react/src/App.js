@@ -6,12 +6,12 @@ import Testomonials from "./components/Testomonials";
 import Popular from "./components/Popular";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
-import Steps from "./components/Steps";
+// import Steps from "./components/Steps";
 import Blog from "./components/Blog";
-import TestAuthJwt from "./components/TestAuthJwt";
-import { useState } from "react";
-import { getSignedRole } from "./services/AuthAPIService";
-import StepsAlter from "./components/StepsAlter";
+// import TestAuthJwt from "./components/TestAuthJwt";
+// import { useState } from "react";
+// import { getSignedRole } from "./services/AuthAPIService";
+// import StepsAlter from "./components/StepsAlter";
 import VerticalStepper from "./components/VerticalStepper";
 
 function App() {
