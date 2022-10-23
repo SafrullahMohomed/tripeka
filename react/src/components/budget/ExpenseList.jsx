@@ -62,7 +62,7 @@ const ExpenseList = (props) => {
     // to get all user list for user effect
      getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
-        console.log("Printing Groups dataaaaaa", response.data.users);
+        console.log("Printing Groups dataaaaaa", response.data[0].groups.users);
         setUserListAll(response.data);
         setError(null);
       })
@@ -186,7 +186,7 @@ const ExpenseList = (props) => {
                     <ListItemsAll
                       key={user.budget_id}
                       group={user.group_id}
-                      user={user.users}
+                      user={user.title}
                       title={user.title}
                       amount={user.amount}
                       description={user.description}
