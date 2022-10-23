@@ -44,11 +44,13 @@ const ExpenseList = (props) => {
   const group_id_int = parseInt(props.group_id);
   // const user_id_int = parseInt(currentUserId.sub);
   const user_id_int = parseInt(currentUserId);
+  
   // to render initial list for use effect
   const init = () => {
      getUserBudgetByGroupIdAndUserId(group_id_int, user_id_int)
       .then((response) => {
         console.log("Printing Groups data", response.data);
+        
         setUserListIndividual(response.data);
         setError(null);
       })
@@ -60,7 +62,7 @@ const ExpenseList = (props) => {
     // to get all user list for user effect
      getAllUserBudgetByGroupId(group_id_int)
       .then((response) => {
-        console.log("Printing Groups data", response.data);
+        console.log("Printing Groups dataaaaaa", response.data.users);
         setUserListAll(response.data);
         setError(null);
       })
@@ -119,7 +121,7 @@ const ExpenseList = (props) => {
   const [isIndividual, setIsIndividual] = useState(true);
   return (
     <div className="Expenses flex flex-col">
-      <div className="ButtonSet flex justify-between">
+      <div className=" flex justify-between">
         {/* Add Budget Button */}
         <Fab
           onClick={handleOpen}
@@ -184,7 +186,7 @@ const ExpenseList = (props) => {
                     <ListItemsAll
                       key={user.budget_id}
                       group={user.group_id}
-                      user={user.users.lastname}
+                      user={user.users}
                       title={user.title}
                       amount={user.amount}
                       description={user.description}

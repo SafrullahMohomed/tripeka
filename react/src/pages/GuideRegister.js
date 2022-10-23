@@ -188,7 +188,7 @@ const GuideRegister = () => {
                         class="form-check-label inline-block text-gray-800"
                         for="exampleCheck2"
                       >
-                        I hereby confrims that the above information are correct
+                        I hereby confirms that the above information are correct
                         and accurate
                       </label>
                       <br></br>

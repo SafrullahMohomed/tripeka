@@ -26,10 +26,10 @@ public class BudgetController {
     }
 
 //    get all users in a group
-    @GetMapping(path = "/groups/allusers/{group_id}")
-    public Optional<Groups> getUsersInAGroup(@PathVariable("group_id") Integer group_id){
-        return budgetService.getUsersInAGroup(group_id);
-    }
+//    @GetMapping(path = "/groups/allusers/{group_id}")
+//    public List<Users> getUsersInAGroup(@PathVariable("group_id") Integer group_id){
+//        return budgetService.getUsersInAGroup(group_id);
+//    }
 
     // get all budget in all groups
     @GetMapping(path = "/users")
@@ -46,13 +46,13 @@ public class BudgetController {
     // to get a specific users budget from the group_id and user_id
     @GetMapping(path = "/user/{group_id}/{user_id}")
     public List<Budget> getBudgetForAUser(@PathVariable("group_id") Integer group_id,
-            @PathVariable("user_id") Integer user_id) {
+                                          @PathVariable("user_id") Integer user_id) {
         return budgetService.getBudgetForAUser(group_id, user_id);
     }
 
-//    get all budget for specific users
+    //    get all budget for specific users
     @GetMapping(path = "/getallbudgets/{group_id}")
-    public List<BudgetUserDto> getAllIndividualTotalAmount(@PathVariable("group_id") Integer group_id){
+    public List<BudgetUserDto> getAllIndividualTotalAmount(@PathVariable("group_id") Integer group_id) {
         return budgetService.getAllIndividualAmount(group_id);
     }
 
@@ -85,11 +85,11 @@ public class BudgetController {
     @GetMapping(path = "/individualamount/{group_id}/{user_id}")
 
     public Double getIndividualTotalAmount(@PathVariable("group_id") Integer group_id,
-            @PathVariable("user_id") Integer user_id) {
+                                           @PathVariable("user_id") Integer user_id) {
         return budgetService.getIndividualTotalAmount(group_id, user_id);
     }
 
-    @GetMapping(path = "/dueamount/{group_id}/{user_id}")
+//    @GetMapping(path = "/dueamount/{group_id}/{user_id}")
 
 //    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id,
 //            @PathVariable("user_id") Integer user_id) {
@@ -98,21 +98,21 @@ public class BudgetController {
 //        return due_amount;
 //    }
 
-//    delete budget
+    //    delete budget
     @DeleteMapping(path = "/deletebudget/{budget_id}")
-    public String deleteBudget(@PathVariable("budget_id") Integer budget_id){
-       return budgetService.deleteBudget(budget_id);
+    public String deleteBudget(@PathVariable("budget_id") Integer budget_id) {
+        return budgetService.deleteBudget(budget_id);
 
     }
 
-//    update the budget
+    //    update the budget
     @PutMapping(path = "/updatebudget/{budget_id}")
     public void updateBudget(
             @PathVariable("budget_id") Integer budget_id,
             @RequestParam(required = false) String title,
             @RequestParam(required = false) Double amount,
             @RequestParam(required = false) String description
-            ){
+    ) {
         budgetService.updateBudget(budget_id, title, amount, description);
 
     }
