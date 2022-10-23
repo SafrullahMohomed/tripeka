@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
+import CircularProgress from "@mui/material/CircularProgress";
 import MenuItem from '@mui/material/MenuItem';
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
@@ -85,7 +86,8 @@ const Trip = () => {
     const [trip, setTrip] = useState([]);
     // console.log(trip.name);
     const [members, setMembers]  = useState([]);
-    //console.log( members.map((user) => (user.user_id)));
+    // console.log(members[0])
+    // console.log( members.map((user) => (user.user_id)));
 
     const init = () => {
     
@@ -283,8 +285,9 @@ const Trip = () => {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title={trip.name}
-                        subheader={"By " + trip.owner}
+                        title={trip.name ? trip.name : "Trip"}
+                        subheader={trip.owner ? "By " + trip.owner : "Loading..."}
+                        
                     />
                     <CardMedia
                         component="img"
@@ -294,15 +297,21 @@ const Trip = () => {
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', pb: 0}}>
                         <AvatarGroup max={4}>
-                            {members.map((user) => (
-                                <Avatar alt="" src={user.profile_url} />
-                            ))} 
+                            { members[0] ? 
+                                members.map((user) => (
+                                    <Avatar alt="" src={user.profile_url} />
+                                ))
+                                :
+                                <Avatar />
+                            }                
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
                             Trip Timeline
                         </Typography>
                         <Typography variant="body1" color="text.main" sx={{mt: 0, pl: 1}}>
-                            {trip.start_date} to {trip.end_date}
+                            {trip.start_date ? trip.start_date : <CircularProgress size={15} /> } 
+                            {"  to  "}
+                            {trip.end_date ? trip.end_date : <CircularProgress size={15} />}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
