@@ -28,7 +28,6 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer user_id;
 
-
 	@Column(name = "firstname")
 	private String firstname;
 
