@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 import { useForm } from "react-hook-form";
 // import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
@@ -10,12 +10,18 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import jwt_decode from "jwt-decode";
 
+import {getCarsByCriteria} from "../../services/CarService";
+import CarListingMain from "./carListing/CarListingMain";
+
+
 const CarForm = () => {
   // get current users userId
   // var currentUserId = jwt_decode(
   //   JSON.parse(localStorage.getItem("user")).jwtToken
   // );
   // console.log(currentUserId.sub);
+  // const navigate = useNavigate();
+
   const currentUserId = JSON.parse(localStorage.getItem("userDetails")).user_id;
 
   const [date, setDate] = useState("");
@@ -25,9 +31,20 @@ const CarForm = () => {
   const [passengers, setPassengers] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [car_id, setCar_id] = useState("");
+  const [driver_name, setDriver_name] = useState("");
+  const [driver_phone, setDriver_phone] = useState("");
+  const [max_passengers, setMax_passengers] = useState("");
+  const [vehicle_id, setVehicle_id] = useState("");
+  const [vehicle_name, setVehicle_name] = useState("");
+  const [vehicle_type, setVehicle_type] = useState("");
+  const [vehicle_image, setVehicle_image] = useState("");
+  const [vehicle_no_plate, setVehicle_no_plate] = useState("");
+  const [car_details, setCar_details] = useState([]);
+
+
+  // const [car_id, setCar_id] = useState("");
   // const [user_id, setUser_id] = useState("");
-  const car_id_int = 1;
+  // const car_id_int = 1;
 
   // const group_id_int = parseInt(props.group_id);
   // const user_id_int = parseInt(currentUserId.sub);
@@ -40,33 +57,54 @@ const CarForm = () => {
   } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  const carbookingForm = (e) => {
-    e.preventDefault();
+  
+  
+
+  const carbookingForm = async (e) =>  {
 
     const carbooking = {
       pickup,
       dropoff,
       users: { user_id: user_id_int },
-      car: { car_id: car_id_int },
+      // car: { car_id: car_id_int },
       passengers,
       date,
       time,
       email,
       phone,
+     
     };
-    console.log(carbooking);
-    // addCarbooking(budget)
-    //   .then((response) => {
-    //     console.log("Printing car booking data", response.data);
-    //     init();
-    //   })
-    //   .catch((err) => {
-    //     console.log("Something went wrong", err);
-    //   });
-  };
 
+    const district = "colombo";
+    await getCarsByCriteria(district, passengers)
+      .then( (response) =>  {
+        console.log("printing cars by criteria", response.data);
+        setCar_details(response.data);
+        // setCar_id(response.data.car_id);
+      })
+      .catch((err) => {
+        console.log("Something Went wrong", err);
+      });
+    console.log("here skldfjsdlkfj", car_details)
+
+    // const car_fulldetails = await car_details;
+    if(car_details.length > 0){
+    car_details.map((car, index) => {
+
+      car[index] = {car , carbooking}
+
+    });
+    console.log("after lsdfjj skldfjsdlkfj", car_details)
+  }
+
+  };
   return (
-    <form onSubmit={carbookingForm}>
+    <form onSubmit={
+      (e) => {
+      e.preventDefault();
+      carbookingForm();
+      }
+    }>
       <DialogTitle
         id="expense-title"
         sx={{ width: 450, marginBottom: -1 }}
@@ -145,7 +183,7 @@ const CarForm = () => {
 
         <DialogContentText id="email" sx={{ marginTop: 2 }}></DialogContentText>
         <TextField
-          onChange={(e) => setPassengers(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           autoFocus
           margin="dense"
           id="email"
@@ -157,7 +195,7 @@ const CarForm = () => {
 
         <DialogContentText id="phone" sx={{ marginTop: 2 }}></DialogContentText>
         <TextField
-          onChange={(e) => setPassengers(e.target.value)}
+          onChange={(e) => setPhone(e.target.value)}
           autoFocus
           margin="dense"
           id="phone"
@@ -172,10 +210,14 @@ const CarForm = () => {
 
         <div class="flex space-x-2 justify-center mr-10 pb-10 ">
           <button
-            type="button"
+            type="submit"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
             class="inline-block px-20 py-2.5 bg-green-600 text-white font-medium text-lg leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg  focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+            onClick={() => {
+              // window.location.href = "/ms3";
+              
+            }}
           >
             Find a Vehicle
           </button>
