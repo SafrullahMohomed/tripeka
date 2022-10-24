@@ -33,6 +33,7 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
+import Suggestion from "./pages/Suggestion";
 import DeleteUser from "./components/DeleteUser";
 import HotelBookingForm from "./pages/HotelBookingForm";
 
@@ -129,6 +130,7 @@ root.render(
       <Route path='/users' element={<><Users /></>}/>
       <Route path='/location/:id' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
+      <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
 
     </Routes>
   </Router>

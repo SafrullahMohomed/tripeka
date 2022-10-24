@@ -1,11 +1,11 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import osm from "../constants/osm-providers";
-import { useState, useRef } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+// import osm from "../constants/osm-providers";
+import { useState, useRef, useEffect } from "react";
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
 import useGeoLocation from "../hooks/useGeoLocation";
-
-// import cities from "./cities.json";
+import Header from "./Header";
+import Footer from "./Footer";
 
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import Button from '@mui/material/Button';
@@ -18,36 +18,42 @@ const markerIcon = new L.Icon({
   });
 
 const Location = () => {
-    const [center, setCenter] = useState({ lat: 6.9270786, lng: 79.861243 });
-    const ZOOM_LEVEL = 13;
+    const [center, setCenter] = useState({ lat: 6.90213, lng: 79.86114 });
+    const ZOOM_LEVEL = 15;
     const mapRef = useRef();
 
     // Get location using hook
     const location = useGeoLocation();
 
-    // 
-    const handleFlytoLocation = () => {
-        if (location.loaded && !location.error) {
-          mapRef.current.leafletElement.flyTo(
-            [location.coordinates.lat, location.coordinates.lng],
-            ZOOM_LEVEL,
-            { animate: true }
-          );
-        }
-         else {
-          alert(location.error.message);
-        }
-      };
+    function ResetCenterView() {
+        console.log("HI");
+        
+    }
+
+    // const handleFlytoLocation = () => {
+    //     if (location.loaded && !location.error) {
+    //         map.setView(
+    //             L.latLng(selectPosition?.lat, selectPosition?.lon),
+    //             map.getZoom(),
+    //             {
+    //               animate: true
+    //             }
+    //           )
+    //     }
+    // };
 
     return ( 
-
+        <>
+        <Header />
+        
         <div className='flex flex-col items-center'>
             {console.log("lat : "+location.coordinates.lat+" lng : "+location.coordinates.lng)}
             <div className='w-4/6 p-4'>
-                <MapContainer center={center} zoom={13} style={{ height: '500px', width: '100wh' }} scrollWheelZoom={false} ref={mapRef}>
+
+                <MapContainer center={center} zoom={15} style={{ height: '500px', width: '100wh' }} ref={mapRef}>
                     <TileLayer
-                        url={osm.maptiler.url}
-                        attribution={osm.maptiler.attribution}
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                         {location.loaded && !location.error && (
                         <Marker icon={markerIcon} position={[
@@ -74,16 +80,16 @@ const Location = () => {
                         </Popup>
                     </Marker>
                     ))} */}
-
                 </MapContainer>
             </div>
             <div className=''>
-                <Button onClick={handleFlytoLocation} disableElevation variant="outlined" startIcon={<MyLocationIcon />}>
+                <Button onClick={ResetCenterView} disableElevation variant="outlined" startIcon={<MyLocationIcon />}>
                     Locate Me
                 </Button>
             </div>            
         </div>
-        
+        <Footer />
+        </>
      );
 }
  
