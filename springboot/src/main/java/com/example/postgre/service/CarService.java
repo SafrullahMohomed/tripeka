@@ -26,7 +26,12 @@ public class CarService {
     }
 
 
+//    insert car data
     public void addCar(Car car) {
         carRepository.save(car);
+    }
+
+    public List<Car> getCarByValues(String district, Integer no_of_passengers) {
+        return carRepository.getCarByValues(district, no_of_passengers);
     }
 }

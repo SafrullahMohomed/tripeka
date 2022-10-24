@@ -31,6 +31,12 @@ public class CarController {
         return carService.getCarById(vehicle_id);
     }
 
+    @GetMapping(path = "/getcarbyvalues")
+    public List<Car> getCarByValues(@RequestParam("district") String district, @RequestParam("no_of_passengers")
+    Integer no_of_passengers){
+        return carService.getCarByValues(district, no_of_passengers);
+    }
+
     @PostMapping(path = "/addcar")
     public void addCar(@RequestBody Car car){
 
