@@ -58,6 +58,7 @@ import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
 import LiveLocation from "./pages/LiveLocation";
+import LiveLocationMark from "./components/LiveLocationMark";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -131,6 +132,7 @@ root.render(
       <Route path='/location/:id' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
       <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
+      <Route path='/livelocationmark' element={<><Header /><LiveLocationMark /><Footer /></>}/>
 
     </Routes>
   </Router>
