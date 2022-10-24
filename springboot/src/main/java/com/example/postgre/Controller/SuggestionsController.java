@@ -1,5 +1,7 @@
 package com.example.postgre.Controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +20,8 @@ public class SuggestionsController {
     @Autowired
     private SuggestionsRepository suggestionsRepository;
 
-    // @GetMapping("/suggestion/{location}")
-    // public Suggestions getGroupsById(@PathVariable("location") String location) {
-    // return suggestionsRepository.getDetailsById(location);
-    // }
+    @GetMapping("/suggestion/{location}")
+    public Optional<Suggestions> getSuggestion(@PathVariable("location") String location) {
+        return suggestionsRepository.findById(location);
+    }
 }
