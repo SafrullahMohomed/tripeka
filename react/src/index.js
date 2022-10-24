@@ -33,6 +33,7 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
+import Suggestion from "./pages/Suggestion";
 import DeleteUser from "./components/DeleteUser";
 import HotelBookingForm from "./pages/HotelBookingForm";
 
@@ -57,6 +58,7 @@ import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
 import LiveLocation from "./pages/LiveLocation";
+import LiveLocationMark from "./components/LiveLocationMark";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -111,24 +113,12 @@ root.render(
       <Route path="/car" element={<Car />} />
       <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
-      <Route
-        path="/hotel"
-        element={
-          <>
-            <Header />
-            <Search />
-            <Suggestions />
-            <Cards />
-            <Footer />
-          </>
-        }
-      />
-
+      
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard/:id' element={
         authService.isSignedIn() ? (
-          <><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>
+          <><Header /><SpeedDialButton /><Groups /><Suggestions /><Cards /><Footer /></>
         ) : ( <Login />)
       }/>
       <Route path='/reviews' element={<><Header /><Review /><Cards /><Footer /></>}/>
@@ -141,6 +131,8 @@ root.render(
       <Route path='/users' element={<><Users /></>}/>
       <Route path='/location/:id' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
+      <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
+      <Route path='/livelocationmark' element={<><Header /><LiveLocationMark /><Footer /></>}/>
 
     </Routes>
   </Router>

@@ -615,8 +615,9 @@ const Trip = () => {
                         {latitude ? 
                             <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/>
                         : 
-                            <div style={{ height: '590px', width: '100%' }}>
-                                Loading Map Data
+                            <div className="flex justify-center text-2xl mt-20" style={{ height: '590px', width: '100%' }}>
+                                <div className="mr-2">Loading Map Data </div> 
+                                <div className="ml-2"><CircularProgress /></div>
                             </div>
                         }
                         {/* <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/> */}
