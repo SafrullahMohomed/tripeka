@@ -36,6 +36,7 @@ import Location from "./components/Location";
 import Suggestion from "./pages/Suggestion";
 import DeleteUser from "./components/DeleteUser";
 import HotelBookingForm from "./pages/HotelBookingForm";
+import Userprofile from "./pages/Userprofile";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -68,6 +69,7 @@ root.render(
       <Route path="/triphotel" element={<TripHotels />} />
       <Route path="/bookingform" element={<HotelBookingForm />} />
       <Route path="/guideregister" element={<GuideRegister />} />
+      <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
       <Route path="/places" element={<Popular />} />
