@@ -10,15 +10,18 @@ import { useState } from "react";
 import Navbar from '../../components/Navbar';
 import TripEmailList from '../../components/TripEmailList/TripEmailList';
 import Footer from '../../components/Footer';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const TripHotelDetails = () => {
   const location = useLocation();
-  
+  const navigate = useNavigate();
 
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [hotelData, sethotelData] = useState(location.state.hotelData);
+  const bookHotel = () => {
+    navigate("/bookingform");
+  };
 
   const photos = [
     {
@@ -92,7 +95,7 @@ const TripHotelDetails = () => {
           </div>
         )}
         <div className="hotelWrapper" style={{width:"100%",maxWidth:"1024px",display:"flex",flexDirection:"column",gap:"10px",position:"relative"}}>
-          <button className="bookNow" style={{position:"absolute",top:"10px",right:"0",border:"none",padding:"10px 20px",backgroundColor:"#0071c2",color:"white",fontWeight:"bold",borderRadius:"5px",cursor:"pointer"}}>Reserve or Book Now!</button>
+          <button className="bookNow" onClick={bookHotel} style={{position:"absolute",top:"10px",right:"0",border:"none",padding:"10px 20px",backgroundColor:"#0071c2",color:"white",fontWeight:"bold",borderRadius:"5px",cursor:"pointer"}}>Reserve or Book Now!</button>
           <h1 className="hotelTitle" style={{fontSize:"24px"}}>{hotelData.title}</h1>
           <div className="hotelAddress" style={{fontSize:"12px",display:"flex",alignItems:"center",gap:"10px"}}>
             <FontAwesomeIcon icon={faLocationDot} />
@@ -121,7 +124,7 @@ const TripHotelDetails = () => {
             <div className="hotelDetailsTexts" style={{flex:"3"}}>
               <h1 className="hotelTitle" style={{fontSize:"24px"}}>Stay in the heart of City</h1>
               <p className="hotelDesc" style={{fontSize:"14px", marginTop:"20px"}}>
-                Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
+                {/* Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
                 Street Apartments has accommodations with air conditioning and
                 free WiFi. The units come with hardwood floors and feature a
                 fully equipped kitchenette with a microwave, a flat-screen TV,
@@ -131,7 +134,8 @@ const TripHotelDetails = () => {
                 Cloth Hall, Main Market Square and Town Hall Tower. The nearest
                 airport is John Paul II International Kraków–Balice, 16.1 km
                 from Tower Street Apartments, and the property offers a paid
-                airport shuttle service.
+                airport shuttle service. */}
+                {hotelData.description}
               </p>
             </div>
             <div className="hotelDetailsPrice" style={{flex:"1", backgroundColor:"#ebf3ff",padding:"20px",display:"flex",flexDirection:"column",gap:"20px"}}>
@@ -143,7 +147,7 @@ const TripHotelDetails = () => {
               <h2 style={{fontWeight:"300"}}>
                 <b>LKR {hotelData.roomprice}</b> (for a night)
               </h2>
-              <button style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}}>Reserve or Book Now!</button>
+              <button style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}} onClick={bookHotel}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
