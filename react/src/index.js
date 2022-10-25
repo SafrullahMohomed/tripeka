@@ -118,7 +118,7 @@ root.render(
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
       <Route path='/dashboard/:id' element={
         authService.isSignedIn() ? (
-          <><Header /><SpeedDialButton /><Groups /><Suggestions /><Cards /><Footer /></>
+          <><Header /><SpeedDialButton /><Suggestions /><Groups /><Cards /><Footer /></>
         ) : ( <Login />)
       }/>
       <Route path='/reviews' element={<><Header /><Review /><Cards /><Footer /></>}/>
