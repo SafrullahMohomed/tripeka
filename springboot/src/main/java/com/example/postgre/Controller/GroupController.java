@@ -85,26 +85,48 @@ public class GroupController {
 
     // Add user to group
     @PostMapping("/trip/{group_id}")
-    public ResponseEntity<Users> addUser(@RequestBody Users userRequestId, @PathVariable Integer group_id) {
+    public ResponseEntity<Users> addUser(@RequestBody Users userRequestEmail, @PathVariable Integer group_id) {
         Users user = groupRepository.findById(group_id)
                 .map(group -> {
-                    Integer userId = userRequestId.getUser_id();
-                    // String email = userRequestEmail.getEmail();
+                    // Integer userId = userRequestId.getUser_id();
+                    String email = userRequestEmail.getEmail();
 
                     // TODO : If user existed already or Not Found
-                    if (userId != null) {
-                        Users _user = userRepository.findById(userId)
-                                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
+                    if (email != null) {
+                        Users _user = userRepository.findByEmail(email);
                         group.addUser(_user);
                         groupRepository.save(group);
                         return _user;
                     }
-                    group.addUser(userRequestId);
-                    return userRepository.save(userRequestId);
+                    group.addUser(userRequestEmail);
+                    return userRepository.save(userRequestEmail);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Not found User"));
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
+    // @PostMapping("/trip/{group_id}")
+    // public ResponseEntity<Users> addUser(@RequestBody Users userRequestId,
+    // @PathVariable Integer group_id) {
+    // Users user = groupRepository.findById(group_id)
+    // .map(group -> {
+    // Integer userId = userRequestId.getUser_id();
+    // // String email = userRequestEmail.getEmail();
+
+    // // TODO : If user existed already or Not Found
+    // if (userId != null) {
+    // Users _user = userRepository.findById(userId)
+    // .orElseThrow(() -> new ResourceNotFoundException("Not found"));
+    // group.addUser(_user);
+    // groupRepository.save(group);
+    // return _user;
+    // }
+    // group.addUser(userRequestId);
+    // return userRepository.save(userRequestId);
+    // })
+    // .orElseThrow(() -> new ResourceNotFoundException("Not found User"));
+    // return new ResponseEntity<>(user, HttpStatus.CREATED);
+    // }
 
     // Delete user from group
     @DeleteMapping("/trip/{group_id}/{user_id}")

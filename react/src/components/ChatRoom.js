@@ -191,25 +191,25 @@ const MyChatRoom = () => {
           {groupList.map((group) => (
             <div
               key={group.group_id}
-              className="grid grid-cols-6 p-3 m-3 bg-gray-300 rounded-lg cursor-pointer"
+              className="flex items-center p-3 bg-gray-100 mt-1 mr-0.5 cursor-pointer"
               onClick={() => {
                 onClickGroup(group);
               }}
             >
-              <div className=""><GroupsIcon /></div>
-              <div className="col-span-5 flex flex-col">
-                <p className="text-lg font-medium capitalize truncate">{group.name}</p>
+              <div className="px-1.5 py-1 rounded-full border gray-600 bg-gray-200"><GroupsIcon /></div>
+              <div className="ml-4 col-span-5 flex flex-col">
+                <p className="">{group.name}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-        {messages.length === 0 && currentGroup === null && 
-          <div className="text-xl m-auto mt-20">
-            CLICK ON A GROUP TO VIEW MESSAGES
-          </div>
-        }
+      {messages.length === 0 && currentGroup === null && 
+        <div className="text-xl m-auto mt-20">
+          CLICK ON A GROUP TO VIEW MESSAGES
+        </div>
+      }
 
       {/* Current Group */}
       {currentGroup !== null && (

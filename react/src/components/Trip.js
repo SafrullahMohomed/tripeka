@@ -50,6 +50,7 @@ import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRound
 import Swal from 'sweetalert2'
 import { deleteGroup, removeFriend } from "../services/GroupsService";
 import { getGroup, editTrip, addFriend } from "../services/GroupsService";
+import { getUsers } from "../services/UserService";
 import Footer from "./Footer";
 import dalanda from '../assets/dalada.jpg'
 import img1 from '../assets/customer1.jpg'
@@ -91,7 +92,7 @@ const Trip = () => {
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
     
-    const init = () => {
+    const init = async() => {
     
         getGroup(id)
           .then((response) => {
@@ -108,6 +109,16 @@ const Trip = () => {
             //setIsPending(false);
             //setError(err.message);
           });
+
+        // await getUsers()
+        //  .then((response) => {
+        //     // console.log("Printing user data", response.data);
+        //     setUsers(response.data)
+        //   })
+        //   .catch((err) => {
+        //     console.log("Something went wrong2", err);
+        // });
+
       };
 
       useEffect(() => {
@@ -133,15 +144,37 @@ const Trip = () => {
     const handleCloseFM = () => setOpenFM(false);
 
     // add friend form
-    const [friend, setFriend] = useState("");
+    // const [friend, setFriend] = useState("");
+    const [users, setUsers]  = useState([]);
+    const [friendEmail, setFriendEmail] = useState("");
+    const [friendId, setFriendId] = useState(null);
+    const [error, setError] = useState(false);
 
     const addFriendForm = async(e) => {
-        // e.preventDefault();
+        e.preventDefault();
     
-        addFriend(id, friend)
-          .then((response) => 
-            console.log(response)
-          );
+        // addFriend(id, friendId)
+        //   .then((response) => 
+        //     console.log(response)
+        //   );
+        
+        // for (let i=0 ; i < users.length ; i ++){
+        //     if (friendEmail == users[i].email) {
+        //         setFriendId(users[i].user_id);
+        //         break;
+        //     } 
+        //     else{
+        //         setError(true);
+        //     }
+        // }
+
+        // // users.map((user) => (
+        // //     console.log(user.email)
+        // //     // (friendEmail = user.email) ? setFriendId(user.user_id) : "Not Found"
+        // // ))
+        // console.log("Email " + friendEmail)
+        // console.log("ID " + friendId)
+        // console.log("Error "+ error)
     };
 
     // edit title modal
@@ -497,12 +530,12 @@ const Trip = () => {
                 <DialogContent>
                 
                     <TextField
-                        onChange={(e) => setFriend(e.target.value)}
+                        onChange={(e) => setFriendEmail(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="email"
                         label="Email"
-                        //type="email"
+                        type="email"
                         fullWidth
                         variant="filled"
                     />
