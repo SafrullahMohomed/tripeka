@@ -36,6 +36,7 @@ public class Car {
     private String vehicle_no_plate;
     private String vehicle_image;
     private Integer max_passengers;
+    private Double price_per_km;
     private String district;
     private Boolean available_status;
 
@@ -143,6 +144,14 @@ public class Car {
 
     public void setMax_passengers(Integer max_passengers) {
         this.max_passengers = max_passengers;
+    }
+
+    public Double getPrice_per_km() {
+        return price_per_km;
+    }
+
+    public void setPrice_per_km(Double price_per_km) {
+        this.price_per_km = price_per_km;
     }
 
     public String getDistrict() {

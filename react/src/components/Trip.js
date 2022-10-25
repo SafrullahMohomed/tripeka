@@ -88,7 +88,9 @@ const Trip = () => {
     const [members, setMembers]  = useState([]);
     // console.log(members[0])
     // console.log( members.map((user) => (user.user_id)));
-
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+    
     const init = () => {
     
         getGroup(id)
@@ -97,6 +99,8 @@ const Trip = () => {
             //setIsPending(false);
             setTrip(response.data);
             setMembers(response.data.users);
+            setLatitude(response.data.lat);
+            setLongitude(response.data.lon);
             //setError(null);
           })
           .catch((err) => {
@@ -608,7 +612,15 @@ const Trip = () => {
                         </IconButton>
                     </div>
                     <div className="w-11/12">
-                        <Maps selectPosition={selectPosition}/>
+                        {latitude ? 
+                            <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/>
+                        : 
+                            <div className="flex justify-center text-2xl mt-20" style={{ height: '590px', width: '100%' }}>
+                                <div className="mr-2">Loading Map Data </div> 
+                                <div className="ml-2"><CircularProgress /></div>
+                            </div>
+                        }
+                        {/* <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/> */}
                     </div>
                     <div className={isOpen ? 'w-2/3 float-right mt-10 p-2' : 'hidden'} >
                         <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition}/>
