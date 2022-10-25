@@ -78,7 +78,7 @@ const Gallery = () => {
     // **********Clodinary**********
 
     const [image, setImage ] = useState("");
-    const [imgurl, setImgurl ] = useState(null);
+    const [imgurl, setImgurl ] = useState('https://res.cloudinary.com/tripeka/image/upload/v1666677327/sigiriya_n0vhz3.jpg');
     const [uploaded, setUploaded ] = useState(false);
 
     const uploadImage = async(e) => {
@@ -103,8 +103,8 @@ const Gallery = () => {
         .catch(err => console.log(err))
         // setImgurl(resp.data.url)
 
-         console.log("url " + imgurl);
-        // addurl(id, imgurl)
+        console.log("url " + imgurl);
+        await addurl(id, imgurl)
         // .then((response) => {
         //     console.log("uploaded " + response.data)
         // });
