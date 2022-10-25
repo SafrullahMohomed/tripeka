@@ -11,6 +11,15 @@ public class Suggestions {
     private String location;
     private Integer user_id;
     private String description;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Integer getUser_id() {
         return user_id;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getSuggestions } from "../services/SuggestionService";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,14 +13,6 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import Search from "./Search";
-
-import blog1 from '../assets/coverpage1.jpg'
-import blog2 from '../assets/dalada.jpg'
-import blog3 from '../assets/blog3.jpg'
-import blog4 from '../assets/blog4.jpg'
-import blog5 from '../assets/blog5.jpg'
-import blog6 from '../assets/blog6.jpg'
-import blog7 from '../assets/lotus.jpg'
 
 
 const itemData = [
@@ -88,10 +81,46 @@ const itemData = [
 
 const Suggestions = () => {
 
+  const [suggestions, setSuggestions] = useState([]);
+
+  const init = async () => {
+    
+    getSuggestions()
+      .then((response) => {
+        // console.log("Printing data", response.data);
+        setSuggestions(response.data.sort(() => Math.random() - 0.5))
+        // setIsPending(false);
+        // setError(null);
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+        // setIsPending(false);
+        // setError(err.message);
+    });
+
+    // const data = await fetch(
+    //     `https://api.unsplash.com/search/photos?page=1&query=${id}&client_id=9WMuH_JWZbfr3mw43CYqFVoe87rAXLKaS2iCp6ibnz0`
+    // );
+    // const dataJ = await data.json();
+    // const result = await dataJ.results;
+    // const image1 = await result[0].urls.raw;
+    // const image2 = await result[1].urls.raw;
+    // const image3 = await result[2].urls.raw;
+    // const image4 = await result[3].urls.raw;
+  };
+
+  useEffect(() => {
+    console.log("Run")
+    init();
+  }, []);
+
   return ( 
     <>
     {/* <Search /> */}
     <section class="text-gray-600 body-font">
+      {/* {suggestions.map((suggestion) => (
+            <div>{suggestion.location}</div>
+      ))} */}
     <div class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap w-full mb-10 flex-col items-center text-center">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Best Places to Visit</h1>
@@ -100,23 +129,23 @@ const Suggestions = () => {
       <div class="flex flex-wrap justify-center -m-4">
         <Box sx={{ width: 1000 }}>
           <ImageList variant="masonry" cols={3} gap={6}>
-            {itemData.map((item) => (
+            {suggestions.map((item) => (
               <ImageListItem>
                 <img
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                  src={`${item.url}?w=248&fit=crop&auto=format`}
+                  srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
                   loading="lazy"
                 />
                 <ImageListItemBar
-                  title={item.title}
-                  // subtitle={item.description}
+                  title={item.location}
+                  subtitle={item.description}
                   actionIcon={
                     <IconButton
                       sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                      aria-label={`info about ${item.title}`}
+                      aria-label={`info about ${item.location}`}
                     >
                       <InfoIcon 
-                        onClick = {() => {window.location.href = `/suggestion/${item.id}`}}
+                        onClick = {() => {window.location.href = `/suggestion/${item.location}`}}
                       />
                     </IconButton>
                   }

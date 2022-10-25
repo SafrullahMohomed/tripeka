@@ -5,3 +5,7 @@ import authHeader from "../jwtAuthServices/auth-header";
 export function getSuggestionById(location) {
     return axios.get(ServerBaseUrl + "/suggestion/" + location);
 }
+
+export function getSuggestions() {
+    return axios.get(ServerBaseUrl + "/suggestions");
+}
