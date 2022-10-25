@@ -2,6 +2,10 @@ import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import pop6 from "../assets/unlock.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPencil
+  } from "@fortawesome/free-solid-svg-icons";
 
 function Userprofile() {
   return (
@@ -16,8 +20,8 @@ function Userprofile() {
         <div style={{marginLeft:"150px"}}>
             <div class="column2">
                 <div class="personal-info-section" style={{position: "relative",display: "block",width: "100%",marginBottom: "50px"}}>
-                    <span style={{fontSize: "18px",fontWeight: "bold"}}>Personal Info</span>
-                    <a href="#" style={{float: "right",textDecoration: "none",backgroundColor: "#ca3a1b",color: "white",fontSize: "14px",borderRadius: "10px",padding: "10px 20px 10px 20px",marginRight: "20%"}}>Edit Info </a>
+                    <span style={{fontSize: "24px",fontWeight: "bold"}}>Personal Info</span> 
+                    <a href="#" style={{float: "right",textDecoration: "none",backgroundColor: "#ca3a1b",color: "white",fontSize: "14px",borderRadius: "10px",padding: "10px 20px 10px 20px",marginRight: "20%"}}><FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>  Edit Info </a>
                     <div class="personal-info-section-content" style={{position: "relative", display: "block",width: "80%",height: "250px",backgroundColor: "#e6e6e6",marginTop: "40px",borderRadius: "10px",padding: "30px 30px 10px 100px"}}>
                         <img src={pop6}  alt="Avatar" class="avatar" style={{verticalAlign: "middle",borderRadius: "50%",width: "150px",height: "150px",float: "left"}}/>
                         <div class="details" style={{float: "left",display: "block",position: "relative",marginLeft: "30px"}}>
@@ -51,7 +55,7 @@ function Userprofile() {
                     </div>
                 </div>
                 <div class="additional-info" style={{position: "relative",display: "block",width: "100%",marginBottom: "50px"}}>
-                    <h3>Additional Information</h3>
+                    <h3 class="flex items-center text-xl font-bold mb-4">Additional Information</h3>
                     <div class="additional-info-content" style={{display: "block",position: "relative", width: "80%",backgroundColor: "#e6e6e6",padding: "20px",borderRadius: "10px"}}>
                         <table style={{width: "40%"}}>
                             <tr>
@@ -87,7 +91,7 @@ function Userprofile() {
                     </div>
                 </div>
                 <div class="billing-info" style={{position: "relative",display: "block",width: "100%",marginBottom: "50px"}}>
-                    <h3>Billing Information</h3>
+                    <h3 class="flex items-center text-xl font-bold mb-4">Billing Information</h3>
                     <div class="billing-info-content" style={{display: "block",position: "relative",width: "80%",backgroundColor: "#e6e6e6",padding: "20px",borderRadius: "10px"}}>
                         <table style={{width: "40%"}}>
                             <tr>
@@ -102,7 +106,7 @@ function Userprofile() {
                     </div>
                 </div>
                 <div class="bio-info" style={{position: "relative",display: "block",width: "100%"}}>
-                    <h3>Bio Information</h3>
+                    <h3 class="flex items-center text-xl font-bold mb-4">Bio Information</h3>
                     <div class="bio-info-content" style={{display: "block", position: "relative",width: "80%",backgroundColor: "#e6e6e6",padding: "20px",borderRadius: "10px"}}>
                         <p>I am good girl</p>
                     </div>
