@@ -42,6 +42,7 @@ public class Groups {
             CascadeType.MERGE
     })
 
+    // @JsonIgnore
     private List<Users> users = new ArrayList<>();
 
     // @ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "groups")
