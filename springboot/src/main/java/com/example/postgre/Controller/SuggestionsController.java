@@ -1,5 +1,6 @@
 package com.example.postgre.Controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class SuggestionsController {
 
     @Autowired
     private SuggestionsRepository suggestionsRepository;
+
+    @GetMapping("/suggestions")
+    public List<Suggestions> getSuggestions() {
+        return suggestionsRepository.findAll();
+    }
 
     @GetMapping("/suggestion/{location}")
     public Optional<Suggestions> getSuggestion(@PathVariable("location") String location) {
