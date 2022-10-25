@@ -1,16 +1,39 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import authHeader from "../jwtAuthServices/auth-header";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
+import L from "leaflet";
+import useGeoLocation from "../hooks/useGeoLocation";
+import Header from "./Header";
+import Footer from "./Footer";
+
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import Button from '@mui/material/Button';
+
+const markerIcon = new L.Icon({
+    iconUrl: require("../assets/marker.png"),
+    iconSize: [40, 40],
+    iconAnchor: [17, 46], //[left/right, top/bottom]
+    popupAnchor: [0, -46], //[left/right, top/bottom]
+});
 
 var stompClient = null;
 var subscription = null;
 var myInterval = null;
 
 const LiveLocationTest = () => {
+
+    const [center, setCenter] = useState({ lat: 6.90213, lng: 79.86114 });
+    const ZOOM_LEVEL = 15;
+    const mapRef = useRef();
+
+    // Get location using hook
+    const location = useGeoLocation()
 
     const user_id_from_localStorage = JSON.parse(localStorage.getItem("userDetails")).user_id;
 
@@ -48,9 +71,12 @@ const LiveLocationTest = () => {
 
       // simulate a random value as lat & lon and send periodically through the socket
       myInterval = setInterval(() => {
-          let randomLat = Math.random() * 100;
-          let randomLon = Math.random() * 100;
+          // let randomLat = Math.random() * 100;
+          // let randomLon = Math.random() * 100;
 
+          let randomLat = location.coordinates.lat;
+          let randomLon = location.coordinates.lng;
+          console.log("Here "+randomLat)
           sendMessage(randomLat, randomLon);
 
           // console.log("Interval function ran....\n With Lat: " + randomLat + " & Lon: " + randomLon + " \n")
@@ -190,6 +216,27 @@ const LiveLocationTest = () => {
             <p> {livelocation.fullName} || {livelocation.latitude} || {livelocation.longitude}</p>
             </div>
           ))}
+        </div>
+
+        <div>
+            <MapContainer center={center} zoom={15} style={{ height: '500px', width: '100wh' }} ref={mapRef}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    /> 
+                        {livelocations.map((livelocation) => (
+                            <Marker
+                                position={[livelocation.latitude, livelocation.longitude]}
+                                icon={markerIcon}
+                                key={livelocation.user_id}
+                            >
+                                <Popup>
+                                    <b>{livelocation.fullName}</b>
+                                </Popup>
+                            </Marker>
+                        ))}
+                        
+                </MapContainer>
         </div>
       </div>
     );
