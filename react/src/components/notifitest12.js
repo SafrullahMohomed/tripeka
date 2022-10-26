@@ -17,6 +17,22 @@ function notifitest(){
     );
 
 }
+function    homemain(){
+
+const handleonclickdefault = ()=>{
+    store.addNotify
+}
+    {
+    return(
+        <div>
+<button onClick={handleonclickdefault}>
+        
+
+</button>
+            </div>
+
+    )
+
 
 
 
