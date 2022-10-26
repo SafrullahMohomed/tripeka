@@ -71,10 +71,7 @@ function Userprofile() {
                         </div>
                     </div>
                 </div>
-                <div class="additional-info" style={{position: "relative",display: "block",width: "100%",marginBottom: "50px"}}>
-                    <h3 class="flex items-center text-xl font-bold mb-4">Additional Information</h3>
-                    <div class="additional-info-content" style={{display: "block",position: "relative", width: "80%",backgroundColor: "#e6e6e6",padding: "20px",borderRadius: "10px"}}>
-                        <table style={{width: "40%"}}>
+                <table style={{width: "40%"}}>
                             <tr>
                                 <td style={{textAlign: "left",paddingBottom: "15px"}}>Address</td>
                                 <td class="info-right-column-color"  style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}>No 32, Reid avenue, col 10</td>
