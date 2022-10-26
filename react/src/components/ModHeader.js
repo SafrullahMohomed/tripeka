@@ -59,23 +59,6 @@ const Header = () => {
           />
           <span class="ml-2 text-white text-2xl italic">TRIP-EKA</span>
         </Link>
-        <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-          <Link to={`/dashboard/${user_id}`} class="mr-7">
-            Dashboard
-          </Link>
-          <Link to="/triphotel" class="mr-7">
-            Hotels
-          </Link>
-          <Link to={`/groups/${user_id}`} class="mr-7">
-            Trips
-          </Link>
-          <Link to="/car" class="mr-7">
-            Car
-          </Link>
-          <Link to="/events" class="mr-7">
-            Calendar
-          </Link>
-        </nav>
 
         <Box
           sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
