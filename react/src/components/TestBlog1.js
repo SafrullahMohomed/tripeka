@@ -1,12 +1,7 @@
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import BlogData from "./BlogData";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Blogs from "../pages/Blogs";
-import Modal from "../components/Modal";
+
 import "./Modal.css";
 import { Button } from "@mui/material";
 const TestBlog1= ()=> {
