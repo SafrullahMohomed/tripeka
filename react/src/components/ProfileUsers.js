@@ -91,10 +91,7 @@ function Userprofile() {
                                 <td style={{textAlign: "left",paddingBottom: "15px"}}>Gender</td>
                                 <td class="info-right-column-color" style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}>female</td>
                             </tr>
-                            <tr>
-                                <td style={{textAlign: "left",paddingBottom: "15px"}}>NIC</td>
-                                <td class="info-right-column-color"  style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}>74978367</td>
-                            </tr>
+                           
                             <tr>
                                 <td style={{textAlign: "left",paddingBottom: "15px"}}>Visiting Charge</td>
                                 <td class="info-right-column-color"  style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}></td>
