@@ -8,12 +8,14 @@ export default function Modaltest123() {
     setModal(!modal);
   };
 
-  if(modal) {
-    document.body.classList.add('active-modal')
-  } else {
-    document.body.classList.remove('active-modal')
-  }
 
+  if(modal){
+    document.body.classList.add('active model')
+  }
+  else{
+    document.body.classList.add('active-model');
+  }
+ 
   return (
     <>
       <button onClick={toggleModal} className="btn-modal">
