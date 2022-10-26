@@ -79,12 +79,13 @@ const Cards = () => {
   }
 
   return (
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-8 mx-auto">
+    <section class="text-gray-600 body-font pb-12 bg-gray-100">
+      <div class="container px-20 py-8 mx-auto">
 
         <div class="flex flex-wrap w-full mb-3">
-          <div class="lg:w-1/2 w-full mb-3 lg:mb-0">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Travelers Blogs</h1>
+          <div class="w-full mb-3 lg:mb-0">
+            <h1 class="sm:text-3xl text-xl font-medium title-font mb-2 text-gray-600">Reviews</h1>
+            <p class="w-full leading-relaxed mb-2 text-gray-500">Most recent traveller reviews</p>
           </div>
         </div>
         
@@ -104,12 +105,12 @@ const Cards = () => {
                 title="Infamous Maggona"
                 subheader="September 14, 2022"
               />
-              <CardMedia
+              {/* <CardMedia
                 component="img"
-                image={blog}
+                image={""}
                 alt="Paella dish"
                 sx={{height: 180}}
-              />
+              /> */}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   This impressive paella is a perfect party dish and a fun meal to cook
@@ -178,14 +179,14 @@ const Cards = () => {
                   </IconButton>
                 }
                 title="A Night at Colombo"
-                subheader="March 24, 2022"
+                subheader="September 24, 2022"
               />
-              <CardMedia
+              {/* <CardMedia
                 component="img"
-                image={blog1}
+                image={""}
                 alt="Paella dish"
                 sx={{height: 180}}
-              />
+              /> */}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   This impressive paella is a perfect party dish and a fun meal to cook
@@ -256,12 +257,12 @@ const Cards = () => {
                 title="A visit to a palace"
                 subheader="September 14, 2016"
               />
-              <CardMedia
+              {/* <CardMedia
                 component="img"
-                image={blog2}
+                image={""}
                 alt="Paella dish"
                 sx={{height: 180}}
-              />
+              /> */}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   This impressive paella is a perfect party dish and a fun meal to cook
@@ -329,15 +330,15 @@ const Cards = () => {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Camp at a Rainforest"
+                title="Camp at a forest"
                 subheader="September 14, 2016"
               />
-              <CardMedia
+              {/* <CardMedia
                 component="img"
-                image={blog3}
+                image={""}
                 alt="Paella dish"
                 sx={{height: 180}}
-              />
+              /> */}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
                   This impressive paella is a perfect party dish and a fun meal to cook
