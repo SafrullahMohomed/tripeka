@@ -74,7 +74,7 @@ const ExpenseList = (props) => {
 
   useEffect(() => {
     init();
-  }, []);
+  }, [JSON.stringify(userListIndividual), JSON.stringify(userListAll), title, amount, description]);
   console.log("individual list", userListIndividual);
   console.log("all list", userListAll);
 
@@ -129,6 +129,8 @@ const ExpenseList = (props) => {
           size="medium"
           color="primary"
           aria-label="add"
+          sx={{bgcolor: "#3f51b5"}}
+          
         >
           <CreditCardIcon sx={{ mr: 1 }} />
           Add Amount
@@ -238,6 +240,7 @@ const ExpenseList = (props) => {
               type="text"
               fullWidth
               variant="standard"
+              required = {true}
             />
             <DialogContentText
               id="expense-amount"
@@ -252,6 +255,7 @@ const ExpenseList = (props) => {
               type="text"
               fullWidth
               variant="standard"
+              required = {true}
             />
             <DialogContentText
               id="expense-description"
@@ -266,6 +270,7 @@ const ExpenseList = (props) => {
               type="text"
               fullWidth
               variant="standard"
+              required = {true}
             />
           </DialogContent>
           <DialogActions>
