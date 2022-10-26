@@ -318,21 +318,20 @@ const Trip = () => {
                 <div>{user.email}</div>
             </div>
             ))}
-        </div> */}
-        <div>
-            {error ?
-                "user does not exist"
-                // <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={error} autoHideDuration={3000}>
-                //     <Alert severity="warning" sx={{ width: '100%' }}>
-                //             User does not Exist!
-                //     </Alert>
-                // </Snackbar>
+        </div> */}        
+        
+        <div className="flex flex-wrap px-6 py-8 bg-gray-100">
+            <div>
+                {error ?
+                    "user does not exist"
+                    // <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={error} autoHideDuration={3000}>
+                    //     <Alert severity="warning" sx={{ width: '100%' }}>
+                    //             User does not Exist!
+                    //     </Alert>
+                    // </Snackbar>
 
-            : ""}
-        </div>
-        
-        
-        <div className="flex flex-wrap pl-10 pr-2 mb-10">
+                : ""}
+            </div>
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
                     <CardHeader
@@ -356,7 +355,7 @@ const Trip = () => {
                         component="img"
                         image={trip.url}
                         alt=""
-                        sx={{height: 180}}
+                        sx={{height: 180, px: 0.5}}
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', pb: 0}}>
                         <AvatarGroup max={4}>
@@ -664,7 +663,7 @@ const Trip = () => {
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
                 {/* <img src={map} alt="" />
                 <div>{trip.location}</div> */}
-                <div className="flex relative drop-shadow-lg bg-gray-100">
+                <div className="flex relative drop-shadow-lg bg-white">
                     <div className="absolute top-1 right-3" onClick={toggle}>
                         <IconButton color="primary" aria-label="upload picture" component="label">
                             {isOpen ? <CancelRoundedIcon /> : <KeyboardDoubleArrowLeftIcon />}

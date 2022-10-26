@@ -117,7 +117,7 @@ const Suggestions = () => {
   return ( 
     <>
     {/* <Search /> */}
-    <section class="text-gray-600 body-font">
+    <section class="text-gray-600 body-font pt-8 bg-gray-100">
       {/* {suggestions.map((suggestion) => (
             <div>{suggestion.location}</div>
       ))} */}
