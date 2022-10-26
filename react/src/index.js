@@ -25,6 +25,7 @@ import Search from "./components/Search";
 import Suggestions from "./components/Suggestions";
 import Cards from "./components/Cards";
 import Groups from "./components/Groups";
+import Review from "./pages/Review";
 import Blogs from "./pages/Blogs";
 import Drawer from "./components/Drawer";
 import Gallery from "./components/Gallery";
@@ -32,8 +33,10 @@ import NotFound from "./components/NotFound";
 import Users from "./components/Users";
 import Profile from "./components/Profile";
 import Location from "./components/Location";
+import Suggestion from "./pages/Suggestion";
 import DeleteUser from "./components/DeleteUser";
 import HotelBookingForm from "./pages/HotelBookingForm";
+import Userprofile from "./pages/Userprofile";
 
 import Test from "./components/Test";
 import WriteBlog from "./pages/WriteBlog";
@@ -48,13 +51,19 @@ import ResetPassword from "./pages/ResetPassword";
 import TripHotels from "./pages/TripHotels/TripHotels";
 import TripList from "./pages/TripList/TripList";
 import CarRegister from "./pages/CarRegister";
-
+import CarDriverMain from "./components/car/carDriver/CarDriverMain";
+import CarListingMain from "./components/car/carListing/CarListingMain";
+import CarMain from "./components/car/CarMain";
 // import CreateGroupFloat from './components/CreateGroupFloat';
 
 import Trip from "./components/Trip";
 import SpeedDialButton from "./components/SpeedDialButton";
 import CarProfile from "./components/car/CarProfile";
 import authService from "./jwtAuthServices/auth.service";
+import LiveLocation from "./pages/LiveLocation";
+import LiveLocationMark from "./components/LiveLocationMark";
+import LiveLocationTest from "./components/LiveLocationTest";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -64,6 +73,7 @@ root.render(
       <Route path="/triphotel" element={<TripHotels />} />
       <Route path="/bookingform" element={<HotelBookingForm />} />
       <Route path="/guideregister" element={<GuideRegister />} />
+      <Route path="/userprofile" element={<Userprofile />} />
       <Route path="/services" element={<Services />} />
       <Route path="/testomonials" element={<Testomonials />} />
       <Route path="/places" element={<Popular />} />
@@ -97,30 +107,29 @@ root.render(
       <Route path="/help" element={<Help />} />
 
       <Route path="/Hotels" element={<Test />} />
-      <Route path="/ms" element={<Budget />} />
+      <Route path="/ms1" element={<CarMain />} />
+      <Route path="/cardashboard/:user_id" element={<CarDriverMain />} />
+      <Route path="/ms3" element={<CarListingMain />} />
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
       <Route path="/budget/:group_id" element={<Budget />} />
-      <Route path="/groupChat/:id" element={<ChatRoom />} />
+
+      <Route path="/groupChat/:id" element={authService.isSignedIn() ? <ChatRoom /> : <Login />} />
+      <Route path="/triphotels" element={<TripList />} />
+
       <Route path="/carprofile/:id" element={<CarProfile />} />
       <Route path="/car" element={<Car />} />
       <Route path="/triphotellist" element={<TripList />} />
       <Route path="/triphotels/:id" element={<TripHotels />} />
-      <Route
-        path="/hotel"
-        element={
-          <>
-            <Header />
-            <Search />
-            <Suggestions />
-            <Cards />
-            <Footer />
-          </>
-        }
-      />
+      
 
       <Route path='*' element={<><Header /><NotFound /><Footer /></>}/>
-      <Route path='/dashboard/:id' element={<><Header /><SpeedDialButton /><Groups /><Search /><Suggestions /><Cards /><Footer /></>}/>
+      <Route path='/dashboard/:id' element={
+        authService.isSignedIn() ? (
+          <><Header /><SpeedDialButton /><Suggestions /><Groups /><Cards /><Footer /></>
+        ) : ( <Login />)
+      }/>
+      <Route path='/reviews' element={<><Header /><Review /><Cards /><Footer /></>}/>
       <Route path='/blogs' element={<><Header /><Blogs /><Footer /></>}/>
       <Route path='/groups/:id' element={<><Header /><Groups /><Footer /></>}/>
       <Route path='/trip/:id' element={<><Header /><Trip /></>}/>
@@ -130,6 +139,10 @@ root.render(
       <Route path='/users' element={<><Users /></>}/>
       <Route path='/location/:id' element={<><Location /></>}/>
       <Route path='/profile' element={<><Profile /></>}/>
+      <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
+      <Route path='/livelocationmark' element={<><Header /><LiveLocationMark /><Footer /></>}/>
+
+      <Route path="/livelocation/:group_id" element={authService.isSignedIn() ? <LiveLocationTest /> : <Login />} />
 
     </Routes>
   </Router>

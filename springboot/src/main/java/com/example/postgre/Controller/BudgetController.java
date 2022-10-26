@@ -41,6 +41,7 @@ public class BudgetController {
     @GetMapping(path = "/user/{group_id}")
     public List<Budget> getBudgetForAGroup(@PathVariable("group_id") Integer group_id) {
         return budgetService.getBudgetForAGroup(group_id);
+
     }
 
     // to get a specific users budget from the group_id and user_id
@@ -75,11 +76,7 @@ public class BudgetController {
 
         return budgetService.getBudgetCardDetails(group_id, user_id);
     }
-    // to get average amount which the group is spended
-//    @GetMapping(path = "/averageamount/{group_id}")
-//    public Double getAverageAmount(@PathVariable("group_id") Integer group_id) {
-//        return budgetService.getAverageAmount(group_id);
-//    }
+
 
     // individual amount total which each user spent
     @GetMapping(path = "/individualamount/{group_id}/{user_id}")
@@ -89,19 +86,11 @@ public class BudgetController {
         return budgetService.getIndividualTotalAmount(group_id, user_id);
     }
 
-    @GetMapping(path = "/dueamount/{group_id}/{user_id}")
 
-//    public Double getYourDueAmount(@PathVariable("group_id") Integer group_id,
-//            @PathVariable("user_id") Integer user_id) {
-//        Double due_amount = budgetService.getIndividualTotalAmount(group_id, user_id)
-//                - budgetService.getAverageAmount(group_id);
-//        return due_amount;
-//    }
-
-//    delete budget
+    //    delete budget
     @DeleteMapping(path = "/deletebudget/{budget_id}")
-    public void deleteBudget(@PathVariable("budget_id") Integer budget_id) {
-        budgetService.deleteBudget(budget_id);
+    public String deleteBudget(@PathVariable("budget_id") Integer budget_id) {
+        return budgetService.deleteBudget(budget_id);
 
     }
 
@@ -116,5 +105,7 @@ public class BudgetController {
         budgetService.updateBudget(budget_id, title, amount, description);
 
     }
+
+
 
 }

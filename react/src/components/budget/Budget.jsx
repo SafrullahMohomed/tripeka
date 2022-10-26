@@ -13,7 +13,7 @@ import {
   getCards
 } from "../../services/BudgetService";
 
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 const Budget = () => {
   const [yourAmount, setYourAmount] = useState(parseFloat(0.00));

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  .car {
+    @apply bg-white shadow-md rounded-lg overflow-hidden;
+  }
+}
+@layer utilities{
+    grid-center{
+        display: grid;
+        place-items: center;
+    }
+
+}

@@ -1,16 +1,11 @@
 import upload from '../assets/upload.png';
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import EditIcon from '@mui/icons-material/Edit';
 import "../styles/write.css";
 
 
 const Blogs = () => {
     return ( 
-        <div className="px-16 mx-auto">
-          <Fab sx={{float: 'right'}} color="primary" aria-label="edit">
-            <EditIcon />
-          </Fab>
+      <section className="text-gray-600 body-font pb-10 bg-gray-100">
+        <div class="container px-20 py-5 mx-auto">
           <div class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900"><center>Share Your Story</center></div>
           <div class="flex justify-center">
             <div class="w-2/5 h-60 p-2 relative bg-cover bg-center">
@@ -21,8 +16,7 @@ const Blogs = () => {
                     </label>
                 </div>
             </div>
-          </div>
-          
+          </div>          
         
           <div class="p-2 w-full">
             <textarea type="text" class="w-full h-12 p-2 outline-none border resize-none rounded-sm bg-gray-100 mb-2" placeholder="Blog title"></textarea>
@@ -40,7 +34,9 @@ const Blogs = () => {
           </div>
           
         </div>
-     );
+      </section>
+    
+    );
 }
  
 export default Blogs;

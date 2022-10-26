@@ -1,5 +1,5 @@
 import React from 'react';
-import carRent from "../../assets/car-rent.jpg"
+import carRent from "../../assets/car/car-rent.jpg"
 
 const CarImage = () => {
     return (

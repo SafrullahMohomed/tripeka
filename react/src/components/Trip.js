@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
+import CircularProgress from "@mui/material/CircularProgress";
 import MenuItem from '@mui/material/MenuItem';
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
@@ -26,6 +27,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -45,16 +48,14 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PlaceIcon from '@mui/icons-material/Place';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
 import Swal from 'sweetalert2'
 import { deleteGroup, removeFriend } from "../services/GroupsService";
 import { getGroup, editTrip, addFriend } from "../services/GroupsService";
+import { getUsers } from "../services/UserService";
 import Footer from "./Footer";
-import dalanda from '../assets/dalada.jpg'
-import img1 from '../assets/customer1.jpg'
-import img2 from '../assets/customer2.jpg'
-import img3 from '../assets/customer3.jpg'
-import map from '../assets/map.png'
 import SearchBox from "./SearchBox";
 import Maps from "./Maps";
 import { groupIntersectingEntries } from "@fullcalendar/react";
@@ -73,6 +74,9 @@ const options = [
     {icon: <ExitToAppIcon />, name: 'Exit Group', action: 'handleLeave', color: 'error.main', disable: ''},
     {icon: <DeleteIcon />, name: 'Delete Group', action: 'handleDelete', color: 'error.main', disable: 'false'},
   ];
+
+let friendId = null;
+let error = false;
   
 const Trip = () => {
 
@@ -85,16 +89,21 @@ const Trip = () => {
     const [trip, setTrip] = useState([]);
     // console.log(trip.name);
     const [members, setMembers]  = useState([]);
-    //console.log( members.map((user) => (user.user_id)));
-
-    const init = () => {
+    // console.log(members[0])
+    // console.log( members.map((user) => (user.user_id)));
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
     
-        getGroup(id)
+    const init = async() => {
+    
+        await getGroup(id)
           .then((response) => {
             //console.log("Printing Group data", response.data);
             //setIsPending(false);
             setTrip(response.data);
             setMembers(response.data.users);
+            setLatitude(response.data.lat);
+            setLongitude(response.data.lon);
             //setError(null);
           })
           .catch((err) => {
@@ -102,11 +111,22 @@ const Trip = () => {
             //setIsPending(false);
             //setError(err.message);
           });
+
+        await getUsers()
+         .then((response) => {
+            // console.log("Printing user data", response.data);
+            setUsers(response.data)
+          })
+          .catch((err) => {
+            console.log("Something went wrong", err);
+        });
+
       };
 
       useEffect(() => {
+        console.log("run...")
         init();
-      }, []);
+      }, [error]);
 
     // dropdown
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -127,15 +147,45 @@ const Trip = () => {
     const handleCloseFM = () => setOpenFM(false);
 
     // add friend form
-    const [friend, setFriend] = useState("");
+    // const [friend, setFriend] = useState("");
+    const [users, setUsers]  = useState([]);
+    const [friendEmail, setFriendEmail] = useState("");
+    // const [friendId, setFriendId] = useState(null);
 
     const addFriendForm = async(e) => {
-        // e.preventDefault();
-    
-        addFriend(id, friend)
-          .then((response) => 
-            console.log(response)
-          );
+        e.preventDefault();
+        console.log("start...")
+        for (let i=0 ; i < users.length ; i ++){
+            if (friendEmail == users[i].email) {
+                friendId = users[i].user_id;
+                // console.log("id " + users[i].user_id)
+                // setFriendId(users[i].user_id);
+                break;
+            }
+        }
+        console.log("FID1 " + friendId)
+        if (friendId != null){
+            addFriend(id, friendId)
+              .then((response) => 
+                  console.log(response)
+              );
+        }
+        else{
+            error = true;
+        }
+        console.log("Error " + error)
+        console.log("FID2 " + friendId)
+        console.log("finish...")
+
+
+        // console.log("Email " + friendEmail)
+        // console.log("ID " + frid)
+        // console.log("Error "+ error)
+
+        // users.map((user) => (
+        //     console.log("emails "+user.email)
+        // ))
+
     };
 
     // edit title modal
@@ -223,8 +273,8 @@ const Trip = () => {
             .then((response) => {
                 console.log('group Edited successfully', response.data);
             })
-            .catch(error => {
-                console.log('Something went wrong', error);
+            .catch(err => {
+                console.log('Something went wrong', err);
             });      
     };
 
@@ -257,6 +307,9 @@ const Trip = () => {
 
     //Trip.handleClickOutside = () => setIsOpen(false);
 
+    // alert toggle
+    // const [openAlert, setOpenAlert] = useState(true);
+
     return ( 
         <>
         {/* <div>
@@ -265,9 +318,20 @@ const Trip = () => {
                 <div>{user.email}</div>
             </div>
             ))}
-        </div> */}
+        </div> */}        
         
-        <div className="flex flex-wrap px-10 mb-10">
+        <div className="flex flex-wrap px-6 py-8 bg-gray-100">
+            <div>
+                {error ?
+                    "user does not exist"
+                    // <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={error} autoHideDuration={3000}>
+                    //     <Alert severity="warning" sx={{ width: '100%' }}>
+                    //             User does not Exist!
+                    //     </Alert>
+                    // </Snackbar>
+
+                : ""}
+            </div>
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
                     <CardHeader
@@ -283,29 +347,33 @@ const Trip = () => {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title={trip.name}
-                        subheader={"By " + trip.owner}
+                        title={trip.name ? trip.name : "Trip"}
+                        subheader={trip.owner ? "By " + trip.owner : "Loading..."}
+                        
                     />
                     <CardMedia
                         component="img"
                         image={trip.url}
                         alt=""
-                        sx={{height: 180}}
+                        sx={{height: 180, px: 0.5}}
                     />
                     <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', pb: 0}}>
                         <AvatarGroup max={4}>
-                            <Avatar alt="" src={img1} />
-                            <Avatar alt="" src={img2} />
-                            <Avatar alt="" src={img3} />
-                            <Avatar alt="" src={img1} />
-                            <Avatar alt="" src={img2} />
-                            <Avatar alt="" src={img3} />
+                            { members[0] ? 
+                                members.map((user) => (
+                                    <Avatar alt="" src={user.profile_url} />
+                                ))
+                                :
+                                <Avatar />
+                            }                
                         </AvatarGroup>
                         <Typography variant="body2" color="text.secondary" sx={{mt: 2, pl: 1}}>
                             Trip Timeline
                         </Typography>
                         <Typography variant="body1" color="text.main" sx={{mt: 0, pl: 1}}>
-                            {trip.start_date} to {trip.end_date}
+                            {trip.start_date ? trip.start_date : <CircularProgress size={15} /> } 
+                            {"  to  "}
+                            {trip.end_date ? trip.end_date : <CircularProgress size={15} />}
                         </Typography>
                     </CardContent>
                     <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
@@ -487,12 +555,12 @@ const Trip = () => {
                 <DialogContent>
                 
                     <TextField
-                        onChange={(e) => setFriend(e.target.value)}
+                        onChange={(e) => setFriendEmail(e.target.value)}
                         autoFocus
                         margin="dense"
                         id="email"
                         label="Email"
-                        //type="email"
+                        type="email"
                         fullWidth
                         variant="filled"
                     />
@@ -595,16 +663,24 @@ const Trip = () => {
             <div class="p-1 lg:w-2/3 md:w-1/2 w-full">
                 {/* <img src={map} alt="" />
                 <div>{trip.location}</div> */}
-                <div className="flex relative">
-                    <div className="absolute top-0 right-3" onClick={toggle}>
+                <div className="flex relative drop-shadow-lg bg-white">
+                    <div className="absolute top-1 right-3" onClick={toggle}>
                         <IconButton color="primary" aria-label="upload picture" component="label">
                             {isOpen ? <CancelRoundedIcon /> : <KeyboardDoubleArrowLeftIcon />}
                         </IconButton>
                     </div>
-                    <div className="w-11/12 drop-shadow-lg">
-                        <Maps selectPosition={selectPosition}/>
+                    <div className="w-11/12">
+                        {latitude ? 
+                            <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/>
+                        : 
+                            <div className="flex justify-center text-2xl mt-20" style={{ height: '590px', width: '100%' }}>
+                                <div className="mr-2">Loading Map Data </div> 
+                                <div className="ml-2"><CircularProgress /></div>
+                            </div>
+                        }
+                        {/* <Maps selectPosition={selectPosition} latitude={latitude} longitude={longitude}/> */}
                     </div>
-                    <div className={isOpen ? 'w-2/3 float-right mt-10' : 'hidden'} >
+                    <div className={isOpen ? 'w-2/3 float-right mt-10 p-2' : 'hidden'} >
                         <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition}/>
                     </div>
                 </div>

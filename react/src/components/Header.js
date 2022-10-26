@@ -19,8 +19,10 @@ import logo from "../assets/logo2.png";
 import user from "../assets/customer2.jpg";
 
 var user_id = null;
+var profile_pic = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+  // profile_pic = JSON.parse(localStorage.getItem("userDetails")).profile_pic;
 }
 
 const Header = () => {
@@ -44,7 +46,7 @@ const Header = () => {
   };
 
   return (
-    <header class="text-gray-600 body-font mb-8 bg-emerald-100">
+    <header class="text-white body-font bg-gray-800">
       <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
         <Link
           to="/"
@@ -53,24 +55,24 @@ const Header = () => {
           <img
             src={logo}
             alt=""
-            class="w-12 h-12 object-cover object-center rounded-full mr-4"
+            className="w-12 h-12 object-cover object-center rounded-full mr-4 border-2 border-white"
           />
-          <span class="ml-2 text-2xl italic">TRIP-EKA</span>
+          <span class="ml-2 text-white text-2xl italic">TRIP-EKA</span>
         </Link>
         <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-          <Link to={`/dashboard/${user_id}`} class="mr-7 hover:text-gray-900">
+          <Link to={`/dashboard/${user_id}`} class="mr-7">
             Dashboard
           </Link>
-          <Link to="/triphotel" class="mr-7 hover:text-gray-900">
+          <Link to="/triphotel" class="mr-7">
             Hotels
           </Link>
-          <Link to={`/groups/${user_id}`} class="mr-7 hover:text-gray-900">
+          <Link to={`/groups/${user_id}`} class="mr-7">
             Trips
           </Link>
-          <Link to="/car" class="mr-7 hover:text-gray-900">
+          <Link to="/car" class="mr-7">
             Car
           </Link>
-          <Link to="/events" class="mr-7 hover:text-gray-900">
+          <Link to="/events" class="mr-7">
             Calendar
           </Link>
         </nav>
@@ -89,7 +91,7 @@ const Header = () => {
             >
               <Badge badgeContent={4} overlap="circular" color="error">
                 <CircleNotificationsRoundedIcon
-                  sx={{ width: 38, height: 38 }}
+                  sx={{ width: 38, height: 38, bgcolor: "white", borderRadius: 99 }}
                 />
               </Badge>
             </IconButton>
@@ -154,7 +156,7 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={openP ? "true" : undefined}
               >
-                <Avatar src={user} sx={{ width: 40, height: 40 }}></Avatar>
+                <Avatar src={profile_pic} sx={{ width: 40, height: 40 }}></Avatar>
               </IconButton>
             </Tooltip>
           </Box>
@@ -193,11 +195,19 @@ const Header = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/profile";
+              }}
+            >
               <Avatar /> Profile
             </MenuItem>
-            <MenuItem>
-              <Avatar /> My account
+            <MenuItem
+              onClick={() => {
+                window.location.href = `/groups/${user_id}`;
+              }}
+            >
+              <Avatar /> My Groups
             </MenuItem>
             <Divider />
             <MenuItem>

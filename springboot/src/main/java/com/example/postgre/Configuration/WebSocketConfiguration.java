@@ -20,6 +20,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker("/chat-room");
+        config.enableSimpleBroker("/receive-live-location");
         config.setApplicationDestinationPrefixes("/chat-app");
     }
 

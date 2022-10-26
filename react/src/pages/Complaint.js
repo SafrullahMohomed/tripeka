@@ -6,6 +6,7 @@ import pop6 from "../assets/complaint.png";
 import { FaStar } from "react-icons/fa";
 import ImageUploader from "react-images-uploading";
 import Dropzone from "react-dropzone";
+import { complaint } from '../services/ComplaintService';
 // import Aos from "aos";
 // import "aos/dist/aos.css";
 
@@ -14,13 +15,31 @@ const colors = {
   grey: "#a9a9a9",
 };
 
+function onSubmit(data) {
+  console.log(data);
+  complaint(
+    data["name"],
+    data["email"],
+    data["message"],
+    JSON.parse(localStorage.getItem("userDetails"))
+  ).then((resp) => {
+    if (resp["success"]) {
+      alert("Success : " + resp["msg"]);
+      window.location.href = "http://localhost:3000/";
+    } else {
+      alert(resp["msg"]);
+      window.location.href = "http://localhost:3000/";
+    }
+  });
+}
+
 const Complaint = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0);
@@ -77,6 +96,8 @@ const Complaint = () => {
                       type="text"
                       id="name"
                       name="name"
+                      value={JSON.parse(localStorage.getItem("userDetails")).firstname}
+                      
                       {...register("name", { required: true })}
                       class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
@@ -84,6 +105,15 @@ const Complaint = () => {
                       {errors.name?.type === "required" && "Name is required"}
                     </error>
                   </div>
+                  <input
+                      type="text"
+                      id="user_id"
+                      name="user_id"
+                      hidden
+                      value= "123"
+                      {...register("user_id", { required: true })}
+                      class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
 
                   <div class="relative mb-4">
                     <label for="email" class="leading-7 text-sm text-gray-600">
@@ -93,6 +123,8 @@ const Complaint = () => {
                       type="email"
                       id="email"
                       name="email"
+                      value={JSON.parse(localStorage.getItem("userDetails")).email}
+                      
                       {...register("email", {
                         required: true,
                         pattern:

@@ -1,36 +1,36 @@
 import React from "react";
 import Header from "../Header";
 import CarForm from "./CarForm";
-import CarImage from "./CarImage";
 import Footer from "../Footer";
+import "../../styles/Car.css";
+import CarOrderedList from "./CarOrderedList";
 
 const CarMain = () => {
   return (
     <div>
-
-       {/* header component */}
+      {/* header component */}
       <div className="class-header">
         <Header />
-      </div>   
+      </div>
 
-       {/* main component */}
+      {/* main component */}
       <div className="class-main flex justify-between">
-        <div className="car-left w-full item-center flex flex-col ">
-          <div className="left-title text-emerald-700 2xl:text-5xl font-semibold my-4 flex justify-center mt-12 md:text-3xl lg:text-4xl"> BOOK A CAR</div>
-          <CarImage />
-        </div>
+        
 
         {/* car form component */}
         <div className="car-right w-full">
-            <CarForm className="w-full" />
+          <CarForm className="w-full" />
         </div>
       </div>
+      <div className="booked-vehicle-part">
+        <h2 className="flex justify-center text-xl my-4 text-green-800">Your Booked Hires</h2>
+        <CarOrderedList />
+      </div>
 
-         {/* footer component */}
-        <div className="class-footer">
-          <Footer />
-        </div>
-
+      {/* footer component */}
+      <div className="class-footer">
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -31,20 +31,32 @@ export async function travelregister(email,firstname, lastname, role, password) 
   }
 }
 
-export async function carregister(email,firstname, lastname, role, password) {
+export async function carregister(email,firstname, lastname, role, password, phone_number, vehicle_type, vehicle_name, max_passengers, price_per_km, district) {
   try {
     var md5 = require("md5");
     const hashedpswd = md5(password);
 
+
     const body = {
-      email: email,
-      firstname: firstname,
-      lastname: lastname,
-      role: role,
-      hashedPswd: hashedpswd,
+      users:{
+        firstname,
+        lastname,
+        hashedpswd: hashedpswd,
+        userrole: "ROLE_VEHICLE_OWNER",
+        email,
+        profile_url: null
+        
+
+      },
+      driver_phone : phone_number,
+      vehicle_type,
+      vehicle_name,
+      max_passengers,
+      price_per_km,
+      district
     };
 
-    var response = await axios.post(ServerBaseUrl + "/auth/carregister", body);
+    var response = await axios.post(ServerBaseUrl + "/car/addcar", body);
     if (response.status === 200) {
       return {
         success: response.data["isSuccess"],
