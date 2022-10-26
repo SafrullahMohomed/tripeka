@@ -22,6 +22,9 @@ public interface GroupRepository extends JpaRepository<Groups, Integer> {
     Users findGroupsByUserId(Integer user_id);
 
     // Groups findUsersByGroupId(Integer group_id);
+//    @Query(value = "FROM Groups WHERE group_id =?1")
+//    Optional<Groups> findUsersInAGroup(@Param("group_id") Integer group_id);
+    
     // @Query(value = "FROM Groups WHERE group_id =?1")
     // Optional<Groups> findUsersInAGroup(@Param("group_id") Integer group_id);
 }

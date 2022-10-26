@@ -35,12 +35,10 @@ public class BudgetService {
         this.userRepository = userRepository;
     }
 
-//    get all users in a specific group
-//    public List<Users> getUsersInAGroup(Integer group_id){
-//
-//        return userRepository.findAllByGroupId(group_id);
-//    }
-
+//    get user name using user id
+    public String GetUserNameByUserId(Integer user_id){
+        return userRepository.GetUserNameByUserId(user_id);
+    }
 
     // to get all data from the budget table
     public List<Budget> getBudgets() {
@@ -52,7 +50,7 @@ public class BudgetService {
         return budgetRepository.findAllByGroupIds(group_id);
     }
 
-    //
+//    insert budget data
     public void addBudgetTo(Budget budget) {
 
         budgetRepository.save(budget);
@@ -95,9 +93,10 @@ public class BudgetService {
 
 
         ArrayList<Integer> userArray = new ArrayList<>();
-        userArray.add(78);
-        userArray.add(79);
-        userArray.add(80);
+        userArray.add(1);
+        userArray.add(2);
+        userArray.add(4);
+        userArray.add(52);
 
 
         Integer user_count = userArray.size();
@@ -114,12 +113,6 @@ public class BudgetService {
     }
 
 
-//    public Double getAverageAmount(Integer group_id) {
-//        if(budgetRepository.getAverageAmount(group_id) == null){
-//            return 0.00;
-//        }
-//        return budgetRepository.getAverageAmount(group_id);
-//    }
 
     // get individual amount for a user
     public Double getIndividualTotalAmount(Integer group_id, Integer user_id) {
@@ -150,9 +143,10 @@ public class BudgetService {
 //        TODO: need to get the real array in the from the database
 
         ArrayList<Integer> userArray = new ArrayList<>();
-        userArray.add(78);
-        userArray.add(79);
-        userArray.add(80);
+        userArray.add(1);
+        userArray.add(2);
+        userArray.add(4);
+        userArray.add(52);
 
 //      get user ids for each budget group
 

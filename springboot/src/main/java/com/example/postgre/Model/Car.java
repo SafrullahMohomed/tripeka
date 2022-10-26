@@ -20,25 +20,19 @@ public class Car {
     )
     private Integer vehicle_id;
     @OneToOne(
-            cascade = CascadeType.MERGE
+            cascade = CascadeType.ALL
     )
     @JoinColumn(
             name = "user_id",
             referencedColumnName = "user_id"
     )
     private Users users;
-    private String driver_nic;
-    private String driver_license;
-    private String driver_name;
     private String driver_phone;
     private String vehicle_type;
     private String vehicle_name;
-    private String vehicle_no_plate;
-    private String vehicle_image;
     private Integer max_passengers;
     private Double price_per_km;
     private String district;
-    private Boolean available_status;
 
     public Users getUsers() {
         return users;
@@ -51,19 +45,27 @@ public class Car {
     public Car() {
     }
 
-    public Car(Integer vehicle_id, String driver_nic, String driver_license, String driver_name, String driver_phone, String vehicle_type, String vehicle_name, String vehicle_no_plate, String vehicle_image, Integer max_passengers, String district, Boolean available_status) {
+    public Car(Integer vehicle_id, Users users, String driver_phone, String vehicle_type, String vehicle_name,
+               Integer max_passengers, Double price_per_km, String district) {
         this.vehicle_id = vehicle_id;
-        this.driver_nic = driver_nic;
-        this.driver_license = driver_license;
-        this.driver_name = driver_name;
+        this.users = users;
         this.driver_phone = driver_phone;
         this.vehicle_type = vehicle_type;
         this.vehicle_name = vehicle_name;
-        this.vehicle_no_plate = vehicle_no_plate;
-        this.vehicle_image = vehicle_image;
         this.max_passengers = max_passengers;
+        this.price_per_km = price_per_km;
         this.district = district;
-        this.available_status = available_status;
+    }
+
+    public Car(Users users, String driver_phone, String vehicle_type, String vehicle_name, Integer max_passengers,
+               Double price_per_km, String district) {
+        this.users = users;
+        this.driver_phone = driver_phone;
+        this.vehicle_type = vehicle_type;
+        this.vehicle_name = vehicle_name;
+        this.max_passengers = max_passengers;
+        this.price_per_km = price_per_km;
+        this.district = district;
     }
 
     public Integer getVehicle_id() {
@@ -72,30 +74,6 @@ public class Car {
 
     public void setVehicle_id(Integer vehicle_id) {
         this.vehicle_id = vehicle_id;
-    }
-
-    public String getDriver_nic() {
-        return driver_nic;
-    }
-
-    public void setDriver_nic(String driver_nic) {
-        this.driver_nic = driver_nic;
-    }
-
-    public String getDriver_license() {
-        return driver_license;
-    }
-
-    public void setDriver_license(String driver_license) {
-        this.driver_license = driver_license;
-    }
-
-    public String getDriver_name() {
-        return driver_name;
-    }
-
-    public void setDriver_name(String driver_name) {
-        this.driver_name = driver_name;
     }
 
     public String getDriver_phone() {
@@ -122,22 +100,6 @@ public class Car {
         this.vehicle_name = vehicle_name;
     }
 
-    public String getVehicle_no_plate() {
-        return vehicle_no_plate;
-    }
-
-    public void setVehicle_no_plate(String vehicle_no_plate) {
-        this.vehicle_no_plate = vehicle_no_plate;
-    }
-
-    public String getVehicle_image() {
-        return vehicle_image;
-    }
-
-    public void setVehicle_image(String vehicle_image) {
-        this.vehicle_image = vehicle_image;
-    }
-
     public Integer getMax_passengers() {
         return max_passengers;
     }
@@ -162,12 +124,5 @@ public class Car {
         this.district = district;
     }
 
-    public Boolean getAvailable_status() {
-        return available_status;
-    }
-
-    public void setAvailable_status(Boolean available_status) {
-        this.available_status = available_status;
-    }
 
 }
