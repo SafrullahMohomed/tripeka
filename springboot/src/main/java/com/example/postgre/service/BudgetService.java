@@ -93,9 +93,10 @@ public class BudgetService {
 
 
         ArrayList<Integer> userArray = new ArrayList<>();
-        userArray.add(78);
-        userArray.add(79);
-        userArray.add(80);
+        userArray.add(1);
+        userArray.add(2);
+        userArray.add(4);
+        userArray.add(52);
 
 
         Integer user_count = userArray.size();
@@ -142,9 +143,10 @@ public class BudgetService {
 //        TODO: need to get the real array in the from the database
 
         ArrayList<Integer> userArray = new ArrayList<>();
-        userArray.add(78);
-        userArray.add(79);
-        userArray.add(81);
+        userArray.add(1);
+        userArray.add(2);
+        userArray.add(4);
+        userArray.add(52);
 
 //      get user ids for each budget group
 
