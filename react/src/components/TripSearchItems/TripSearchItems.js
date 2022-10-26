@@ -8,6 +8,8 @@ const TripSearchItems = (props) => {
     navigate("/triphoteldetails", { state: { hotelData: props } });
   };
 
+  console.log(props)
+
   return (
       <div className="searchItem" style={{border: "1px solid lightgray",
           padding: "10px",
@@ -16,8 +18,9 @@ const TripSearchItems = (props) => {
           justifyContent: "space-between",
           gap: "20px",
           marginBottom: "20px"}}>
+          {/* <div>{props.title}</div> */}
         <img
-          src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
+          src={props.hotelimages}
           alt=""
           className="siImg"
           style={{width: "200px",height: "200px", objectFit: "cover"}}
