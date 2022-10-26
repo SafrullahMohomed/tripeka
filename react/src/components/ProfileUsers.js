@@ -91,18 +91,8 @@ const Testomonials = () => {
   }, []);
 
   return (
-    <div name="Testomonials">
-      <Navbar></Navbar>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
-            <div className="flex flex-col text-center w-full mb-20">
-              <h2 className="text-xs text-emerald-500 tracking-widest font-medium title-font mb-1">
-                WE LOVE OUR VALUABLE CUSTOMER'S FEEDBACK
-              </h2>
-              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-                Our Happy Customers
-              </h1>
+    
+             
             </div>
             <div data-aos="slide-left" className="flex">
               <div className="lg:w-1/3 lg:mb-0 mb-6 p-4" >
@@ -129,10 +119,6 @@ const Testomonials = () => {
                     className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 cursor-pointer duration-300 ..."
                     src={c2}
                   />
-                  <p className="leading-relaxed">
-                    TripEka is awesome. 
-                    Great destination with plenty of diverse cultural and natural attractions. Good value for money and a fun holiday for us as a family with young children. Friendly and helpful locals.
-                  </p>
                   <span className="inline-block h-1 w-10 rounded bg-emerald-500 mt-6 mb-4"></span>
                   <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
                     VillCassim
@@ -140,6 +126,30 @@ const Testomonials = () => {
                   <p className="text-gray-500">UI Develeoper</p>
                 </div>
               </div>
+              import { Link } from "react-router-dom"
+import img from '../assets/pageNotFound.png'
+
+var user_id = null;
+if (localStorage.getItem("userDetails")) {
+  user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
+}
+
+const NotFound = () => {
+    return ( 
+        <div className="flex flex-col items-center mb-20 w-full">
+            <div className="notfoundpage flex flex-col items-center mb-10">
+                <div className="text-2xl">Page Not found</div>
+                <img className="h-96" src={img} alt="" />
+            </div>
+            
+        </div>
+     );
+}
+ 
+export default NotFound;
+
+
+
               <div className="lg:w-1/3 lg:mb-0 p-4">
                 <div className="h-full text-center">
                   <img
