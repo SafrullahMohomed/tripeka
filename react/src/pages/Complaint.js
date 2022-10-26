@@ -96,6 +96,8 @@ const Complaint = () => {
                       type="text"
                       id="name"
                       name="name"
+                      value={JSON.parse(localStorage.getItem("userDetails")).firstname}
+                      
                       {...register("name", { required: true })}
                       class="w-full bg-white rounded border border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
@@ -121,6 +123,8 @@ const Complaint = () => {
                       type="email"
                       id="email"
                       name="email"
+                      value={JSON.parse(localStorage.getItem("userDetails")).email}
+                      
                       {...register("email", {
                         required: true,
                         pattern:

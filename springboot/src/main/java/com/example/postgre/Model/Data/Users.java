@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table
 // @IdClass(UsersPK.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
 public class Users {
@@ -42,7 +42,6 @@ public class Users {
 
 	@Column(name = "email")
 	private String email;
-
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 			CascadeType.PERSIST,
@@ -71,7 +70,6 @@ public class Users {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-
 
 	public String getFirstname() {
 		return firstname;

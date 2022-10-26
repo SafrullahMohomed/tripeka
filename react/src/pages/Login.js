@@ -155,22 +155,7 @@ const Login = () => {
                   </error>
                 </div>
 
-                <div class="flex justify-between items-center mb-6">
-                  <div class="form-group form-check">
-                    <input
-                      type="checkbox"
-                      name="check"
-                      class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-emerald-600 checked:border-emerald-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                      id="exampleCheck2"
-                    />
-                    <label
-                      class="form-check-label inline-block text-gray-800"
-                      for="exampleCheck2"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-
+                <div class="flex justify-between items-center mb-6" style={{"marginLeft":"485px"}}>
                   <Link
                     to="/forgotpassword"
                     className="text-gray-600 hover:text-gray-800"

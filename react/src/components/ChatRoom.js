@@ -2,6 +2,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SendIcon from "@mui/icons-material/Send";
 import Avatar from "@mui/material/Avatar";
+import Header from "./Header";
+import Footer from "./Footer";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,8 @@ import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import { set } from "date-fns";
 import authHeader from "../jwtAuthServices/auth-header";
+import chatbg from "../assets/chatbg.jpg";
+import GroupsIcon from '@mui/icons-material/Groups';
 
 var stompClient = null;
 var subscription = null;
@@ -155,17 +159,22 @@ const MyChatRoom = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="absolute bottom-0 top-0 right-0 left-0 flex flex-row m-10 max-h-screen bg-gray-200">
-      <div className="hidden lg:flex flex-col basis-1/3  max-h-screen border-r-2 border-gray-500 bg-gray-200">
-        <Avatar>
-          <ArrowBackIcon sx={{ margin: 1 }} />
-        </Avatar>
-
+    <>
+    <Header />
+    <section class="text-gray-600 body-font px-5 h-screen">
+    <div className="h-3/4 flex flex-row mx-10 my-4 max-h-screen bg-gray-200 border-2 gray-600" style={{ backgroundImage: `url(${chatbg})` }}>
+      <div className="hidden lg:flex flex-col basis-1/3 max-h-screen bg-gray-200">
+        <div className="pl-2 pt-2 cursor-pointer" onClick={() => navigate(-1)}>
+          <Avatar>
+            <ArrowBackIcon sx={{ margin: 1 }} />
+          </Avatar>
+        </div>
+        
         {/* Search Bar */}
-        <div className="mt-6 ml-3 mr-1">
+        {/* <div className="mt-6 ml-3 mr-1">
           <label className="relative block">
             <span className="sr-only">Search</span>
-            <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+            <span className="inset-y-0 flex items-center pl-2">
               <SearchIcon className="!h-5 !w-5 fill-slate-300" viewBox="0 0 20 20" />
             </span>
             <input
@@ -175,38 +184,43 @@ const MyChatRoom = () => {
               name="search"
             />
           </label>
-        </div>
+        </div> */}
 
         {/* Group List */}
         <div className="overflow-auto max-h-min  mt-3">
           {groupList.map((group) => (
             <div
               key={group.group_id}
-              className="grid grid-cols-6 p-3 m-3 bg-gray-300 rounded-lg"
+              className="flex items-center p-3 bg-gray-100 mt-1 mr-0.5 cursor-pointer"
               onClick={() => {
                 onClickGroup(group);
               }}
             >
-              <div></div>
-              <div className="col-span-5 flex flex-col">
-                <p className="text-lg font-medium capitalize truncate">{group.name}</p>
+              <div className="px-1.5 py-1 rounded-full border gray-600 bg-gray-200"><GroupsIcon /></div>
+              <div className="ml-4 col-span-5 flex flex-col">
+                <p className="">{group.name}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {messages.length === 0 && currentGroup === null && <h1 className="m-auto">CLICK ON A GROUP TO VIEW MESSAGES</h1>}
+      {messages.length === 0 && currentGroup === null && 
+        <div className="text-xl m-auto mt-20">
+          CLICK ON A GROUP TO VIEW MESSAGES
+        </div>
+      }
 
       {/* Current Group */}
       {currentGroup !== null && (
-        <div className=" flex flex-col lg:basis-2/3 basis-full mt-6 ml-3  overflow-y-scroll pb-10">
-          <div className="flex flex-row justify-start items-center border-b-2 ">
+        <div className="flex flex-col lg:basis-2/3 basis-full pt-6 px-3 overflow-auto pb-2" style={{ backgroundImage: `url(${chatbg})` }}>
+          <div className="flex flex-row justify-start items-center bg-gray-100 p-2 rounded-lg">
             <ArrowBackIosIcon className="!w-5 !h-10 mr-5 lg:!hidden" />
             <p className="font-serif text-2xl capitalize">{currentGroup.name}</p>
           </div>
 
           {/* Messages */}
+          <div className="w-full h-full my-2">
           {messages.map((message) => (
             <div
               className={
@@ -216,49 +230,50 @@ const MyChatRoom = () => {
               }
               key={message.id}
             >
-              <div>
-                {/* <img
+              <div className="ml-2">
+                <img
                   class="inline-block h-9 w-9 rounded-full ring-2 ring-black"
                   src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
-                /> */}
+                />
               </div>
-              <div className="bg-white rounded p-1">
+              <div className="bg-white rounded p-2 border gray-600">
                 <div className="flex ">
-                  <p className="text-sm italic ml-3 max-w-md ">{message.message}</p>
+                  <p className="text-sm max-w-md ">{message.message}</p>
                 </div>
                 <div className="flex">
-                  <p className="text-sm italic ml-3 max-w-md font-bold">{message.senderName}</p>
+                  <p className="text-sm italic max-w-md font-bold">{message.senderName}</p>
                 </div>
               </div>
             </div>
-          ))}
+          ))}          
+          </div>
 
           {/* Send Text Box */}
-          <div className="absolute right-0 w-4/6 bottom-0 flex flex-row my-5">
+          <div className="w-full flex items-center flex-row my-2">
             <div className="basis-full">
               <label>
                 <input
-                  className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-1 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-1 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                   type="text"
                   name="search"
-                  placeholder="enter the message"
+                  placeholder="Message"
                   value={textBoxMessage}
                   onChange={handleTextboxMessage}
                 />
               </label>
             </div>
-            <div className="flex items-center">
-              <button type="button" className="cursor-pointer ml-1 w-1/10 justify-end bg-black" onClick={sendMessage}>
-                <span>
-                  <SendIcon className="!h-9 !w-9" viewBox="0 0 20 20" />
-                </span>
-              </button>
-            </div>
+
+            <button className="cursor-pointer rounded-full bg-gray-400 ml-1 p-2" onClick={sendMessage}>
+                <SendIcon fontSize="medium" />
+            </button>
           </div>
         </div>
       )}
     </div>
+    </section>
+    <Footer />
+    </>
   );
 };
 

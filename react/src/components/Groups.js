@@ -96,15 +96,29 @@ const Groups = () => {
     const image = await result[0].urls.raw;
     // setUrl(image);
 
-    // const group = { username, name, location, owner_id, image , startdate, enddate }; 
+    // get location lat and lon
+    var requestOptions = {
+      method: 'GET',
+    };
+  
+    const points = await fetch(
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=7ed3f072828c45be9032acf0b379aeaf`, requestOptions
+    );
+    const pointsJ = await points.json();
+    const geopoints = await pointsJ.features;
+    const geo = await geopoints[0].properties;
+    const latitude = await geo.lat;
+    const longitude = await geo.lon;
+
+    // const group = { username, name, location, owner_id, image , startdate, enddate, latitude, longitude }; 
     // console.log(group);
-    createGroup(username, name, location, owner_id, image, startdate, enddate )
+    createGroup(username, name, location, owner_id, image, startdate, enddate, latitude, longitude )
       .then((response) => navigate("/trip/" + response.data.group_id));
         
   };
 
   return (
-    <section class="text-gray-600 body-font mb-10">
+    <section class="text-gray-600 body-font pb-10 bg-gray-100">
       {/* {console.log(groupList)}
       <div>
         {groupList.map((group) => (
@@ -115,7 +129,7 @@ const Groups = () => {
       </div> */}
 
       {/*Displaying Group Cards */}
-      <div class="container px-32 py-5 mx-auto">
+      <div class="container px-20 py-5 mx-auto">
         <div class="w-full mb-8 pl-2 text-slate-500 text-2xl">Trip Groups</div>
         <div class="flex flex-wrap -m-2">
           {error && (
@@ -139,7 +153,7 @@ const Groups = () => {
                     component="img"
                     image={group.url}
                     alt=""
-                    sx={{ height: 120 }}
+                    sx={{ height: 130 }}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
@@ -165,7 +179,7 @@ const Groups = () => {
                     alignItems: "center",
                     bgcolor: grey[100],
                     color: grey[600],
-                    height: 120,
+                    height: 130,
                   }}
                 >
                   <AddCircle />

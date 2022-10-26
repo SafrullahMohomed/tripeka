@@ -5,7 +5,7 @@ const Footer = () => {
   const url = "";
   return (
     <div>
-      <footer className="text-gray-600 body-font bg-emerald-100">
+      <footer className="text-gray-600 body-font bg-gray-800">
         <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a
@@ -32,7 +32,8 @@ const Footer = () => {
               <span className="ml-3 text-xl">Travel</span>
             </a>
             <p className="mt-2 text-sm text-gray-500">
-              Air plant banjo lyft occupy retro adaptogen indego
+              Is it a hassle to plan a trip?<br/>
+              We can help you to plan the whole trip ...
             </p>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">

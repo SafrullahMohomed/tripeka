@@ -4,6 +4,9 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -66,47 +69,80 @@ const Gallery = () => {
     const handleOpenP = () => setOpenP(true);
     const handleCloseP = () => setOpenP(false);
     
-    const fileTypes = ["JPEG", "PNG", "GIF"];
-    const [file, setFile] = useState(null);
-    const handleChange = (file) => {
-        setFile(file);
-    };
+    // const fileTypes = ["JPEG", "PNG", "GIF"];
+    // const [file, setFile] = useState(null);
+    // const handleChange = (file) => {
+    //     setFile(file);
+    // };
 
     // **********Clodinary**********
 
     const [image, setImage ] = useState("");
-    const [imgurl, setImgurl ] = useState("");
+    const [imgurl, setImgurl ] = useState('https://res.cloudinary.com/tripeka/image/upload/v1666677327/sigiriya_n0vhz3.jpg');
+    const [uploaded, setUploaded ] = useState(false);
 
     const uploadImage = async(e) => {
         e.preventDefault();
-        console.log("start...");
+
+        // put this at start to close modal
+        setOpenP(false);
 
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "tripeka")
         data.append("cloud_name","tripeka")
-        const resp = await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
-            method:"post",
+        await fetch("https://api.cloudinary.com/v1_1/tripeka/image/upload",{
+            method:"POST",
             body: data
         })
-        setImgurl(resp.data.url)
+        .then(resp => resp.json())
+        .then(data => {
+            setImgurl(data.url)
+            setUploaded(true)
+        })
+        .catch(err => console.log(err))
+        // setImgurl(resp.data.url)
 
-        // console.log("here "+id, imgurl);
-        addurl(id, imgurl)
-        .then((response) => {
-            console.log("uploaded " + response.data)
-        });
-        console.log("finish");
-
-        // put this at start to close modal
-        setOpenP(false);
+        console.log("url " + imgurl);
+        await addurl(id, imgurl)
+        // .then((response) => {
+        //     console.log("uploaded " + response.data)
+        // });
+        
         
     }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setUploaded(false);
+    };
+
+    // image preview
+    const [file, setFile] = useState();
+    const handleChange = (e) => {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    };
 
     return ( 
 
         <section className="flex flex-col items-center text-gray-600 body-font px-24">
 
+            <div> 
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    open={uploaded}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                >
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Image have been Uploaded
+                    </Alert>
+                </Snackbar>
+            </div>
             <div className="w-5/6 mb-8">
                 {/* <Card>
                     <CardActionArea>
@@ -175,13 +211,17 @@ const Gallery = () => {
                     > */}
                         <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
                             <Box component="span" sx={{p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
-                                <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
-                                    <label for="image-upload">
-                                        <CameraAltOutlinedIcon />
-                                    </label>
-                                </IconButton>
-                                {/* <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p> */}
+                                <div className="cursor-pointer rounded-full px-2 pb-1 bg-gray-300">
+                                    <IconButton color="primary" aria-label="upload picture" component="label">
+                                        <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
+                                        {/* <input onChange= { handleChange } type="file" id="image-upload" hidden></input> */}
+                                        <label className="cursor-pointer" for="image-upload">
+                                            <CameraAltOutlinedIcon />
+                                        </label>
+                                    </IconButton>
+                                </div>
+                                <p className="mt-4">Upload your images</p>
+                                {/* <img className="p-2 rounded-sm" src={file} width="170" /> */}
                             </Box>                            
                         </DialogContent>
                     {/* </FileUploader> */}
@@ -195,7 +235,7 @@ const Gallery = () => {
 
                 {/* {console.log("put this url in DB "+imgurl)}
                 <div className="bg-gray-900">
-                    <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
+                    <input multiple type="file" onChange= {(e)=> setImage(e.target.files)}></input>
                     <button onClick={uploadImage}>Upload</button>
                 </div> */}
                        

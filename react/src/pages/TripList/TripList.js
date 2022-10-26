@@ -145,6 +145,7 @@ const TripList = () => {
                 beddetails = {hotel.bedroom}
                 hotelrate = {hotel.hotelRating}
                 district = {hotel.district}
+                comment = {hotel.shortDescription}
               />
             ))}
           </div>

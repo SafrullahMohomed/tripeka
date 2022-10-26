@@ -30,6 +30,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdminDash from './AdminDash';
+import AddSuggestion from './AddSuggestion';
 import Users from './Users';
 import user from '../assets/customer2.jpg';
 
@@ -330,7 +331,7 @@ export default function MiniDrawer() {
             </IconButton>
           </DrawerHeader>
           <List>
-            {['Home', 'Users', 'Send email', 'Drafts', 'Hotels', 'Draft'].map((text) => (
+            {['Home', 'Users', 'Suggestions', 'Drafts', 'Hotels', 'Draft'].map((text) => (
               <ListItem key={text} sx={{ display: 'block',}}>
                 <ListItemButton
                   sx={{
@@ -349,8 +350,8 @@ export default function MiniDrawer() {
                         setHome(<AdminDash />)
                       } if (text === 'Users') {
                         setHome(<Users />)
-                      } if (text === 'Send email') {
-                        setHome(<AdminDash />)
+                      } if (text === 'Suggestions') {
+                        setHome(<AddSuggestion />)
                       } if (text === 'Drafts') {
                         setHome(<Users />)
                       } if (text === 'Hotels') {
