@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ServerBaseUrl } from "../constants/Server";
 import { BlockSharp } from "@mui/icons-material";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 
 const ModeratorDash = () => {
@@ -76,40 +85,73 @@ const ModeratorDash = () => {
 
 
     return (
-        <div>
+        <section class="w-full h-screen flex items-center flex-col text-gray-600 body-font pt-20 bg-gray-100">
 
-            <div>
-                <button className="bg-red-600" onClick={()=>{setinUncheckedBlogs(() => true); setcurrentBlogId(-1)}}>Unchecked Blogs</button>
-                <button className="bg-red-600" onClick={()=>{setinUncheckedBlogs(() => false); setcurrentBlogId(-1)}}>Checked Blogs</button>
-            </div>    
+            {/* buttons */}
+            <ButtonGroup variant="outlined" aria-label="outlined button group">
+                <Button onClick={()=>{setinUncheckedBlogs(() => true); setcurrentBlogId(-1)}}>Unchecked Blogs</Button>
+                <Button onClick={()=>{setinUncheckedBlogs(() => false); setcurrentBlogId(-1)}}>Checked Blogs</Button>
+                
+            </ButtonGroup>  
 
-            <div>
+            {/* table view  */}
+            <div className="w-3/4 p-4">
+                
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                
+                                <TableCell align="left">Title</TableCell>
+                                <TableCell align="left">Location</TableCell>
+                                <TableCell align="left">Image</TableCell>
+                                <TableCell align="left">View</TableCell>
+                            </TableRow>
+                        </TableHead>
                 {inUncheckedBlogs && currentBlogId === -1 &&
                 
-                <div>
+                <TableBody>
                     {blogs.map((blog) => {
                         if(blog.moderatedStatus === 0){
-                        return <div><h1>{blog.title}</h1> <button className="bg-red-500" onClick={()=>{setcurrentBlogId(blog.blog_id)}}>View</button></div>
+                            return <TableRow
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="left">{blog.title}</TableCell>
+                                        <TableCell align="left">{blog.location}</TableCell> 
+                                        <TableCell align="left">{blog.image_url}</TableCell>
+                                        <TableCell align="left"><Button variant="contained" disableElevation onClick={()=>{setcurrentBlogId(blog.blog_id)}}  >View</Button></TableCell>
+                                    </TableRow>
                         }
                     })}
-                </div>
-
+                 
+                 </TableBody>
                 }
+                
 
                 {!inUncheckedBlogs && currentBlogId === -1 &&
                 
-                <div>
+                <TableBody>
                     {blogs.map((blog) => {
                         if(blog.moderatedStatus !== 0){
-                        return <div><h1>{blog.title}</h1><button className="bg-red-500" onClick={()=>{setcurrentBlogId(blog.blog_id)}}>View</button></div>
+                        return <TableRow
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                            <TableCell align="left">{blog.title}</TableCell>
+                            <TableCell align="left">{blog.location}</TableCell> 
+                            <TableCell align="left">{blog.image_url}</TableCell> 
+                            <TableCell align="left"><Button variant="contained" disableElevationon onClick={()=>{setcurrentBlogId(blog.blog_id)}}>View</Button></TableCell>
+                        </TableRow>
                         }
                     })}
-                </div>
+                </TableBody>
 
                 }
-
+                </Table>
+                </TableContainer>
                 
             </div>
+
+            {/* per blog view */}
 
             <div>
                 {currentBlogId !== -1 &&
@@ -130,7 +172,7 @@ const ModeratorDash = () => {
                 }
             </div>
             
-        </div>  
+        </section>  
     )
 }
  

@@ -134,12 +134,12 @@ root.render(
       <Route path='/gallery/:id' element={<><Header /><Gallery /><Footer /></>}/>
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
-      <Route path='/location/:id' element={<><Location /></>}/>
+      {/* <Route path='/location/:id' element={<><Location /></>}/> */}
       <Route pathy='/profile' element={<><Profile /></>}/>
       <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
       <Route path='/livelocationmark' element={<><Header /><LiveLocationMark /><Footer /></>}/>
 
-      <Route path="/livelocation/:group_id" element={authService.isSignedIn() ? <LiveLocationTest /> : <Login />} />
+      <Route path="/location/:id" element={authService.isSignedIn() ? <LiveLocationTest /> : <Login />} />
       <Route path='/moderator' element={<><ModeratorDash/></>}/>
 
 

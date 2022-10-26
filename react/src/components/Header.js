@@ -22,7 +22,7 @@ var user_id = null;
 var profile_pic = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
-  // profile_pic = JSON.parse(localStorage.getItem("userDetails")).profile_pic;
+  profile_pic = JSON.parse(localStorage.getItem("userDetails")).profile_url;
 }
 
 const Header = () => {
