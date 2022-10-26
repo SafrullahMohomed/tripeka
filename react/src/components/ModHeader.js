@@ -47,108 +47,49 @@ const Header = () => {
 
   return (
     <header class="text-white body-font bg-gray-800">
-      <div class="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
-        <Link
-          to="/"
-          class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
-        >
-          <img
-            src={logo}
-            alt=""
-            className="w-12 h-12 object-cover object-center rounded-full mr-4 border-2 border-white"
-          />
-          <span class="ml-2 text-white text-2xl italic">TRIP-EKA</span>
-        </Link>
+      <div class="container mx-auto flex flex-wrap justify-between p-2 flex-col md:flex-row items-center">
+        <div>
+          <Link
+            to="/"
+            class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          >
+            <img
+              src={logo}
+              alt=""
+              className="w-12 h-12 object-cover object-center rounded-full mr-4 border-2 border-white"
+            />
+            <span class="ml-2 text-white text-2xl italic">TRIP-EKA</span>
+          </Link>
+        </div>
 
-        <Box
-          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
-        >
-          <Tooltip title="Notifications">
-            <IconButton
-              onClick={handleClickN}
-              size="small"
-              sx={{ ml: 1 }}
-              aria-controls={openN ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={openN ? "true" : undefined}
-            >
-              <Badge badgeContent={4} overlap="circular" color="error">
-                <CircleNotificationsRoundedIcon
-                  sx={{ width: 38, height: 38, bgcolor: "white", borderRadius: 99 }}
-                />
-              </Badge>
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Menu
-          anchorEl={anchorElNotification}
-          id="account-menu"
-          open={openN}
-          onClose={handleCloseN}
-          onClick={handleCloseN}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: "visible",
-              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-              mt: 1.5,
-              "& .MuiAvatar-root": {
-                width: 32,
-                height: 32,
-                ml: -0.5,
-                mr: 1,
-              },
-              "&:before": {
-                content: '""',
-                display: "block",
-                position: "absolute",
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: "background.paper",
-                transform: "translateY(-50%) rotate(45deg)",
-                zIndex: 0,
-              },
-            },
-          }}
-          transformOrigin={{ horizontal: "right", vertical: "top" }}
-          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-        >
-          <MenuItem>
-            <Avatar>N</Avatar> Notification message
-          </MenuItem>
-          <MenuItem>
-            <Avatar>N</Avatar> Notification message
-          </MenuItem>
-          <MenuItem>
-            <Avatar>N</Avatar> Notification message
-          </MenuItem>
-        </Menu>
-
-        <React.Fragment>
+        <div className="flex">
           <Box
             sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
           >
-            <Tooltip title="Profile">
+            <Tooltip title="Notifications">
               <IconButton
-                onClick={handleClickP}
+                onClick={handleClickN}
                 size="small"
                 sx={{ ml: 1 }}
-                aria-controls={openP ? "account-menu" : undefined}
+                aria-controls={openN ? "account-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={openP ? "true" : undefined}
+                aria-expanded={openN ? "true" : undefined}
               >
-                <Avatar src={profile_pic} sx={{ width: 40, height: 40 }}></Avatar>
+                <Badge badgeContent={4} overlap="circular" color="error">
+                  <CircleNotificationsRoundedIcon
+                    sx={{ width: 38, height: 38, bgcolor: "white", borderRadius: 99 }}
+                  />
+                </Badge>
               </IconButton>
             </Tooltip>
           </Box>
+
           <Menu
-            anchorEl={anchorElProfile}
+            anchorEl={anchorElNotification}
             id="account-menu"
-            open={openP}
-            onClose={handleCloseP}
-            onClick={handleCloseP}
+            open={openN}
+            onClose={handleCloseN}
+            onClick={handleCloseN}
             PaperProps={{
               elevation: 0,
               sx: {
@@ -178,46 +119,110 @@ const Header = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem
-              onClick={() => {
-                window.location.href = "/profile";
-              }}
-            >
-              <Avatar /> Profile
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                window.location.href = `/groups/${user_id}`;
-              }}
-            >
-              <Avatar /> My Groups
-            </MenuItem>
-            <Divider />
             <MenuItem>
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Add another account
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
             <MenuItem>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Settings
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
-            <MenuItem
-              onClick={() => {
-                authService.logout();
-                window.location.href = "http://localhost:3000/";
-              }}
-            >
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Logout
+            <MenuItem>
+              <Avatar>N</Avatar> Notification message
             </MenuItem>
           </Menu>
-        </React.Fragment>
+
+          <React.Fragment>
+            <Box
+              sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+            >
+              <Tooltip title="Profile">
+                <IconButton
+                  onClick={handleClickP}
+                  size="small"
+                  sx={{ ml: 1 }}
+                  aria-controls={openP ? "account-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openP ? "true" : undefined}
+                >
+                  <Avatar src={profile_pic} sx={{ width: 40, height: 40 }}></Avatar>
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Menu
+              anchorEl={anchorElProfile}
+              id="account-menu"
+              open={openP}
+              onClose={handleCloseP}
+              onClick={handleCloseP}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem
+                onClick={() => {
+                  window.location.href = "/profile";
+                }}
+              >
+                <Avatar /> Profile
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  window.location.href = `/groups/${user_id}`;
+                }}
+              >
+                <Avatar /> My Groups
+              </MenuItem>
+              <Divider />
+              <MenuItem>
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Add another account
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                Settings
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  authService.logout();
+                  window.location.href = "http://localhost:3000/";
+                }}
+              >
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
+          </React.Fragment>
+        </div>
 
         {/*<button onClick={droplist} class="hidden lg:inline-flex items-center bg-emerald-100 border-0 p-0 font-normal focus:outline-none rounded text-base mt-4 md:mt-0">
           <div class="w-14 rounded-full">
