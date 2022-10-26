@@ -12,6 +12,7 @@ import java.util.List;
 public class CarService {
     private final CarRepository carRepository;
 
+
     @Autowired
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -33,5 +34,9 @@ public class CarService {
 
     public List<Car> getCarByValues(String district, Integer no_of_passengers) {
         return carRepository.getCarByValues(district, no_of_passengers);
+    }
+
+    public List<Car> getCarByUserId(Integer user_id) {
+        return carRepository.getCarByUserId(user_id);
     }
 }

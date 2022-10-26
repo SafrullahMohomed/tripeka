@@ -31,6 +31,12 @@ public class CarController {
         return carService.getCarById(vehicle_id);
     }
 
+//    get car by user id
+@GetMapping(path = "byuserid/{user_id}")
+public List<Car> getCarByUserId(@PathVariable("user_id") Integer user_id){
+    return carService.getCarByUserId(user_id);
+}
+
     @GetMapping(path = "/getcarbyvalues")
     public List<Car> getCarByValues(@RequestParam("district") String district, @RequestParam("no_of_passengers")
     Integer no_of_passengers){
