@@ -14,24 +14,7 @@ function fetchtest(){
       fetchData()
     }, [])
 
-    const submitAuthor = async () => {
-        const myData = {
-          avatar: 'https://picsum.photos/id/1014/100/100',
-          'avatar-full': 'https://picsum.photos/id/1014/600/600',
-          name: 'User 5'
-        }
-    
-        const result = await fetch('http://localhost:3001/authors', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(myData)
-        })
-    
-        const resultInJson = await result.json()
-        setAuthors(prev => [...prev, resultInJson])
-      }
+   
 
 
 return (
