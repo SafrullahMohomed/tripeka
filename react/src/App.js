@@ -17,6 +17,7 @@ function App() {
 
   return (
     <div>
+       
       <Navbar></Navbar>
       <Hero></Hero>
       <Steps></Steps>

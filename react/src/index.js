@@ -32,11 +32,15 @@ import ChatRoom from "./components/ChatRoom";
 import TempDashBoard from "./components/TempDashBoard";
 import Help from "./pages/Help";
 import ResetPassword from "./pages/ResetPassword";
-
+import BlogView from "./components/BlogView/blogView";
 
 import CreateGroupFloat from './components/CreateGroupFloat';
 import Trip from './components/Trip';
 import SpeedDialButton from './components/SpeedDialButton';
+
+
+import BlogAccepted  from "./components/Moderator/moderator";
+import Blog from "./components/Blog";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -58,10 +62,14 @@ root.render(
       <Route path="/events" element={<EventCalendar />} />
       <Route path="/help" element={<Help />} />
             <Route path='/Hotels' element={<Test/>}/>
+            {/* new change */}
+            <Route path='/BlogView' element={<BlogView/>}/>
+            <Route path='/moderator' element={<BlogAccepted/>}/>
             <Route path="/ms" element={<Budget />} />
 
       <Route path="/budget" element={<Budget />} />
       <Route path="/groupChat" element={<ChatRoom />} />
+      <Router path="/Blog" element ={<Blog/>}/>
 
       <Route
         path="/hotel"

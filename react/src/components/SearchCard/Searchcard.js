@@ -37,12 +37,12 @@ const Searchcard = () => {
       };
       });
     }
-   /* const navigate =useNavigate()
+    const navigate =useNavigate()
 
 
     const handleSearch =()=>{
    navigate("./List",{state:{destination,date,options}});
-   }*/
+   }
   //  const url="";
   //  const picture =new URL("../assets/hotelbook.jpg",import.meta.url)
 
@@ -130,7 +130,7 @@ const Searchcard = () => {
 
         
             
-        <button class=" mt-4 border-none bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-2 inline-flex items-center" /*OnClick={handleSearch}*/>
+        < button OnClick={handleSearch} class=" mt-4 border-none bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-2 inline-flex items-center" >
            
             <span><FontAwesomeIcon icon  ={ faMagnifyingGlass} /> Search </span>
              </button>

@@ -25,6 +25,7 @@ class Blogs  extends Component{
     changeTitleHandler =(event)=>{
       this.setState({title: event.target.value})
     }
+
     submit = (e)=>{
       
       alert(`${this.state.title} ${this.state.article}`)
