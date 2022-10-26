@@ -28,6 +28,22 @@ public class Blogs {
     private Integer user_id;
     private String image_url;
 
+    private Integer moderatedStatus;
+
+    public Blogs() {
+    }
+
+    public Blogs(Integer blog_id, String title, String subtitle, String location, String content, Integer user_id, String image_url, Integer moderatedStatus) {
+        this.blog_id = blog_id;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.location = location;
+        this.content = content;
+        this.user_id = user_id;
+        this.image_url = image_url;
+        this.moderatedStatus = moderatedStatus;
+    }
+
     public String getImage_url() {
         return image_url;
     }
@@ -70,5 +86,13 @@ public class Blogs {
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
-    
+
+
+    public Integer getModeratedStatus() {
+        return moderatedStatus;
+    }
+
+    public void setModeratedStatus(Integer moderatedStatus) {
+        this.moderatedStatus = moderatedStatus;
+    }
 }
