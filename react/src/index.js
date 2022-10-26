@@ -52,7 +52,6 @@ import CarRegister from "./pages/CarRegister";
 import CarDriverMain from "./components/car/carDriver/CarDriverMain";
 import CarListingMain from "./components/car/carListing/CarListingMain";
 import CarMain from "./components/car/CarMain";
-
 // import CreateGroupFloat from './components/CreateGroupFloat';
 
 import Trip from "./components/Trip";
@@ -103,7 +102,7 @@ root.render(
 
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms1" element={<CarMain />} />
-      <Route path="/ms2" element={<CarDriverMain />} />
+      <Route path="/cardashboard/:user_id" element={<CarDriverMain />} />
       <Route path="/ms3" element={<CarListingMain />} />
       <Route path="/registerType" element={<TypePage />} />
       <Route path="/carregister" element={<CarRegister />} />
