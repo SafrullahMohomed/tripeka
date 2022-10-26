@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../styles/write.css";
 import upload from '../assets/upload.png';
 import Navbar from '../components/Navbar';
+import { combineEventUis } from '@fullcalendar/react';
+import { Component } from 'react';
 
 
 
-const WriteBlog = () => {
+
+//const WriteBlog = () => {
+class WriteBlog  extends Component{
+  
+  constructor(props){
+    super(props)
+    this.state ={
+      title : " ",
+      article: " " ,
+    }
+
+    this.changeArticleHandler =this.changeArticleHandler.bind(this);
+    this.changeTitleHandler =this.changeTitleHandler.bind(this);
+    this.submit =this.submit.bind(this);
+  }
+  changeArticleHandler =(event)=>{
+    this.setState({article: event.target.value})
+  }
+  changeTitleHandler =(event)=>{
+    this.setState({title: event.target.value})
+  }
+  submit = (e)=>{
+    
+    alert(`${this.state.title} ${this.state.article}`)
+    e.preventDefault();
+    let blogwrite ={title:this.state.title,article:this.state.article};
+    console.log('blogwrite=>' + JSON.stringify(blogwrite));
+  }
+
+  render(){
   return (
     <div>
       <Navbar/>
@@ -18,13 +49,13 @@ const WriteBlog = () => {
           </div>
         
           <div class="blog">
-            <textarea type="text" class="title" placeholder="The Blog title..."></textarea>
-            <textarea type="text" class="article" placeholder="Start writing here..."></textarea>
+            <input type="text" name="title" placeholder="The Blog title..." value={this.state.title} onChange={this.changeTitleHandler}/>
+            <input type="text" name="article" placeholder="Starts here ..."value={this.state.article} onChange={this.changeArticleHandler}/>
           </div>
 
           <div class="blog-options mb-3">
-            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
-              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            <button type ="submit"className=  "relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800" onClick={this.submit}>
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                   Publish
               </span>
             </button>
@@ -38,6 +69,8 @@ const WriteBlog = () => {
     </div>
     
   )
+  
+}
 }
 
-export default WriteBlog
+export default WriteBlog;
