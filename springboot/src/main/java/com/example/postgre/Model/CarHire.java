@@ -35,13 +35,15 @@ public class CarHire {
     private Boolean accepted_and_cancelled_by_user;
     private Boolean accepted_and_cancelled_by_driver;
 
+    private Boolean completed;
+
     public CarHire() {
     }
 
     public CarHire(Integer hire_id, Users user, Car car, String requested_user_phone, Integer total_people,
                    Point pickup, Point drop, Double distance, Double total_price, Boolean booked, Boolean accepted,
                    LocalDate date, LocalTime time, Boolean accepted_and_cancelled_by_user,
-                   Boolean accepted_and_cancelled_by_driver) {
+                   Boolean accepted_and_cancelled_by_driver, Boolean completed) {
         this.hire_id = hire_id;
         this.user = user;
         this.car = car;
@@ -57,11 +59,12 @@ public class CarHire {
         this.time = time;
         this.accepted_and_cancelled_by_user = accepted_and_cancelled_by_user;
         this.accepted_and_cancelled_by_driver = accepted_and_cancelled_by_driver;
+        this.completed = completed;
     }
 
     public CarHire(Users user, Car car, String requested_user_phone, Integer total_people, Point pickup, Point drop,
                    Double distance, Double total_price, Boolean booked, Boolean accepted, LocalDate date, LocalTime time,
-                   Boolean accepted_and_cancelled_by_user, Boolean accepted_and_cancelled_by_driver) {
+                   Boolean accepted_and_cancelled_by_user, Boolean accepted_and_cancelled_by_driver, Boolean completed) {
         this.user = user;
         this.car = car;
         this.requested_user_phone = requested_user_phone;
@@ -76,6 +79,7 @@ public class CarHire {
         this.time = time;
         this.accepted_and_cancelled_by_user = accepted_and_cancelled_by_user;
         this.accepted_and_cancelled_by_driver = accepted_and_cancelled_by_driver;
+        this.completed = completed;
     }
 
     public Integer getHire_id() {
@@ -196,5 +200,13 @@ public class CarHire {
 
     public void setAccepted_and_cancelled_by_driver(Boolean accepted_and_cancelled_by_driver) {
         this.accepted_and_cancelled_by_driver = accepted_and_cancelled_by_driver;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 }
