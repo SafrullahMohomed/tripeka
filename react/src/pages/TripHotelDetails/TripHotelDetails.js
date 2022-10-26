@@ -97,7 +97,7 @@ const TripHotelDetails = () => {
           </div>
         )}
         <div className="hotelWrapper" style={{width:"100%",maxWidth:"1024px",display:"flex",flexDirection:"column",gap:"10px",position:"relative"}}>
-          <button className="bookNow" style={{position:"absolute",top:"10px",right:"0",border:"none",padding:"10px 20px",backgroundColor:"#0071c2",color:"white",fontWeight:"bold",borderRadius:"5px",cursor:"pointer"}}>Reserve or Book Now!</button>
+          <button className="bookNow" onClick={bookHotel} style={{position:"absolute",top:"10px",right:"0",border:"none",padding:"10px 20px",backgroundColor:"#0071c2",color:"white",fontWeight:"bold",borderRadius:"5px",cursor:"pointer"}}>Reserve or Book Now!</button>
           <h1 className="hotelTitle" style={{fontSize:"24px"}}>{hotelData.title}</h1>
           <div className="hotelAddress" style={{fontSize:"12px",display:"flex",alignItems:"center",gap:"10px"}}>
             <FontAwesomeIcon icon={faLocationDot} />
@@ -149,7 +149,7 @@ const TripHotelDetails = () => {
               <h2 style={{fontWeight:"300"}}>
                 <b>LKR {hotelData.roomprice}</b> (for a night)
               </h2>
-              <button style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}}>Reserve or Book Now!</button>
+              <button onClick={bookHotel} style={{border:"none",padding:"10px 20px", backgroundColor:"#0071c2",color:"white",fontWeight:"bold",cursor:"pointer",borderRadius:"5px"}}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
