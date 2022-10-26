@@ -50,10 +50,10 @@ export default function Users() {
   };
 
   return (
-    <section class="w-full text-gray-600 body-font mt-20">
+    <section class="w-full text-gray-600 body-font pt-20 bg-gray-100">
       <div class="container px-16 mx-auto">
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ p: 3 }}>
+            <Box sx={{ px: 3, pt: 2 }}>
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="Travellers" {...a11yProps(0)} />
                 <Tab label="Hotel Owners" {...a11yProps(1)} />

@@ -69,11 +69,11 @@ const Gallery = () => {
     const handleOpenP = () => setOpenP(true);
     const handleCloseP = () => setOpenP(false);
     
-    const fileTypes = ["JPEG", "PNG", "GIF"];
-    const [file, setFile] = useState(null);
-    const handleChange = (file) => {
-        setFile(file);
-    };
+    // const fileTypes = ["JPEG", "PNG", "GIF"];
+    // const [file, setFile] = useState(null);
+    // const handleChange = (file) => {
+    //     setFile(file);
+    // };
 
     // **********Clodinary**********
 
@@ -118,6 +118,13 @@ const Gallery = () => {
         }
     
         setUploaded(false);
+    };
+
+    // image preview
+    const [file, setFile] = useState();
+    const handleChange = (e) => {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
     };
 
     return ( 
@@ -204,13 +211,17 @@ const Gallery = () => {
                     > */}
                         <DialogContent sx={{display: 'flex', justifyContent:'center'}}>
                             <Box component="span" sx={{p: 2, border: '1px dashed grey', width: 1, display:'flex', alignItems:'center', flexDirection:'column' }}>
-                                <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
-                                    <label for="image-upload">
-                                        <CameraAltOutlinedIcon />
-                                    </label>
-                                </IconButton>
-                                {/* <p className="mt-8">{file ? `File name: ${file[0].name}` : "No Images uploaded yet"}</p> */}
+                                <div className="cursor-pointer rounded-full px-2 pb-1 bg-gray-300">
+                                    <IconButton color="primary" aria-label="upload picture" component="label">
+                                        <input onChange= {(e)=> setImage(e.target.files[0])} type="file" id="image-upload" hidden></input>
+                                        {/* <input onChange= { handleChange } type="file" id="image-upload" hidden></input> */}
+                                        <label className="cursor-pointer" for="image-upload">
+                                            <CameraAltOutlinedIcon />
+                                        </label>
+                                    </IconButton>
+                                </div>
+                                <p className="mt-4">Upload your images</p>
+                                {/* <img className="p-2 rounded-sm" src={file} width="170" /> */}
                             </Box>                            
                         </DialogContent>
                     {/* </FileUploader> */}
