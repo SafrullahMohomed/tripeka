@@ -11,6 +11,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Tooltip from "@mui/material/Tooltip";
+import Card from '@mui/material/Card';
+import { CardActionArea } from '@mui/material';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import ModHeader from "./ModHeader";
 
 
 const ModeratorDash = () => {
@@ -85,6 +93,8 @@ const ModeratorDash = () => {
 
 
     return (
+        <>
+        <ModHeader />
         <section class="w-full h-screen flex items-center flex-col text-gray-600 body-font pt-20 bg-gray-100">
 
             {/* buttons */}
@@ -97,19 +107,19 @@ const ModeratorDash = () => {
             {/* table view  */}
             <div className="w-3/4 p-4">
                 
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                
-                                <TableCell align="left">Title</TableCell>
-                                <TableCell align="left">Location</TableCell>
-                                <TableCell align="left">Image</TableCell>
-                                <TableCell align="left">View</TableCell>
-                            </TableRow>
-                        </TableHead>
-                {inUncheckedBlogs && currentBlogId === -1 &&
                 
+                {inUncheckedBlogs && currentBlogId === -1 &&
+                <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            
+                            <TableCell align="left">Title</TableCell>
+                            <TableCell align="left">Location</TableCell>
+                            <TableCell align="left">Image</TableCell>
+                            <TableCell align="left">View</TableCell>
+                        </TableRow>
+                    </TableHead>
                 <TableBody>
                     {blogs.map((blog) => {
                         if(blog.moderatedStatus === 0){
@@ -125,11 +135,23 @@ const ModeratorDash = () => {
                     })}
                  
                  </TableBody>
+                 </Table>
+                </TableContainer>
                 }
                 
 
                 {!inUncheckedBlogs && currentBlogId === -1 &&
-                
+                <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            
+                            <TableCell align="left">Title</TableCell>
+                            <TableCell align="left">Location</TableCell>
+                            <TableCell align="left">Image</TableCell>
+                            <TableCell align="left">View</TableCell>
+                        </TableRow>
+                    </TableHead>
                 <TableBody>
                     {blogs.map((blog) => {
                         if(blog.moderatedStatus !== 0){
@@ -144,10 +166,10 @@ const ModeratorDash = () => {
                         }
                     })}
                 </TableBody>
-
-                }
                 </Table>
                 </TableContainer>
+                }
+                
                 
             </div>
 
@@ -155,16 +177,38 @@ const ModeratorDash = () => {
 
             <div>
                 {currentBlogId !== -1 &&
-                
+
                 <div>
                     {blogs.filter((blog) => blog.blog_id === currentBlogId).map((blog) => (
                         <div>
-                            {blog.moderatedStatus === 1 && <h1>ACCEPTED BLOG</h1>}
-                            {blog.moderatedStatus === 2 && <h1>REJECTED BLOG</h1>}
-                            <h1>{blog.title}</h1>
-                            <p>{blog.content}</p>
-                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 1) && <button className="bg-slate-600" onClick={()=>{rejectBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Reject</button>} 
-                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 2) && <button className="bg-slate-600" onClick={()=>{acceptBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Accept</button>}
+                            {blog.moderatedStatus === 1 && <Button>ACCEPTED BLOG</Button>}
+                            {blog.moderatedStatus === 2 && <Button>REJECTED BLOG</Button>}
+                            
+                            <Card sx={{ maxWidth: 400 }}>
+                                <CardActionArea
+                                onClick={() => {
+                                    window.location.href = `/trip`;
+                                }}
+                                >
+                                {/* <CardMedia
+                                    component="img"
+                                    image={group.url}
+                                    alt=""
+                                    sx={{ height: 130 }}
+                                /> */}
+                                <CardContent>
+                                    <Typography gutterBottom variant="h6" component="div">
+                                    {blog.title}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                    {blog.content}
+                                    </Typography>
+                                </CardContent>
+                                </CardActionArea>
+                            </Card>
+
+                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 1) && <Button onClick={()=>{rejectBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Reject</Button>} 
+                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 2) && <Button onClick={()=>{acceptBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Accept</Button>}
                         </div>
                     ))}
                 </div>
@@ -172,7 +216,8 @@ const ModeratorDash = () => {
                 }
             </div>
             
-        </section>  
+        </section> 
+        </> 
     )
 }
  
