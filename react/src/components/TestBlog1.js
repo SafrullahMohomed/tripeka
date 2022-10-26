@@ -16,16 +16,16 @@ const TestBlog1= ()=> {
    
 // constructor(){
 
-    // const [BlogData, setBlogData] = useState();
-    // // useEffect(()=>{
-    // //     const fecthData = async()=>{
-    // //         const result = await fetch("http://localhost:3000/Blog#");
-    // //         const jsonResult = result.json;
+    const [BlogData, setBlogData] = useState();
+    useEffect(()=>{
+        const fecthData = async()=>{
+            const result = await fetch("http://localhost:3000/Blog#");
+            const jsonResult = result.json;
 
-    // //             setBlogData(jsonResult)
-    // //     }
-    // //     fecthData();
-    // // })
+                setBlogData(jsonResult)
+        }
+        fecthData();
+    })
    
     
 // }
