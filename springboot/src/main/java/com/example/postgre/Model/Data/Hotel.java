@@ -57,9 +57,15 @@ public class Hotel {
     @Column(name = "todate")
     private Date toDate;
 
+    @Column(name = "hotelimages")
+    private String hotelimages;
+
+
+
+
     public Hotel(){}
 
-    public Hotel(String name, String bedroom, String address, Integer rooms, String grade, String district, Integer priceRoom, String facilities, String shortDescription, Integer noOfChildren, Integer noOfAdults, Integer hotelRating, Integer serviceRate, Date fromDate, Date toDate) {
+    public Hotel(String name, String bedroom, String address, Integer rooms, String grade, String district, Integer priceRoom, String facilities, String shortDescription, Integer noOfChildren, Integer noOfAdults, Integer hotelRating, Integer serviceRate, Date fromDate, Date toDate,String hotelimages) {
         super();
         this.name = name;
         this.bedroom = bedroom;
@@ -76,6 +82,8 @@ public class Hotel {
         this.serviceRate = serviceRate;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.hotelimages = hotelimages;
+
     }
 
     public long getHotelId() {
@@ -204,5 +212,13 @@ public class Hotel {
 
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    public String getHotelimages() {
+        return hotelimages;
+    }
+
+    public void setHotelimages(String hotelimages) {
+        this.hotelimages = hotelimages;
     }
 }
