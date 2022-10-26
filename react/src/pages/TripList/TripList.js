@@ -37,6 +37,8 @@ const TripList = () => {
       minPrice: ("minPrice" in options && options.minPrice !== "") ? options.minPrice : 0,
       maxPrice: ("maxPrice" in options && options.maxPrice !== "") ? options.maxPrice : 0
     };
+
+    localStorage.setItem("hoteldetails", JSON.stringify(params))
     
     // to get all hotels by filters
     getAllHotelsAvailableByFilters(params)
@@ -128,7 +130,7 @@ const TripList = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleSearch} style={{padding: "10px",backgroundColor: "#0071c2",color: "white",border: "none",width: "100%",fontWeight: "500",cursor: "pointer"}}>Search</button>
+            <button onClick={handleSearch} style={{padding: "10px",backgroundColor: "#0071c2",color: "white",border: "none",width: "100%",fontWeight: "500",cursor: "pointer"}} >Search</button>
           </div>
           <div className="listResult" style={{flex:"3"}}>
 
@@ -146,6 +148,7 @@ const TripList = () => {
                 hotelrate = {hotel.hotelRating}
                 district = {hotel.district}
                 comment = {hotel.shortDescription}
+                hotelimages= {hotel.hotelimages}
               />
             ))}
           </div>
