@@ -33,6 +33,18 @@ public class CarHireController {
         return carHireService.getCarById(hire_id);
     }
 
+//    get car hire by user
+    @GetMapping(path = "/carbookedhire/{user_id}")
+    public List<CarHire> getCarHireByUserId(@PathVariable("user_id") Integer user_id){
+        return carHireService.getCarHireByUserId(user_id);
+    }
+
+    //    get car hire by vehicle id
+    @GetMapping(path = "/carbookedhirebyvehicle/{vehicle_id}")
+    public List<CarHire> getCarHireByVehicleId(@PathVariable("vehicle_id") Integer vehicle_id){
+        return carHireService.getCarHireByVehicleId(vehicle_id);
+    }
+
 
 //    add the car hire data
     @PostMapping(path = "/addcarhire")

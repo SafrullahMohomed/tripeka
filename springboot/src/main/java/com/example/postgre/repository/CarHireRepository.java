@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface CarHireRepository extends JpaRepository<CarHire, Integer> {
 
@@ -30,4 +33,13 @@ public interface CarHireRepository extends JpaRepository<CarHire, Integer> {
     void updateCarAcceptedAndCancelledByDriver(@Param(value = "hire_id") Integer hire_id,
                                              @Param(value = "accepted_and_cancelled_by_driver")
                                              Boolean accepted_and_cancelled_by_driver);
+
+//    select queries
+    @Query(value = "from CarHire where user.user_id = ?1")
+    List<CarHire> findByUserId(@Param(value = "user_id") Integer user_id);
+
+    @Query(value = "from CarHire where car.users.user_id = ?1")
+    List<CarHire> getCarHireByVehicleId(@Param(value = "vehicle_id") Integer vehicle_id);
+
+
 }

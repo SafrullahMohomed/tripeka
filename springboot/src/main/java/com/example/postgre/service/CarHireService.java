@@ -34,6 +34,13 @@ public class CarHireService {
         return carHireRepository.findById(hire_id);
     }
 
+    public List<CarHire> getCarHireByUserId(Integer user_id) {
+        return carHireRepository.findByUserId(user_id);
+    }
+
+    public List<CarHire> getCarHireByVehicleId(Integer vehicle_id) {
+        return carHireRepository.getCarHireByVehicleId(vehicle_id);
+    }
 
     @Transactional
     public void updateCarAccept(Integer hire_id, Boolean accept_status) {
@@ -70,4 +77,5 @@ public class CarHireService {
         return message;
 
     }
+
 }
