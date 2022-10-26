@@ -61,6 +61,7 @@ import authService from "./jwtAuthServices/auth.service";
 import LiveLocation from "./pages/LiveLocation";
 import LiveLocationMark from "./components/LiveLocationMark";
 import LiveLocationTest from "./components/LiveLocationTest";
+import ModeratorDash from "./components/ModeratorDash";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -134,11 +135,14 @@ root.render(
       <Route path='/admin' element={<><Drawer /></>}/>
       <Route path='/users' element={<><Users /></>}/>
       <Route path='/location/:id' element={<><Location /></>}/>
-      <Route path='/profile' element={<><Profile /></>}/>
+      <Route pathy='/profile' element={<><Profile /></>}/>
       <Route path='/suggestion/:id' element={<><Header /><Suggestion /><Footer /></>}/>
       <Route path='/livelocationmark' element={<><Header /><LiveLocationMark /><Footer /></>}/>
 
       <Route path="/livelocation/:group_id" element={authService.isSignedIn() ? <LiveLocationTest /> : <Login />} />
+      <Route path='/moderator' element={<><ModeratorDash/></>}/>
+
+
 
     </Routes>
   </Router>
