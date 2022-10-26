@@ -92,10 +92,7 @@ function Userprofile() {
                                 <td class="info-right-column-color" style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}>female</td>
                             </tr>
                            
-                            <tr>
-                                <td style={{textAlign: "left",paddingBottom: "15px"}}>Visiting Charge</td>
-                                <td class="info-right-column-color"  style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}></td>
-                            </tr>
+                            
                             <tr>
                                 <td style={{textAlign: "left",paddingBottom: "15px"}}>Years of experience</td>
                                 <td class="info-right-column-color"  style={{color: "#108882",paddingLeft: "30px",textAlign: "left",paddingBottom: "15px"}}></td>
