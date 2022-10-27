@@ -79,17 +79,17 @@ const LiveLocationTest = () => {
       let randomLat = location.coordinates.lat;
       let randomLng = location.coordinates.lng;
       
-      if(randomLat !== null){
+      // if(randomLat !== null){
         sendMessage(randomLat, randomLng);
-      }
+      // }
 
       myInterval = setInterval(() => {
         let randomLat = location.coordinates.lat;
         let randomLon = location.coordinates.lng;
 
-        if(randomLat !== null){
+        // if(randomLat !== null){
           sendMessage(randomLat, randomLon);
-        }
+        // }
 
         // console.log("Interval function ran....\n With Lat: " + randomLat + " & Lon: " + randomLon + " \n")
 
