@@ -1,19 +1,7 @@
 
 function fetchtest(){
     
-    const [authors, setAuthors] = useState([])
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const result = await fetch('http://localhost:3001/authors')
-        const jsonResult = await result.json()
-  
-        setAuthors(jsonResult)
-      }
-  
-      fetchData()
-    }, [])
-
+    
 } 
     
 
