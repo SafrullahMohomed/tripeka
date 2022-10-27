@@ -306,7 +306,29 @@ const Trip = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     //Trip.handleClickOutside = () => setIsOpen(false);
+    const handleCloseSanck = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        error = false;
+    };
 
+    const action = (
+        <React.Fragment>
+          <Button color="secondary" size="small" onClick={handleClose}>
+            UNDO
+          </Button>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleCloseSanck}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      );
     // alert toggle
     // const [openAlert, setOpenAlert] = useState(true);
 
@@ -318,20 +340,15 @@ const Trip = () => {
                 <div>{user.email}</div>
             </div>
             ))}
-        </div> */}        
-        
+        </div> */}      
+        <div className="bg-gray-100">
+            <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'left' }} action={action} onClose={handleCloseSanck} open={error} autoHideDuration={3000}>
+                <Alert severity="warning" sx={{ width: '100%' }}>
+                     User does not Exist!
+                </Alert>
+            </Snackbar>
         <div className="flex flex-wrap px-6 py-8 bg-gray-100">
-            <div>
-                {error ?
-                    "user does not exist"
-                    // <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={error} autoHideDuration={3000}>
-                    //     <Alert severity="warning" sx={{ width: '100%' }}>
-                    //             User does not Exist!
-                    //     </Alert>
-                    // </Snackbar>
-
-                : ""}
-            </div>
+        
             <div class="p-1 flex lg:w-1/3 md:w-1/2 w-full">
                 <Card sx={{width: 1}}>
                     <CardHeader
@@ -549,6 +566,7 @@ const Trip = () => {
                 open={openFM}
             >
                 <form onSubmit={addFriendForm}>
+                
                 <DialogTitle id="dialog-title" sx={{width: 450, marginBottom: -1}}>
                 {"Add New Friends"}
                 </DialogTitle>
@@ -685,6 +703,7 @@ const Trip = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <Footer />
         </>

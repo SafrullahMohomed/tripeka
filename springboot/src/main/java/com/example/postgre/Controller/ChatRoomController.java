@@ -1,4 +1,5 @@
 package com.example.postgre.Controller;
+import com.example.postgre.Model.Data.LiveLocationData;
 import com.example.postgre.Model.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,12 @@ public class ChatRoomController {
         messagingTemplate.convertAndSend(format("/chat-room/%s", roomId), chatMessage);
     }
 
+    @MessageMapping("/send-live-location/{group_id}/sendLocation")
+    public void sendMessage(@DestinationVariable String group_id, @Payload LiveLocationData liveLocationData) {
+        logger.info(group_id+" LIVE LOCATION received is "+liveLocationData.toString());
+        System.out.println(group_id+" LIVE LOCATION received is "+liveLocationData.toString());
+        messagingTemplate.convertAndSend(format("/chat-room/receive-live-location/%s", group_id), liveLocationData);
+    }
 //    @MessageMapping("/chat/{roomId}/addUser")
 //    public void addUser(@DestinationVariable String roomId, @Payload Message chatMessage,
 //                        SimpMessageHeaderAccessor headerAccessor) {
