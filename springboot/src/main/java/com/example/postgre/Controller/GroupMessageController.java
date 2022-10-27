@@ -35,7 +35,7 @@ public class GroupMessageController {
 
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Users sender = userRepository.findById(req.getUser_id()).get();
-        GroupMessages var1 = new GroupMessages(req.getGroup_id(), req.getUser_id(), sender.getFirstname() + " " + sender.getLastname(),time, req.getMessage());
+        GroupMessages var1 = new GroupMessages(req.getGroup_id(), req.getUser_id(), sender.getFirstname() + " " + sender.getLastname(),time, req.getMessage(), sender.getProfile_url());
         GroupMessages grpMsg = groupMessageRepository.save(var1);
 
         return grpMsg;
