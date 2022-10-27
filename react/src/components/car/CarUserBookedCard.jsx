@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import CarCardInnerDetails from "./carListing/CarCardInnerDetails";
+import { deleteCarHire } from "../../services/CarService";
 
 const CarUserBookedCard = (props) => {
   const [carAcceptedStatus, setCarAcceptedStatus] = useState(null);
@@ -32,6 +33,16 @@ const CarUserBookedCard = (props) => {
     }
   }, [props.carAcceptedStatus, props.carAcceptedAndCancelledByDriverStatus]);
 
+  const DeleteCarBookedBeforeAcceptance = () => {
+    deleteCarHire(props.carHireId)
+      .then((response) => {
+        console.log("I am the response", response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const x = carAcceptedStatus;
   console.log(x);
   if (
@@ -40,13 +51,6 @@ const CarUserBookedCard = (props) => {
   ) {
     return (
       <Card className="w-96 grid-center my-4 mx-auto ">
-        <CardHeader color="blue" className="relative h-56">
-          <img
-            src={props.carImage}
-            alt="img-blur-shadow"
-            className="h-full w-full"
-          />
-        </CardHeader>
         <CardBody className="text-center">
           <Typography variant="h5" className="mb-2">
             {props.carName}
@@ -93,13 +97,6 @@ const CarUserBookedCard = (props) => {
   ) {
     return (
       <Card className="w-96 grid-center my-4 mx-auto">
-        <CardHeader color="blue" className="relative h-56">
-          <img
-            src={props.carImage}
-            alt="img-blur-shadow"
-            className="h-full w-full"
-          />
-        </CardHeader>
         <CardBody className="text-center">
           <Typography variant="h5" className="mb-2">
             {props.carName}
@@ -126,6 +123,19 @@ const CarUserBookedCard = (props) => {
                 class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-lg leading-tight uppercase
            rounded shadow-md hover:bg-red-700 hover:shadow-lg  focus:ring-0  active:shadow-lg transition 
            duration-150 ease-in-out"
+                onClick={() => {
+                  let confirmAction = window.confirm(
+                    "Are you sure you want to cancel this booking?"
+                  );
+                  if (confirmAction) {
+                    alert("You have cancelled the request successfully");
+                    DeleteCarBookedBeforeAcceptance();
+                    window.location.reload();
+                  } else {
+                    alert("Cancelled the action");
+                  }
+
+                }}
               >
                 Cancel
               </button>
@@ -144,13 +154,6 @@ const CarUserBookedCard = (props) => {
   ) {
     return (
       <Card className="w-96 grid-center my-4 mx-auto bg-red-100">
-        <CardHeader color="blue" className="relative h-56">
-          <img
-            src={props.carImage}
-            alt="img-blur-shadow"
-            className="h-full w-full"
-          />
-        </CardHeader>
         <CardBody className="text-center">
           <Typography variant="h5" className="mb-2">
             {props.carName}
@@ -177,14 +180,21 @@ const CarUserBookedCard = (props) => {
                 class="inline-block px-2 py-2.5 bg-red-600 text-white font-medium text-lg leading-tight uppercase
              rounded shadow-md hover:bg-red-700 hover:shadow-lg  focus:ring-0  active:shadow-lg transition 
              duration-150 ease-in-out"
+                onClick={() => {
+                  DeleteCarBookedBeforeAcceptance();
+                  alert("You have cancelled the request successfully");
+                  window.location.reload();
+                }}
               >
-                Delete trip
+                Delete request
               </button>
             </div>
           </Typography>
           <Typography variant="small" color="gray" className="flex gap-1">
             <i className="fas fa-map-marker-alt fa-sm mt-[3px] " />
-            <span className="font-medium text-red-700">Cancelled by driver</span>
+            <span className="font-medium text-red-700">
+              Cancelled by driver
+            </span>
           </Typography>
         </CardFooter>
       </Card>

@@ -30,6 +30,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdminDash from './AdminDash';
+import BlogAdmin from './BlogAdmin';
 import AddSuggestion from './AddSuggestion';
 import Users from './Users';
 import user from '../assets/customer2.jpg';
@@ -183,7 +184,9 @@ export default function MiniDrawer() {
                       aria-expanded={openN ? 'true' : undefined}
                   >
                     <Badge badgeContent={4} overlap="circular" color="error">
-                      <CircleNotificationsRoundedIcon sx={{ width: 38, height: 38 }} />
+                      <CircleNotificationsRoundedIcon
+                        sx={{ width: 38, height: 38, bgcolor: "white", borderRadius: 99 }}
+                      />
                     </Badge>
                   </IconButton>
                 </Tooltip>
@@ -244,7 +247,7 @@ export default function MiniDrawer() {
                       aria-haspopup="true"
                       aria-expanded={openP ? 'true' : undefined}
                   >
-                      <Avatar src={user} sx={{ width: 40, height: 40 }}></Avatar>
+                      <Avatar src={""} sx={{ width: 40, height: 40 }}></Avatar>
                   </IconButton>
                 </Tooltip>
               </Box>
@@ -331,13 +334,14 @@ export default function MiniDrawer() {
             </IconButton>
           </DrawerHeader>
           <List>
-            {['Home', 'Users', 'Suggestions', 'Drafts', 'Hotels', 'Draft'].map((text) => (
+            {['Dashborad', 'Users', 'Suggestions', 'Blogs'].map((text) => (
               <ListItem key={text} sx={{ display: 'block',}}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2,
+                    color: 'secondary.light',
                     borderRadius: 2,
                     bgcolor: 'primary.main',
                     "&:hover": {
@@ -346,19 +350,15 @@ export default function MiniDrawer() {
                   }}
                   onClick = {() => 
                     {
-                      if (text === 'Home') {
+                      if (text === 'Dashborad') {
                         setHome(<AdminDash />)
                       } if (text === 'Users') {
                         setHome(<Users />)
                       } if (text === 'Suggestions') {
                         setHome(<AddSuggestion />)
-                      } if (text === 'Drafts') {
-                        setHome(<Users />)
-                      } if (text === 'Hotels') {
-                        setHome(<AdminDash />)
-                      } if (text === 'Draft') {
-                        setHome(<Users />)
-                      }
+                      } if (text === 'Blogs') {
+                        setHome(<BlogAdmin />)
+                      } 
                     }
                   }
                 >

@@ -8,14 +8,13 @@ import c3 from '../../assets/galleFeature.jpg'
 import Footer from '../../components/Footer';
 import TripFavourite from '../../components/TripFavourite/TripFavourite';
 import TripEmailList from '../../components/TripEmailList/TripEmailList';
+import Header from '../../components/Header';
 
 const TripHotels = () => {
   return (
     <div>
-        <Navbar/>
-        <br/>
-        <br/>
-        <br/>
+        <Header/>
+        
         
         <TripHeader/>
 

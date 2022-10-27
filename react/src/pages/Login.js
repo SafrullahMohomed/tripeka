@@ -67,7 +67,7 @@ const Login = () => {
         } else if (userRole === "ROLE_LODGE_PROVIDER") {
           window.location.href = "/dashboard";
         } else if (userRole === "ROLE_VEHICLE_OWNER") {
-          window.location.href = "/dashboard";
+          window.location.href = "/cardashboard/"+user_id;
         } else {
           // console.log("INVALID USERNAME AND PASSWORD");
         }

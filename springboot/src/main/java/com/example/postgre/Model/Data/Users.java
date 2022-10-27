@@ -53,13 +53,14 @@ public class Users {
 	public Users() {
 	}
 
-	public Users(Integer user_id, String email, String firstname, String lastname, String hashedpswd, String userrole) {
+	public Users(Integer user_id, String email, String firstname, String lastname, String hashedpswd, String userrole, String profile_url) {
 		this.user_id = user_id;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.hashedpswd = hashedpswd;
 		this.userrole = userrole;
+		this.profile_url = profile_url;
 	}
 
 	public Users(String email, String firstname, String lastname, String hashedpswd, String userrole) {

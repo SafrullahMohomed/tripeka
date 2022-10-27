@@ -1,76 +1,78 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import React, { useState, useEffect } from "react";
+import { getUsers } from "../services/UserService";
 
-import Travellers from "./Travellers";
-import HotelOwners from "./HotelOwners";
-import Guides from "./Guides";
+import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from "@mui/material/Button";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+const Users = () => {
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+  const init = async() => {
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
+    await getUsers()
+     .then((response) => {
+        console.log("Printing user data", response.data);
+        setUsers(response.data)
+      })
+      .catch((err) => {
+        console.log("Something went wrong", err);
+    });
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-export default function Users() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
-  return (
-    <section class="w-full text-gray-600 body-font pt-20 bg-gray-100">
-      <div class="container px-16 mx-auto">
-          <Box sx={{ width: '100%' }}>
-            <Box sx={{ px: 3, pt: 2 }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Travellers" {...a11yProps(0)} />
-                <Tab label="Hotel Owners" {...a11yProps(1)} />
-                <Tab label="Tour Guides" {...a11yProps(2)} />
-              </Tabs>
-            </Box>
-            <TabPanel value={value} index={0}>
-              <Travellers />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <HotelOwners />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-              <Guides />
-            </TabPanel>
-          </Box>
-        </div>
-    </section>
-  );
+  useEffect(() => {
+    init();
+  }, []);
+
+
+  const [users, setUsers]  = useState([]);
+
+  return ( 
+    <>
+        <section class="w-full h-full text-gray-600 body-font pt-20 bg-gray-100">
+            <div class="flex flex-col items-center px-5 py-1 mx-auto">
+                <div class="flex flex-wrap w-full pb-4 flex-col items-center text-center">
+                    <div class="sm:text-3xl text-2xl font-medium title-font  pt-4 mb-2 text-gray-900">System Users</div>
+                </div>
+                <div className="w-3/4 p-2 my-4">
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell align="left"><b>Name</b></TableCell>
+                                <TableCell align="left"><b>Email</b></TableCell>
+                                <TableCell align="left"><b>Role</b></TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {users.map((item) => (
+                                item.firstname ? 
+                                <TableRow
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell align="left">{item.firstname + " " + item.lastname}</TableCell>
+                                    <TableCell align="left">{item.email}</TableCell>
+                                    <TableCell align="left">{item.userrole}</TableCell>
+                                </TableRow>
+                                : ""
+                            ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div> 
+            </div>
+        </section>
+    </>
+   );
 }
+ 
+export default Users;
+<div>
+  Users
+</div>

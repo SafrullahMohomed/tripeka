@@ -9,3 +9,7 @@ export function getSuggestionById(location) {
 export function getSuggestions() {
     return axios.get(ServerBaseUrl + "/suggestions");
 }
+
+export function createSuggestion(location, description) {
+    return axios.post(ServerBaseUrl + "/suggestions" , { location, description }, { headers: authHeader() });
+}
