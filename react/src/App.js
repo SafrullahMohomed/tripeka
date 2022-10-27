@@ -24,9 +24,9 @@ function App() {
       {/* <StepsAlter/> */}
       <VerticalStepper/>
       <Services></Services>
-      <Blog></Blog>
+      {/* <Blog></Blog> */}
       <Testomonials></Testomonials>
-      <Popular></Popular>
+      {/* <Popular></Popular> */}
       <ContactUs></ContactUs>
       <Footer></Footer>
     </div>

@@ -7,6 +7,11 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import {
+  updateCarAcceptStatus,
+  updateAcceptAndCancelledDriverStatus,
+  updateAcceptAndCancelledUserStatus,
+} from "../../../services/CarService";
 
 const CarDriverCard = (props) => {
   const [carAcceptedStatus, setCarAcceptedStatus] = useState(false);
@@ -18,6 +23,31 @@ const CarDriverCard = (props) => {
     carAcceptedAndCancelledByUserStatus,
     setCarAcceptedAndCancelledByUserStatus,
   ] = useState(false);
+
+  // setup accept function
+  const AcceptCarFunction = () => {
+    setCarAcceptedStatus(true);
+    updateCarAcceptStatus(true, props.carRequestId)
+      .then((response) => {
+        console.log("I am the response", response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // setup accept and cancelled by driver function
+  const AcceptedAndCancelledByDriverFunction = () => {
+    setCarAcceptedAndCancelledByDriverStatus(true);
+    updateAcceptAndCancelledDriverStatus(true, props.carRequestId)
+      .then((response) => {
+        console.log("I am the cancelled drive", response);
+      })
+      .catch((error) => {
+        console.log(error);
+      }
+      );
+  }
 
   useEffect(() => {
     if (props.carAcceptedStatus === true) {
@@ -39,19 +69,26 @@ const CarDriverCard = (props) => {
       <Card className="w-96 grid-center my-4 mx-auto ">
         <CardBody className="text-center">
           <Typography>
-          <div className="userRequest flex items-start"><span className='text-blue-600'>{props.carRequestedUserName} </span>&nbsp;is requesting for a ride </div>
+            <div className="userRequest flex items-start">
+              <span className="text-blue-600">
+                {props.carRequestedUserName}{" "}
+              </span>
+              Requesting for a ride{" "}
+            </div>
             <CarDriverInnerDetails
               carRequestedUserName={props.carRequestedUserName}
               carRequestedUserPhone={props.carRequestedUserPhone}
               carPickupLocation={props.carPickupLocation}
               carDropLocation={props.carDropLocation}
               noOfPeople={props.noOfPeople}
-              carTotalprice={props.carTotalprice}
+              carTotalPrice={props.carTotalPrice}
             />
           </Typography>
           <Typography>
             <div className="CurrentAcceptedStatus">
-              <span className="text-red-700">You still not accepted the ride</span>
+              <span className="text-red-700">
+                You still not accepted the ride
+              </span>
             </div>
           </Typography>
         </CardBody>
@@ -79,6 +116,18 @@ const CarDriverCard = (props) => {
                 class="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-lg leading-tight uppercase
                    rounded shadow-md hover:bg-green-700 hover:shadow-lg  focus:ring-0  active:shadow-lg transition 
                    duration-150 ease-in-out"
+                onClick={() => {
+                  
+                  let confirmAction = window.confirm(
+                    "Are you sure to accept the ride?"
+                  );
+                  if (confirmAction) {
+                    alert("You have accepted the ride successfully");
+                    AcceptCarFunction();
+                  } else {
+                    alert("Cancelled the action");
+                  }
+                }}
               >
                 Accept
               </button>
@@ -94,9 +143,13 @@ const CarDriverCard = (props) => {
     return (
       <Card className="w-96 grid-center my-4 mx-auto ">
         <CardBody className="text-center">
-         
           <Typography>
-          <div className="userRequest flex items-start"><span className='text-blue-600'>{props.carRequestedUserName}</span> &nbsp;is requesting for a ride </div>
+            <div className="userRequest flex items-start">
+              <span className="text-blue-600">
+                {props.carRequestedUserName}
+              </span>{" "}
+              &nbsp;is requesting for a ride{" "}
+            </div>
             <CarDriverInnerDetails
               carRequestedUserName={props.carRequestedUserName}
               carRequestedUserPhone={props.carRequestedUserPhone}
@@ -122,6 +175,19 @@ const CarDriverCard = (props) => {
                 class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-lg leading-tight uppercase
                            rounded shadow-md hover:bg-red-700 hover:shadow-lg  focus:ring-0  active:shadow-lg transition 
                            duration-150 ease-in-out"
+                           
+                           onClick={()=>{
+                            let confirmAction = window.confirm(
+                              "Are you sure to accept the ride?"
+                            );
+                            if (confirmAction) {
+                              alert("You have cancelled the ride successfully");
+                              AcceptedAndCancelledByDriverFunction();
+                            } else {
+                              alert("Cancelled the action");
+                            }
+                          }}
+                           
               >
                 Cancel the ride
               </button>
@@ -137,9 +203,13 @@ const CarDriverCard = (props) => {
     return (
       <Card className="w-96 grid-center my-4 mx-auto bg-red-100 ">
         <CardBody className="text-center">
-          
           <Typography>
-          <div className="userRequest flex items-start"><span className='text-blue-600'>{props.carRequestedUserName}</span>&nbsp; was requested for a ride </div>
+            <div className="userRequest flex items-start">
+              <span className="text-blue-600">
+                {props.carRequestedUserName}
+              </span>
+              &nbsp; was requested for a ride{" "}
+            </div>
             <CarDriverInnerDetails
               carRequestedUserName={props.carRequestedUserName}
               carRequestedUserPhone={props.carRequestedUserPhone}
@@ -151,7 +221,9 @@ const CarDriverCard = (props) => {
           </Typography>
           <Typography>
             <div className="CurrentAcceptedStatus">
-              <span className="text-red-700 font-medium ">Cancelled the ride by user</span>
+              <span className="text-red-700 font-medium ">
+                Cancelled the ride by user
+              </span>
             </div>
           </Typography>
         </CardBody>

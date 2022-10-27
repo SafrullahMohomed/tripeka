@@ -121,8 +121,8 @@ const Groups = () => {
     <section class="text-gray-600 body-font pb-10 bg-gray-100">
       {/* {console.log(groupList)}
       <div>
-        {groupList.map((group, index) => (
-          <div key={index}>
+        {groupList.map((group) => (
+
             <div>{group.name}</div>
           </div>
         ))}

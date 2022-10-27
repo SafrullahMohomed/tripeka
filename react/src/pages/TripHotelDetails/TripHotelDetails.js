@@ -11,6 +11,7 @@ import Navbar from '../../components/Navbar';
 import TripEmailList from '../../components/TripEmailList/TripEmailList';
 import Footer from '../../components/Footer';
 import { useLocation, useNavigate } from "react-router-dom";
+import Header from '../../components/Header';
 
 const TripHotelDetails = () => {
   const location = useLocation();
@@ -66,7 +67,7 @@ const TripHotelDetails = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Header/>
       <br/>
       <br/>
       <br/>

@@ -72,7 +72,15 @@ const ListItem = (props) => {
         <div
           className="delete-list"
           onClick={() => {
-            delete_function();
+            let confirmAction = window.confirm(
+              "Are you sure to delete the budget?"
+            );
+            if (confirmAction) {
+              alert("You have deleted the budget successfully");
+              delete_function();
+            } else {
+              alert("Cancelled the action");
+            }
           }}
         >
           {/*Or*/}
