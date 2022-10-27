@@ -136,7 +136,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.district}vehicle district
+                    {props.district}Colombo
                   </td>
                 </tr>
                 <tr>
@@ -152,7 +152,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.price_per_km}price_per_km
+                    {props.price_per_km}
                   </td>
                 </tr>
                 <tr>
@@ -168,7 +168,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.max_passengers}max passengers
+                    {props.max_passengers}
                   </td>
                 </tr>
               </table>

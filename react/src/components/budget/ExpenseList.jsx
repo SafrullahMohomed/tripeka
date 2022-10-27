@@ -116,6 +116,7 @@ const ExpenseList = (props) => {
       .catch((err) => {
         console.log("Something went wrong", err);
       });
+      // window.location.reload();
   };
 
   const [isIndividual, setIsIndividual] = useState(true);
@@ -129,7 +130,8 @@ const ExpenseList = (props) => {
           size="medium"
           color="primary"
           aria-label="add"
-          sx={{bgcolor: "#3f51b5"}}
+          className="bg-color: #3f51b5"
+  
           
         >
           <CreditCardIcon sx={{ mr: 1 }} />
@@ -188,7 +190,7 @@ const ExpenseList = (props) => {
                     <ListItemsAll
                       key={user.budget_id}
                       group={user.group_id}
-                      user={user.title}
+                      user={user.users}
                       title={user.title}
                       amount={user.amount}
                       description={user.description}

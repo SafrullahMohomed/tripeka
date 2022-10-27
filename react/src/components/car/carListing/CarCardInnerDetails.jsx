@@ -11,7 +11,6 @@ const CarCardInnerDetails = (props) => {
       <div className=" flex flex-col items-start ">
         {/* <div className="carStatus">{props.carStatus}carStatus</div> */}
         <div className="carType">Vehicle Type : {props.carType}</div>
-        <div className="carOwner">Vehicle Owner : {props.carOwner}</div>
         <div className="carPhone">Phone NO : {props.carPhone}</div>
 
         <div className="carTotalprice">

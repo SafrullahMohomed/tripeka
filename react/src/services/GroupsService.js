@@ -32,3 +32,7 @@ export function deleteGroup(group_id) {
   return axios.delete(ServerBaseUrl + "/groups/" + group_id);
 }
 
+export function getTotalNumberofGroups() {
+  return axios.get(ServerBaseUrl + "/allgroups");
+}
+

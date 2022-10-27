@@ -144,7 +144,8 @@ const Budget = () => {
             <HoverBoxes title="Individual Expense" amount={individualAmount} />
           </div>
           <div className="first-row-row2-col3 w-40 m-3">
-            <HoverBoxes title="Your Due" amount={yourDue} />
+            {yourDue < 0 ? (<HoverBoxes title="Your Due" bgcolor="rgba(215, 44, 44, 0.29)" amount={yourDue} />) : (<HoverBoxes title="Your Due" bgcolor="rgba(108, 237, 75, 0.29)" amount={yourDue} />)}
+            
           </div>
         </div>
         {/* cards ends here  */}
