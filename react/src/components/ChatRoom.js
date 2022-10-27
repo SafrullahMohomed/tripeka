@@ -243,12 +243,15 @@ const MyChatRoom = () => {
                 />
               </div>
               <div className="bg-white rounded p-2 border gray-600">
-                <div className="flex ">
-                  <p className="text-sm max-w-md ">{message.message}</p>
-                </div>
+
                 <div className="flex">
-                  <p className="text-sm italic max-w-md font-bold">{message.senderName}</p>
+                  <p className="text-xs italic max-w-md ">{message.senderName}</p>
                 </div>
+
+                <div className="flex ">
+                  <p className="text-sm max-w-md font-semibold">{message.message}</p>
+                </div>
+                
               </div>
             </div>
           ))}          
