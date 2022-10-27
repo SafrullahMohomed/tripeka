@@ -56,7 +56,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.name}name
+                    {props.name}Perera
                   </td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.phone}phone
+                    {props.phone}0779270760
                   </td>
                 </tr>
                 <tr>
@@ -88,7 +88,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.vehicle_name}vehicle name
+                    {props.vehicle_name}Prius
                   </td>
                 </tr>
                 <tr>
@@ -104,25 +104,10 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.vehicle_type}vehicle type
+                    {props.vehicle_type}Car
                   </td>
                 </tr>
-                <tr>
-                  <td style={{ textAlign: "left", paddingBottom: "15px" }}>
-                    Vehicle Number Plate
-                  </td>
-                  <td
-                    class="info-right-column-color"
-                    style={{
-                      color: "#108882",
-                      paddingLeft: "30px",
-                      textAlign: "left",
-                      paddingBottom: "15px",
-                    }}
-                  >
-                    {props.vehicle_plate}vehicle no plate
-                  </td>
-                </tr>
+                
                 <tr>
                   <td style={{ textAlign: "left", paddingBottom: "15px" }}>
                     District
@@ -152,7 +137,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.price_per_km}
+                    {props.price_per_km}120
                   </td>
                 </tr>
                 <tr>
@@ -168,7 +153,7 @@ const CarDriverProfile = (props) => {
                       paddingBottom: "15px",
                     }}
                   >
-                    {props.max_passengers}
+                    {props.max_passengers}6
                   </td>
                 </tr>
               </table>
