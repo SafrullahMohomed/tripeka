@@ -31,9 +31,7 @@ const List =()=>{
             <button>Search</button>
           </div>
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+         
             <SearchItem />
             <SearchItem />
             <SearchItem />
