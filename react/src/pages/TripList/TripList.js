@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar';
 import '../TripList/TripList.css'
 import TripSearchItems from './../../components/TripSearchItems/TripSearchItems';
 import { getAllHotelsAvailableByFilters } from "../../services/TripHotelService";
+import Header from '../../components/Header';
 
 const TripList = () => {
   const location = useLocation();
@@ -52,12 +53,9 @@ const TripList = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Header/>
       <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      
       <div className="triplistContainer" style={{display: "flex",justifyContent: "center",marginTop: "20px"}}>
         <div className="triplistWrapper" style={{width: "100%", maxWidth: "1024px", display: "flex",gap: "20px"}}>
           <div className="triplistSearch" style={{flex: "1",backgroundColor: "#febb02",padding: "10px",borderRadius: "10px",position: "sticky",top: "10px",height: "max-content"}}>
