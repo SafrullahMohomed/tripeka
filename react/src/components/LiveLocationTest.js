@@ -12,6 +12,9 @@ import { ServerBaseUrl } from "../constants/Server";
 import useGeoLocation from "../hooks/useGeoLocation";
 import authHeader from "../jwtAuthServices/auth-header";
 
+import Header from "./Header";
+import Footer from "./Footer";
+
 var stompClient = null;
 var subscription = null;
 var myInterval = null;
@@ -73,20 +76,24 @@ const LiveLocationTest = () => {
         
 
       // simulate a random value as lat & lon and send periodically through the socket
-      // const randomLat = location.coordinates.lat;
-      // const randomLng = location.coordinates.lng;
+      let randomLat = location.coordinates.lat;
+      let randomLng = location.coordinates.lng;
       
-      // sendMessage(randomLat, randomLng);
-        
+      if(randomLat !== null){
+        sendMessage(randomLat, randomLng);
+      }
+
       myInterval = setInterval(() => {
         let randomLat = location.coordinates.lat;
         let randomLon = location.coordinates.lng;
 
-        sendMessage(randomLat, randomLon);
+        if(randomLat !== null){
+          sendMessage(randomLat, randomLon);
+        }
 
         // console.log("Interval function ran....\n With Lat: " + randomLat + " & Lon: " + randomLon + " \n")
 
-      }, 10000);
+      }, 1000);
 
       // console.log("Interval function ran....\n With Lat: " + randomLat + " & Lon: " + randomLon + " \n")
 
@@ -215,12 +222,16 @@ const LiveLocationTest = () => {
       <div>
 
 
-        <h1>Welcome to Live Location Portal</h1> 
-        <div>
+        <Header />
+
+
+        <h1 class=" text-center mx-auto text-xl font-extrabold p-4">Welcome to Live Location Portal</h1>
+        {/* <h1 className="text-lg">Welcome to Live Location Portal</h1>  */}
+        <div className="text-center py-3 bg-gray-400">
           { 
             livelocations.map((livelocation) => (
               <div key={livelocation.user_id}>
-              <p> {livelocation.fullName} || {livelocation.latitude} || {livelocation.longitude}</p>
+              <p> {livelocation.fullName} : Latitude : {livelocation.latitude} , Longitude :{livelocation.longitude}</p>
               </div>
             ))
           }
@@ -244,6 +255,9 @@ const LiveLocationTest = () => {
                 ))}  
             </MapContainer>
         </div>
+
+        <Footer />
+
       </div>
     );
 }
