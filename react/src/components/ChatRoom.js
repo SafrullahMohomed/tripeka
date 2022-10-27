@@ -36,6 +36,8 @@ const MyChatRoom = () => {
     JSON.parse(localStorage.getItem("userDetails")).firstname +
     " " +
     JSON.parse(localStorage.getItem("userDetails")).lastname;
+  const profPicUrl = JSON.parse(localStorage.getItem("userDetails")).profile_url;
+  console.log(profPicUrl)
   const [textBoxMessage, settextBoxMessage] = useState();
   const [groupList, setgroupList] = useState([]);
   const [currentGroup, setcurrentGroup] = useState(null);
@@ -113,6 +115,7 @@ const MyChatRoom = () => {
         senderName: payloadData.senderName,
         message: payloadData.content,
         id: payloadData.id,
+        profile_url: payloadData.profile_url
       },
     ]);
 
@@ -148,6 +151,7 @@ const MyChatRoom = () => {
           senderName: userFullName,
           content: textBoxMessage,
           id: r,
+          profile_url: profPicUrl
         })
       );
       addMessageToDB(currentGroup.group_id, chatMessage)
@@ -234,7 +238,7 @@ const MyChatRoom = () => {
               <div className="ml-2">
                 <img
                   class="inline-block h-9 w-9 rounded-full ring-2 ring-black"
-                  src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src={message.profile_url}
                   alt=""
                 />
               </div>
