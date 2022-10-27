@@ -14,18 +14,8 @@ function fetchtest(){
       fetchData()
     }, [])
 
-   
-    const result = await fetch('http://localhost:3001/authors', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(myData)
-      })
-  
-      const resultInJson = await result.json()
-      setAuthors(prev => [...prev, resultInJson])
-    }
+} 
+    
 
 return (
     <div className='authors__container'>
@@ -38,6 +28,6 @@ return (
         </div>)}
     </div>
   )
-}
-
+      
+    
 export default fetchtest;
