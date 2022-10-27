@@ -1,67 +1,57 @@
-import "./navbar.css";
-import Notification from "../../img/notification.svg";
-import Message from "../../img/message.svg";
-import Settings from "../../img/settings.svg";
-import { useEffect, useState } from "react";
+import "./card.css";
+import Heart from "../../img/heart.svg";
+import HeartFilled from "../../img/heartFilled.svg";
+import Comment from "../../img/comment.svg";
+import Share from "../../img/share.svg";
+import Info from "../../img/info.svg";
+import { useState } from "react";
 
-const Navbar = ({ socket }) => {
-  const [notifications, setNotifications] = useState([]);
-  const [open, setOpen] = useState(false);
+const Card = ({ post, socket, user }) => {
+  const [liked, setLiked] = useState(false);
 
-  useEffect(() => {
-    socket.on("getNotification", (data) => {
-      setNotifications((prev) => [...prev, data]);
+  const handleNotification = (type) => {
+    type === 1 && setLiked(true);
+    socket.emit("sendNotification", {
+      senderName: user,
+      receiverName: post.username,
+      type,
     });
-  }, [socket]);
-
-  const displayNotification = ({ senderName, type }) => {
-    let action;
-
-    if (type === 1) {
-      action = "liked";
-    } else if (type === 2) {
-      action = "commented";
-    } else {
-      action = "shared";
-    }
-    return (
-      <span className="notification">{`${senderName} ${action} your post.`}</span>
-    );
-  };
-
-  const handleRead = () => {
-    setNotifications([]);
-    setOpen(false);
   };
 
   return (
-    <div className="navbar">
-      <span className="logo">Lama App</span>
-      <div className="icons">
-        <div className="icon" onClick={() => setOpen(!open)}>
-          <img src={Notification} className="iconImg" alt="" />
-          {
-notifications.length >0 &&
-            <div className="counter">{notifications.length}</div>
-          }
-        </div>
-        <div className="icon" onClick={() => setOpen(!open)}>
-          <img src={Message} className="iconImg" alt="" />
-        </div>
-        <div className="icon" onClick={() => setOpen(!open)}>
-          <img src={Settings} className="iconImg" alt="" />
-        </div>
+    <div className="card">
+      <div className="info">
+        <img src={post.userImg} alt="" className="userImg" />
+        <span>{post.fullname}</span>
       </div>
-      {open && (
-        <div className="notifications">
-          {notifications.map((n) => displayNotification(n))}
-          <button className="nButton" onClick={handleRead}>
-            Mark as read
-          </button>
-        </div>
-      )}
+      <img src={post.postImg} alt="" className="postImg" />
+      <div className="interaction">
+        {liked ? (
+          <img src={HeartFilled} alt="" className="cardIcon" />
+        ) : (
+          <img
+            src={Heart}
+            alt=""
+            className="cardIcon"
+            onClick={() => handleNotification(1)}
+          />
+        )}
+        <img
+          src={Comment}
+          alt=""
+          className="cardIcon"
+          onClick={() => handleNotification(2)}
+        />
+        <img
+          src={Share}
+          alt=""
+          className="cardIcon"
+          onClick={() => handleNotification(3)}
+        />
+        <img src={Info} alt="" className="cardIcon infoIcon" />
+      </div>
     </div>
   );
 };
 
-export default Navbar;
+export default Card;
