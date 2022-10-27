@@ -2,19 +2,7 @@ import React, { useState } from "react";
 import "./Modal.css";
 
 export default function Modaltest123() {
-  const [modal, setModal] = useState(false);
-
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-
-
-  if(modal){
-    document.body.classList.add('active model')
-  }
-  else{
-    document.body.classList.add('active-model');
-  }
+  
  
   return (
     <>
