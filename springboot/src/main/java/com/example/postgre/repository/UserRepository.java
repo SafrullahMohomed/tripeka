@@ -19,6 +19,9 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     @Query(value = "select lastname from Users where user_id = ?1")
     String GetUserNameByUserId(@Param("user_id") Integer user_id);
 
+//    @Query(value = "select user_id from Users where user_id = 2 ")
+//    Integer totalUser();
+
 //	get all users from a group
 //	@Query(value = "from Users where group_id = ?1")
 //	List<Users> findAllByGroupId(@Param("group_id") Integer group_id);

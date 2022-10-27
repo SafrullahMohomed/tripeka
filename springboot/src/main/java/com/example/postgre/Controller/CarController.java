@@ -1,10 +1,12 @@
 package com.example.postgre.Controller;
 
 import com.example.postgre.Model.Car;
+import com.example.postgre.repository.CarRepository;
 import com.example.postgre.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -13,7 +15,8 @@ import java.util.List;
 public class CarController {
 
     private final CarService carService;
-
+    @Autowired
+    CarRepository carRepository;
     @Autowired
     public CarController(CarService carService) {
         this.carService = carService;
@@ -49,4 +52,10 @@ public List<Car> getCarByUserId(@PathVariable("user_id") Integer user_id){
         carService.addCar(car);
 
     }
+
+    @GetMapping(path = "/allcarstotal")
+    public Long allCars(){
+      return carRepository.count();
+    }
+
 }
