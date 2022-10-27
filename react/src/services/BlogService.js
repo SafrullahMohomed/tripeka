@@ -6,6 +6,6 @@ export function getBlogs() {
   return axios.get(ServerBaseUrl + "/blogs");
 }
 
-export function createBlog(title, content, location) {
-  return axios.post(ServerBaseUrl + "/blogs", { title, content, location }, { headers: authHeader() });
+export function createBlog(title, content, location, moderatedStatus) {
+  return axios.post(ServerBaseUrl + "/blogs", { title, content, location, moderatedStatus }, { headers: authHeader() });
 }

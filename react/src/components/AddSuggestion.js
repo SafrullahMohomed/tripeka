@@ -75,7 +75,7 @@ const AddSuggestion = () => {
                             <TableHead>
                             <TableRow>
                                 <TableCell align="left"><b>Location</b></TableCell>
-                                <TableCell align="left"><b>Description</b></TableCell>
+                                <TableCell align="center"><b>Description</b></TableCell>
                             </TableRow>
                             </TableHead>
                             <TableBody>

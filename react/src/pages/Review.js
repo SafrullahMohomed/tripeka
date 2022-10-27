@@ -81,7 +81,7 @@ const Review = () => {
           </div>
             <div class="flex flex-wrap w-full pb-4 flex-col items-center text-center">
               <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Travelers' Blogs</h1>
-              <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Traveler Reveiws and discussion of the quality of Locations</p>
+              <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Traveler Blogs and discussion of their visits to Locations</p>
             </div>
             {/* <div>
                 {blogs.map((blog, index) => (
@@ -94,6 +94,7 @@ const Review = () => {
                 <div className="px-16 mx-auto">
                     <div class="flex justify-center flex-wrap">
                     {blogs.map((blog, index) => (
+                      (blog.moderatedStatus == 1 ) ?
                       <div className="p-2 mx-3 my-8">
                       <Card sx={{ maxWidth: 270, height: 280 }}>
                         <CardHeader
@@ -115,7 +116,7 @@ const Review = () => {
                           </Typography>
                         </CardContent>                       
                       </Card>
-                      </div>
+                      </div> : ""
                     ))}
                     </div>
                 </div>
