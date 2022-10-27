@@ -114,6 +114,8 @@ const Searchcard = () => {
               <span className="optionsCounternumber">{options.children}</span>
               <button className="optionsCounterbutton text-lg border-none" onClick={()=>handleOption("children","i")}>+</button>
               </div>
+
+              
           </div>
 
           <div className="optionsitem">

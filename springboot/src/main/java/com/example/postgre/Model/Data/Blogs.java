@@ -62,6 +62,7 @@ public class Blogs {
         this.title = title;
     }
 
+
     public String getSubtitle() {
         return subtitle;
     }
