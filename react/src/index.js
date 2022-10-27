@@ -64,7 +64,7 @@ import LiveLocation from "./pages/LiveLocation";
 import LiveLocationMark from "./components/LiveLocationMark";
 import LiveLocationTest from "./components/LiveLocationTest";
 import ModeratorDash from "./components/ModeratorDash";
-
+import AdminHotelManagement from "./pages/AdminHotelManagement";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -72,6 +72,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/triphotel" element={<TripHotels />} />
+      <Route path="/managehotel" element={<AdminHotelManagement />} />
       <Route path="/bookingform" element={<HotelBookingForm />} />
       <Route path="/guideregister" element={<GuideRegister />} />
       <Route path="/userprofile" element={<Userprofile />} />
@@ -106,6 +107,7 @@ root.render(
       />
       <Route path="/events" element={<><Header /><EventCalendar /></>} />
       <Route path="/help" element={<Help />} />
+      
 
       <Route path="/Hotels" element={<Test />} />
       <Route path="/ms1" element={<CarMain />} />
