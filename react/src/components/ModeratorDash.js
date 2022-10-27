@@ -147,8 +147,7 @@ const ModeratorDash = () => {
                         <TableRow>
                             
                             <TableCell align="left">Title</TableCell>
-                            <TableCell align="left">Location</TableCell>
-                            <TableCell align="left">Image</TableCell>
+                            <TableCell align="left">Name</TableCell>
                             <TableCell align="left">View</TableCell>
                         </TableRow>
                     </TableHead>
@@ -159,8 +158,7 @@ const ModeratorDash = () => {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                             <TableCell align="left">{blog.title}</TableCell>
-                            <TableCell align="left">{blog.location}</TableCell> 
-                            <TableCell align="left">{blog.image_url}</TableCell> 
+                            <TableCell align="left">{blog.location}</TableCell>
                             <TableCell align="left"><Button variant="contained" disableElevationon onClick={()=>{setcurrentBlogId(blog.blog_id)}}>View</Button></TableCell>
                         </TableRow>
                         }
@@ -180,11 +178,11 @@ const ModeratorDash = () => {
 
                 <div>
                     {blogs.filter((blog) => blog.blog_id === currentBlogId).map((blog) => (
-                        <div>
-                            {blog.moderatedStatus === 1 && <Button>ACCEPTED BLOG</Button>}
-                            {blog.moderatedStatus === 2 && <Button>REJECTED BLOG</Button>}
+                        <div className="hi">
+                            {blog.moderatedStatus === 1 && <Button sx={{py: 1}}>ACCEPTED BLOG</Button>}
+                            {blog.moderatedStatus === 2 && <Button sx={{py: 1}}>REJECTED BLOG</Button>}
                             
-                            <Card sx={{ maxWidth: 400 }}>
+                            <Card sx={{ maxWidth: 400, my: 4 }}>
                                 <CardActionArea
                                 onClick={() => {
                                     window.location.href = `/trip`;
@@ -207,8 +205,8 @@ const ModeratorDash = () => {
                                 </CardActionArea>
                             </Card>
 
-                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 1) && <Button onClick={()=>{rejectBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Reject</Button>} 
-                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 2) && <Button onClick={()=>{acceptBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Accept</Button>}
+                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 1) && <Button variant="contained" color="error" sx={{mr: 2}} onClick={()=>{rejectBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Reject</Button>} 
+                            {(blog.moderatedStatus === 0 || blog.moderatedStatus === 2) && <Button variant="contained" color="success" onClick={()=>{acceptBlog(blog.blog_id).then((res) => {console.log(res); setcurrentBlogId(-1);}).catch((err) => console.log(err))}}>Accept</Button>}
                         </div>
                     ))}
                 </div>

@@ -12,11 +12,16 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { createBlog } from "../services/BlogService";
 
 var firstname = null;
+var lastname = null;
+var name = "User Unknown";
 var user_id = null;
 if (localStorage.getItem("userDetails")) {
   user_id = JSON.parse(localStorage.getItem("userDetails")).user_id;
   firstname = JSON.parse(localStorage.getItem("userDetails")).firstname;
+  lastname = JSON.parse(localStorage.getItem("userDetails")).lastname;
+  name = firstname + " " + lastname;
 }
+
 
 const Blogs = () => {
 
@@ -24,13 +29,14 @@ const Blogs = () => {
 
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [moderatedStatus, setModeratedStatus] = useState(0);
   
   const createBlogs = async (e) => {
     e.preventDefault();
 
-    // const blog = { title, content, firstname }; 
+    // const blog = { title, content, name, moderatedStatus }; 
     // console.log(blog);
-    createBlog(title, content, firstname )
+    createBlog(title, content, name, moderatedStatus)
       .then((response) => navigate("/dashboard/" + user_id ));
         
   };

@@ -129,7 +129,7 @@ const Suggestions = () => {
       <div class="flex flex-wrap justify-center -m-4">
         <Box sx={{ width: 1000 }}>
           <ImageList variant="masonry" cols={3} gap={6}>
-            {suggestions.map((item) => (
+            {suggestions.map((item, index) => index < 10 && (
               <ImageListItem>
                 <img
                   src={`${item.url}?w=248&fit=crop&auto=format`}
