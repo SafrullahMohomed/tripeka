@@ -1,9 +1,6 @@
 # Trip Eka - All-in-One Trip Management Web Application
-<p align="center">
-  <img src="./tripeka-logo.png" alt="Trip Eka Logo" width="300"/>
-</p>
-
-Welcome to Trip Eka, an all-in-one web application designed for managing and planning trips. Trip Eka offers a comprehensive platform that includes budget management, live location sharing among group members, image uploads, car rental services, group creation and chat facilities, weather forecasting, guiding services, and hotel bookings.
+| Welcome to Trip Eka, an all-in-one web application designed for managing and planning trips. Trip Eka offers a comprehensive platform that includes budget management, live location sharing among group members, image uploads, car rental services, group creation and chat facilities, weather forecasting, guiding services, and hotel bookings. | ![Trip Eka Logo](./tripeka-logo.png) |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
 
 ## Features
 
