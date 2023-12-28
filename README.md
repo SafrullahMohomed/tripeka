@@ -1,4 +1,7 @@
 # Trip Eka - All-in-One Trip Management Web Application
+<p align="center">
+  <img src="./tripeka-logo.png" alt="Trip Eka Logo" width="300"/>
+</p>
 
 Welcome to Trip Eka, an all-in-one web application designed for managing and planning trips. Trip Eka offers a comprehensive platform that includes budget management, live location sharing among group members, image uploads, car rental services, group creation and chat facilities, weather forecasting, guiding services, and hotel bookings.
 
@@ -44,4 +47,4 @@ Developed a responsive web application for local travelers, facilitating trip pl
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/trip-eka.git
+   git clone https://github.com/SafrullahMohomed/tripeka.git
