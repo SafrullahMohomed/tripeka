@@ -4,6 +4,11 @@ import authHeader from "../jwtAuthServices/auth-header";
 
 export function getUsers() {
     return axios.get(ServerBaseUrl + `/users`);
+
+}
+
+export function totalUser() {
+    return axios.get(ServerBaseUrl + `/totalusers`);
 }
 
 // export function getUsersByEmail(email) {

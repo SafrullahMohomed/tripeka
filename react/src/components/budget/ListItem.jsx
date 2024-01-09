@@ -163,6 +163,7 @@ const ListItem = (props) => {
                     console.log("Something went wrong", err);
                   });
                 handleClose();
+                // window.location.reload();
               }}
               autoFocus
             >

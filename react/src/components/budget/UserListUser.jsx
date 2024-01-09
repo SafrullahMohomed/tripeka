@@ -4,7 +4,7 @@ import PersonIcon from '@mui/icons-material/Person';
 const UserListUser = (props) => {
   return (
     <div className="m-10 border-0 text-center">
-      <div style={{backgroundColor: props.bgcolor}} class="block flex max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 w-36">
+      <div style={{backgroundColor: props.bgcolor}} class="flex max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 w-36">
         <div className="flex items-center mx-4">
           <PersonIcon />
         </div>

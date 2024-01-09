@@ -343,7 +343,7 @@ export default function MiniDrawer() {
                     px: 2,
                     color: 'secondary.light',
                     borderRadius: 2,
-                    bgcolor: 'primary.main',
+                    bgcolor: 'white',
                     "&:hover": {
                       bgcolor: 'primary.light',
                     },

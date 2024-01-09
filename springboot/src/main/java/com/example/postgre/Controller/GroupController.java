@@ -38,6 +38,11 @@ public class GroupController {
         return groupRepository.findAll();
     }
 
+    @GetMapping("/allgroups")
+    public Long getAllGorupsTotal(){
+        return groupRepository.count();
+    }
+
     // Get users' groups
     @GetMapping("/groups/{user_id}")
     public Users getGroupsById(@PathVariable("user_id") Integer user_id) {

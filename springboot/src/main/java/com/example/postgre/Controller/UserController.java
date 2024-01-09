@@ -1,18 +1,14 @@
 package com.example.postgre.Controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
+import com.example.postgre.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.postgre.Model.Data.Groups;
 import com.example.postgre.Model.Data.Users;
 import com.example.postgre.repository.GroupRepository;
 import com.example.postgre.repository.UserRepository;
@@ -28,27 +24,19 @@ public class UserController {
     @Autowired
     private GroupRepository groupRepository;
 
+
     // get users
     @GetMapping("/users")
     public List<Users> getUsers() {
         return userRepository.findAll();
     }
 
-    // get users of a group
-    // @GetMapping("/asd/{email}")
-    // public Set<Groups> getGroupMembers(@PathVariable("email") String email) {
-    // return userRepository.findByEmail(email).getGroups();
-    // }
+    @GetMapping(path = "/totalusers")
+    public Long totalUser(){
+        return userRepository.count();
+    }
 
-    // insert a group to user
-    // @PutMapping("/{user_id}/groups/{group_id}")
-    // Users findusergroup(@PathVariable Integer user_id, @PathVariable Integer
-    // group_id) {
-    // Users user = userRepository.findById(user_id).get();
-    // Groups group = groupRepository.findById(group_id).get();
-    // user.addGroup(group);
-    // return userRepository.save(user);
-    // }
+
 
    
 
